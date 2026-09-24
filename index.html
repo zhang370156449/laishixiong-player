@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html lang="zh"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>赖世雄入门篇｜句子点读机</title>
 <style>
-body{font-family:"Microsoft YaHei",sans-serif;max-width:860px;margin:0 auto;padding:14px;color:#222;background:#fafafa}
-.bar{position:sticky;top:0;background:#fafafa;padding:10px 0;border-bottom:2px solid #7c6ee6;z-index:9}
-input,select,button{font-size:15px;padding:7px 10px;border:1px solid #ccc;border-radius:6px}
-#q{width:44%} select{width:34%}
-button{background:#7c6ee6;color:#fff;border:none;cursor:pointer}
-.row{display:flex;align-items:center;gap:10px;padding:7px 10px;border-bottom:1px solid #eee;background:#fff}
-.row.playing{background:#efeaff}
-.no{color:#aaa;width:26px;text-align:right;flex:none;font-size:13px}
-.tag{font-size:11px;color:#fff;background:#9a8fe8;border-radius:4px;padding:1px 6px;flex:none}
-.en{flex:1.2;font-weight:bold}.zh{flex:1;color:#666}
-.ctl{flex:none;display:flex;gap:6px;align-items:center}
-.btn{width:34px;height:30px;border:none;border-radius:6px;background:#7c6ee6;color:#fff;font-size:14px;cursor:pointer}
-.loop{font-size:11px;background:#eee;color:#555;border-radius:4px;padding:2px 6px;cursor:pointer;user-select:none}
+*{-webkit-tap-highlight-color:transparent}
+body{font-family:"Microsoft YaHei",-apple-system,sans-serif;max-width:1120px;margin:0 auto;padding:16px;color:#222;background:#f4f4f8}
+h1{font-size:24px;margin:6px 0 12px}
+h1 .sub{font-size:14px;color:#888;font-weight:normal}
+.bar{position:sticky;top:0;background:#f4f4f8;padding:12px 4px;border-bottom:2px solid #7c6ee6;z-index:9;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar input,.bar select{font-size:17px;padding:10px 12px;border:1px solid #ccc;border-radius:8px;background:#fff}
+#q{flex:2;min-width:220px}
+#lesson{flex:1;min-width:180px}
+.bar button{font-size:16px;padding:10px 16px;border:none;border-radius:8px;background:#7c6ee6;color:#fff;cursor:pointer}
+.bar button.off{background:#d8d4f2;color:#555}
+#count{color:#888;font-size:14px;margin:10px 2px}
+.row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid #e4e4ec;background:#fff;border-radius:10px;margin-bottom:8px}
+.row.playing{background:#efeaff;box-shadow:0 0 0 2px #7c6ee6 inset}
+.no{color:#aaa;width:30px;text-align:right;flex:none;font-size:14px}
+.tag{font-size:12px;color:#fff;background:#9a8fe8;border-radius:6px;padding:3px 8px;flex:none}
+.en{flex:1.15;font-weight:bold;font-size:19px;line-height:1.4}
+.zh{flex:1;color:#555;font-size:17px;line-height:1.4}
+.ctl{flex:none;display:flex;gap:10px;align-items:center}
+.btn{width:52px;height:44px;border:none;border-radius:10px;background:#7c6ee6;color:#fff;font-size:18px;cursor:pointer}
+.btn:active{transform:scale(.94)}
+.loop,.spd{font-size:13px;background:#e8e6f8;color:#555;border-radius:6px;padding:6px 10px;cursor:pointer;user-select:none}
 .loop.on{background:#7c6ee6;color:#fff}
-.spd{font-size:11px;background:#eee;color:#555;border-radius:4px;padding:2px 6px;cursor:pointer;user-select:none}
-#count{color:#888;font-size:13px;margin:8px 0}
+body.hide .t{filter:blur(8px);cursor:pointer;transition:filter .15s}
+body.hide .en.rev .t{filter:none}
+@media (max-width:760px){
+ .en{font-size:16px}.zh{font-size:14px}.row{gap:8px;padding:10px 8px}
+ h1{font-size:19px}#q{min-width:140px}#lesson{min-width:130px}
+}
 </style></head><body>
-<h1 style="font-size:20px">赖世雄入门篇｜句子点读机 <span style="font-size:13px;color:#888">点哪句播哪句</span></h1>
+<h1>赖世雄入门篇｜句子点读机 <span class="sub">点哪句播哪句 · iPad横屏友好</span></h1>
 <div class="bar">
 <input id="q" placeholder="搜中文或英文…"><select id="lesson"><option value="">全部课程</option></select>
-<button onclick="document.querySelectorAll('.en').forEach(e=>e.classList.toggle('hide'))">显隐英文</button>
-<button id="chain" onclick="toggleChain(this)">连播:关</button>
+<button id="hideBtn" onclick="toggleHide()">遮住英文</button>
+<button id="chainBtn" onclick="toggleChain()">连播:关</button>
 <select id="spd"><option value="1">1.0x</option><option value="0.75">0.75x</option><option value="0.6">0.6x</option><option value="1.25">1.25x</option></select>
 </div>
 <div id="count"></div>
@@ -35,7 +47,7 @@ const sel = document.getElementById('lesson');
 const seen = new Set();
 DATA.forEach(d => { if (!seen.has(d.l)) { seen.add(d.l); const o = document.createElement('option'); o.value = d.l; o.textContent = 'L' + String(d.l).padStart(2,'0') + ' ' + d.lt; sel.appendChild(o); } });
 const audio = new Audio();
-let cur = -1, loopN = 1, looped = 0, chain = false, queue = [];
+let cur = -1, loopN = 1, looped = 0, chain = false;
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function render(){
   const q = document.getElementById('q').value.trim().toLowerCase();
@@ -49,9 +61,10 @@ function render(){
     shown++;
     const row = document.createElement('div'); row.className = 'row'; row.id = 'r' + idx;
     row.innerHTML = '<div class="no">' + d.i + '</div><div class="tag">L' + String(d.l).padStart(2,'0') + '</div>'
-      + '<div class="en">' + esc(d.en) + '</div><div class="zh">' + esc(d.zh) + '</div>'
+      + '<div class="en"><span class="t">' + esc(d.en) + '</span></div><div class="zh">' + esc(d.zh) + '</div>'
       + '<div class="ctl"><button class="btn" onclick="play(' + idx + ')">&#9654;</button>'
-      + '<span class="loop" id="lp' + idx + '" onclick="toggleLoop(' + idx + ')">x1</span></div>';
+      + '<span class="loop" id="lp' + idx + '" onclick="toggleLoop(' + idx + ',event)">x1</span></div>';
+    row.querySelector('.en').addEventListener('click', function(){ this.classList.toggle('rev'); });
     list.appendChild(row);
   });
   document.getElementById('count').textContent = '显示 ' + shown + ' / ' + DATA.length + ' 句';
@@ -66,32 +79,38 @@ function play(idx){
   audio.play();
 }
 audio.onended = () => {
-  if (document.getElementById('lp' + cur)) {
-    const lp = document.getElementById('lp' + cur);
-    if (lp.classList.contains('on')) {
-      if (loopN === 0 || looped < loopN - 1) { looped++; audio.currentTime = 0; audio.play(); return; }
-    }
-  }
+  const lp = document.getElementById('lp' + cur);
+  if (lp && lp.dataset.m === 'x3' && looped < 2) { looped++; audio.currentTime = 0; audio.play(); return; }
+  if (lp && lp.dataset.m === 'loop') { audio.currentTime = 0; audio.play(); return; }
   if (chain) {
     const rows = [...document.querySelectorAll('.row')].map(r => parseInt(r.id.slice(1)));
     const pos = rows.indexOf(cur);
     if (pos >= 0 && pos < rows.length - 1) { play(rows[pos + 1]); return; }
   }
 };
-function toggleLoop(idx){
+function toggleLoop(idx, ev){
+  ev.stopPropagation();
   const lp = document.getElementById('lp' + idx);
-  const seq = ['off','x1','x3','loop'];
-  let cur2 = seq.indexOf(lp.dataset.m || 'off');
-  cur2 = (cur2 + 1) % 4;
-  lp.dataset.m = seq[cur2];
-  lp.classList.toggle('on', cur2 > 0);
-  lp.textContent = cur2 === 0 ? 'x1' : seq[cur2] === 'loop' ? 'loop' : seq[cur2];
-  loopN = cur2 === 1 ? 1 : cur2 === 2 ? 3 : 0;
-  if (cur === idx && cur2 > 0) looped = 0;
+  const seq = ['x1','x3','loop'];
+  let m = lp.dataset.m || 'x1';
+  m = seq[(seq.indexOf(m) + 1) % 3];
+  lp.dataset.m = m;
+  lp.textContent = m;
+  lp.classList.toggle('on', m !== 'x1');
+  if (cur === idx) looped = 0;
 }
-function toggleChain(btn){
+function toggleHide(){
+  document.body.classList.toggle('hide');
+  const on = document.body.classList.contains('hide');
+  const b = document.getElementById('hideBtn');
+  b.textContent = on ? '显示英文' : '遮住英文';
+  b.classList.toggle('off', !on);
+}
+function toggleChain(){
   chain = !chain;
-  btn.textContent = '连播:' + (chain ? '开' : '关');
+  const b = document.getElementById('chainBtn');
+  b.textContent = '连播:' + (chain ? '开' : '关');
+  b.classList.toggle('off', !chain);
 }
 document.getElementById('q').addEventListener('input', render);
 sel.addEventListener('change', render);

@@ -47,9 +47,11 @@ body.hide .en.rev .t{filter:none}
 <input id="q" placeholder="搜中文或英文…"><select id="lesson"><option value="">全部课程</option></select>
 <button id="singleLoopBtn" class="off" onclick="toggleSingleLoop()">单句循环:关</button>
 <select id="gap" title="跟读循环间隔时间">
-<option value="0">间隔: 0s</option>
+<option value="auto" selected>间隔: 自动 (原句时长)</option>
+<option value="auto1.5">间隔: 自动 (1.5倍时长)</option>
+<option value="0">间隔: 0s (无停顿)</option>
 <option value="1">间隔: 1s</option>
-<option value="2" selected>间隔: 2s (跟读)</option>
+<option value="2">间隔: 2s</option>
 <option value="3">间隔: 3s</option>
 <option value="4">间隔: 4s</option>
 <option value="5">间隔: 5s</option>
@@ -105,6 +107,17 @@ function clearLoopTimer(){
   }
 }
 
+function getGapSec(){
+  const g = document.getElementById('gap').value;
+  const d = audio.duration;
+  const dur = (d && !isNaN(d) && isFinite(d) && d > 0) ? d : 2;
+  const rate = (audio.playbackRate && audio.playbackRate > 0) ? audio.playbackRate : 1;
+  const actualTime = dur / rate;
+  if (g === 'auto') return Math.max(1, Math.round(actualTime));
+  if (g === 'auto1.5') return Math.max(1, Math.round(actualTime * 1.5));
+  return parseInt(g, 10) || 0;
+}
+
 function setGapUI(idx, sec){
   const gt = document.getElementById('gt' + idx);
   const row = document.getElementById('r' + idx);
@@ -156,7 +169,7 @@ function render(){
   });
   document.getElementById('count').textContent = '显示 ' + shown + ' / ' + DATA.length + ' 句';
   if (cur >= 0 && isWaitingGap) {
-    const remain = parseInt(document.getElementById('gap').value, 10) || 0;
+    const remain = getGapSec();
     setGapUI(cur, remain);
   }
 }
@@ -216,7 +229,7 @@ audio.onended = () => {
 
   if (shouldLoop) {
     if (rowMode === 'x3') looped++;
-    const gapSec = parseInt(document.getElementById('gap').value, 10) || 0;
+    const gapSec = getGapSec();
     if (gapSec > 0) {
       isWaitingGap = true;
       updateBtn(cur, false);
@@ -245,7 +258,7 @@ audio.onended = () => {
   }
 
   if (chain) {
-    const gapSec = parseInt(document.getElementById('gap').value, 10) || 0;
+    const gapSec = getGapSec();
     const rows = [...document.querySelectorAll('.row')].map(r => parseInt(r.id.slice(1)));
     const pos = rows.indexOf(cur);
     if (pos >= 0 && pos < rows.length - 1) {

@@ -19,6 +19,10 @@ h1 .sub{font-size:14px;color:#888;font-weight:normal}
 #count{color:#888;font-size:14px;margin:10px 2px}
 .row{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid #e4e4ec;background:#fff;border-radius:10px;margin-bottom:8px}
 .row.playing{background:#efeaff;box-shadow:0 0 0 2px #7c6ee6 inset}
+.row.waiting{background:#f8f6ff;box-shadow:0 0 0 2px #9a8fe8 inset}
+.gap-tip{font-size:12px;color:#7c6ee6;background:#efeaff;border-radius:6px;padding:3px 8px;font-weight:bold;display:none;white-space:nowrap}
+.gap-tip.show{display:inline-block;animation:pulse .9s infinite alternate}
+@keyframes pulse{from{opacity:.6}to{opacity:1}}
 .no{color:#aaa;width:30px;text-align:right;flex:none;font-size:14px}
 .tag{font-size:12px;color:#fff;background:#9a8fe8;border-radius:6px;padding:3px 8px;flex:none}
 .en{flex:1.15;font-weight:bold;font-size:19px;line-height:1.4}
@@ -31,17 +35,28 @@ h1 .sub{font-size:14px;color:#888;font-weight:normal}
 body.hide .t{filter:blur(8px);cursor:pointer;transition:filter .15s}
 body.hide .en.rev .t{filter:none}
 @media (max-width:760px){
+ .bar{gap:6px;padding:8px 2px}
+ .bar input,.bar select,.bar button{font-size:14px;padding:8px 10px}
  .en{font-size:16px}.zh{font-size:14px}.row{gap:8px;padding:10px 8px}
- h1{font-size:19px}#q{min-width:140px}#lesson{min-width:130px}
+ h1{font-size:19px}#q{min-width:130px}#lesson{min-width:120px}#series{min-width:120px}
 }
 </style></head><body>
 <h1>EchoLoop <span class="sub">点哪句播哪句 · 支持赖世雄 / Extra English</span></h1>
 <div class="bar">
 <select id="series" onchange="onSeriesChange()"><option value="">全部来源</option><option value="laishi">赖世雄入门篇</option><option value="extra">Extra English</option><option value="phrase">高频短语</option></select>
 <input id="q" placeholder="搜中文或英文…"><select id="lesson"><option value="">全部课程</option></select>
-<button id="hideBtn" onclick="toggleHide()">遮住英文</button>
-<button id="chainBtn" onclick="toggleChain()">连播:关</button>
+<button id="singleLoopBtn" class="off" onclick="toggleSingleLoop()">单句循环:关</button>
+<select id="gap" title="跟读循环间隔时间">
+<option value="0">间隔: 0s</option>
+<option value="1">间隔: 1s</option>
+<option value="2" selected>间隔: 2s (跟读)</option>
+<option value="3">间隔: 3s</option>
+<option value="4">间隔: 4s</option>
+<option value="5">间隔: 5s</option>
+</select>
+<button id="chainBtn" class="off" onclick="toggleChain()">连播:关</button>
 <select id="spd"><option value="1">1.0x</option><option value="0.75">0.75x</option><option value="0.6">0.6x</option><option value="1.25">1.25x</option></select>
+<button id="hideBtn" onclick="toggleHide()">遮住英文</button>
 </div>
 <div id="count"></div>
 <div id="list"></div>
@@ -79,7 +94,37 @@ function fillLessons() {
 fillLessons();
 function onSeriesChange(){ fillLessons(); render(); }
 const audio = new Audio();
-let cur = -1, loopN = 1, looped = 0, chain = false;
+let cur = -1, looped = 0, chain = false, singleLoop = false;
+let loopTimer = null, isWaitingGap = false;
+
+function clearLoopTimer(){
+  if (loopTimer) {
+    clearInterval(loopTimer);
+    clearTimeout(loopTimer);
+    loopTimer = null;
+  }
+}
+
+function setGapUI(idx, sec){
+  const gt = document.getElementById('gt' + idx);
+  const row = document.getElementById('r' + idx);
+  if (!gt) return;
+  if (sec > 0) {
+    gt.textContent = '跟读 ' + sec + 's';
+    gt.classList.add('show');
+    if (row) row.classList.add('waiting');
+  } else {
+    gt.textContent = '';
+    gt.classList.remove('show');
+    if (row) row.classList.remove('waiting');
+  }
+}
+
+function updateBtn(idx, playing){
+  const b = document.getElementById('btn' + idx);
+  if (b) b.innerHTML = playing ? '&#10074;&#10074;' : '&#9654;';
+}
+
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function render(){
   const q = document.getElementById('q').value.trim().toLowerCase();
@@ -94,34 +139,151 @@ function render(){
     if (q && d.en.toLowerCase().indexOf(q) < 0 && d.zh.toLowerCase().indexOf(q) < 0) return;
     shown++;
     const row = document.createElement('div'); row.className = 'row'; row.id = 'r' + idx;
+    const isCur = (cur === idx);
+    if (isCur) {
+      row.classList.add('playing');
+      if (isWaitingGap) row.classList.add('waiting');
+    }
+    const btnIcon = (isCur && (!audio.paused || isWaitingGap)) ? '&#10074;&#10074;' : '&#9654;';
     row.innerHTML = '<div class="no">' + d.i + '</div><div class="tag">' + (isExtra(d) ? 'E' : isPhrase(d) ? 'P' : 'L') + String(isExtra(d) ? d.l - 100 : isPhrase(d) ? d.l - 200 : d.l).padStart(2,'0') + '</div>'
       + '<div class="en"><span class="t">' + esc(d.en) + '</span></div><div class="zh">' + esc(d.zh) + '</div>'
-      + '<div class="ctl"><button class="btn" onclick="play(' + idx + ')">&#9654;</button>'
+      + '<div class="ctl">'
+      + '<span class="gap-tip" id="gt' + idx + '"></span>'
+      + '<button class="btn" id="btn' + idx + '" onclick="play(' + idx + ')">' + btnIcon + '</button>'
       + '<span class="loop" id="lp' + idx + '" onclick="toggleLoop(' + idx + ',event)">x1</span></div>';
     row.querySelector('.en').addEventListener('click', function(){ this.classList.toggle('rev'); });
     list.appendChild(row);
   });
   document.getElementById('count').textContent = '显示 ' + shown + ' / ' + DATA.length + ' 句';
+  if (cur >= 0 && isWaitingGap) {
+    const remain = parseInt(document.getElementById('gap').value, 10) || 0;
+    setGapUI(cur, remain);
+  }
 }
-function play(idx){
-  document.querySelectorAll('.row').forEach(r => r.classList.remove('playing'));
-  cur = idx; looped = 0;
+
+function play(idx, forcePlay = false){
+  clearLoopTimer();
+  if (!forcePlay && cur === idx) {
+    if (!audio.paused || isWaitingGap) {
+      audio.pause();
+      isWaitingGap = false;
+      setGapUI(cur, 0);
+      updateBtn(cur, false);
+      const row = document.getElementById('r' + cur);
+      if (row) row.classList.remove('waiting');
+      return;
+    } else {
+      if (audio.ended || audio.currentTime >= audio.duration) audio.currentTime = 0;
+      audio.playbackRate = parseFloat(document.getElementById('spd').value);
+      audio.play().catch(()=>{});
+      updateBtn(cur, true);
+      const row = document.getElementById('r' + cur);
+      if (row) row.classList.add('playing');
+      return;
+    }
+  }
+
+  if (cur >= 0 && cur !== idx) {
+    setGapUI(cur, 0);
+    updateBtn(cur, false);
+    const prevRow = document.getElementById('r' + cur);
+    if (prevRow) prevRow.classList.remove('playing', 'waiting');
+  }
+
+  cur = idx;
+  looped = 0;
+  isWaitingGap = false;
+
+  document.querySelectorAll('.row').forEach(r => r.classList.remove('playing', 'waiting'));
+  document.querySelectorAll('.btn').forEach(b => b.innerHTML = '&#9654;');
+
   const row = document.getElementById('r' + idx);
-  if (row) { row.classList.add('playing'); row.scrollIntoView({block:'nearest'}); }
+  if (row) {
+    row.classList.add('playing');
+    row.scrollIntoView({block:'nearest'});
+  }
+  updateBtn(idx, true);
+
   audio.src = 'data:audio/mp3;base64,' + DATA[idx].b64;
   audio.playbackRate = parseFloat(document.getElementById('spd').value);
-  audio.play();
+  audio.play().catch(()=>{});
 }
+
 audio.onended = () => {
   const lp = document.getElementById('lp' + cur);
-  if (lp && lp.dataset.m === 'x3' && looped < 2) { looped++; audio.currentTime = 0; audio.play(); return; }
-  if (lp && lp.dataset.m === 'loop') { audio.currentTime = 0; audio.play(); return; }
+  const rowMode = lp ? (lp.dataset.m || 'x1') : 'x1';
+  const shouldLoop = singleLoop || (rowMode === 'loop') || (rowMode === 'x3' && looped < 2);
+
+  if (shouldLoop) {
+    if (rowMode === 'x3') looped++;
+    const gapSec = parseInt(document.getElementById('gap').value, 10) || 0;
+    if (gapSec > 0) {
+      isWaitingGap = true;
+      updateBtn(cur, false);
+      setGapUI(cur, gapSec);
+      let remain = gapSec;
+      loopTimer = setInterval(() => {
+        remain--;
+        if (remain > 0) {
+          setGapUI(cur, remain);
+        } else {
+          clearLoopTimer();
+          isWaitingGap = false;
+          setGapUI(cur, 0);
+          updateBtn(cur, true);
+          audio.currentTime = 0;
+          audio.playbackRate = parseFloat(document.getElementById('spd').value);
+          audio.play().catch(()=>{});
+        }
+      }, 1000);
+    } else {
+      audio.currentTime = 0;
+      audio.playbackRate = parseFloat(document.getElementById('spd').value);
+      audio.play().catch(()=>{});
+    }
+    return;
+  }
+
   if (chain) {
+    const gapSec = parseInt(document.getElementById('gap').value, 10) || 0;
     const rows = [...document.querySelectorAll('.row')].map(r => parseInt(r.id.slice(1)));
     const pos = rows.indexOf(cur);
-    if (pos >= 0 && pos < rows.length - 1) { play(rows[pos + 1]); return; }
+    if (pos >= 0 && pos < rows.length - 1) {
+      const nextIdx = rows[pos + 1];
+      if (gapSec > 0) {
+        isWaitingGap = true;
+        updateBtn(cur, false);
+        setGapUI(cur, gapSec);
+        let remain = gapSec;
+        loopTimer = setInterval(() => {
+          remain--;
+          if (remain > 0) {
+            setGapUI(cur, remain);
+          } else {
+            clearLoopTimer();
+            isWaitingGap = false;
+            setGapUI(cur, 0);
+            play(nextIdx, true);
+          }
+        }, 1000);
+      } else {
+        play(nextIdx, true);
+      }
+      return;
+    }
+  }
+
+  const prev = cur;
+  cur = -1;
+  isWaitingGap = false;
+  if (prev >= 0) {
+    setGapUI(prev, 0);
+    updateBtn(prev, false);
+    const row = document.getElementById('r' + prev);
+    if (row) row.classList.remove('playing', 'waiting');
   }
 };
+
 function toggleLoop(idx, ev){
   ev.stopPropagation();
   const lp = document.getElementById('lp' + idx);
@@ -133,6 +295,27 @@ function toggleLoop(idx, ev){
   lp.classList.toggle('on', m !== 'x1');
   if (cur === idx) looped = 0;
 }
+
+function toggleSingleLoop(force){
+  if (typeof force === 'boolean') singleLoop = force;
+  else singleLoop = !singleLoop;
+  const b = document.getElementById('singleLoopBtn');
+  b.textContent = '单句循环:' + (singleLoop ? '开' : '关');
+  b.classList.toggle('off', !singleLoop);
+  if (singleLoop && chain) toggleChain(false);
+  try { localStorage.setItem('echoloop_single_loop', singleLoop ? '1' : '0'); } catch(e){}
+}
+
+function toggleChain(force){
+  if (typeof force === 'boolean') chain = force;
+  else chain = !chain;
+  const b = document.getElementById('chainBtn');
+  b.textContent = '连播:' + (chain ? '开' : '关');
+  b.classList.toggle('off', !chain);
+  if (chain && singleLoop) toggleSingleLoop(false);
+  try { localStorage.setItem('echoloop_chain', chain ? '1' : '0'); } catch(e){}
+}
+
 function toggleHide(){
   document.body.classList.toggle('hide');
   const on = document.body.classList.contains('hide');
@@ -140,13 +323,29 @@ function toggleHide(){
   b.textContent = on ? '显示英文' : '遮住英文';
   b.classList.toggle('off', !on);
 }
-function toggleChain(){
-  chain = !chain;
-  const b = document.getElementById('chainBtn');
-  b.textContent = '连播:' + (chain ? '开' : '关');
-  b.classList.toggle('off', !chain);
-}
+
+document.getElementById('spd').addEventListener('change', () => {
+  audio.playbackRate = parseFloat(document.getElementById('spd').value);
+  try { localStorage.setItem('echoloop_spd', document.getElementById('spd').value); } catch(e){}
+});
+
+document.getElementById('gap').addEventListener('change', () => {
+  try { localStorage.setItem('echoloop_gap', document.getElementById('gap').value); } catch(e){}
+});
+
 document.getElementById('q').addEventListener('input', render);
 sel.addEventListener('change', render);
+
+try {
+  const g = localStorage.getItem('echoloop_gap');
+  if (g !== null) document.getElementById('gap').value = g;
+  const s = localStorage.getItem('echoloop_spd');
+  if (s !== null) document.getElementById('spd').value = s;
+  const sl = localStorage.getItem('echoloop_single_loop');
+  if (sl === '1') toggleSingleLoop(true);
+  const ch = localStorage.getItem('echoloop_chain');
+  if (ch === '1' && sl !== '1') toggleChain(true);
+} catch(e){}
+
 render();
 </script></body></html>

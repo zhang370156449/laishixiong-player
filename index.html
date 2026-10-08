@@ -51,15 +51,20 @@ const sel = document.getElementById('lesson');
 const seriesSel = document.getElementById('series');
 function isExtra(d){ return d.src === 'extra'; }
 function isPhrase(d){ return d.src === 'phrase'; }
+function isLaishi(d){ return !d.src || d.src === 'laishi'; }
+function matchSeries(d, sv) {
+  if (!sv) return true;
+  if (sv === 'laishi') return isLaishi(d);
+  if (sv === 'extra') return isExtra(d);
+  if (sv === 'phrase') return isPhrase(d);
+  return true;
+}
 function fillLessons() {
   const sv = seriesSel.value;
   sel.innerHTML = '<option value="">全部课程</option>';
   const seen = new Set();
   DATA.forEach(d => {
-    if (sv === 'extra' && !isExtra(d)) return;
-    if (sv === 'laishi' && isExtra(d)) return;
-    if (sv === 'phrase' && !isPhrase(d)) return;
-    if (sv === '' && false) return;
+    if (!matchSeries(d, sv)) return;
     if (!seen.has(d.l)) {
       seen.add(d.l);
       const o = document.createElement('option');
@@ -84,10 +89,7 @@ function render(){
   list.innerHTML = '';
   let shown = 0;
   DATA.forEach((d, idx) => {
-    if (sv === 'extra' && !isExtra(d)) return;
-    if (sv === 'laishi' && isExtra(d)) return;
-    if (sv === 'phrase' && !isPhrase(d)) return;
-    if (sv === 'phrase' && !isPhrase(d)) return;
+    if (!matchSeries(d, sv)) return;
     if (lv && String(d.l) !== lv) return;
     if (q && d.en.toLowerCase().indexOf(q) < 0 && d.zh.toLowerCase().indexOf(q) < 0) return;
     shown++;

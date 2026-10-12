@@ -752,6 +752,23 @@
       updateActiveChapter(videoEl.currentTime);
     });
 
+    // Keyboard Shortcuts for Seeking & Navigation
+    window.addEventListener('keydown', (e) => {
+      // Don't intercept if user is typing in an input
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+      if (e.code === 'ArrowRight' || e.key === 'l' || e.key === 'L') {
+        e.preventDefault();
+        videoEl.currentTime = Math.min(videoEl.duration || 999999, videoEl.currentTime + (e.code === 'ArrowRight' ? 5 : 10));
+      } else if (e.code === 'ArrowLeft' || e.key === 'j' || e.key === 'J') {
+        e.preventDefault();
+        videoEl.currentTime = Math.max(0, videoEl.currentTime - (e.code === 'ArrowLeft' ? 5 : 10));
+      } else if (e.code === 'Space') {
+        e.preventDefault();
+        if (videoEl.paused) videoEl.play();
+        else videoEl.pause();
+      }
+    });
+
     // Initialize
     renderPlaylist();
     loadVideo(0);

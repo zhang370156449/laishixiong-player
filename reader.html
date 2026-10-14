@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>教材 PDF 在线阅读器 · 带目录跳转</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
+  
+  <!-- PDF.js Engine -->
+  <script src="libs/pdf.min.js"></script>
+  
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --sidebar-bg: #ffffff;
+      --sidebar-border: #e2e8f0;
+      --reader-bg: #525659;
+      --toolbar-bg: #1e293b;
+      --toolbar-text: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --active-item-bg: #ede9fe;
+      --active-item-text: #4f46e5;
+      --sidebar-width: 320px;
+      --toolbar-height: 54px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--reader-bg);
+      color: var(--text-main);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Toolbar */
+    .toolbar {
+      height: var(--toolbar-height);
+      background: var(--toolbar-bg);
+      color: var(--toolbar-text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      flex-shrink: 0;
+      gap: 12px;
+    }
+    .toolbar-left, .toolbar-center, .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-back:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+    .btn-tool {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      height: 34px;
+      padding: 0 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #f1f5f9;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-tool:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+    }
+    .btn-tool.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .book-title-badge {
+      font-size: 14px;
+      font-weight: 700;
+      color: #e2e8f0;
+      max-width: 260px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Page navigation inputs */
+    .page-nav-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .page-input {
+      width: 48px;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      color: #fff;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      outline: none;
+    }
+    .page-input:focus {
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .page-total {
+      font-size: 13px;
+      color: #94a3b8;
+      padding: 0 4px;
+    }
+    .btn-page-nav {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .btn-page-nav:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    /* Zoom control group */
+    .zoom-group {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 2px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .zoom-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .zoom-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+    .zoom-text {
+      font-size: 12px;
+      color: #cbd5e1;
+      min-width: 48px;
+      text-align: center;
+    }
+
+    /* Main Container (Sidebar + Reader Viewport) */
+    .main-layout {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* TOC Sidebar */
+    .toc-sidebar {
+      width: var(--sidebar-width);
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--sidebar-border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), margin-left 0.3s;
+      z-index: 50;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    }
+    .toc-sidebar.collapsed {
+      margin-left: calc(-1 * var(--sidebar-width));
+    }
+
+    .toc-header {
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid var(--sidebar-border);
+    }
+    .toc-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .toc-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .toc-count-badge {
+      font-size: 11px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* Search inside TOC */
+    .toc-search-box {
+      position: relative;
+      width: 100%;
+    }
+    .toc-search-box input {
+      width: 100%;
+      padding: 8px 12px 8px 32px;
+      border: 1px solid var(--sidebar-border);
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      background: #f8fafc;
+      transition: all 0.2s;
+    }
+    .toc-search-box input:focus {
+      border-color: var(--primary);
+      background: #fff;
+    }
+    .toc-search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* TOC Items List */
+    .toc-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 10px;
+      list-style: none;
+    }
+    .toc-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      margin-bottom: 3px;
+      transition: all 0.15s ease;
+      gap: 8px;
+      border-left: 3px solid transparent;
+    }
+    .toc-item:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+    .toc-item.active {
+      background: var(--active-item-bg);
+      color: var(--active-item-text);
+      font-weight: 700;
+      border-left-color: var(--primary);
+    }
+    .toc-item-title {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .toc-page-badge {
+      font-size: 11px;
+      padding: 2px 6px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+    .toc-item.active .toc-page-badge {
+      background: rgba(79, 70, 229, 0.15);
+      color: var(--primary);
+    }
+
+    /* Reader Viewport */
+    .reader-viewport {
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+      position: relative;
+      scroll-behavior: smooth;
+    }
+
+    /* PDF Canvas Pages */
+    .pdf-page-container {
+      margin-bottom: 24px;
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .pdf-page-container:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    }
+    .pdf-page-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .page-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #334155;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* Loading overlay */
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(30, 41, 59, 0.85);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      color: #fff;
+      transition: opacity 0.3s;
+    }
+    .loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-text {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .loading-subtext {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    /* Mobile backdrop for sidebar drawer */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      top: var(--toolbar-height);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 40;
+    }
+
+    @media (max-width: 768px) {
+      .book-title-badge { display: none; }
+      .btn-tool span.btn-label { display: none; }
+      .toc-sidebar {
+        position: fixed;
+        top: var(--toolbar-height);
+        bottom: 0;
+        left: 0;
+        z-index: 60;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.25);
+      }
+      .toc-sidebar.collapsed {
+        transform: translateX(-100%);
+        margin-left: 0;
+      }
+      .sidebar-backdrop.show {
+        display: block;
+      }
+      .reader-viewport {
+        padding: 12px 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Toolbar -->
+  <header class="toolbar">
+    <div class="toolbar-left">
+      <a href="books.html" class="btn-back" title="返回教材书架">
+        <span>← 书架</span>
+      </a>
+      <button class="btn-tool active" id="btnToggleSidebar" title="展开/收起目录 (Table of Contents)">
+        <span>📑</span>
+        <span class="btn-label">目录</span>
+      </button>
+      <span class="book-title-badge" id="topBookTitle">加载教材中...</span>
+    </div>
+
+    <!-- Center: Page Navigation -->
+    <div class="toolbar-center">
+      <div class="page-nav-group">
+        <button class="btn-page-nav" id="btnPrevPage" title="上一页 (Page Up / ←)">◀</button>
+        <input type="number" id="pageNumberInput" class="page-input" value="1" min="1">
+        <span class="page-total">/ <span id="pageCountSpan">--</span></span>
+        <button class="btn-page-nav" id="btnNextPage" title="下一页 (Page Down / →)">▶</button>
+      </div>
+    </div>
+
+    <!-- Right: Zoom & Utilities -->
+    <div class="toolbar-right">
+      <div class="zoom-group">
+        <button class="zoom-btn" id="btnZoomOut" title="缩小 (-)">−</button>
+        <span class="zoom-text" id="zoomLevelText">宽适应</span>
+        <button class="zoom-btn" id="btnZoomIn" title="放大 (+)">+</button>
+      </div>
+      <button class="btn-tool" id="btnFitWidth" title="自适应页面宽度">
+        <span>↔</span>
+        <span class="btn-label">适应宽度</span>
+      </button>
+      <button class="btn-tool" id="btnFullscreen" title="全屏阅读 (F11)">
+        <span>⛶</span>
+      </button>
+      <a href="#" id="btnDownload" class="btn-tool" download title="下载原始 PDF 文件">
+        <span>⬇️</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main View (Sidebar + Reader) -->
+  <div class="main-layout">
+    <!-- Backdrop for mobile sidebar drawer -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- Collapsible TOC Sidebar -->
+    <aside class="toc-sidebar" id="tocSidebar">
+      <div class="toc-header">
+        <div class="toc-title-row">
+          <div class="toc-title">
+            <span>📑</span>
+            <span>全书目录导航</span>
+          </div>
+          <span class="toc-count-badge" id="tocCountBadge">0 章节</span>
+        </div>
+        <div class="toc-search-box">
+          <span class="toc-search-icon">🔍</span>
+          <input type="text" id="tocSearchInput" placeholder="快速筛选章节/课次..." autocomplete="off">
+        </div>
+      </div>
+      <ul class="toc-list" id="tocList">
+        <!-- Rendered dynamically -->
+      </ul>
+    </aside>
+
+    <!-- PDF Canvas Viewport -->
+    <main class="reader-viewport" id="readerViewport">
+      <!-- Pages rendered dynamically -->
+    </main>
+  </div>
+
+  <!-- Loading Screen -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loadingText">正在载入教材 PDF 数据...</div>
+    <div class="loading-subtext">高清矢量渲染引擎初始化中</div>
+  </div>
+
+  <!-- Database -->
+  <script src="books.js"></script>
+
+  <script>
+    // Configure PDF.js Worker
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'libs/pdf.worker.min.js';
+    }
+
+    // State
+    let currentBook = null;
+    let pdfDoc = null;
+    let totalPages = 0;
+    let currentPage = 1;
+    let currentScale = 1.0;
+    let fitWidthMode = true;
+    let isRendering = false;
+    let tocEntries = [];
+    let pageContainers = [];
+
+    // Elements
+    const topBookTitle = document.getElementById('topBookTitle');
+    const pageNumberInput = document.getElementById('pageNumberInput');
+    const pageCountSpan = document.getElementById('pageCountSpan');
+    const zoomLevelText = document.getElementById('zoomLevelText');
+    const readerViewport = document.getElementById('readerViewport');
+    const tocList = document.getElementById('tocList');
+    const tocCountBadge = document.getElementById('tocCountBadge');
+    const tocSearchInput = document.getElementById('tocSearchInput');
+    const tocSidebar = document.getElementById('tocSidebar');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+    const btnToggleSidebar = document.getElementById('btnToggleSidebar');
+    const btnPrevPage = document.getElementById('btnPrevPage');
+    const btnNextPage = document.getElementById('btnNextPage');
+    const btnZoomIn = document.getElementById('btnZoomIn');
+    const btnZoomOut = document.getElementById('btnZoomOut');
+    const btnFitWidth = document.getElementById('btnFitWidth');
+    const btnFullscreen = document.getElementById('btnFullscreen');
+    const btnDownload = document.getElementById('btnDownload');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const loadingText = document.getElementById('loadingText');
+
+    // 1. Initialize Book from URL Query
+    function initBook() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const bookId = urlParams.get('book') || 'laishi_beginner';
+      const initialPage = parseInt(urlParams.get('page'), 10) || 1;
+
+      const books = window.BOOKS_DATABASE || [];
+      currentBook = books.find(b => b.id === bookId) || books[0];
+
+      if (!currentBook) {
+        alert('未找到指定的教材！');
+        window.location.href = 'books.html';
+        return;
+      }
+
+      document.title = `${currentBook.title} · 在线高清阅读`;
+      topBookTitle.textContent = currentBook.title;
+      btnDownload.href = currentBook.pdfUrl || '#';
+      btnDownload.download = currentBook.pdfUrl || 'book.pdf';
+
+      // Load TOC (From books.js config first)
+      tocEntries = currentBook.toc || [];
+      renderTOC(tocEntries);
+
+      // Load PDF Document
+      loadPdfDocument(currentBook.pdfUrl, initialPage);
+    }
+
+    // 2. Render TOC List
+    function renderTOC(entries) {
+      tocCountBadge.textContent = `${entries.length} 章节`;
+      if (!entries || entries.length === 0) {
+        tocList.innerHTML = `<li style="padding:16px;text-align:center;color:#94a3b8;font-size:13px;">暂无目录数据</li>`;
+        return;
+      }
+
+      tocList.innerHTML = entries.map((item, idx) => {
+        const icon = item.icon || (item.title.includes('Lesson') ? '💬' : '📑');
+        return `
+          <li class="toc-item ${item.page === currentPage ? 'active' : ''}" data-page="${item.page}" data-index="${idx}">
+            <div class="toc-item-title">
+              <span>${icon}</span>
+              <span title="${item.title}">${item.title}</span>
+            </div>
+            <span class="toc-page-badge">P.${item.page}</span>
+          </li>
+        `;
+      }).join('');
+
+      // Add click listener
+      document.querySelectorAll('.toc-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const page = parseInt(el.getAttribute('data-page'), 10);
+          if (page) {
+            scrollToPage(page);
+            // On mobile, close sidebar after clicking
+            if (window.innerWidth <= 768) {
+              toggleSidebar(false);
+            }
+          }
+        });
+      });
+    }
+
+    // 3. Load PDF Document via PDF.js
+    async function loadPdfDocument(url, startPage) {
+      try {
+        loadingText.textContent = `正在加载《${currentBook.title}》...`;
+        loadingOverlay.classList.remove('hidden');
+
+        const loadingTask = pdfjsLib.getDocument(url);
+
+        pdfDoc = await loadingTask.promise;
+        totalPages = pdfDoc.numPages;
+        pageCountSpan.textContent = totalPages;
+        pageNumberInput.max = totalPages;
+
+        // If no predefined TOC in books.js, attempt to extract outline from PDF
+        if (tocEntries.length === 0) {
+          const outline = await pdfDoc.getOutline();
+          if (outline && outline.length > 0) {
+            tocEntries = await parsePdfOutline(outline);
+            renderTOC(tocEntries);
+          }
+        }
+
+        // Initialize Page Placeholders
+        setupPageContainers();
+
+        // Hide loading
+        loadingOverlay.classList.add('hidden');
+
+        // Scroll to requested page
+        scrollToPage(startPage, true);
+
+      } catch (err) {
+        console.error('PDF load failed:', err);
+        loadingText.textContent = '教材加载失败，请检查网络或刷新重试。';
+        alert('无法加载 PDF 文件: ' + err.message);
+      }
+    }
+
+    // 4. Setup Containers for all pages (Continuous Scroll)
+    async function setupPageContainers() {
+      readerViewport.innerHTML = '';
+      pageContainers = [];
+
+      // Get first page to calculate aspect ratio
+      const firstPage = await pdfDoc.getPage(1);
+      const viewport = firstPage.getViewport({ scale: 1 });
+      const aspectRatio = viewport.height / viewport.width;
+
+      // Calculate initial scale
+      updateScaleWidth(viewport.width);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const container = document.createElement('div');
+        container.className = 'pdf-page-container';
+        container.id = `page-container-${i}`;
+        container.setAttribute('data-page-number', i);
+
+        // Set dimensions based on scale
+        const renderWidth = viewport.width * currentScale;
+        const renderHeight = renderWidth * aspectRatio;
+        container.style.width = `${renderWidth}px`;
+        container.style.height = `${renderHeight}px`;
+
+        container.innerHTML = `
+          <div class="page-placeholder" style="width:100%;height:100%;">
+            <span>第 ${i} 页加载中...</span>
+          </div>
+        `;
+
+        readerViewport.appendChild(container);
+        pageContainers.push(container);
+      }
+
+      // Intersection Observer for Lazy Rendering & Current Page Tracking
+      setupIntersectionObserver();
+    }
+
+    // 5. Calculate Scale for Fit Width
+    function updateScaleWidth(baseWidth) {
+      if (fitWidthMode) {
+        const containerWidth = readerViewport.clientWidth - 48; // padding
+        currentScale = Math.min(2.0, Math.max(0.6, containerWidth / baseWidth));
+        zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
+      }
+    }
+
+    // 6. Lazy Render Pages when visible
+    const renderedPages = new Set();
+    let observer = null;
+
+    function setupIntersectionObserver() {
+      if (observer) observer.disconnect();
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const pageNum = parseInt(entry.target.getAttribute('data-page-number'), 10);
+          if (entry.isIntersecting) {
+            // Render this page and adjacent pages
+            renderPage(pageNum);
+            if (pageNum > 1) renderPage(pageNum - 1);
+            if (pageNum < totalPages) renderPage(pageNum + 1);
+
+            // Update current page if prominent
+            if (entry.intersectionRatio > 0.4) {
+              updateCurrentPageDisplay(pageNum);
+            }
+          }
+        });
+      }, {
+        root: readerViewport,
+        rootMargin: '400px 0px 400px 0px',
+        threshold: [0.1, 0.5, 0.8]
+      });
+
+      pageContainers.forEach(container => observer.observe(container));
+    }
+
+    // Render individual page canvas
+    async function renderPage(pageNum) {
+      if (renderedPages.has(pageNum)) return;
+      renderedPages.add(pageNum);
+
+      try {
+        const page = await pdfDoc.getPage(pageNum);
+        const container = document.getElementById(`page-container-${pageNum}`);
+        if (!container) return;
+
+        const dpr = window.devicePixelRatio || 1;
+        const viewport = page.getViewport({ scale: currentScale });
+
+        // Update container size
+        container.style.width = `${viewport.width}px`;
+        container.style.height = `${viewport.height}px`;
+
+        // Create high-res canvas
+        const canvas = document.createElement('canvas');
+        canvas.className = 'pdf-page-canvas';
+        canvas.width = Math.floor(viewport.width * dpr);
+        canvas.height = Math.floor(viewport.height * dpr);
+        canvas.style.width = `${viewport.width}px`;
+        canvas.style.height = `${viewport.height}px`;
+
+        const ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+
+        await page.render(renderContext).promise;
+
+        container.innerHTML = '';
+        container.appendChild(canvas);
+
+      } catch (e) {
+        console.error(`Page ${pageNum} render error:`, e);
+        renderedPages.delete(pageNum);
+      }
+    }
+
+    // 7. Scroll to Specific Page (The core Directory Jump functionality!)
+    function scrollToPage(pageNum, immediate = false) {
+      if (pageNum < 1) pageNum = 1;
+      if (pageNum > totalPages) pageNum = totalPages;
+
+      const container = document.getElementById(`page-container-${pageNum}`);
+      if (container) {
+        container.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth', block: 'start' });
+        updateCurrentPageDisplay(pageNum);
+      }
+    }
+
+    // 8. Update Current Page & Highlight TOC
+    function updateCurrentPageDisplay(pageNum) {
+      currentPage = pageNum;
+      pageNumberInput.value = pageNum;
+
+      // Find closest active TOC item
+      if (tocEntries && tocEntries.length > 0) {
+        let activeIdx = 0;
+        for (let i = 0; i < tocEntries.length; i++) {
+          if (tocEntries[i].page <= pageNum) {
+            activeIdx = i;
+          } else {
+            break;
+          }
+        }
+
+        const items = document.querySelectorAll('.toc-item');
+        items.forEach((item, idx) => {
+          if (idx === activeIdx) {
+            item.classList.add('active');
+            // ensure visible in sidebar
+            item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          } else {
+            item.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    // 9. Re-render all pages upon zoom/resize
+    async function reRenderAllPages() {
+      renderedPages.clear();
+      const firstPage = await pdfDoc.getPage(1);
+      const viewport = firstPage.getViewport({ scale: currentScale });
+      const aspectRatio = viewport.height / viewport.width;
+
+      pageContainers.forEach(container => {
+        const renderWidth = viewport.width;
+        const renderHeight = renderWidth * aspectRatio;
+        container.style.width = `${renderWidth}px`;
+        container.style.height = `${renderHeight}px`;
+        container.innerHTML = `
+          <div class="page-placeholder" style="width:100%;height:100%;">
+            <span>页面缩放中...</span>
+          </div>
+        `;
+      });
+
+      // Trigger re-rendering of visible pages
+      setupIntersectionObserver();
+      scrollToPage(currentPage, true);
+    }
+
+    // Zoom Controls
+    btnZoomIn.addEventListener('click', () => {
+      fitWidthMode = false;
+      currentScale = Math.min(3.0, currentScale + 0.15);
+      zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
+      reRenderAllPages();
+    });
+
+    btnZoomOut.addEventListener('click', () => {
+      fitWidthMode = false;
+      currentScale = Math.max(0.5, currentScale - 0.15);
+      zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
+      reRenderAllPages();
+    });
+
+    btnFitWidth.addEventListener('click', async () => {
+      fitWidthMode = true;
+      if (pdfDoc) {
+        const firstPage = await pdfDoc.getPage(1);
+        const baseWidth = firstPage.getViewport({ scale: 1 }).width;
+        updateScaleWidth(baseWidth);
+        reRenderAllPages();
+      }
+    });
+
+    // Page input jump
+    pageNumberInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const p = parseInt(pageNumberInput.value, 10);
+        if (p >= 1 && p <= totalPages) {
+          scrollToPage(p);
+        }
+      }
+    });
+
+    btnPrevPage.addEventListener('click', () => {
+      if (currentPage > 1) scrollToPage(currentPage - 1);
+    });
+
+    btnNextPage.addEventListener('click', () => {
+      if (currentPage < totalPages) scrollToPage(currentPage + 1);
+    });
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (document.activeElement.tagName === 'INPUT') return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        if (currentPage < totalPages) scrollToPage(currentPage + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        if (currentPage > 1) scrollToPage(currentPage - 1);
+      }
+    });
+
+    // Toggle Sidebar
+    function toggleSidebar(show) {
+      if (show === undefined) {
+        tocSidebar.classList.toggle('collapsed');
+      } else if (show) {
+        tocSidebar.classList.remove('collapsed');
+      } else {
+        tocSidebar.classList.add('collapsed');
+      }
+
+      const isOpen = !tocSidebar.classList.contains('collapsed');
+      btnToggleSidebar.classList.toggle('active', isOpen);
+
+      if (window.innerWidth <= 768) {
+        sidebarBackdrop.classList.toggle('show', isOpen);
+      }
+    }
+
+    btnToggleSidebar.addEventListener('click', () => toggleSidebar());
+    sidebarBackdrop.addEventListener('click', () => toggleSidebar(false));
+
+    // Fullscreen
+    btnFullscreen.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    // TOC Live Search / Filter
+    tocSearchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      const items = document.querySelectorAll('.toc-item');
+      items.forEach(item => {
+        const title = item.querySelector('.toc-item-title').textContent.toLowerCase();
+        if (!q || title.includes(q)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+
+    // Window Resize listener
+    window.addEventListener('resize', () => {
+      if (fitWidthMode && pdfDoc) {
+        pdfDoc.getPage(1).then(page => {
+          const baseWidth = page.getViewport({ scale: 1 }).width;
+          updateScaleWidth(baseWidth);
+          reRenderAllPages();
+        });
+      }
+    });
+
+    // Run
+    initBook();
+  </script>
+</body>
+</html>

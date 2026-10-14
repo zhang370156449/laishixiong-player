@@ -90,6 +90,7 @@
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s;
+      user-select: none;
     }
     .btn-tool:hover {
       background: rgba(255, 255, 255, 0.18);
@@ -124,64 +125,67 @@
     .page-input {
       width: 48px;
       height: 28px;
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 4px;
       color: #fff;
-      text-align: center;
       font-size: 13px;
+      text-align: center;
       font-weight: 600;
       outline: none;
     }
     .page-input:focus {
       border-color: var(--primary);
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.22);
     }
     .page-total {
       font-size: 13px;
       color: #94a3b8;
       padding: 0 4px;
+      font-weight: 500;
     }
     .btn-page-nav {
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background: transparent;
       border: none;
       color: #cbd5e1;
-      cursor: pointer;
+      width: 26px;
+      height: 26px;
       border-radius: 4px;
-      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      transition: background 0.15s;
     }
     .btn-page-nav:hover {
       background: rgba(255, 255, 255, 0.15);
       color: #fff;
     }
 
-    /* Zoom control group */
+    /* Zoom Controls */
     .zoom-group {
       display: flex;
       align-items: center;
-      gap: 2px;
       background: rgba(0, 0, 0, 0.25);
-      padding: 2px;
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 2px;
     }
     .zoom-btn {
       width: 28px;
       height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background: transparent;
       border: none;
       color: #cbd5e1;
-      cursor: pointer;
       border-radius: 4px;
-      font-size: 14px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
     }
     .zoom-btn:hover {
       background: rgba(255, 255, 255, 0.15);
@@ -189,20 +193,22 @@
     }
     .zoom-text {
       font-size: 12px;
+      font-weight: 600;
       color: #cbd5e1;
-      min-width: 48px;
+      min-width: 44px;
       text-align: center;
+      padding: 0 4px;
     }
 
-    /* Main Container (Sidebar + Reader Viewport) */
+    /* Main Container */
     .main-layout {
       flex: 1;
       display: flex;
-      overflow: hidden;
       position: relative;
+      overflow: hidden;
     }
 
-    /* TOC Sidebar */
+    /* Collapsible TOC Sidebar */
     .toc-sidebar {
       width: var(--sidebar-width);
       background: var(--sidebar-bg);
@@ -210,17 +216,18 @@
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), margin-left 0.3s;
-      z-index: 50;
+      z-index: 70;
+      transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s ease;
       box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
     }
     .toc-sidebar.collapsed {
       margin-left: calc(-1 * var(--sidebar-width));
     }
-
     .toc-header {
-      padding: 14px 16px 10px;
+      padding: 14px 16px;
       border-bottom: 1px solid var(--sidebar-border);
+      background: #f8fafc;
+      flex-shrink: 0;
     }
     .toc-title-row {
       display: flex;
@@ -229,7 +236,7 @@
       margin-bottom: 10px;
     }
     .toc-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--text-main);
       display: flex;
@@ -238,62 +245,59 @@
     }
     .toc-count-badge {
       font-size: 11px;
-      background: var(--primary-light);
-      color: var(--primary);
-      padding: 2px 8px;
-      border-radius: 999px;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 2px 7px;
+      border-radius: 10px;
       font-weight: 600;
     }
-
-    /* Search inside TOC */
     .toc-search-box {
       position: relative;
-      width: 100%;
     }
     .toc-search-box input {
       width: 100%;
-      padding: 8px 12px 8px 32px;
+      height: 32px;
+      background: #ffffff;
       border: 1px solid var(--sidebar-border);
       border-radius: 6px;
-      font-size: 13px;
+      padding: 0 10px 0 30px;
+      font-size: 12px;
+      color: var(--text-main);
       outline: none;
-      background: #f8fafc;
-      transition: all 0.2s;
+      transition: border-color 0.2s;
     }
     .toc-search-box input:focus {
       border-color: var(--primary);
-      background: #fff;
     }
     .toc-search-icon {
       position: absolute;
-      left: 10px;
+      left: 9px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-muted);
       font-size: 12px;
+      color: var(--text-muted);
+      pointer-events: none;
     }
 
     /* TOC Items List */
     .toc-list {
       flex: 1;
       overflow-y: auto;
-      padding: 8px 10px;
       list-style: none;
+      padding: 6px 0;
     }
     .toc-item {
+      padding: 9px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 9px 12px;
-      border-radius: 8px;
+      gap: 8px;
       cursor: pointer;
       font-size: 13px;
-      font-weight: 500;
       color: #334155;
-      margin-bottom: 3px;
-      transition: all 0.15s ease;
-      gap: 8px;
       border-left: 3px solid transparent;
+      transition: all 0.15s ease;
+      user-select: none;
     }
     .toc-item:hover {
       background: #f1f5f9;
@@ -302,95 +306,133 @@
     .toc-item.active {
       background: var(--active-item-bg);
       color: var(--active-item-text);
-      font-weight: 700;
+      font-weight: 600;
       border-left-color: var(--primary);
     }
     .toc-item-title {
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
     }
     .toc-page-badge {
       font-size: 11px;
-      padding: 2px 6px;
-      background: rgba(0, 0, 0, 0.05);
-      border-radius: 4px;
-      color: var(--text-muted);
-      flex-shrink: 0;
       font-weight: 600;
+      color: #94a3b8;
+      background: rgba(0, 0, 0, 0.04);
+      padding: 2px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
     }
     .toc-item.active .toc-page-badge {
-      background: rgba(79, 70, 229, 0.15);
       color: var(--primary);
+      background: rgba(79, 70, 229, 0.12);
     }
 
-    /* Reader Viewport */
+    /* Viewport Area */
     .reader-viewport {
       flex: 1;
-      height: 100%;
       overflow-y: auto;
       overflow-x: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 24px 16px;
+      padding: 20px 10px;
       position: relative;
       scroll-behavior: smooth;
     }
 
-    /* PDF Canvas Pages */
+    /* Native Iframe Embed Mode */
+    .native-pdf-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #525659;
+      display: none;
+    }
+    .native-pdf-frame.active {
+      display: block;
+    }
+
+    /* Canvas Page Container (Continuous Scroll) */
+    .pdf-pages-scroll-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+    }
+    .pdf-pages-scroll-wrap.hidden {
+      display: none;
+    }
     .pdf-page-container {
-      margin-bottom: 24px;
       background: #ffffff;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
       border-radius: 4px;
       position: relative;
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
       transition: box-shadow 0.2s;
-    }
-    .pdf-page-container:hover {
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
     }
     .pdf-page-canvas {
       display: block;
       width: 100%;
       height: 100%;
+      border-radius: 4px;
     }
-
     .page-placeholder {
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: #334155;
       color: #94a3b8;
       font-size: 14px;
     }
 
-    /* Loading overlay */
+    /* Floating Status / Mode Notice */
+    .mode-indicator {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(30, 41, 59, 0.85);
+      backdrop-filter: blur(8px);
+      color: #e2e8f0;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    /* Loading Overlay (Confined inside readerViewport only, non-blocking for sidebar!) */
     .loading-overlay {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(30, 41, 59, 0.85);
+      background: rgba(30, 41, 59, 0.7);
       backdrop-filter: blur(4px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 200;
+      z-index: 30;
       color: #fff;
       transition: opacity 0.3s;
+      pointer-events: none; /* Clicks pass through to sidebar! */
     }
     .loading-overlay.hidden {
-      opacity: 0;
-      pointer-events: none;
+      display: none !important;
     }
     .spinner {
       width: 44px;
@@ -399,19 +441,19 @@
       border-top-color: var(--primary);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
     .loading-text {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       margin-bottom: 6px;
     }
     .loading-subtext {
       font-size: 13px;
-      color: #94a3b8;
+      color: #cbd5e1;
     }
 
     /* Mobile backdrop for sidebar drawer */
@@ -423,7 +465,7 @@
       right: 0;
       bottom: 0;
       background: rgba(0, 0, 0, 0.5);
-      z-index: 40;
+      z-index: 65;
     }
 
     @media (max-width: 768px) {
@@ -434,7 +476,7 @@
         top: var(--toolbar-height);
         bottom: 0;
         left: 0;
-        z-index: 60;
+        z-index: 80;
         box-shadow: 4px 0 20px rgba(0,0,0,0.25);
       }
       .toc-sidebar.collapsed {
@@ -445,7 +487,7 @@
         display: block;
       }
       .reader-viewport {
-        padding: 12px 6px;
+        padding: 0;
       }
     }
   </style>
@@ -475,18 +517,22 @@
       </div>
     </div>
 
-    <!-- Right: Zoom & Utilities -->
+    <!-- Right: Mode Switch & Utilities -->
     <div class="toolbar-right">
-      <div class="zoom-group">
-        <button class="zoom-btn" id="btnZoomOut" title="缩小 (-)">−</button>
-        <span class="zoom-text" id="zoomLevelText">宽适应</span>
+      <button class="btn-tool" id="btnToggleEngine" title="在原生极速预览与连续画布排版间切换">
+        <span id="engineIcon">⚡</span>
+        <span class="btn-label" id="engineLabel">原生极速</span>
+      </button>
+      <div class="zoom-group" id="zoomGroup">
+        <button class="zoom-btn" id="btnZoomOut" title="缩小 (−)">−</button>
+        <span class="zoom-text" id="zoomLevelText">适应</span>
         <button class="zoom-btn" id="btnZoomIn" title="放大 (+)">+</button>
       </div>
       <button class="btn-tool" id="btnFitWidth" title="自适应页面宽度">
         <span>↔</span>
         <span class="btn-label">适应宽度</span>
       </button>
-      <button class="btn-tool" id="btnFullscreen" title="全屏阅读 (F11)">
+      <button class="btn-tool" id="btnFullscreen" title="全屏沉浸阅读">
         <span>⛶</span>
       </button>
       <a href="#" id="btnDownload" class="btn-tool" download title="下载原始 PDF 文件">
@@ -520,45 +566,51 @@
       </ul>
     </aside>
 
-    <!-- PDF Canvas Viewport -->
+    <!-- PDF Main Viewport -->
     <main class="reader-viewport" id="readerViewport">
-      <!-- Pages rendered dynamically -->
-    </main>
-  </div>
+      <!-- 1. Native PDF iframe (Zero-delay, works 100% on file:// and all browsers) -->
+      <iframe class="native-pdf-frame active" id="nativePdfFrame"></iframe>
 
-  <!-- Loading Screen -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="spinner"></div>
-    <div class="loading-text" id="loadingText">正在载入教材 PDF 数据...</div>
-    <div class="loading-subtext">高清矢量渲染引擎初始化中</div>
+      <!-- 2. High-res Continuous Canvas Scroll Wrap -->
+      <div class="pdf-pages-scroll-wrap hidden" id="canvasPagesWrap"></div>
+
+      <!-- Loading Indicator (confined inside reader viewport, never blocks sidebar clicks!) -->
+      <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text" id="loadingText">正在载入教材 PDF 数据...</div>
+        <div class="loading-subtext" id="loadingSubtext">高清矢量渲染中</div>
+      </div>
+
+      <!-- Mode indicator tag -->
+      <div class="mode-indicator" id="modeIndicator">⚡ 原生极速模式</div>
+    </main>
   </div>
 
   <!-- Database -->
   <script src="books.js"></script>
 
   <script>
-    // Configure PDF.js Worker
-    if (window.pdfjsLib) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'libs/pdf.worker.min.js';
-    }
-
     // State
     let currentBook = null;
     let pdfDoc = null;
-    let totalPages = 0;
+    let totalPages = 261;
     let currentPage = 1;
     let currentScale = 1.0;
     let fitWidthMode = true;
-    let isRendering = false;
     let tocEntries = [];
     let pageContainers = [];
+    let currentEngine = 'native'; // 'native' | 'canvas'
+    let isPdfJsReady = false;
 
     // Elements
     const topBookTitle = document.getElementById('topBookTitle');
     const pageNumberInput = document.getElementById('pageNumberInput');
     const pageCountSpan = document.getElementById('pageCountSpan');
     const zoomLevelText = document.getElementById('zoomLevelText');
+    const zoomGroup = document.getElementById('zoomGroup');
     const readerViewport = document.getElementById('readerViewport');
+    const nativePdfFrame = document.getElementById('nativePdfFrame');
+    const canvasPagesWrap = document.getElementById('canvasPagesWrap');
     const tocList = document.getElementById('tocList');
     const tocCountBadge = document.getElementById('tocCountBadge');
     const tocSearchInput = document.getElementById('tocSearchInput');
@@ -572,8 +624,13 @@
     const btnFitWidth = document.getElementById('btnFitWidth');
     const btnFullscreen = document.getElementById('btnFullscreen');
     const btnDownload = document.getElementById('btnDownload');
+    const btnToggleEngine = document.getElementById('btnToggleEngine');
+    const engineIcon = document.getElementById('engineIcon');
+    const engineLabel = document.getElementById('engineLabel');
+    const modeIndicator = document.getElementById('modeIndicator');
     const loadingOverlay = document.getElementById('loadingOverlay');
     const loadingText = document.getElementById('loadingText');
+    const loadingSubtext = document.getElementById('loadingSubtext');
 
     // 1. Initialize Book from URL Query
     function initBook() {
@@ -595,15 +652,31 @@
       btnDownload.href = currentBook.pdfUrl || '#';
       btnDownload.download = currentBook.pdfUrl || 'book.pdf';
 
-      // Load TOC (From books.js config first)
+      if (currentBook.totalPages && typeof currentBook.totalPages === 'number') {
+        totalPages = currentBook.totalPages;
+      }
+      pageCountSpan.textContent = totalPages;
+      pageNumberInput.max = totalPages;
+
+      // 1.1 Render TOC immediately (Always accessible!)
       tocEntries = currentBook.toc || [];
       renderTOC(tocEntries);
 
-      // Load PDF Document
-      loadPdfDocument(currentBook.pdfUrl, initialPage);
+      // 1.2 Decide initial engine:
+      // In all browsers, native PDF iframe works instantly and has zero CORS restrictions on file:// or https://.
+      // We set Native mode as default for instant display, and prepare Canvas mode in background if supported!
+      setEngine('native', initialPage);
+
+      // 1.3 Pre-setup continuous containers in canvas wrap
+      setupCanvasContainers(totalPages);
+
+      // 1.4 If online (http/https), optionally pre-warm PDF.js
+      if (window.location.protocol.startsWith('http') && window.pdfjsLib) {
+        initPdfJs(currentBook.pdfUrl);
+      }
     }
 
-    // 2. Render TOC List
+    // 2. Render TOC List & Direct Click Handling
     function renderTOC(entries) {
       tocCountBadge.textContent = `${entries.length} 章节`;
       if (!entries || entries.length === 0) {
@@ -624,200 +697,83 @@
         `;
       }).join('');
 
-      // Add click listener
-      document.querySelectorAll('.toc-item').forEach(el => {
-        el.addEventListener('click', () => {
-          const page = parseInt(el.getAttribute('data-page'), 10);
-          if (page) {
-            scrollToPage(page);
-            // On mobile, close sidebar after clicking
-            if (window.innerWidth <= 768) {
-              toggleSidebar(false);
-            }
-          }
-        });
-      });
-    }
-
-    // 3. Load PDF Document via PDF.js
-    async function loadPdfDocument(url, startPage) {
-      try {
-        loadingText.textContent = `正在加载《${currentBook.title}》...`;
-        loadingOverlay.classList.remove('hidden');
-
-        const loadingTask = pdfjsLib.getDocument(url);
-
-        pdfDoc = await loadingTask.promise;
-        totalPages = pdfDoc.numPages;
-        pageCountSpan.textContent = totalPages;
-        pageNumberInput.max = totalPages;
-
-        // If no predefined TOC in books.js, attempt to extract outline from PDF
-        if (tocEntries.length === 0) {
-          const outline = await pdfDoc.getOutline();
-          if (outline && outline.length > 0) {
-            tocEntries = await parsePdfOutline(outline);
-            renderTOC(tocEntries);
+      // Use event delegation for instant and reliable clicks
+      tocList.onclick = function(e) {
+        const item = e.target.closest('.toc-item');
+        if (!item) return;
+        const page = parseInt(item.getAttribute('data-page'), 10);
+        if (page) {
+          jumpToPage(page);
+          if (window.innerWidth <= 768) {
+            toggleSidebar(false);
           }
         }
+      };
+    }
 
-        // Initialize Page Placeholders
-        setupPageContainers();
+    // 3. Engine Switching: Native vs Canvas
+    function setEngine(mode, pageToOpen) {
+      currentEngine = mode;
+      const targetPage = pageToOpen || currentPage;
 
-        // Hide loading
+      if (mode === 'native') {
+        nativePdfFrame.classList.add('active');
+        canvasPagesWrap.classList.add('hidden');
         loadingOverlay.classList.add('hidden');
+        engineIcon.textContent = '⚡';
+        engineLabel.textContent = '原生极速';
+        modeIndicator.textContent = '⚡ 原生极速模式（带章节跳转）';
+        zoomGroup.style.display = 'none';
+        btnFitWidth.style.display = 'none';
 
-        // Scroll to requested page
-        scrollToPage(startPage, true);
+        // Load PDF inside native frame with page anchor
+        const pdfSrc = `${currentBook.pdfUrl}#page=${targetPage}&view=FitH`;
+        nativePdfFrame.src = pdfSrc;
+        updateCurrentPageDisplay(targetPage);
 
-      } catch (err) {
-        console.error('PDF load failed:', err);
-        loadingText.textContent = '教材加载失败，请检查网络或刷新重试。';
-        alert('无法加载 PDF 文件: ' + err.message);
+      } else {
+        nativePdfFrame.classList.remove('active');
+        canvasPagesWrap.classList.remove('hidden');
+        engineIcon.textContent = '🎨';
+        engineLabel.textContent = '画布滚动';
+        modeIndicator.textContent = '🎨 高清画布连续滚动模式';
+        zoomGroup.style.display = 'flex';
+        btnFitWidth.style.display = 'inline-flex';
+
+        if (!isPdfJsReady) {
+          initPdfJs(currentBook.pdfUrl, targetPage);
+        } else {
+          scrollToCanvasPage(targetPage, true);
+        }
       }
     }
 
-    // 4. Setup Containers for all pages (Continuous Scroll)
-    async function setupPageContainers() {
-      readerViewport.innerHTML = '';
-      pageContainers = [];
+    btnToggleEngine.addEventListener('click', () => {
+      setEngine(currentEngine === 'native' ? 'canvas' : 'native');
+    });
 
-      // Get first page to calculate aspect ratio
-      const firstPage = await pdfDoc.getPage(1);
-      const viewport = firstPage.getViewport({ scale: 1 });
-      const aspectRatio = viewport.height / viewport.width;
-
-      // Calculate initial scale
-      updateScaleWidth(viewport.width);
-
-      for (let i = 1; i <= totalPages; i++) {
-        const container = document.createElement('div');
-        container.className = 'pdf-page-container';
-        container.id = `page-container-${i}`;
-        container.setAttribute('data-page-number', i);
-
-        // Set dimensions based on scale
-        const renderWidth = viewport.width * currentScale;
-        const renderHeight = renderWidth * aspectRatio;
-        container.style.width = `${renderWidth}px`;
-        container.style.height = `${renderHeight}px`;
-
-        container.innerHTML = `
-          <div class="page-placeholder" style="width:100%;height:100%;">
-            <span>第 ${i} 页加载中...</span>
-          </div>
-        `;
-
-        readerViewport.appendChild(container);
-        pageContainers.push(container);
-      }
-
-      // Intersection Observer for Lazy Rendering & Current Page Tracking
-      setupIntersectionObserver();
-    }
-
-    // 5. Calculate Scale for Fit Width
-    function updateScaleWidth(baseWidth) {
-      if (fitWidthMode) {
-        const containerWidth = readerViewport.clientWidth - 48; // padding
-        currentScale = Math.min(2.0, Math.max(0.6, containerWidth / baseWidth));
-        zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
-      }
-    }
-
-    // 6. Lazy Render Pages when visible
-    const renderedPages = new Set();
-    let observer = null;
-
-    function setupIntersectionObserver() {
-      if (observer) observer.disconnect();
-
-      observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const pageNum = parseInt(entry.target.getAttribute('data-page-number'), 10);
-          if (entry.isIntersecting) {
-            // Render this page and adjacent pages
-            renderPage(pageNum);
-            if (pageNum > 1) renderPage(pageNum - 1);
-            if (pageNum < totalPages) renderPage(pageNum + 1);
-
-            // Update current page if prominent
-            if (entry.intersectionRatio > 0.4) {
-              updateCurrentPageDisplay(pageNum);
-            }
-          }
-        });
-      }, {
-        root: readerViewport,
-        rootMargin: '400px 0px 400px 0px',
-        threshold: [0.1, 0.5, 0.8]
-      });
-
-      pageContainers.forEach(container => observer.observe(container));
-    }
-
-    // Render individual page canvas
-    async function renderPage(pageNum) {
-      if (renderedPages.has(pageNum)) return;
-      renderedPages.add(pageNum);
-
-      try {
-        const page = await pdfDoc.getPage(pageNum);
-        const container = document.getElementById(`page-container-${pageNum}`);
-        if (!container) return;
-
-        const dpr = window.devicePixelRatio || 1;
-        const viewport = page.getViewport({ scale: currentScale });
-
-        // Update container size
-        container.style.width = `${viewport.width}px`;
-        container.style.height = `${viewport.height}px`;
-
-        // Create high-res canvas
-        const canvas = document.createElement('canvas');
-        canvas.className = 'pdf-page-canvas';
-        canvas.width = Math.floor(viewport.width * dpr);
-        canvas.height = Math.floor(viewport.height * dpr);
-        canvas.style.width = `${viewport.width}px`;
-        canvas.style.height = `${viewport.height}px`;
-
-        const ctx = canvas.getContext('2d');
-        ctx.scale(dpr, dpr);
-
-        const renderContext = {
-          canvasContext: ctx,
-          viewport: viewport
-        };
-
-        await page.render(renderContext).promise;
-
-        container.innerHTML = '';
-        container.appendChild(canvas);
-
-      } catch (e) {
-        console.error(`Page ${pageNum} render error:`, e);
-        renderedPages.delete(pageNum);
-      }
-    }
-
-    // 7. Scroll to Specific Page (The core Directory Jump functionality!)
-    function scrollToPage(pageNum, immediate = false) {
+    // 4. Core Jump Function (Directly executes the directory jump!)
+    function jumpToPage(pageNum) {
       if (pageNum < 1) pageNum = 1;
       if (pageNum > totalPages) pageNum = totalPages;
 
-      const container = document.getElementById(`page-container-${pageNum}`);
-      if (container) {
-        container.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth', block: 'start' });
-        updateCurrentPageDisplay(pageNum);
+      currentPage = pageNum;
+      pageNumberInput.value = pageNum;
+      updateCurrentPageDisplay(pageNum);
+
+      if (currentEngine === 'native') {
+        // In native embed mode, update iframe src to trigger built-in PDF page jump
+        nativePdfFrame.src = `${currentBook.pdfUrl}#page=${pageNum}&view=FitH`;
+      } else {
+        scrollToCanvasPage(pageNum);
       }
     }
 
-    // 8. Update Current Page & Highlight TOC
+    // 5. Update TOC Active Status and Input Indicator
     function updateCurrentPageDisplay(pageNum) {
       currentPage = pageNum;
       pageNumberInput.value = pageNum;
 
-      // Find closest active TOC item
       if (tocEntries && tocEntries.length > 0) {
         let activeIdx = 0;
         for (let i = 0; i < tocEntries.length; i++) {
@@ -832,7 +788,6 @@
         items.forEach((item, idx) => {
           if (idx === activeIdx) {
             item.classList.add('active');
-            // ensure visible in sidebar
             item.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
           } else {
             item.classList.remove('active');
@@ -841,82 +796,202 @@
       }
     }
 
-    // 9. Re-render all pages upon zoom/resize
-    async function reRenderAllPages() {
-      renderedPages.clear();
-      const firstPage = await pdfDoc.getPage(1);
-      const viewport = firstPage.getViewport({ scale: currentScale });
-      const aspectRatio = viewport.height / viewport.width;
+    // 6. Canvas Continuous Scroll Implementation
+    function setupCanvasContainers(count) {
+      canvasPagesWrap.innerHTML = '';
+      pageContainers = [];
 
-      pageContainers.forEach(container => {
-        const renderWidth = viewport.width;
-        const renderHeight = renderWidth * aspectRatio;
-        container.style.width = `${renderWidth}px`;
-        container.style.height = `${renderHeight}px`;
+      for (let i = 1; i <= count; i++) {
+        const container = document.createElement('div');
+        container.className = 'pdf-page-container';
+        container.id = `page-container-${i}`;
+        container.setAttribute('data-page-number', i);
+        container.style.width = '750px';
+        container.style.height = '1060px'; // standard A4 ratio
+
         container.innerHTML = `
-          <div class="page-placeholder" style="width:100%;height:100%;">
-            <span>页面缩放中...</span>
+          <div class="page-placeholder">
+            <span>第 ${i} 页 (渲染中...)</span>
           </div>
         `;
-      });
 
-      // Trigger re-rendering of visible pages
-      setupIntersectionObserver();
-      scrollToPage(currentPage, true);
+        canvasPagesWrap.appendChild(container);
+        pageContainers.push(container);
+      }
     }
 
-    // Zoom Controls
-    btnZoomIn.addEventListener('click', () => {
-      fitWidthMode = false;
-      currentScale = Math.min(3.0, currentScale + 0.15);
-      zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
-      reRenderAllPages();
-    });
+    async function initPdfJs(url, startPage) {
+      try {
+        if (!window.pdfjsLib) return;
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'libs/pdf.worker.min.js';
 
-    btnZoomOut.addEventListener('click', () => {
-      fitWidthMode = false;
-      currentScale = Math.max(0.5, currentScale - 0.15);
-      zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
-      reRenderAllPages();
-    });
+        loadingOverlay.classList.remove('hidden');
+        loadingText.textContent = `正在初始化高清矢量引擎...`;
 
-    btnFitWidth.addEventListener('click', async () => {
-      fitWidthMode = true;
-      if (pdfDoc) {
+        const loadingTask = pdfjsLib.getDocument(url);
+        pdfDoc = await loadingTask.promise;
+        totalPages = pdfDoc.numPages;
+        pageCountSpan.textContent = totalPages;
+        pageNumberInput.max = totalPages;
+        isPdfJsReady = true;
+
+        // Recalculate dimensions based on actual page
         const firstPage = await pdfDoc.getPage(1);
-        const baseWidth = firstPage.getViewport({ scale: 1 }).width;
-        updateScaleWidth(baseWidth);
-        reRenderAllPages();
-      }
-    });
+        const vp = firstPage.getViewport({ scale: 1 });
+        const ratio = vp.height / vp.width;
 
-    // Page input jump
+        const baseWidth = Math.min(850, readerViewport.clientWidth - 40);
+        currentScale = baseWidth / vp.width;
+        zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
+
+        pageContainers.forEach(c => {
+          const w = vp.width * currentScale;
+          c.style.width = `${w}px`;
+          c.style.height = `${w * ratio}px`;
+        });
+
+        setupIntersectionObserver();
+        loadingOverlay.classList.add('hidden');
+
+        if (startPage) {
+          scrollToCanvasPage(startPage, true);
+        }
+      } catch (err) {
+        console.warn('PDF.js canvas mode unavailable, falling back to Native Mode:', err);
+        loadingOverlay.classList.add('hidden');
+        setEngine('native');
+      }
+    }
+
+    const renderedPages = new Set();
+    let observer = null;
+
+    function setupIntersectionObserver() {
+      if (observer) observer.disconnect();
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const pageNum = parseInt(entry.target.getAttribute('data-page-number'), 10);
+          if (entry.isIntersecting) {
+            renderCanvasPage(pageNum);
+            if (pageNum > 1) renderCanvasPage(pageNum - 1);
+            if (pageNum < totalPages) renderCanvasPage(pageNum + 1);
+
+            if (entry.intersectionRatio > 0.4) {
+              updateCurrentPageDisplay(pageNum);
+            }
+          }
+        });
+      }, {
+        root: readerViewport,
+        rootMargin: '400px 0px 400px 0px',
+        threshold: [0.1, 0.5, 0.8]
+      });
+
+      pageContainers.forEach(container => observer.observe(container));
+    }
+
+    async function renderCanvasPage(pageNum) {
+      if (!pdfDoc || renderedPages.has(pageNum)) return;
+      renderedPages.add(pageNum);
+
+      try {
+        const page = await pdfDoc.getPage(pageNum);
+        const container = document.getElementById(`page-container-${pageNum}`);
+        if (!container) return;
+
+        const dpr = window.devicePixelRatio || 1;
+        const viewport = page.getViewport({ scale: currentScale });
+
+        container.style.width = `${viewport.width}px`;
+        container.style.height = `${viewport.height}px`;
+
+        const canvas = document.createElement('canvas');
+        canvas.className = 'pdf-page-canvas';
+        canvas.width = Math.floor(viewport.width * dpr);
+        canvas.height = Math.floor(viewport.height * dpr);
+        canvas.style.width = `${viewport.width}px`;
+        canvas.style.height = `${viewport.height}px`;
+
+        const ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+
+        await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+
+        container.innerHTML = '';
+        container.appendChild(canvas);
+      } catch (e) {
+        renderedPages.delete(pageNum);
+      }
+    }
+
+    function scrollToCanvasPage(pageNum, immediate = false) {
+      const container = document.getElementById(`page-container-${pageNum}`);
+      if (container) {
+        container.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth', block: 'start' });
+      }
+    }
+
+    // 7. Navigation & Controls
     pageNumberInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         const p = parseInt(pageNumberInput.value, 10);
         if (p >= 1 && p <= totalPages) {
-          scrollToPage(p);
+          jumpToPage(p);
         }
       }
     });
 
     btnPrevPage.addEventListener('click', () => {
-      if (currentPage > 1) scrollToPage(currentPage - 1);
+      if (currentPage > 1) jumpToPage(currentPage - 1);
     });
 
     btnNextPage.addEventListener('click', () => {
-      if (currentPage < totalPages) scrollToPage(currentPage + 1);
+      if (currentPage < totalPages) jumpToPage(currentPage + 1);
     });
 
-    // Keyboard navigation
-    window.addEventListener('keydown', (e) => {
-      if (document.activeElement.tagName === 'INPUT') return;
-      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-        if (currentPage < totalPages) scrollToPage(currentPage + 1);
-      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        if (currentPage > 1) scrollToPage(currentPage - 1);
+    // Zoom Controls (Canvas Mode)
+    btnZoomIn.addEventListener('click', () => {
+      if (currentEngine !== 'canvas') setEngine('canvas');
+      currentScale = Math.min(2.5, currentScale + 0.15);
+      zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
+      reRenderAllCanvases();
+    });
+
+    btnZoomOut.addEventListener('click', () => {
+      if (currentEngine !== 'canvas') setEngine('canvas');
+      currentScale = Math.max(0.5, currentScale - 0.15);
+      zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
+      reRenderAllCanvases();
+    });
+
+    btnFitWidth.addEventListener('click', async () => {
+      if (currentEngine !== 'canvas') setEngine('canvas');
+      if (pdfDoc) {
+        const firstPage = await pdfDoc.getPage(1);
+        const baseWidth = readerViewport.clientWidth - 40;
+        currentScale = baseWidth / firstPage.getViewport({ scale: 1 }).width;
+        zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
+        reRenderAllCanvases();
       }
     });
+
+    async function reRenderAllCanvases() {
+      renderedPages.clear();
+      if (!pdfDoc) return;
+      const firstPage = await pdfDoc.getPage(1);
+      const vp = firstPage.getViewport({ scale: currentScale });
+      const ratio = vp.height / vp.width;
+
+      pageContainers.forEach(container => {
+        container.style.width = `${vp.width}px`;
+        container.style.height = `${vp.width * ratio}px`;
+        container.innerHTML = `<div class="page-placeholder"><span>页面缩放中...</span></div>`;
+      });
+
+      setupIntersectionObserver();
+      scrollToCanvasPage(currentPage, true);
+    }
 
     // Toggle Sidebar
     function toggleSidebar(show) {
@@ -948,7 +1023,7 @@
       }
     });
 
-    // TOC Live Search / Filter
+    // TOC Search / Filter
     tocSearchInput.addEventListener('input', (e) => {
       const q = e.target.value.toLowerCase().trim();
       const items = document.querySelectorAll('.toc-item');
@@ -962,14 +1037,13 @@
       });
     });
 
-    // Window Resize listener
-    window.addEventListener('resize', () => {
-      if (fitWidthMode && pdfDoc) {
-        pdfDoc.getPage(1).then(page => {
-          const baseWidth = page.getViewport({ scale: 1 }).width;
-          updateScaleWidth(baseWidth);
-          reRenderAllPages();
-        });
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (document.activeElement.tagName === 'INPUT') return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        if (currentPage < totalPages) jumpToPage(currentPage + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        if (currentPage > 1) jumpToPage(currentPage - 1);
       }
     });
 

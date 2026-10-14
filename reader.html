@@ -191,13 +191,32 @@
       background: rgba(255, 255, 255, 0.15);
       color: #fff;
     }
-    .zoom-text {
-      font-size: 12px;
-      font-weight: 600;
-      color: #cbd5e1;
-      min-width: 44px;
+    .zoom-input {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      width: 56px;
+      height: 26px;
       text-align: center;
-      padding: 0 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      padding: 0 2px;
+      outline: none;
+      transition: all 0.15s ease;
+      cursor: text;
+    }
+    .zoom-input:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+    .zoom-input:focus {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: var(--primary);
+      color: #fff;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.3);
     }
 
     /* Main Container */
@@ -524,9 +543,9 @@
         <span class="btn-label" id="engineLabel">原生极速</span>
       </button>
       <div class="zoom-group" id="zoomGroup">
-        <button class="zoom-btn" id="btnZoomOut" title="缩小 (−)">−</button>
-        <span class="zoom-text" id="zoomLevelText">适应</span>
-        <button class="zoom-btn" id="btnZoomIn" title="放大 (+)">+</button>
+        <button class="zoom-btn" id="btnZoomOut" title="缩小 (−10%)">−</button>
+        <input type="text" class="zoom-input" id="zoomInput" value="100%" title="可直接手动输入任意缩放百分比 (如 110、120、130)，按回车确认">
+        <button class="zoom-btn" id="btnZoomIn" title="放大 (+10%)">+</button>
       </div>
       <button class="btn-tool" id="btnFitWidth" title="自适应页面宽度">
         <span>↔</span>
@@ -606,7 +625,7 @@
     const topBookTitle = document.getElementById('topBookTitle');
     const pageNumberInput = document.getElementById('pageNumberInput');
     const pageCountSpan = document.getElementById('pageCountSpan');
-    const zoomLevelText = document.getElementById('zoomLevelText');
+    const zoomInput = document.getElementById('zoomInput');
     const zoomGroup = document.getElementById('zoomGroup');
     const readerViewport = document.getElementById('readerViewport');
     const nativePdfFrame = document.getElementById('nativePdfFrame');
@@ -841,8 +860,10 @@
         const ratio = vp.height / vp.width;
 
         const baseWidth = Math.min(850, readerViewport.clientWidth - 40);
-        currentScale = baseWidth / vp.width;
-        zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
+        const rawScale = baseWidth / vp.width;
+        // Round to neat 10% integer (e.g. 110% instead of 111%)
+        const neatPct = Math.max(50, Math.min(250, Math.round((rawScale * 100) / 10) * 10));
+        updateZoomDisplay(neatPct / 100);
 
         pageContainers.forEach(c => {
           const w = vp.width * currentScale;
@@ -950,29 +971,77 @@
       if (currentPage < totalPages) jumpToPage(currentPage + 1);
     });
 
-    // Zoom Controls (Canvas Mode)
-    btnZoomIn.addEventListener('click', () => {
+    // Zoom Display & Calculation Helpers
+    function updateZoomDisplay(scale) {
+      currentScale = scale;
+      const pct = Math.round(scale * 100);
+      if (zoomInput) {
+        zoomInput.value = `${pct}%`;
+      }
+    }
+
+    function applyZoomPercent(pct) {
       if (currentEngine !== 'canvas') setEngine('canvas');
-      currentScale = Math.min(2.5, currentScale + 0.15);
-      zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
+      // Clamp between 40% and 300%
+      let targetPct = Math.max(40, Math.min(300, Math.round(pct)));
+      updateZoomDisplay(targetPct / 100);
       reRenderAllCanvases();
+    }
+
+    // Zoom Controls: Integer 10% step (100% -> 110% -> 120% -> 130% ...)
+    btnZoomIn.addEventListener('click', () => {
+      const currentPct = Math.round(currentScale * 100);
+      // Snap up to next multiple of 10
+      let nextPct = Math.floor(currentPct / 10) * 10 + 10;
+      if (nextPct <= currentPct) nextPct = currentPct + 10;
+      applyZoomPercent(nextPct);
     });
 
     btnZoomOut.addEventListener('click', () => {
-      if (currentEngine !== 'canvas') setEngine('canvas');
-      currentScale = Math.max(0.5, currentScale - 0.15);
-      zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
-      reRenderAllCanvases();
+      const currentPct = Math.round(currentScale * 100);
+      // Snap down to previous multiple of 10
+      let prevPct = Math.ceil(currentPct / 10) * 10 - 10;
+      if (prevPct >= currentPct) prevPct = currentPct - 10;
+      applyZoomPercent(prevPct);
     });
 
+    // Manual input: user can type any custom percentage like 110, 120, 130, 150
+    if (zoomInput) {
+      zoomInput.addEventListener('focus', () => {
+        zoomInput.select();
+      });
+
+      function commitZoomInput() {
+        const val = zoomInput.value.replace(/[^0-9]/g, '');
+        const num = parseInt(val, 10);
+        if (!isNaN(num) && num > 0) {
+          applyZoomPercent(num);
+        } else {
+          updateZoomDisplay(currentScale);
+        }
+      }
+
+      zoomInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          commitZoomInput();
+          zoomInput.blur();
+        }
+      });
+
+      zoomInput.addEventListener('blur', () => {
+        commitZoomInput();
+      });
+    }
+
+    // Fit Width: also neatly rounds to nearest 10%
     btnFitWidth.addEventListener('click', async () => {
       if (currentEngine !== 'canvas') setEngine('canvas');
       if (pdfDoc) {
         const firstPage = await pdfDoc.getPage(1);
         const baseWidth = readerViewport.clientWidth - 40;
-        currentScale = baseWidth / firstPage.getViewport({ scale: 1 }).width;
-        zoomLevelText.textContent = `${Math.round(currentScale * 100)}%`;
-        reRenderAllCanvases();
+        const rawScale = baseWidth / firstPage.getViewport({ scale: 1 }).width;
+        const neatPct = Math.max(50, Math.min(250, Math.round((rawScale * 100) / 10) * 10));
+        applyZoomPercent(neatPct);
       }
     });
 

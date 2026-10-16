@@ -815,8 +815,8 @@ window.BOOKS_DATABASE = [
     "category": "laishi",
     "cover": "cover_chuji_xia.png",
     "pdfUrl": "laishi_chuji_xia.pdf",
-    "totalPages": 307,
-    "fileSize": "17.4 MB",
+    "totalPages": 288,
+    "fileSize": "17.5 MB",
     "publishYear": "2026 典藏重制版",
     "status": "ready",
     "badge": "已精修重制",
@@ -867,427 +867,427 @@ window.BOOKS_DATABASE = [
       },
       {
         "title": "Lesson 84: What's She Like? (她是什么样的人呢？)",
-        "page": 19,
+        "page": 18,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 85: Blood Types (血型)",
-        "page": 21,
+        "page": 20,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 86: What's Your Blood Type? (你是什么血型？)",
-        "page": 28,
+        "page": 25,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 87: Society Is Changing Rapidly (社会正快速地变化)",
-        "page": 30,
+        "page": 27,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 88: You Need a Vacation (你需要度个假)",
-        "page": 36,
+        "page": 32,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 89: Australia (澳大利亚)",
-        "page": 38,
+        "page": 34,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 90: A Good Place to Visit (一个好玩的地方)",
-        "page": 43,
+        "page": 38,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 91: Computers (电子计算机)",
-        "page": 45,
+        "page": 40,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 92: Hold On, Please (请等一下)",
-        "page": 51,
+        "page": 45,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 93: Pride Comes before a Fall (骄者必败)",
-        "page": 53,
+        "page": 47,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 94: Congratulations (恭禧)",
-        "page": 58,
+        "page": 52,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 95: A Balanced Diet (均衡的饮食)",
-        "page": 60,
+        "page": 54,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 96: You're Looking Great! (你看起来棒极了！)",
-        "page": 67,
+        "page": 60,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 97: By Taxi (乘坐出租车)",
-        "page": 69,
+        "page": 62,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 98: Where to, Lady? (小姐，你要到哪里去？)",
-        "page": 74,
+        "page": 67,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "🎵 经典歌曲：Your Cheatin' Heart (你不忠的心)",
-        "page": 76,
+        "page": 69,
         "level": 1,
         "icon": "🎵"
       },
       {
         "title": "Lesson 99: Asking for Directions (问路)",
-        "page": 82,
+        "page": 75,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 100: Turn Right (向右转)",
-        "page": 90,
+        "page": 82,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 101: Who Discovered America? (谁发现了美洲？)",
-        "page": 92,
+        "page": 84,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 102: The Same First Name (同名)",
-        "page": 99,
+        "page": 90,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 103: Air Pollution (空气污染)",
-        "page": 102,
+        "page": 93,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 104: We Need Fresh Air (我们需要新鲜空气)",
-        "page": 108,
+        "page": 98,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 105: Recycling (资源回收再利用)",
-        "page": 111,
+        "page": 101,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 106: Litterbugs (垃圾虫)",
-        "page": 117,
+        "page": 107,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 107: The Secret of Longevity (长寿的秘诀)",
-        "page": 119,
+        "page": 109,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 108: Slow Down (慢下来)",
-        "page": 124,
+        "page": 114,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 109: Discovering Africa (探索非洲)",
-        "page": 127,
+        "page": 117,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 110: Easier Said Than Done (说来容易做来难)",
-        "page": 134,
+        "page": 124,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 111: Confucius (孔子)",
-        "page": 136,
+        "page": 126,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 112: It's My Pleasure (不客气)",
-        "page": 140,
+        "page": 130,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 113: Something Well Begun Is Half Done (好的开始是成功的一半)",
-        "page": 143,
+        "page": 133,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 114: No Pain, No Gain (一分耕耘，一分收获)",
-        "page": 148,
+        "page": 138,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 115: Wait and See (静候观望)",
-        "page": 150,
+        "page": 140,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 116: We're Engaged (我们订婚了)",
-        "page": 159,
+        "page": 147,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "🎵 经典歌曲：Will You Still Love Me Tomorrow? (明天你是否依然爱我？)",
-        "page": 161,
+        "page": 149,
         "level": 1,
         "icon": "🎵"
       },
       {
         "title": "Lesson 117: Time Flies (光阴似箭)",
-        "page": 167,
+        "page": 155,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 118: The Eiffel Tower (艾菲尔铁塔)",
-        "page": 171,
+        "page": 159,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 119: My Name Isn't Jack (我的名字不是杰克)",
-        "page": 175,
+        "page": 163,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 120: It's My Treat (由我作东)",
-        "page": 179,
+        "page": 167,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 121: The Greatest Killers (最大的杀手)",
-        "page": 183,
+        "page": 171,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 122: I Quit Smoking (我戒烟了)",
-        "page": 189,
+        "page": 176,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 123: An Accident (一桩事故)",
-        "page": 192,
+        "page": 179,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 124: Beautiful Shanghai (美丽的上海市)",
-        "page": 198,
+        "page": 184,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 125: Studying Seriously (认真地学)",
-        "page": 200,
+        "page": 186,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 126: Playing the Piano (弹钢琴)",
-        "page": 204,
+        "page": 190,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 127: An Honest Man (诚实的人)",
-        "page": 206,
+        "page": 192,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 128: The Job Interview (工作面试)",
-        "page": 212,
+        "page": 197,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 129: Seven Years' Bad Luck (七年的背运)",
-        "page": 214,
+        "page": 199,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 130: He Will Bite You (它会咬你)",
-        "page": 219,
+        "page": 204,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 131: If I Were a Millionaire (假如我是百万富翁)",
-        "page": 221,
+        "page": 206,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 132: A Good Citizen (好公民)",
-        "page": 225,
+        "page": 210,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "🎵 经典歌曲：El Condor Pasa (老鹰之歌)",
-        "page": 227,
+        "page": 212,
         "level": 1,
         "icon": "🎵"
       },
       {
         "title": "Lesson 133: Dealing with Exams (应付考试)",
-        "page": 232,
+        "page": 217,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 134: Guess What? (你猜怎么了？)",
-        "page": 237,
+        "page": 222,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 135: Just Do It (即说即做)",
-        "page": 239,
+        "page": 224,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 136: Are You Free? (你有空吗？)",
-        "page": 245,
+        "page": 230,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 137: Van Gogh (梵高)",
-        "page": 247,
+        "page": 232,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 138: You're Beautiful (你很漂亮)",
-        "page": 253,
+        "page": 237,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 139: Don't Be Shy (不要害羞)",
-        "page": 255,
+        "page": 239,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 140: What's New? (近况如何？)",
-        "page": 260,
+        "page": 243,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 141: Global Warming (全球气温上升)",
-        "page": 262,
+        "page": 245,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 142: No Smoking (禁止吸烟)",
-        "page": 269,
+        "page": 251,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 143: Man's Best Friend (人类最好的朋友)",
-        "page": 271,
+        "page": 253,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 144: The Year of the Dog (狗年)",
-        "page": 278,
+        "page": 260,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 145: Billy's Goal in Life (比利的人生目标)",
-        "page": 281,
+        "page": 263,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 146: Being Happy (快乐)",
-        "page": 288,
+        "page": 269,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 147: Television Addiction (电视迷)",
-        "page": 290,
+        "page": 271,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "Lesson 148: Hurry Back (快点回来)",
-        "page": 296,
+        "page": 277,
         "level": 1,
         "icon": "💬"
       },
       {
         "title": "🎵 经典歌曲：Be My Baby (作我的宝贝)",
-        "page": 299,
+        "page": 280,
         "level": 1,
         "icon": "🎵"
       },
       {
         "title": "📘 附录：英美国际音标与K.K.音标对照表",
-        "page": 305,
+        "page": 286,
         "level": 1,
         "icon": "🔤"
       },
       {
         "title": "封底",
-        "page": 307,
+        "page": 288,
         "level": 1,
         "icon": "📕"
       }

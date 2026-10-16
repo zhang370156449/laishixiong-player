@@ -559,6 +559,7 @@
       <div class="pill active" data-cat="all">全部教材</div>
       <div class="pill" data-cat="ready">已精修上线</div>
       <div class="pill" data-cat="laishi">赖世雄美语</div>
+      <div class="pill" data-cat="cambridge">剑桥美语</div>
       <div class="pill" data-cat="phonetics">音标发音</div>
       <div class="pill" data-cat="upcoming">即将上线</div>
     </div>
@@ -571,7 +572,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2026 赖世雄美语数字化重制计划 · 打造最纯净舒适的英语学习工具</p>
+    <p>© 2026 经典英语教材数字化文库计划 · 打造最纯净舒适的英语学习工具</p>
   </footer>
 
   <!-- Include database -->
@@ -591,6 +592,7 @@
         if (currentFilter === 'ready' && book.status !== 'ready') return false;
         if (currentFilter === 'upcoming' && book.status !== 'upcoming') return false;
         if (currentFilter === 'laishi' && book.category !== 'laishi') return false;
+        if (currentFilter === 'cambridge' && book.category !== 'cambridge') return false;
         if (currentFilter === 'phonetics' && book.category !== 'phonetics') return false;
 
         // search query
@@ -618,7 +620,7 @@
         let quickJumpHtml = '';
         if (isReady && book.toc && book.toc.length > 0) {
           const options = book.toc
-            .filter(item => item.page && (item.title.includes('Lesson') || item.title.includes('附录') || item.title.includes('目录')))
+            .filter(item => item.page && (item.title.includes('Lesson') || item.title.includes('Unit') || item.title.includes('Review') || item.title.includes('附录') || item.title.includes('目录') || item.title.includes('练习')))
             .map(item => `<option value="${item.page}">${item.title}</option>`)
             .join('');
 

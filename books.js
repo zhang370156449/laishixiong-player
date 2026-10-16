@@ -1294,6 +1294,690 @@ window.BOOKS_DATABASE = [
     ]
   },
   {
+    "id": "cambridge_evolve_1",
+    "title": "剑桥美语 EVOLVE (第2版) · Level 1",
+    "enTitle": "Cambridge EVOLVE 2nd Edition · Level 1 (A1)",
+    "subtitle": "剑桥大学出版社全新二代原版美语教程 · 基础入门 A1（全 12 单元全彩高清重制）",
+    "author": "Kathryn O'Dell, Leslie Anne Hendra, Mark Ibbotson",
+    "series": "剑桥 EVOLVE 第二版系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_1.png",
+    "pdfUrl": "cambridge_evolve_1.pdf",
+    "totalPages": 177,
+    "fileSize": "43.1 MB",
+    "publishYear": "2026 剑桥官方第二版",
+    "status": "ready",
+    "badge": "全彩高清重制",
+    "tags": [
+      "剑桥大学出版社",
+      "EVOLVE 2nd",
+      "CEFR A1",
+      "美式英语",
+      "全彩高清",
+      "带目录跳转"
+    ],
+    "description": "剑桥大学出版社全新第二代原版综合美语教程。以真实学生语料库与现代实用交际为核心，融合高频听说、真实视频与语法实战，全书 12 个单元配有完整目录跳转导航。",
+    "toc": [
+      {
+        "title": "封面 (Cover)",
+        "page": 1,
+        "level": 1,
+        "icon": "📕"
+      },
+      {
+        "title": "版权与出版信息 (Credits)",
+        "page": 3,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "教材特色与导读 (Speaking matters)",
+        "page": 5,
+        "level": 1,
+        "icon": "💡"
+      },
+      {
+        "title": "全书目录 (Contents)",
+        "page": 13,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "课堂常用语 (Classroom Language)",
+        "page": 17,
+        "level": 1,
+        "icon": "🗣️"
+      },
+      {
+        "title": "Unit 1: I am … (我是谁 / 自我介绍与问候)",
+        "page": 18,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 2: Great people (精彩人物 / 朋友与家庭)",
+        "page": 28,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 3: Come in (请进 / 居家与空间)",
+        "page": 38,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 1: Units 1–3 阶段复习",
+        "page": 48,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 4: I love it (我的最爱 / 科技与生活喜好)",
+        "page": 50,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 5: Mondays and fun days (日常与周末 / 时间与日常活动)",
+        "page": 60,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 6: Zoom in, zoom out (聚焦城市与自然 / 方位与环境)",
+        "page": 70,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 2: Units 4–6 阶段复习",
+        "page": 80,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 7: Now is good (活在当下 / 居家活动与交通)",
+        "page": 82,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 8: You’re good! (你真棒 / 技能与特长)",
+        "page": 92,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 9: Places to go (去处 / 旅行与探索)",
+        "page": 102,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 3: Units 7–9 阶段复习",
+        "page": 112,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 10: Get ready (准备就绪 / 计划与出行)",
+        "page": 114,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 11: Colorful memories (斑斓回忆 / 过去与记忆)",
+        "page": 124,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 12: Stop, eat, go (停下，品味，出发 / 美食与餐饮)",
+        "page": 134,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 4: Units 10–12 阶段复习",
+        "page": 144,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "语法拓展与练习 (Grammar Reference & Practice)",
+        "page": 146,
+        "level": 1,
+        "icon": "📚"
+      },
+      {
+        "title": "词汇实战与总结 (Vocabulary Practice)",
+        "page": 162,
+        "level": 1,
+        "icon": "🔤"
+      },
+      {
+        "title": "结对口语互动练习 (Pair Work Practice)",
+        "page": 173,
+        "level": 1,
+        "icon": "👥"
+      }
+    ]
+  },
+  {
+    "id": "cambridge_evolve_2",
+    "title": "剑桥美语 EVOLVE (第2版) · Level 2",
+    "enTitle": "Cambridge EVOLVE 2nd Edition · Level 2 (A2)",
+    "subtitle": "剑桥大学出版社全新二代原版美语教程 · 初级进阶 A2（全 12 单元全彩高清重制）",
+    "author": "Ben Goldstein, Ceri Jones, Lindsay Clandfield, Philip Kerr",
+    "series": "剑桥 EVOLVE 第二版系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_2.png",
+    "pdfUrl": "cambridge_evolve_2.pdf",
+    "totalPages": 177,
+    "fileSize": "44.4 MB",
+    "publishYear": "2026 剑桥官方第二版",
+    "status": "ready",
+    "badge": "全彩高清重制",
+    "tags": [
+      "剑桥大学出版社",
+      "EVOLVE 2nd",
+      "CEFR A2",
+      "美式英语",
+      "全彩高清",
+      "带目录跳转"
+    ],
+    "description": "剑桥大学出版社全新第二代原版综合美语教程 Level 2 (A2)。拓展社交联系、工作学习、户外休闲与在线生活等丰富主题，全面提升生活交际与日常表达能力。",
+    "toc": [
+      {
+        "title": "封面 (Cover)",
+        "page": 1,
+        "level": 1,
+        "icon": "📕"
+      },
+      {
+        "title": "版权与出版信息 (Credits)",
+        "page": 3,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "教材特色与导读 (Speaking matters)",
+        "page": 5,
+        "level": 1,
+        "icon": "💡"
+      },
+      {
+        "title": "全书目录 (Contents)",
+        "page": 13,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "课堂常用语 (Classroom Language)",
+        "page": 17,
+        "level": 1,
+        "icon": "🗣️"
+      },
+      {
+        "title": "Unit 1: Connections (人际联结 / 结识新友与社交)",
+        "page": 18,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 2: Work and study (工作与学习 / 职场与校园)",
+        "page": 28,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 3: Let’s move (运动与起步 / 交通与出行)",
+        "page": 38,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 1: Units 1–3 阶段复习",
+        "page": 48,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 4: Good times (美好时光 / 聚会与庆祝)",
+        "page": 50,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 5: Firsts and lasts (第一次与最后一次 / 经历与回忆)",
+        "page": 60,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 6: Buying or selling? (买与卖 / 购物与消费)",
+        "page": 70,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 2: Units 4–6 阶段复习",
+        "page": 80,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 7: Eat, drink, be happy (吃喝玩乐 / 饮食与健康)",
+        "page": 82,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 8: Trips (旅途行色 / 假期与旅行)",
+        "page": 92,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 9: Looking good (好气色与时尚 / 外表与穿着)",
+        "page": 102,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 3: Units 7–9 阶段复习",
+        "page": 112,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 10: Risky business (冒险与挑战 / 应对意外)",
+        "page": 114,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 11: Me, online (数字时代的自己 / 网络与社媒)",
+        "page": 124,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 12: Outdoors (走向户外 / 大自然与野外活动)",
+        "page": 134,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 4: Units 10–12 阶段复习",
+        "page": 144,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "语法拓展与练习 (Grammar Reference & Practice)",
+        "page": 146,
+        "level": 1,
+        "icon": "📚"
+      },
+      {
+        "title": "词汇实战与总结 (Vocabulary Practice)",
+        "page": 162,
+        "level": 1,
+        "icon": "🔤"
+      },
+      {
+        "title": "结对口语互动练习 (Pair Work Practice)",
+        "page": 173,
+        "level": 1,
+        "icon": "👥"
+      }
+    ]
+  },
+  {
+    "id": "cambridge_evolve_3",
+    "title": "剑桥美语 EVOLVE (第2版) · Level 3",
+    "enTitle": "Cambridge EVOLVE 2nd Edition · Level 3 (B1)",
+    "subtitle": "剑桥大学出版社全新二代原版美语教程 · 中级突破 B1（全 12 单元全彩高清重制）",
+    "author": "Kathryn O'Dell, Leslie Anne Hendra, Mark Ibbotson",
+    "series": "剑桥 EVOLVE 第二版系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_3.png",
+    "pdfUrl": "cambridge_evolve_3.pdf",
+    "totalPages": 177,
+    "fileSize": "45.2 MB",
+    "publishYear": "2026 剑桥官方第二版",
+    "status": "ready",
+    "badge": "全彩高清重制",
+    "tags": [
+      "剑桥大学出版社",
+      "EVOLVE 2nd",
+      "CEFR B1",
+      "美式英语",
+      "全彩高清",
+      "带目录跳转"
+    ],
+    "description": "剑桥大学出版社全新第二代原版综合美语教程 Level 3 (B1)。聚焦个性特质、消费理念、娱乐生活与人生思考，强化观点表达、逻辑阐述与真实语境交流。",
+    "toc": [
+      {
+        "title": "封面 (Cover)",
+        "page": 1,
+        "level": 1,
+        "icon": "📕"
+      },
+      {
+        "title": "版权与出版信息 (Credits)",
+        "page": 3,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "教材特色与导读 (Speaking matters)",
+        "page": 5,
+        "level": 1,
+        "icon": "💡"
+      },
+      {
+        "title": "全书目录 (Contents)",
+        "page": 13,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "课堂常用语 (Classroom Language)",
+        "page": 17,
+        "level": 1,
+        "icon": "🗣️"
+      },
+      {
+        "title": "Unit 1: Who we are (我们是谁 / 个性与人际)",
+        "page": 18,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 2: So much stuff (物品繁多 / 物质生活与极简)",
+        "page": 28,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 3: Smart moves (聪慧之举 / 计划与决策)",
+        "page": 38,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 1: Units 1–3 阶段复习",
+        "page": 48,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 4: Think first (谋定而后动 / 逻辑与思考)",
+        "page": 50,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 5: And then … (后来呢 / 叙事与经历)",
+        "page": 60,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 6: Impact (影响力 / 社会与环境)",
+        "page": 70,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 2: Units 4–6 阶段复习",
+        "page": 80,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 7: Entertain us (娱乐万千 / 影视音乐与艺术)",
+        "page": 82,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 8: Getting there (抵达目标 / 交通、路线与追求)",
+        "page": 92,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 9: Make it work (迎刃而解 / 问题解决与职场合作)",
+        "page": 102,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 3: Units 7–9 阶段复习",
+        "page": 112,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 10: Why we buy (消费的秘密 / 广告与消费心理)",
+        "page": 114,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 11: Pushing yourself (自我突破 / 潜能与挑战)",
+        "page": 124,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 12: Life’s little lessons (生活的小小启示 / 人生感悟)",
+        "page": 134,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 4: Units 10–12 阶段复习",
+        "page": 144,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "语法拓展与练习 (Grammar Reference & Practice)",
+        "page": 146,
+        "level": 1,
+        "icon": "📚"
+      },
+      {
+        "title": "词汇实战与总结 (Vocabulary Practice)",
+        "page": 162,
+        "level": 1,
+        "icon": "🔤"
+      },
+      {
+        "title": "结对口语互动练习 (Pair Work Practice)",
+        "page": 173,
+        "level": 1,
+        "icon": "👥"
+      }
+    ]
+  },
+  {
+    "id": "cambridge_evolve_4",
+    "title": "剑桥美语 EVOLVE (第2版) · Level 4",
+    "enTitle": "Cambridge EVOLVE 2nd Edition · Level 4 (B1+)",
+    "subtitle": "剑桥大学出版社全新二代原版美语教程 · 中高阶进阶 B1+（全 12 单元全彩高清重制）",
+    "author": "Ben Goldstein, Ceri Jones",
+    "series": "剑桥 EVOLVE 第二版系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_4.png",
+    "pdfUrl": "cambridge_evolve_4.pdf",
+    "totalPages": 177,
+    "fileSize": "45.3 MB",
+    "publishYear": "2026 剑桥官方第二版",
+    "status": "ready",
+    "badge": "全彩高清重制",
+    "tags": [
+      "剑桥大学出版社",
+      "EVOLVE 2nd",
+      "CEFR B1+",
+      "美式英语",
+      "全彩高清",
+      "带目录跳转"
+    ],
+    "description": "剑桥大学出版社全新第二代原版综合美语教程 Level 4 (B1+)。涵盖未来饮食、全球本土化、社区行动、现代生活方式与假设论述等深度话题，全面迈向流利学术与商务表达。",
+    "toc": [
+      {
+        "title": "封面 (Cover)",
+        "page": 1,
+        "level": 1,
+        "icon": "📕"
+      },
+      {
+        "title": "版权与出版信息 (Credits)",
+        "page": 3,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "教材特色与导读 (Speaking matters)",
+        "page": 5,
+        "level": 1,
+        "icon": "💡"
+      },
+      {
+        "title": "全书目录 (Contents)",
+        "page": 13,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "课堂常用语 (Classroom Language)",
+        "page": 17,
+        "level": 1,
+        "icon": "🗣️"
+      },
+      {
+        "title": "Unit 1: And we’re off! (扬帆起航 / 新起点与挑战)",
+        "page": 18,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 2: The future of food (食物的未来 / 可持续与饮食科技)",
+        "page": 28,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 3: What’s it worth? (价值几何 / 价值衡量与取舍)",
+        "page": 38,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 1: Units 1–3 阶段复习",
+        "page": 48,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 4: Going glocal (全球本土化 / 全球化与本地文化)",
+        "page": 50,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 5: True stories (真实故事 / 新闻与纪实)",
+        "page": 60,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 6: Community action (社区行动 / 志愿与公益)",
+        "page": 70,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 2: Units 4–6 阶段复习",
+        "page": 80,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 7: It’s good to talk (沟通无界 / 对话与社交艺术)",
+        "page": 82,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 8: Lifestyles (多元生活方式 / 工作与生活平衡)",
+        "page": 92,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 9: Yes, you can! (你一定行 / 信心与成就)",
+        "page": 102,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 3: Units 7–9 阶段复习",
+        "page": 112,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 10: What if … ? (万一…… / 假设、想象与应对)",
+        "page": 114,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 11: Contrasts (反差之美 / 对比与多样性)",
+        "page": 124,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Unit 12: Looking back (回首与前行 / 历程回顾与反思)",
+        "page": 134,
+        "level": 1,
+        "icon": "💬"
+      },
+      {
+        "title": "Review 4: Units 10–12 阶段复习",
+        "page": 144,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "语法拓展与练习 (Grammar Reference & Practice)",
+        "page": 146,
+        "level": 1,
+        "icon": "📚"
+      },
+      {
+        "title": "词汇实战与总结 (Vocabulary Practice)",
+        "page": 162,
+        "level": 1,
+        "icon": "🔤"
+      },
+      {
+        "title": "结对口语互动练习 (Pair Work Practice)",
+        "page": 173,
+        "level": 1,
+        "icon": "👥"
+      }
+    ]
+  },
+  {
     "id": "laishi_phonetics",
     "title": "赖世雄美语音标教程",
     "enTitle": "American English Phonetic Symbols",

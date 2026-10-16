@@ -823,7 +823,9 @@
         const currentType = cg.currentType; // 'sb', 'wb', 'ak'
 
         // Top Toolbar Buttons
-        let topHtml = `<span class="level-select-tag">Level ${currentBook.level}</span>`;
+        const cefrMap = { 1: 'A1', 2: 'A2', 3: 'B1', 4: 'B2' };
+        const currentCefr = currentBook.cefr || cefrMap[currentBook.level] || `L${currentBook.level}`;
+        let topHtml = `<span class="level-select-tag">Level ${currentBook.level} · ${currentCefr}</span>`;
         cg.items.forEach(it => {
           topHtml += `
             <button class="comp-btn ${it.type === currentType ? 'active' : ''}" 
@@ -839,16 +841,20 @@
         // Sidebar Switcher: Level bar + Material bar
         let sidebarHtml = `
           <div class="sidebar-switch-label">
-            <span>级别切换 (Level)</span>
+            <span>难度级别 (CEFR)</span>
             <span style="color:var(--primary);">${cg.groupTitle}</span>
           </div>
           <div class="sidebar-level-group">
-            ${cg.levelItems.map(l => `
-              <button class="sidebar-tab-btn ${l.level === currentBook.level ? 'active' : ''}"
-                      onclick="switchLevel(${l.level})">
-                L${l.level}
-              </button>
-            `).join('')}
+            ${cg.levelItems.map(l => {
+              const cefr = l.cefr || cefrMap[l.level] || ('A' + l.level);
+              return `
+                <button class="sidebar-tab-btn ${l.level === currentBook.level ? 'active' : ''}"
+                        title="${l.label || ('Level ' + l.level + ' (' + cefr + ')')}"
+                        onclick="switchLevel(${l.level})">
+                  ${cefr}
+                </button>
+              `;
+            }).join('')}
           </div>
 
           <div class="sidebar-switch-label" style="margin-top:4px;">

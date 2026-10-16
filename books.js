@@ -1352,22 +1352,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -1590,7 +1594,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "👥"
       }
-    ]
+    ],
+    "cefr": "A1"
   },
   {
     "id": "cambridge_evolve_1_wb",
@@ -1651,22 +1656,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -1841,7 +1850,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "📝"
       }
-    ]
+    ],
+    "cefr": "A1"
   },
   {
     "id": "cambridge_evolve_1_ak",
@@ -1902,22 +1912,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -2068,7 +2082,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "🔑"
       }
-    ]
+    ],
+    "cefr": "A1"
   },
   {
     "id": "cambridge_evolve_2",
@@ -2129,22 +2144,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -2367,7 +2386,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "👥"
       }
-    ]
+    ],
+    "cefr": "A2"
   },
   {
     "id": "cambridge_evolve_2_wb",
@@ -2428,22 +2448,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -2618,7 +2642,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "📝"
       }
-    ]
+    ],
+    "cefr": "A2"
   },
   {
     "id": "cambridge_evolve_2_ak",
@@ -2679,22 +2704,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -2845,7 +2874,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "🔑"
       }
-    ]
+    ],
+    "cefr": "A2"
   },
   {
     "id": "cambridge_evolve_3",
@@ -2906,22 +2936,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -3144,7 +3178,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "👥"
       }
-    ]
+    ],
+    "cefr": "B1"
   },
   {
     "id": "cambridge_evolve_3_wb",
@@ -3205,22 +3240,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -3395,7 +3434,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "📝"
       }
-    ]
+    ],
+    "cefr": "B1"
   },
   {
     "id": "cambridge_evolve_3_ak",
@@ -3456,22 +3496,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -3622,7 +3666,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "🔑"
       }
-    ]
+    ],
+    "cefr": "B1"
   },
   {
     "id": "cambridge_evolve_4",
@@ -3632,7 +3677,7 @@ window.BOOKS_DATABASE = [
     "materialLabel": "学生用书",
     "title": "剑桥 EVOLVE (第2版) · Level 4",
     "enTitle": "Cambridge EVOLVE Second Edition · Level 4 (B1+) · Students Book",
-    "subtitle": "剑桥原版第二版数字化精校教材（中高级突破 B1+ · 全 12 单元带官方精准目录）",
+    "subtitle": "剑桥原版第二版数字化精校教材（中高级突破 B2 · 全 12 单元带官方精准目录）",
     "author": "剑桥大学出版社 (Cambridge)",
     "series": "剑桥 EVOLVE 美语系列",
     "category": "cambridge",
@@ -3654,7 +3699,7 @@ window.BOOKS_DATABASE = [
     "description": "剑桥 EVOLVE 2nd Edition 官方主教材。精细掌控复杂语境、思想观点与文化讨论。全书 12 单元结构化编排，融合交际教学法与地道北美发音会话。",
     "companionGroup": {
       "groupId": "cambridge_evolve_4",
-      "groupTitle": "剑桥 EVOLVE · Level 4 (B1+)",
+      "groupTitle": "剑桥 EVOLVE · Level 4 (B2)",
       "currentType": "sb",
       "items": [
         {
@@ -3683,22 +3728,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -3921,7 +3970,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "👥"
       }
-    ]
+    ],
+    "cefr": "B2"
   },
   {
     "id": "cambridge_evolve_4_wb",
@@ -3931,7 +3981,7 @@ window.BOOKS_DATABASE = [
     "materialLabel": "配套练习册",
     "title": "剑桥 EVOLVE (第2版) · Level 4 · 配套练习册",
     "enTitle": "Cambridge EVOLVE Second Edition · Level 4 (B1+) · Workbook",
-    "subtitle": "官方配套练习册（中高级突破 B1+ · 全 12 单元课后巩固与拓展练习）",
+    "subtitle": "官方配套练习册（中高级突破 B2 · 全 12 单元课后巩固与拓展练习）",
     "author": "剑桥大学出版社 (Cambridge)",
     "series": "剑桥 EVOLVE 美语系列",
     "category": "cambridge",
@@ -3953,7 +4003,7 @@ window.BOOKS_DATABASE = [
     "description": "与学生用书紧密同步的课后针对性练习册。涵盖语法巩固、核心生词实战、阅读写作深化与 Extra activities 进阶活动。",
     "companionGroup": {
       "groupId": "cambridge_evolve_4",
-      "groupTitle": "剑桥 EVOLVE · Level 4 (B1+)",
+      "groupTitle": "剑桥 EVOLVE · Level 4 (B2)",
       "currentType": "wb",
       "items": [
         {
@@ -3982,22 +4032,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -4172,7 +4226,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "📝"
       }
-    ]
+    ],
+    "cefr": "B2"
   },
   {
     "id": "cambridge_evolve_4_ak",
@@ -4182,7 +4237,7 @@ window.BOOKS_DATABASE = [
     "materialLabel": "参考答案",
     "title": "剑桥 EVOLVE (第2版) · Level 4 · 练习册参考答案",
     "enTitle": "Cambridge EVOLVE Second Edition · Level 4 (B1+) · Workbook Answer Key",
-    "subtitle": "官方练习册标准参考答案（中高级突破 B1+ · 逐题解析与听力文本）",
+    "subtitle": "官方练习册标准参考答案（中高级突破 B2 · 逐题解析与听力文本）",
     "author": "剑桥大学出版社 (Cambridge)",
     "series": "剑桥 EVOLVE 美语系列",
     "category": "cambridge",
@@ -4204,7 +4259,7 @@ window.BOOKS_DATABASE = [
     "description": "全书 12 单元练习册官方权威全解与听力录音文本。矢量纯净字体，一键核对自我评估。",
     "companionGroup": {
       "groupId": "cambridge_evolve_4",
-      "groupTitle": "剑桥 EVOLVE · Level 4 (B1+)",
+      "groupTitle": "剑桥 EVOLVE · Level 4 (B2)",
       "currentType": "ak",
       "items": [
         {
@@ -4233,22 +4288,26 @@ window.BOOKS_DATABASE = [
         {
           "level": 1,
           "id": "cambridge_evolve_1",
-          "label": "Level 1 (A1)"
+          "cefr": "A1",
+          "label": "Level 1 (A1 · 入门进阶)"
         },
         {
           "level": 2,
           "id": "cambridge_evolve_2",
-          "label": "Level 2 (A2)"
+          "cefr": "A2",
+          "label": "Level 2 (A2 · 初级日常)"
         },
         {
           "level": 3,
           "id": "cambridge_evolve_3",
-          "label": "Level 3 (B1)"
+          "cefr": "B1",
+          "label": "Level 3 (B1 · 中级进阶)"
         },
         {
           "level": 4,
           "id": "cambridge_evolve_4",
-          "label": "Level 4 (B1+)"
+          "cefr": "B2",
+          "label": "Level 4 (B2 · 中高级突破)"
         }
       ],
       "unitMap": {
@@ -4399,7 +4458,8 @@ window.BOOKS_DATABASE = [
         "level": 1,
         "icon": "🔑"
       }
-    ]
+    ],
+    "cefr": "B2"
   },
   {
     "id": "laishi_phonetics",

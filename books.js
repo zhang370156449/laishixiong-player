@@ -2382,7 +2382,7 @@ window.BOOKS_DATABASE = [
       },
       {
         "title": "结对口语互动练习 (Pair Work Practice)",
-        "page": 173,
+        "page": 174,
         "level": 1,
         "icon": "👥"
       }
@@ -3174,7 +3174,7 @@ window.BOOKS_DATABASE = [
       },
       {
         "title": "结对口语互动练习 (Pair Work Practice)",
-        "page": 173,
+        "page": 174,
         "level": 1,
         "icon": "👥"
       }
@@ -3960,13 +3960,13 @@ window.BOOKS_DATABASE = [
       },
       {
         "title": "词汇实战与总结 (Vocabulary Practice)",
-        "page": 162,
+        "page": 163,
         "level": 1,
         "icon": "🔤"
       },
       {
         "title": "结对口语互动练习 (Pair Work Practice)",
-        "page": 173,
+        "page": 175,
         "level": 1,
         "icon": "👥"
       }

@@ -975,6 +975,8 @@
       if (!newBook) return;
 
       currentBook = newBook;
+      currentPage = targetPage;
+      pageNumberInput.value = targetPage;
       document.title = `${currentBook.title} · 在线高清阅读`;
       topBookTitle.textContent = currentBook.title;
       btnDownload.href = currentBook.pdfUrl || '#';

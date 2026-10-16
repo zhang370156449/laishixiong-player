@@ -5,9 +5,9 @@
 window.BOOKS_DATABASE = [
   {
     "id": "laishi_beginner",
-    "title": "初级美国英语教程 · 入门篇",
+    "title": "美语入门教程",
     "enTitle": "American English - Beginner's Guide",
-    "subtitle": "经典全本数字化高清重制版（全 30 课精校附答案/音标对照表）",
+    "subtitle": "赖世雄美语从头学系列 · 零起点入门篇（全 30 课精校附答案/音标对照表）",
     "author": "赖世雄 编著",
     "series": "赖世雄美语从头学系列",
     "category": "laishi",

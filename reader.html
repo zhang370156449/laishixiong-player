@@ -1080,6 +1080,7 @@
     }
 
     // 3. Engine Switching: Native vs Canvas
+    let jumpCounter = 0;
     function setEngine(mode, pageToOpen) {
       currentEngine = mode;
       const targetPage = pageToOpen || currentPage;
@@ -1094,8 +1095,9 @@
         zoomGroup.style.display = 'none';
         btnFitWidth.style.display = 'none';
 
-        // Load PDF inside native frame with page anchor
-        const pdfSrc = `${currentBook.pdfUrl}#page=${targetPage}&view=FitH`;
+        // Load PDF inside native frame with page anchor and cache-friendly query
+        jumpCounter++;
+        const pdfSrc = `${currentBook.pdfUrl}?p=${targetPage}&_j=${jumpCounter}#page=${targetPage}&view=FitH`;
         nativePdfFrame.src = pdfSrc;
         updateCurrentPageDisplay(targetPage);
 
@@ -1129,9 +1131,18 @@
       pageNumberInput.value = pageNum;
       updateCurrentPageDisplay(pageNum);
 
+      // Sync URL query without reloading the page
+      try {
+        const u = new URL(window.location.href);
+        u.searchParams.set('page', pageNum);
+        window.history.replaceState(null, '', u.toString());
+      } catch (e) {}
+
       if (currentEngine === 'native') {
-        // In native embed mode, update iframe src to trigger built-in PDF page jump
-        nativePdfFrame.src = `${currentBook.pdfUrl}#page=${pageNum}&view=FitH`;
+        jumpCounter++;
+        // In Chromium, updating only hash does not trigger page change in the PDF viewer plugin.
+        // Adding ?p=${pageNum}&_j=${jumpCounter} forces Chromium to load the new anchor instantly!
+        nativePdfFrame.src = `${currentBook.pdfUrl}?p=${pageNum}&_j=${jumpCounter}#page=${pageNum}&view=FitH`;
       } else {
         scrollToCanvasPage(pageNum);
       }
@@ -1193,8 +1204,11 @@
         if (!window.pdfjsLib) return;
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'libs/pdf.worker.min.js';
 
-        loadingOverlay.classList.remove('hidden');
-        loadingText.textContent = `正在初始化高清矢量引擎...`;
+        // Only show loading spinner if currently in canvas mode
+        if (currentEngine === 'canvas') {
+          loadingOverlay.classList.remove('hidden');
+          loadingText.textContent = `正在初始化高清矢量引擎...`;
+        }
 
         const loadingTask = pdfjsLib.getDocument(url);
         pdfDoc = await loadingTask.promise;

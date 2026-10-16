@@ -509,6 +509,139 @@
         padding: 0;
       }
     }
+
+    /* Companion & Suite Switcher Bar in Toolbar */
+    .companion-toolbar-bar {
+      display: flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 2px 4px;
+      gap: 3px;
+    }
+    .comp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #cbd5e1;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .comp-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+    .comp-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.35);
+    }
+    .level-select-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 6px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
+      color: #93c5fd;
+      margin-right: 2px;
+    }
+
+    /* Sidebar Switcher Panel */
+    .sidebar-switcher-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+      background: #f1f5f9;
+      border: 1px solid var(--sidebar-border);
+      border-radius: 8px;
+      padding: 8px;
+    }
+    .sidebar-switch-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sidebar-mat-group, .sidebar-level-group {
+      display: flex;
+      gap: 4px;
+    }
+    .sidebar-tab-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 6px 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #475569;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .sidebar-tab-btn:hover {
+      background: #f8fafc;
+      color: var(--primary);
+      border-color: #cbd5e1;
+    }
+    .sidebar-tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(79, 70, 229, 0.25);
+    }
+
+    /* Floating Reader Toast */
+    .reader-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: rgba(15, 23, 42, 0.94);
+      color: #ffffff;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+    }
+    .reader-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .toast-icon { font-size: 15px; }
+
+    @media (max-width: 900px) {
+      .companion-toolbar-bar { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -524,6 +657,7 @@
         <span class="btn-label">目录</span>
       </button>
       <span class="book-title-badge" id="topBookTitle">加载教材中...</span>
+      <div class="companion-toolbar-bar" id="companionToolbarBar"></div>
     </div>
 
     <!-- Center: Page Navigation -->
@@ -575,6 +709,11 @@
           </div>
           <span class="toc-count-badge" id="tocCountBadge">0 章节</span>
         </div>
+        <!-- Companion & Series Switcher in Sidebar -->
+        <div class="sidebar-switcher-panel" id="sidebarSwitcherPanel">
+          <!-- Populated dynamically -->
+        </div>
+
         <div class="toc-search-box">
           <span class="toc-search-icon">🔍</span>
           <input type="text" id="tocSearchInput" placeholder="快速筛选章节/课次..." autocomplete="off">
@@ -652,6 +791,216 @@
     const loadingSubtext = document.getElementById('loadingSubtext');
 
     // 1. Initialize Book from URL Query
+    
+    // Floating Toast Utility
+    let toastTimeout = null;
+    function showToast(msg, icon = '✨') {
+      const toast = document.getElementById('readerToast');
+      const toastMsg = document.getElementById('toastMsg');
+      const toastIcon = document.getElementById('toastIcon');
+      if (!toast) return;
+      toastMsg.textContent = msg;
+      toastIcon.textContent = icon;
+      toast.classList.add('show');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2600);
+    }
+
+    // Render Companion & Series Navigation (Both Top Bar & Sidebar)
+    function renderCompanionNav() {
+      const companionToolbarBar = document.getElementById('companionToolbarBar');
+      const sidebarSwitcherPanel = document.getElementById('sidebarSwitcherPanel');
+      if (!companionToolbarBar || !sidebarSwitcherPanel) return;
+
+      companionToolbarBar.innerHTML = '';
+      sidebarSwitcherPanel.innerHTML = '';
+
+      if (currentBook.companionGroup) {
+        // Cambridge book with companions
+        const cg = currentBook.companionGroup;
+        const currentType = cg.currentType; // 'sb', 'wb', 'ak'
+
+        // Top Toolbar Buttons
+        let topHtml = `<span class="level-select-tag">Level ${currentBook.level}</span>`;
+        cg.items.forEach(it => {
+          topHtml += `
+            <button class="comp-btn ${it.type === currentType ? 'active' : ''}" 
+                    title="联动切换到 ${it.label}"
+                    onclick="switchCompanion('${it.type}')">
+              <span>${it.icon}</span><span>${it.label}</span>
+            </button>
+          `;
+        });
+        companionToolbarBar.innerHTML = topHtml;
+        companionToolbarBar.style.display = 'flex';
+
+        // Sidebar Switcher: Level bar + Material bar
+        let sidebarHtml = `
+          <div class="sidebar-switch-label">
+            <span>级别切换 (Level)</span>
+            <span style="color:var(--primary);">${cg.groupTitle}</span>
+          </div>
+          <div class="sidebar-level-group">
+            ${cg.levelItems.map(l => `
+              <button class="sidebar-tab-btn ${l.level === currentBook.level ? 'active' : ''}"
+                      onclick="switchLevel(${l.level})">
+                L${l.level}
+              </button>
+            `).join('')}
+          </div>
+
+          <div class="sidebar-switch-label" style="margin-top:4px;">
+            <span>配套资料 (Material)</span>
+            <span>当前: ${currentBook.materialLabel || '学生用书'}</span>
+          </div>
+          <div class="sidebar-mat-group">
+            ${cg.items.map(it => `
+              <button class="sidebar-tab-btn ${it.type === currentType ? 'active' : ''}"
+                      onclick="switchCompanion('${it.type}')">
+                <span>${it.icon}</span><span>${it.label}</span>
+              </button>
+            `).join('')}
+          </div>
+        `;
+        sidebarSwitcherPanel.innerHTML = sidebarHtml;
+        sidebarSwitcherPanel.style.display = 'flex';
+
+      } else if (currentBook.category === 'laishi') {
+        // Lai Shixiong series switcher
+        const laiBooks = [
+          { id: 'laishi_beginner', label: '入门篇', icon: '📕' },
+          { id: 'laishi_chuji_shang', label: '初级上册', icon: '📗' },
+          { id: 'laishi_chuji_xia', label: '初级下册', icon: '📘' }
+        ];
+
+        let topHtml = '';
+        laiBooks.forEach(b => {
+          topHtml += `
+            <button class="comp-btn ${b.id === currentBook.id ? 'active' : ''}"
+                    onclick="switchBook('${b.id}', 1, '已切换至《' + '${b.label}' + '》')">
+              <span>${b.icon}</span><span>${b.label}</span>
+            </button>
+          `;
+        });
+        companionToolbarBar.innerHTML = topHtml;
+        companionToolbarBar.style.display = 'flex';
+
+        let sidebarHtml = `
+          <div class="sidebar-switch-label">
+            <span>赖世雄美语分册切换</span>
+          </div>
+          <div class="sidebar-mat-group">
+            ${laiBooks.map(b => `
+              <button class="sidebar-tab-btn ${b.id === currentBook.id ? 'active' : ''}"
+                      onclick="switchBook('${b.id}', 1, '已切换至《' + '${b.label}' + '》')">
+                <span>${b.icon}</span><span>${b.label}</span>
+              </button>
+            `).join('')}
+          </div>
+        `;
+        sidebarSwitcherPanel.innerHTML = sidebarHtml;
+        sidebarSwitcherPanel.style.display = 'flex';
+
+      } else {
+        companionToolbarBar.style.display = 'none';
+        sidebarSwitcherPanel.style.display = 'none';
+      }
+    }
+
+    // Smart Companion Switching with Unit Synchronization
+    function switchCompanion(targetType) {
+      if (!currentBook.companionGroup) return;
+      const cg = currentBook.companionGroup;
+      if (cg.currentType === targetType) return;
+
+      const targetItem = cg.items.find(it => it.type === targetType);
+      if (!targetItem) return;
+
+      const currentType = cg.currentType;
+      const unitMap = cg.unitMap || {};
+
+      // 1. Calculate which Unit the user is currently reading
+      let currentUnit = null;
+      const sortedUnits = Object.keys(unitMap).map(Number).sort((a,b)=>a-b);
+      for (let i = 0; i < sortedUnits.length; i++) {
+        const u = sortedUnits[i];
+        const startP = unitMap[u][currentType];
+        const nextStartP = (i + 1 < sortedUnits.length) ? unitMap[sortedUnits[i+1]][currentType] : 999999;
+        if (currentPage >= startP && currentPage < nextStartP) {
+          currentUnit = u;
+          break;
+        }
+      }
+
+      // 2. Find target page in the new companion
+      let targetPage = 1;
+      let toastNotice = `已切换至【${targetItem.label}】`;
+      if (currentUnit && unitMap[currentUnit] && unitMap[currentUnit][targetType]) {
+        targetPage = unitMap[currentUnit][targetType];
+        toastNotice = `已切换至【${targetItem.label}】· 联动直达 Unit ${currentUnit} (P.${targetPage})`;
+      }
+
+      switchBook(targetItem.id, targetPage, toastNotice);
+    }
+
+    // Switch Level within Cambridge
+    function switchLevel(targetLevel) {
+      if (!currentBook.companionGroup) return;
+      const targetLevelItem = currentBook.companionGroup.levelItems.find(l => l.level === targetLevel);
+      if (!targetLevelItem) return;
+
+      const currentType = currentBook.companionGroup.currentType || 'sb';
+      // Find book id for target level with current material type
+      const allBooks = window.BOOKS_DATABASE || [];
+      const targetBook = allBooks.find(b => b.level === targetLevel && b.materialType === currentType) ||
+                         allBooks.find(b => b.id === targetLevelItem.id);
+
+      if (targetBook) {
+        switchBook(targetBook.id, 1, `已切换至 Level ${targetLevel} · ${targetBook.materialLabel || '学生用书'}`);
+      }
+    }
+
+    // General Book Switcher with in-place smooth reload
+    function switchBook(bookId, targetPage = 1, toastNotice = null) {
+      const books = window.BOOKS_DATABASE || [];
+      const newBook = books.find(b => b.id === bookId);
+      if (!newBook) return;
+
+      currentBook = newBook;
+      document.title = `${currentBook.title} · 在线高清阅读`;
+      topBookTitle.textContent = currentBook.title;
+      btnDownload.href = currentBook.pdfUrl || '#';
+      btnDownload.download = currentBook.pdfUrl || 'book.pdf';
+
+      if (currentBook.totalPages && typeof currentBook.totalPages === 'number') {
+        totalPages = currentBook.totalPages;
+      }
+      pageCountSpan.textContent = totalPages;
+      pageNumberInput.max = totalPages;
+
+      tocEntries = currentBook.toc || [];
+      renderTOC(tocEntries);
+      renderCompanionNav();
+
+      // Update URL query string
+      const newUrl = `reader.html?book=${currentBook.id}&page=${targetPage}`;
+      window.history.replaceState(null, '', newUrl);
+
+      // Re-initialize engine with target page
+      if (currentEngine === 'native') {
+        setEngine('native', targetPage);
+      } else {
+        setupCanvasContainers(totalPages);
+        initPdfJs(currentBook.pdfUrl, targetPage);
+      }
+
+      if (toastNotice) {
+        showToast(toastNotice, '✨');
+      }
+    }
+
     function initBook() {
       const urlParams = new URLSearchParams(window.location.search);
       const bookId = urlParams.get('book') || 'laishi_beginner';
@@ -1118,6 +1467,12 @@
 
     // Run
     initBook();
+    renderCompanionNav();
   </script>
+  <!-- Floating Toast Notification -->
+  <div class="reader-toast" id="readerToast">
+    <span class="toast-icon" id="toastIcon">✨</span>
+    <span class="toast-msg" id="toastMsg">切换成功</span>
+  </div>
 </body>
 </html>

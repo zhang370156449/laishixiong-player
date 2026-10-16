@@ -1295,28 +1295,156 @@ window.BOOKS_DATABASE = [
   },
   {
     "id": "cambridge_evolve_1",
-    "title": "剑桥美语 EVOLVE (第2版) · Level 1",
-    "enTitle": "Cambridge EVOLVE 2nd Edition · Level 1 (A1)",
-    "subtitle": "剑桥大学出版社全新二代原版美语教程 · 基础入门 A1（全 12 单元全彩高清重制）",
-    "author": "Kathryn O'Dell, Leslie Anne Hendra, Mark Ibbotson",
-    "series": "剑桥 EVOLVE 第二版系列",
+    "groupId": "cambridge_evolve_1",
+    "level": 1,
+    "materialType": "sb",
+    "materialLabel": "学生用书",
+    "title": "剑桥 EVOLVE (第2版) · Level 1",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 1 (A1) · Students Book",
+    "subtitle": "剑桥原版第二版数字化精校教材（入门进阶 A1 · 全 12 单元带官方精准目录）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
     "category": "cambridge",
     "cover": "cover_evolve_1.png",
     "pdfUrl": "cambridge_evolve_1.pdf",
     "totalPages": 177,
     "fileSize": "43.1 MB",
-    "publishYear": "2026 剑桥官方第二版",
+    "publishYear": "2026 全球第二版",
     "status": "ready",
-    "badge": "全彩高清重制",
+    "badge": "官方原版 · 学生用书",
     "tags": [
-      "剑桥大学出版社",
-      "EVOLVE 2nd",
-      "CEFR A1",
-      "美式英语",
-      "全彩高清",
-      "带目录跳转"
+      "剑桥美语",
+      "Level 1",
+      "A1",
+      "全12单元",
+      "学生用书",
+      "原版彩版"
     ],
-    "description": "剑桥大学出版社全新第二代原版综合美语教程。以真实学生语料库与现代实用交际为核心，融合高频听说、真实视频与语法实战，全书 12 个单元配有完整目录跳转导航。",
+    "description": "剑桥 EVOLVE 2nd Edition 官方主教材。从零构建地道听说思维与日常交流。全书 12 单元结构化编排，融合交际教学法与地道北美发音会话。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_1",
+      "groupTitle": "剑桥 EVOLVE · Level 1 (A1)",
+      "currentType": "sb",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_1",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_1_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_1_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 5
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 6
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 8
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 9
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 10
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 12
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 13
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 14
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 15
+        }
+      }
+    },
     "toc": [
       {
         "title": "封面 (Cover)",
@@ -1465,29 +1593,635 @@ window.BOOKS_DATABASE = [
     ]
   },
   {
+    "id": "cambridge_evolve_1_wb",
+    "groupId": "cambridge_evolve_1",
+    "level": 1,
+    "materialType": "wb",
+    "materialLabel": "配套练习册",
+    "title": "剑桥 EVOLVE (第2版) · Level 1 · 配套练习册",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 1 (A1) · Workbook",
+    "subtitle": "官方配套练习册（入门进阶 A1 · 全 12 单元课后巩固与拓展练习）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_1_wb.png",
+    "pdfUrl": "cambridge_evolve_1_wb.pdf",
+    "totalPages": 105,
+    "fileSize": "20.4 MB",
+    "publishYear": "2026 全球第二版",
+    "status": "ready",
+    "badge": "官方原版 · 配套练习册",
+    "tags": [
+      "剑桥美语",
+      "Level 1",
+      "A1",
+      "配套练习册",
+      "课后精练",
+      "高清重制"
+    ],
+    "description": "与学生用书紧密同步的课后针对性练习册。涵盖语法巩固、核心生词实战、阅读写作深化与 Extra activities 进阶活动。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_1",
+      "groupTitle": "剑桥 EVOLVE · Level 1 (A1)",
+      "currentType": "wb",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_1",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_1_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_1_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 5
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 6
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 8
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 9
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 10
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 12
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 13
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 14
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 15
+        }
+      }
+    },
+    "toc": [
+      {
+        "title": "封面 (Cover)",
+        "page": 1,
+        "level": 1,
+        "icon": "📕"
+      },
+      {
+        "title": "扉页 (Title)",
+        "page": 2,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "全书目录 (Contents)",
+        "page": 4,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "Unit 1: I am ... (我是…… / 自我介绍与国籍)",
+        "page": 5,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 2: Great people (了不起的人 / 亲友与性格)",
+        "page": 13,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 3: Come in (请进 / 家居与日常物品)",
+        "page": 21,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 4: I love it (我喜欢 / 喜好、服饰与购物)",
+        "page": 29,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 5: Mondays and fun days (周一与美好日子 / 日常日程与休闲)",
+        "page": 37,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 6: Zoom in, zoom out (镜头远近 / 社区与方位)",
+        "page": 45,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 7: Now is good (活在当下 / 正在进行的活动与天气)",
+        "page": 53,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 8: You’re good! (你真棒！ / 技能与特长)",
+        "page": 61,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 9: Places to go (去处 / 过去经历与旅行)",
+        "page": 69,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 10: Get ready (做好准备 / 计划与准备)",
+        "page": 77,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 11: Colorful memories (斑斓记忆 / 过去时光与回忆)",
+        "page": 85,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 12: Stop, eat, go (停步、品尝、出发 / 餐饮、出行与假日)",
+        "page": 93,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "拓展练习活动 (Extra activities)",
+        "page": 101,
+        "level": 1,
+        "icon": "📝"
+      }
+    ]
+  },
+  {
+    "id": "cambridge_evolve_1_ak",
+    "groupId": "cambridge_evolve_1",
+    "level": 1,
+    "materialType": "ak",
+    "materialLabel": "参考答案",
+    "title": "剑桥 EVOLVE (第2版) · Level 1 · 练习册参考答案",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 1 (A1) · Workbook Answer Key",
+    "subtitle": "官方练习册标准参考答案（入门进阶 A1 · 逐题解析与听力文本）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_1_ak.png",
+    "pdfUrl": "cambridge_evolve_1_ak.pdf",
+    "totalPages": 16,
+    "fileSize": "602 KB",
+    "publishYear": "2026 官方权威",
+    "status": "ready",
+    "badge": "官方原版 · 参考答案",
+    "tags": [
+      "剑桥美语",
+      "Level 1",
+      "A1",
+      "官方答案",
+      "听力原文",
+      "自学必备"
+    ],
+    "description": "全书 12 单元练习册官方权威全解与听力录音文本。矢量纯净字体，一键核对自我评估。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_1",
+      "groupTitle": "剑桥 EVOLVE · Level 1 (A1)",
+      "currentType": "ak",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_1",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_1_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_1_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 5
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 6
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 8
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 9
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 10
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 12
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 13
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 14
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 15
+        }
+      }
+    },
+    "toc": [
+      {
+        "title": "Unit 1 参考答案: Unit 1: I am ...",
+        "page": 1,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 2 参考答案: Unit 2: Great people",
+        "page": 2,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 3 参考答案: Unit 3: Come in",
+        "page": 3,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 4 参考答案: Unit 4: I love it",
+        "page": 5,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 5 参考答案: Unit 5: Mondays and fun days",
+        "page": 6,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 6 参考答案: Unit 6: Zoom in, zoom out",
+        "page": 8,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 7 参考答案: Unit 7: Now is good",
+        "page": 9,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 8 参考答案: Unit 8: You’re good!",
+        "page": 10,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 9 参考答案: Unit 9: Places to go",
+        "page": 12,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 10 参考答案: Unit 10: Get ready",
+        "page": 13,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 11 参考答案: Unit 11: Colorful memories",
+        "page": 14,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 12 参考答案: Unit 12: Stop, eat, go",
+        "page": 15,
+        "level": 1,
+        "icon": "🔑"
+      }
+    ]
+  },
+  {
     "id": "cambridge_evolve_2",
-    "title": "剑桥美语 EVOLVE (第2版) · Level 2",
-    "enTitle": "Cambridge EVOLVE 2nd Edition · Level 2 (A2)",
-    "subtitle": "剑桥大学出版社全新二代原版美语教程 · 初级进阶 A2（全 12 单元全彩高清重制）",
-    "author": "Ben Goldstein, Ceri Jones, Lindsay Clandfield, Philip Kerr",
-    "series": "剑桥 EVOLVE 第二版系列",
+    "groupId": "cambridge_evolve_2",
+    "level": 2,
+    "materialType": "sb",
+    "materialLabel": "学生用书",
+    "title": "剑桥 EVOLVE (第2版) · Level 2",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 2 (A2) · Students Book",
+    "subtitle": "剑桥原版第二版数字化精校教材（初级日常 A2 · 全 12 单元带官方精准目录）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
     "category": "cambridge",
     "cover": "cover_evolve_2.png",
     "pdfUrl": "cambridge_evolve_2.pdf",
     "totalPages": 177,
     "fileSize": "44.4 MB",
-    "publishYear": "2026 剑桥官方第二版",
+    "publishYear": "2026 全球第二版",
     "status": "ready",
-    "badge": "全彩高清重制",
+    "badge": "官方原版 · 学生用书",
     "tags": [
-      "剑桥大学出版社",
-      "EVOLVE 2nd",
-      "CEFR A2",
-      "美式英语",
-      "全彩高清",
-      "带目录跳转"
+      "剑桥美语",
+      "Level 2",
+      "A2",
+      "全12单元",
+      "学生用书",
+      "原版彩版"
     ],
-    "description": "剑桥大学出版社全新第二代原版综合美语教程 Level 2 (A2)。拓展社交联系、工作学习、户外休闲与在线生活等丰富主题，全面提升生活交际与日常表达能力。",
+    "description": "剑桥 EVOLVE 2nd Edition 官方主教材。掌握高频社交会话与职场校园表达。全书 12 单元结构化编排，融合交际教学法与地道北美发音会话。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_2",
+      "groupTitle": "剑桥 EVOLVE · Level 2 (A2)",
+      "currentType": "sb",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_2",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_2_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_2_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 4
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 5
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 6
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 7
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 8
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 9
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 10
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 11
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 12
+        }
+      }
+    },
     "toc": [
       {
         "title": "封面 (Cover)",
@@ -1636,29 +2370,635 @@ window.BOOKS_DATABASE = [
     ]
   },
   {
+    "id": "cambridge_evolve_2_wb",
+    "groupId": "cambridge_evolve_2",
+    "level": 2,
+    "materialType": "wb",
+    "materialLabel": "配套练习册",
+    "title": "剑桥 EVOLVE (第2版) · Level 2 · 配套练习册",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 2 (A2) · Workbook",
+    "subtitle": "官方配套练习册（初级日常 A2 · 全 12 单元课后巩固与拓展练习）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_2_wb.png",
+    "pdfUrl": "cambridge_evolve_2_wb.pdf",
+    "totalPages": 105,
+    "fileSize": "19.0 MB",
+    "publishYear": "2026 全球第二版",
+    "status": "ready",
+    "badge": "官方原版 · 配套练习册",
+    "tags": [
+      "剑桥美语",
+      "Level 2",
+      "A2",
+      "配套练习册",
+      "课后精练",
+      "高清重制"
+    ],
+    "description": "与学生用书紧密同步的课后针对性练习册。涵盖语法巩固、核心生词实战、阅读写作深化与 Extra activities 进阶活动。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_2",
+      "groupTitle": "剑桥 EVOLVE · Level 2 (A2)",
+      "currentType": "wb",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_2",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_2_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_2_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 4
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 5
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 6
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 7
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 8
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 9
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 10
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 11
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 12
+        }
+      }
+    },
+    "toc": [
+      {
+        "title": "封面 (Cover)",
+        "page": 1,
+        "level": 1,
+        "icon": "📕"
+      },
+      {
+        "title": "扉页 (Title)",
+        "page": 2,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "全书目录 (Contents)",
+        "page": 4,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "Unit 1: Connections (人际联结 / 结识新友与社交)",
+        "page": 5,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 2: Work and study (工作与学习 / 职场与校园)",
+        "page": 13,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 3: Let’s move (运动与起步 / 交通与出行)",
+        "page": 21,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 4: Good times (美好时光 / 聚会与庆祝)",
+        "page": 29,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 5: Firsts and lasts (第一次与最后一次 / 经历与回忆)",
+        "page": 37,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 6: Buying or selling? (买与卖 / 购物与消费)",
+        "page": 45,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 7: Eat, drink, be happy (吃喝玩乐 / 饮食与健康)",
+        "page": 53,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 8: Trips (旅途行色 / 假期与旅行)",
+        "page": 61,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 9: Looking good (好气色与时尚 / 外表与穿着)",
+        "page": 69,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 10: Risky business (冒险与挑战 / 应对意外)",
+        "page": 77,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 11: Me, online (数字时代的自己 / 网络与社媒)",
+        "page": 85,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 12: Outdoors (走向户外 / 大自然与野外活动)",
+        "page": 93,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "拓展练习活动 (Extra activities)",
+        "page": 101,
+        "level": 1,
+        "icon": "📝"
+      }
+    ]
+  },
+  {
+    "id": "cambridge_evolve_2_ak",
+    "groupId": "cambridge_evolve_2",
+    "level": 2,
+    "materialType": "ak",
+    "materialLabel": "参考答案",
+    "title": "剑桥 EVOLVE (第2版) · Level 2 · 练习册参考答案",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 2 (A2) · Workbook Answer Key",
+    "subtitle": "官方练习册标准参考答案（初级日常 A2 · 逐题解析与听力文本）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_2_ak.png",
+    "pdfUrl": "cambridge_evolve_2_ak.pdf",
+    "totalPages": 13,
+    "fileSize": "194 KB",
+    "publishYear": "2026 官方权威",
+    "status": "ready",
+    "badge": "官方原版 · 参考答案",
+    "tags": [
+      "剑桥美语",
+      "Level 2",
+      "A2",
+      "官方答案",
+      "听力原文",
+      "自学必备"
+    ],
+    "description": "全书 12 单元练习册官方权威全解与听力录音文本。矢量纯净字体，一键核对自我评估。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_2",
+      "groupTitle": "剑桥 EVOLVE · Level 2 (A2)",
+      "currentType": "ak",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_2",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_2_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_2_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 4
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 5
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 6
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 7
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 8
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 9
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 10
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 11
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 12
+        }
+      }
+    },
+    "toc": [
+      {
+        "title": "Unit 1 参考答案: Unit 1: Connections",
+        "page": 1,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 2 参考答案: Unit 2: Work and study",
+        "page": 2,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 3 参考答案: Unit 3: Let’s move",
+        "page": 3,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 4 参考答案: Unit 4: Good times",
+        "page": 4,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 5 参考答案: Unit 5: Firsts and lasts",
+        "page": 5,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 6 参考答案: Unit 6: Buying or selling?",
+        "page": 6,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 7 参考答案: Unit 7: Eat, drink, be happy",
+        "page": 7,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 8 参考答案: Unit 8: Trips",
+        "page": 8,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 9 参考答案: Unit 9: Looking good",
+        "page": 9,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 10 参考答案: Unit 10: Risky business",
+        "page": 10,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 11 参考答案: Unit 11: Me, online",
+        "page": 11,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 12 参考答案: Unit 12: Outdoors",
+        "page": 12,
+        "level": 1,
+        "icon": "🔑"
+      }
+    ]
+  },
+  {
     "id": "cambridge_evolve_3",
-    "title": "剑桥美语 EVOLVE (第2版) · Level 3",
-    "enTitle": "Cambridge EVOLVE 2nd Edition · Level 3 (B1)",
-    "subtitle": "剑桥大学出版社全新二代原版美语教程 · 中级突破 B1（全 12 单元全彩高清重制）",
-    "author": "Kathryn O'Dell, Leslie Anne Hendra, Mark Ibbotson",
-    "series": "剑桥 EVOLVE 第二版系列",
+    "groupId": "cambridge_evolve_3",
+    "level": 3,
+    "materialType": "sb",
+    "materialLabel": "学生用书",
+    "title": "剑桥 EVOLVE (第2版) · Level 3",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 3 (B1) · Students Book",
+    "subtitle": "剑桥原版第二版数字化精校教材（中级进阶 B1 · 全 12 单元带官方精准目录）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
     "category": "cambridge",
     "cover": "cover_evolve_3.png",
     "pdfUrl": "cambridge_evolve_3.pdf",
     "totalPages": 177,
-    "fileSize": "45.2 MB",
-    "publishYear": "2026 剑桥官方第二版",
+    "fileSize": "45.1 MB",
+    "publishYear": "2026 全球第二版",
     "status": "ready",
-    "badge": "全彩高清重制",
+    "badge": "官方原版 · 学生用书",
     "tags": [
-      "剑桥大学出版社",
-      "EVOLVE 2nd",
-      "CEFR B1",
-      "美式英语",
-      "全彩高清",
-      "带目录跳转"
+      "剑桥美语",
+      "Level 3",
+      "B1",
+      "全12单元",
+      "学生用书",
+      "原版彩版"
     ],
-    "description": "剑桥大学出版社全新第二代原版综合美语教程 Level 3 (B1)。聚焦个性特质、消费理念、娱乐生活与人生思考，强化观点表达、逻辑阐述与真实语境交流。",
+    "description": "剑桥 EVOLVE 2nd Edition 官方主教材。深度参与多元话题辩论与叙事表达。全书 12 单元结构化编排，融合交际教学法与地道北美发音会话。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_3",
+      "groupTitle": "剑桥 EVOLVE · Level 3 (B1)",
+      "currentType": "sb",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_3",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_3_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_3_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 4
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 5
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 6
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 7
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 8
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 9
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 10
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 11
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 12
+        }
+      }
+    },
     "toc": [
       {
         "title": "封面 (Cover)",
@@ -1807,29 +3147,635 @@ window.BOOKS_DATABASE = [
     ]
   },
   {
+    "id": "cambridge_evolve_3_wb",
+    "groupId": "cambridge_evolve_3",
+    "level": 3,
+    "materialType": "wb",
+    "materialLabel": "配套练习册",
+    "title": "剑桥 EVOLVE (第2版) · Level 3 · 配套练习册",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 3 (B1) · Workbook",
+    "subtitle": "官方配套练习册（中级进阶 B1 · 全 12 单元课后巩固与拓展练习）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_3_wb.png",
+    "pdfUrl": "cambridge_evolve_3_wb.pdf",
+    "totalPages": 105,
+    "fileSize": "20.7 MB",
+    "publishYear": "2026 全球第二版",
+    "status": "ready",
+    "badge": "官方原版 · 配套练习册",
+    "tags": [
+      "剑桥美语",
+      "Level 3",
+      "B1",
+      "配套练习册",
+      "课后精练",
+      "高清重制"
+    ],
+    "description": "与学生用书紧密同步的课后针对性练习册。涵盖语法巩固、核心生词实战、阅读写作深化与 Extra activities 进阶活动。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_3",
+      "groupTitle": "剑桥 EVOLVE · Level 3 (B1)",
+      "currentType": "wb",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_3",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_3_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_3_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 4
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 5
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 6
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 7
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 8
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 9
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 10
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 11
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 12
+        }
+      }
+    },
+    "toc": [
+      {
+        "title": "封面 (Cover)",
+        "page": 1,
+        "level": 1,
+        "icon": "📕"
+      },
+      {
+        "title": "扉页 (Title)",
+        "page": 2,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "全书目录 (Contents)",
+        "page": 4,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "Unit 1: Who we are (我们是谁 / 个性与人际)",
+        "page": 5,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 2: So much stuff (物品繁多 / 物质生活与极简)",
+        "page": 13,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 3: Smart moves (聪慧之举 / 计划与决策)",
+        "page": 21,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 4: Think first (谋定而后动 / 逻辑与思考)",
+        "page": 29,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 5: And then … (后来呢 / 叙事与经历)",
+        "page": 37,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 6: Impact (影响力 / 社会与环境)",
+        "page": 45,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 7: Entertain us (娱乐万千 / 影视音乐与艺术)",
+        "page": 53,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 8: Getting there (抵达目标 / 交通、路线与追求)",
+        "page": 61,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 9: Make it work (迎刃而解 / 问题解决与职场合作)",
+        "page": 69,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 10: Why we buy (消费的秘密 / 广告与消费心理)",
+        "page": 77,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 11: Pushing yourself (自我突破 / 潜能与挑战)",
+        "page": 85,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 12: Life’s little lessons (生活的小小启示 / 人生感悟)",
+        "page": 93,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "拓展练习活动 (Extra activities)",
+        "page": 101,
+        "level": 1,
+        "icon": "📝"
+      }
+    ]
+  },
+  {
+    "id": "cambridge_evolve_3_ak",
+    "groupId": "cambridge_evolve_3",
+    "level": 3,
+    "materialType": "ak",
+    "materialLabel": "参考答案",
+    "title": "剑桥 EVOLVE (第2版) · Level 3 · 练习册参考答案",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 3 (B1) · Workbook Answer Key",
+    "subtitle": "官方练习册标准参考答案（中级进阶 B1 · 逐题解析与听力文本）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_3_ak.png",
+    "pdfUrl": "cambridge_evolve_3_ak.pdf",
+    "totalPages": 12,
+    "fileSize": "146 KB",
+    "publishYear": "2026 官方权威",
+    "status": "ready",
+    "badge": "官方原版 · 参考答案",
+    "tags": [
+      "剑桥美语",
+      "Level 3",
+      "B1",
+      "官方答案",
+      "听力原文",
+      "自学必备"
+    ],
+    "description": "全书 12 单元练习册官方权威全解与听力录音文本。矢量纯净字体，一键核对自我评估。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_3",
+      "groupTitle": "剑桥 EVOLVE · Level 3 (B1)",
+      "currentType": "ak",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_3",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_3_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_3_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 4
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 5
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 6
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 7
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 8
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 9
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 10
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 11
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 12
+        }
+      }
+    },
+    "toc": [
+      {
+        "title": "Unit 1 参考答案: Unit 1: Who we are",
+        "page": 1,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 2 参考答案: Unit 2: So much stuff",
+        "page": 2,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 3 参考答案: Unit 3: Smart moves",
+        "page": 3,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 4 参考答案: Unit 4: Think first",
+        "page": 4,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 5 参考答案: Unit 5: And then …",
+        "page": 5,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 6 参考答案: Unit 6: Impact",
+        "page": 6,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 7 参考答案: Unit 7: Entertain us",
+        "page": 7,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 8 参考答案: Unit 8: Getting there",
+        "page": 8,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 9 参考答案: Unit 9: Make it work",
+        "page": 9,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 10 参考答案: Unit 10: Why we buy",
+        "page": 10,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 11 参考答案: Unit 11: Pushing yourself",
+        "page": 11,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 12 参考答案: Unit 12: Life’s little lessons",
+        "page": 12,
+        "level": 1,
+        "icon": "🔑"
+      }
+    ]
+  },
+  {
     "id": "cambridge_evolve_4",
-    "title": "剑桥美语 EVOLVE (第2版) · Level 4",
-    "enTitle": "Cambridge EVOLVE 2nd Edition · Level 4 (B1+)",
-    "subtitle": "剑桥大学出版社全新二代原版美语教程 · 中高阶进阶 B1+（全 12 单元全彩高清重制）",
-    "author": "Ben Goldstein, Ceri Jones",
-    "series": "剑桥 EVOLVE 第二版系列",
+    "groupId": "cambridge_evolve_4",
+    "level": 4,
+    "materialType": "sb",
+    "materialLabel": "学生用书",
+    "title": "剑桥 EVOLVE (第2版) · Level 4",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 4 (B1+) · Students Book",
+    "subtitle": "剑桥原版第二版数字化精校教材（中高级突破 B1+ · 全 12 单元带官方精准目录）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
     "category": "cambridge",
     "cover": "cover_evolve_4.png",
     "pdfUrl": "cambridge_evolve_4.pdf",
     "totalPages": 177,
     "fileSize": "45.3 MB",
-    "publishYear": "2026 剑桥官方第二版",
+    "publishYear": "2026 全球第二版",
     "status": "ready",
-    "badge": "全彩高清重制",
+    "badge": "官方原版 · 学生用书",
     "tags": [
-      "剑桥大学出版社",
-      "EVOLVE 2nd",
-      "CEFR B1+",
-      "美式英语",
-      "全彩高清",
-      "带目录跳转"
+      "剑桥美语",
+      "Level 4",
+      "B1+",
+      "全12单元",
+      "学生用书",
+      "原版彩版"
     ],
-    "description": "剑桥大学出版社全新第二代原版综合美语教程 Level 4 (B1+)。涵盖未来饮食、全球本土化、社区行动、现代生活方式与假设论述等深度话题，全面迈向流利学术与商务表达。",
+    "description": "剑桥 EVOLVE 2nd Edition 官方主教材。精细掌控复杂语境、思想观点与文化讨论。全书 12 单元结构化编排，融合交际教学法与地道北美发音会话。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_4",
+      "groupTitle": "剑桥 EVOLVE · Level 4 (B1+)",
+      "currentType": "sb",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_4",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_4_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_4_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 4
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 5
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 6
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 7
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 7
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 8
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 9
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 10
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 11
+        }
+      }
+    },
     "toc": [
       {
         "title": "封面 (Cover)",
@@ -1974,6 +3920,484 @@ window.BOOKS_DATABASE = [
         "page": 173,
         "level": 1,
         "icon": "👥"
+      }
+    ]
+  },
+  {
+    "id": "cambridge_evolve_4_wb",
+    "groupId": "cambridge_evolve_4",
+    "level": 4,
+    "materialType": "wb",
+    "materialLabel": "配套练习册",
+    "title": "剑桥 EVOLVE (第2版) · Level 4 · 配套练习册",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 4 (B1+) · Workbook",
+    "subtitle": "官方配套练习册（中高级突破 B1+ · 全 12 单元课后巩固与拓展练习）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_4_wb.png",
+    "pdfUrl": "cambridge_evolve_4_wb.pdf",
+    "totalPages": 105,
+    "fileSize": "21.6 MB",
+    "publishYear": "2026 全球第二版",
+    "status": "ready",
+    "badge": "官方原版 · 配套练习册",
+    "tags": [
+      "剑桥美语",
+      "Level 4",
+      "B1+",
+      "配套练习册",
+      "课后精练",
+      "高清重制"
+    ],
+    "description": "与学生用书紧密同步的课后针对性练习册。涵盖语法巩固、核心生词实战、阅读写作深化与 Extra activities 进阶活动。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_4",
+      "groupTitle": "剑桥 EVOLVE · Level 4 (B1+)",
+      "currentType": "wb",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_4",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_4_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_4_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 4
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 5
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 6
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 7
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 7
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 8
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 9
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 10
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 11
+        }
+      }
+    },
+    "toc": [
+      {
+        "title": "封面 (Cover)",
+        "page": 1,
+        "level": 1,
+        "icon": "📕"
+      },
+      {
+        "title": "扉页 (Title)",
+        "page": 2,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "全书目录 (Contents)",
+        "page": 4,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "Unit 1: And we’re off! (扬帆起航 / 新起点与挑战)",
+        "page": 5,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 2: The future of food (食物的未来 / 可持续与饮食科技)",
+        "page": 13,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 3: What’s it worth? (价值几何 / 价值衡量与取舍)",
+        "page": 21,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 4: Going glocal (全球本土化 / 全球化与本地文化)",
+        "page": 29,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 5: True stories (真实故事 / 新闻与纪实)",
+        "page": 37,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 6: Community action (社区行动 / 志愿与公益)",
+        "page": 45,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 7: It’s good to talk (沟通无界 / 对话与社交艺术)",
+        "page": 53,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 8: Lifestyles (多元生活方式 / 工作与生活平衡)",
+        "page": 61,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 9: Yes, you can! (你一定行 / 信心与成就)",
+        "page": 69,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 10: What if … ? (万一…… / 假设、想象与应对)",
+        "page": 77,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 11: Contrasts (反差之美 / 对比与多样性)",
+        "page": 85,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "Unit 12: Looking back (回首与前行 / 历程回顾与反思)",
+        "page": 93,
+        "level": 1,
+        "icon": "📝"
+      },
+      {
+        "title": "拓展练习活动 (Extra activities)",
+        "page": 101,
+        "level": 1,
+        "icon": "📝"
+      }
+    ]
+  },
+  {
+    "id": "cambridge_evolve_4_ak",
+    "groupId": "cambridge_evolve_4",
+    "level": 4,
+    "materialType": "ak",
+    "materialLabel": "参考答案",
+    "title": "剑桥 EVOLVE (第2版) · Level 4 · 练习册参考答案",
+    "enTitle": "Cambridge EVOLVE Second Edition · Level 4 (B1+) · Workbook Answer Key",
+    "subtitle": "官方练习册标准参考答案（中高级突破 B1+ · 逐题解析与听力文本）",
+    "author": "剑桥大学出版社 (Cambridge)",
+    "series": "剑桥 EVOLVE 美语系列",
+    "category": "cambridge",
+    "cover": "cover_evolve_4_ak.png",
+    "pdfUrl": "cambridge_evolve_4_ak.pdf",
+    "totalPages": 11,
+    "fileSize": "160 KB",
+    "publishYear": "2026 官方权威",
+    "status": "ready",
+    "badge": "官方原版 · 参考答案",
+    "tags": [
+      "剑桥美语",
+      "Level 4",
+      "B1+",
+      "官方答案",
+      "听力原文",
+      "自学必备"
+    ],
+    "description": "全书 12 单元练习册官方权威全解与听力录音文本。矢量纯净字体，一键核对自我评估。",
+    "companionGroup": {
+      "groupId": "cambridge_evolve_4",
+      "groupTitle": "剑桥 EVOLVE · Level 4 (B1+)",
+      "currentType": "ak",
+      "items": [
+        {
+          "type": "sb",
+          "id": "cambridge_evolve_4",
+          "label": "学生用书",
+          "fullName": "Students Book",
+          "icon": "📘"
+        },
+        {
+          "type": "wb",
+          "id": "cambridge_evolve_4_wb",
+          "label": "配套练习册",
+          "fullName": "Workbook",
+          "icon": "📝"
+        },
+        {
+          "type": "ak",
+          "id": "cambridge_evolve_4_ak",
+          "label": "参考答案",
+          "fullName": "Answer Key",
+          "icon": "🔑"
+        }
+      ],
+      "levelItems": [
+        {
+          "level": 1,
+          "id": "cambridge_evolve_1",
+          "label": "Level 1 (A1)"
+        },
+        {
+          "level": 2,
+          "id": "cambridge_evolve_2",
+          "label": "Level 2 (A2)"
+        },
+        {
+          "level": 3,
+          "id": "cambridge_evolve_3",
+          "label": "Level 3 (B1)"
+        },
+        {
+          "level": 4,
+          "id": "cambridge_evolve_4",
+          "label": "Level 4 (B1+)"
+        }
+      ],
+      "unitMap": {
+        "1": {
+          "unit": 1,
+          "sb": 18,
+          "wb": 5,
+          "ak": 1
+        },
+        "2": {
+          "unit": 2,
+          "sb": 28,
+          "wb": 13,
+          "ak": 2
+        },
+        "3": {
+          "unit": 3,
+          "sb": 38,
+          "wb": 21,
+          "ak": 3
+        },
+        "4": {
+          "unit": 4,
+          "sb": 50,
+          "wb": 29,
+          "ak": 4
+        },
+        "5": {
+          "unit": 5,
+          "sb": 60,
+          "wb": 37,
+          "ak": 5
+        },
+        "6": {
+          "unit": 6,
+          "sb": 70,
+          "wb": 45,
+          "ak": 6
+        },
+        "7": {
+          "unit": 7,
+          "sb": 82,
+          "wb": 53,
+          "ak": 7
+        },
+        "8": {
+          "unit": 8,
+          "sb": 92,
+          "wb": 61,
+          "ak": 7
+        },
+        "9": {
+          "unit": 9,
+          "sb": 102,
+          "wb": 69,
+          "ak": 8
+        },
+        "10": {
+          "unit": 10,
+          "sb": 114,
+          "wb": 77,
+          "ak": 9
+        },
+        "11": {
+          "unit": 11,
+          "sb": 124,
+          "wb": 85,
+          "ak": 10
+        },
+        "12": {
+          "unit": 12,
+          "sb": 134,
+          "wb": 93,
+          "ak": 11
+        }
+      }
+    },
+    "toc": [
+      {
+        "title": "Unit 1 参考答案: Unit 1: And we’re off!",
+        "page": 1,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 2 参考答案: Unit 2: The future of food",
+        "page": 2,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 3 参考答案: Unit 3: What’s it worth?",
+        "page": 3,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 4 参考答案: Unit 4: Going glocal",
+        "page": 4,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 5 参考答案: Unit 5: True stories",
+        "page": 5,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 6 参考答案: Unit 6: Community action",
+        "page": 6,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 7 参考答案: Unit 7: It’s good to talk",
+        "page": 7,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 8 参考答案: Unit 8: Lifestyles",
+        "page": 7,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 9 参考答案: Unit 9: Yes, you can!",
+        "page": 8,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 10 参考答案: Unit 10: What if … ?",
+        "page": 9,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 11 参考答案: Unit 11: Contrasts",
+        "page": 10,
+        "level": 1,
+        "icon": "🔑"
+      },
+      {
+        "title": "Unit 12 参考答案: Unit 12: Looking back",
+        "page": 11,
+        "level": 1,
+        "icon": "🔑"
       }
     ]
   },

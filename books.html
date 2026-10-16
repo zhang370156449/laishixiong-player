@@ -110,7 +110,7 @@
     .hero {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 44px 24px 24px;
+      padding: 40px 24px 20px;
       text-align: center;
     }
     .hero-badge {
@@ -127,23 +127,23 @@
       border: 1px solid rgba(79, 70, 229, 0.2);
     }
     .hero h2 {
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 800;
       color: #0f172a;
       letter-spacing: -0.8px;
       margin-bottom: 12px;
     }
     .hero p {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-muted);
-      max-width: 660px;
-      margin: 0 auto 30px;
+      max-width: 680px;
+      margin: 0 auto 24px;
     }
 
     /* Filter & Search Bar */
     .controls-wrapper {
       max-width: 1200px;
-      margin: 0 auto 36px;
+      margin: 0 auto 32px;
       padding: 0 24px;
       display: flex;
       flex-wrap: wrap;
@@ -155,11 +155,11 @@
       position: relative;
       flex: 1;
       min-width: 260px;
-      max-width: 400px;
+      max-width: 380px;
     }
     .search-box input {
       width: 100%;
-      padding: 12px 16px 12px 42px;
+      padding: 11px 16px 11px 42px;
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-md);
       font-size: 14px;
@@ -188,7 +188,7 @@
       gap: 8px;
     }
     .pill {
-      padding: 8px 16px;
+      padding: 7px 15px;
       border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
@@ -216,8 +216,8 @@
       margin: 0 auto;
       padding: 0 24px 60px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
       flex: 1;
     }
 
@@ -226,45 +226,45 @@
       background: var(--surface);
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       box-shadow: var(--shadow-md);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
-      overflow: hidden;
     }
     .book-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
       box-shadow: var(--shadow-hover);
       border-color: rgba(79, 70, 229, 0.3);
     }
 
-    /* Book Header with Cover and Meta */
+    /* Card Top with Cover and Meta */
     .card-top {
       display: flex;
-      gap: 20px;
-      margin-bottom: 18px;
+      gap: 18px;
+      margin-bottom: 16px;
     }
     .cover-container {
-      width: 110px;
-      height: 156px;
+      width: 105px;
+      height: 148px;
       flex-shrink: 0;
       border-radius: var(--radius-sm);
       overflow: hidden;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12), -1px 0 3px rgba(0,0,0,0.08);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12), -1px 0 3px rgba(0,0,0,0.08);
       position: relative;
       background: #e2e8f0;
       transition: transform 0.3s ease;
     }
     .book-card:hover .cover-container {
-      transform: scale(1.03) rotate(-1deg);
+      transform: scale(1.02) rotate(-0.5deg);
     }
     .cover-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: opacity 0.2s ease;
     }
     .cover-placeholder {
       width: 100%;
@@ -278,33 +278,23 @@
       padding: 10px;
       text-align: center;
     }
-    .cover-placeholder span {
-      font-size: 26px;
-      margin-bottom: 4px;
-    }
-    .cover-placeholder h4 {
-      font-size: 11px;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
     .book-info {
       flex: 1;
-      min-width: 0;
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
     .book-series {
       font-size: 11px;
       font-weight: 700;
-      color: var(--primary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      color: var(--primary);
       margin-bottom: 4px;
     }
     .book-title {
-      font-size: 18px;
-      font-weight: 800;
+      font-size: 17px;
+      font-weight: 700;
       color: var(--text-main);
       line-height: 1.3;
       margin-bottom: 4px;
@@ -318,45 +308,81 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      padding: 2px 10px;
-      border-radius: 999px;
+      padding: 3px 8px;
+      border-radius: 6px;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 600;
       width: fit-content;
     }
     .status-badge.ready {
-      background: #dcfce7;
-      color: #15803d;
+      background: #ecfdf5;
+      color: #059669;
+      border: 1px solid rgba(16, 185, 129, 0.2);
     }
     .status-badge.upcoming {
+      background: #fffbeb;
+      color: #b45309;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    /* Companion Material Switcher inside Card */
+    .card-material-bar {
+      display: flex;
       background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 3px;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+    .mat-tab {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 6px 4px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
       color: #64748b;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .mat-tab:hover {
+      color: #0f172a;
+      background: rgba(255, 255, 255, 0.7);
+    }
+    .mat-tab.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      font-weight: 700;
     }
 
     .book-desc {
       font-size: 13px;
-      color: #475569;
-      margin-bottom: 16px;
-      line-height: 1.55;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
       flex: 1;
     }
-
     .book-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
     .tag-item {
       font-size: 11px;
-      padding: 3px 8px;
+      padding: 2px 7px;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      border-radius: 6px;
+      border-radius: 5px;
       color: #64748b;
     }
 
@@ -364,13 +390,13 @@
     .book-stats {
       display: flex;
       align-items: center;
-      gap: 16px;
+      justify-content: space-between;
       font-size: 12px;
       color: var(--text-muted);
-      padding: 10px 0;
+      padding: 8px 0;
       border-top: 1px dashed var(--surface-border);
       border-bottom: 1px dashed var(--surface-border);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .stat-item {
       display: flex;
@@ -382,29 +408,29 @@
     .card-actions {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
     .btn-read {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       width: 100%;
-      padding: 12px 20px;
+      padding: 11px 18px;
       background: var(--primary);
       color: #ffffff;
       border-radius: var(--radius-md);
       font-size: 14px;
       font-weight: 700;
       text-decoration: none;
-      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+      box-shadow: 0 3px 8px rgba(79, 70, 229, 0.25);
       transition: all 0.2s ease;
       cursor: pointer;
       border: none;
     }
     .btn-read:hover {
       background: var(--primary-hover);
-      box-shadow: 0 6px 14px rgba(79, 70, 229, 0.35);
+      box-shadow: 0 5px 12px rgba(79, 70, 229, 0.35);
       transform: translateY(-1px);
     }
     .btn-read.disabled {
@@ -425,8 +451,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      padding: 8px 12px;
+      gap: 4px;
+      padding: 7px 10px;
       background: #f8fafc;
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-sm);
@@ -442,10 +468,9 @@
       border-color: #cbd5e1;
     }
 
-    /* Quick jump select dropdown */
     .quick-jump-select {
-      flex: 1;
-      padding: 8px 10px;
+      flex: 1.4;
+      padding: 7px 8px;
       font-size: 12px;
       font-weight: 500;
       border-radius: var(--radius-sm);
@@ -468,25 +493,25 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 24px;
+      padding: 36px 20px;
       border-radius: var(--radius-lg);
-      min-height: 380px;
+      min-height: 360px;
       color: var(--text-muted);
     }
     .add-icon {
-      width: 56px;
-      height: 56px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       background: #e2e8f0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
-      margin-bottom: 16px;
+      font-size: 24px;
+      margin-bottom: 14px;
       color: #64748b;
     }
     .add-card h3 {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       color: #334155;
       margin-bottom: 6px;
@@ -494,7 +519,7 @@
     .add-card p {
       font-size: 13px;
       max-width: 280px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       line-height: 1.5;
     }
 
@@ -508,14 +533,9 @@
       color: var(--text-muted);
       margin-top: auto;
     }
-    footer a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
 
     @media (max-width: 640px) {
-      .hero h2 { font-size: 26px; }
+      .hero h2 { font-size: 24px; }
       .bookshelf { grid-template-columns: 1fr; }
       .controls-wrapper { flex-direction: column; align-items: stretch; }
       .search-box { max-width: 100%; }
@@ -544,24 +564,25 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-badge">✨ 矢量重制 · 纯净排版 · 目录跳转</div>
+    <div class="hero-badge">✨ 矢量高清 · 课件练习全配套 · 目录一键直达</div>
     <h2>经典英语教材数字化阅读中心</h2>
-    <p>全本精细文字与矢量图表重制，搭载高精度目录导航与跨端响应式 PDF 阅读器，专为沉浸式精读而设计。</p>
+    <p>收录赖世雄经典美语与剑桥原版 EVOLVE 全系列。独创【学生用书 / 练习册 / 参考答案】三位一体同步切换，畅享极致自学体验。</p>
   </section>
 
   <!-- Controls: Search & Category Filter -->
   <section class="controls-wrapper">
     <div class="search-box">
       <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="搜索教材名称、课文、作者..." autocomplete="off">
+      <input type="text" id="searchInput" placeholder="搜索教材、课文、Unit、练习、答案..." autocomplete="off">
     </div>
     <div class="category-pills" id="categoryPills">
       <div class="pill active" data-cat="all">全部教材</div>
-      <div class="pill" data-cat="ready">已精修上线</div>
       <div class="pill" data-cat="laishi">赖世雄美语</div>
-      <div class="pill" data-cat="cambridge">剑桥美语</div>
-      <div class="pill" data-cat="phonetics">音标发音</div>
-      <div class="pill" data-cat="upcoming">即将上线</div>
+      <div class="pill" data-cat="cambridge">剑桥 EVOLVE 全套</div>
+      <div class="pill" data-cat="cambridge_sb">📘 学生用书</div>
+      <div class="pill" data-cat="cambridge_wb">📝 配套练习册</div>
+      <div class="pill" data-cat="cambridge_ak">🔑 练习册答案</div>
+      <div class="pill" data-cat="upcoming">制作中</div>
     </div>
   </section>
 
@@ -584,110 +605,269 @@
 
     let currentFilter = 'all';
     let searchQuery = '';
+    // Store active material tab for each group: { 'cambridge_evolve_1': 'sb', ... }
+    const activeMaterials = {
+      'cambridge_evolve_1': 'sb',
+      'cambridge_evolve_2': 'sb',
+      'cambridge_evolve_3': 'sb',
+      'cambridge_evolve_4': 'sb'
+    };
+
+    function setCardMaterial(groupId, materialType, e) {
+      if (e) e.stopPropagation();
+      activeMaterials[groupId] = materialType;
+      renderBooks();
+    }
 
     function renderBooks() {
-      const books = window.BOOKS_DATABASE || [];
-      const filtered = books.filter(book => {
-        // category filter
-        if (currentFilter === 'ready' && book.status !== 'ready') return false;
-        if (currentFilter === 'upcoming' && book.status !== 'upcoming') return false;
-        if (currentFilter === 'laishi' && book.category !== 'laishi') return false;
-        if (currentFilter === 'cambridge' && book.category !== 'cambridge') return false;
-        if (currentFilter === 'phonetics' && book.category !== 'phonetics') return false;
+      const allBooks = window.BOOKS_DATABASE || [];
 
-        // search query
+      // 1. Organize books: Separate into standalone books and grouped Cambridge suites
+      const standaloneBooks = [];
+      const cambridgeGroups = {};
+
+      allBooks.forEach(book => {
+        if (book.groupId) {
+          if (!cambridgeGroups[book.groupId]) {
+            cambridgeGroups[book.groupId] = {
+              groupId: book.groupId,
+              level: book.level,
+              materials: {}
+            };
+          }
+          cambridgeGroups[book.groupId].materials[book.materialType] = book;
+        } else {
+          standaloneBooks.push(book);
+        }
+      });
+
+      // Synchronize default active material tab with filter
+      if (currentFilter === 'cambridge_wb') {
+        Object.keys(activeMaterials).forEach(k => activeMaterials[k] = 'wb');
+      } else if (currentFilter === 'cambridge_ak') {
+        Object.keys(activeMaterials).forEach(k => activeMaterials[k] = 'ak');
+      } else if (currentFilter === 'cambridge_sb') {
+        Object.keys(activeMaterials).forEach(k => activeMaterials[k] = 'sb');
+      }
+
+      // 2. Build list of display items
+      const displayItems = [];
+
+      // Add standalone books
+      standaloneBooks.forEach(book => {
+        // filter check
+        if (currentFilter === 'cambridge' || currentFilter.startsWith('cambridge_')) return;
+        if (currentFilter === 'laishi' && book.category !== 'laishi') return;
+        if (currentFilter === 'upcoming' && book.status !== 'upcoming') return;
+
+        // search check
         if (searchQuery.trim()) {
           const q = searchQuery.toLowerCase().trim();
           const matchTitle = (book.title || '').toLowerCase().includes(q);
           const matchEn = (book.enTitle || '').toLowerCase().includes(q);
           const matchDesc = (book.description || '').toLowerCase().includes(q);
-          const matchAuthor = (book.author || '').toLowerCase().includes(q);
           const matchTags = (book.tags || []).some(t => t.toLowerCase().includes(q));
-          if (!matchTitle && !matchEn && !matchDesc && !matchAuthor && !matchTags) return false;
+          if (!matchTitle && !matchEn && !matchDesc && !matchTags) return;
         }
-        return true;
+
+        displayItems.push({ type: 'standalone', book: book });
       });
 
-      let html = '';
+      // Add Cambridge suite cards
+      Object.keys(cambridgeGroups).sort().forEach(groupId => {
+        const group = cambridgeGroups[groupId];
+        if (currentFilter === 'laishi' || currentFilter === 'upcoming') return;
 
-      filtered.forEach(book => {
-        const isReady = book.status === 'ready';
-        const coverHtml = book.cover 
-          ? `<img src="${book.cover}" alt="${book.title}" class="cover-img" loading="lazy">`
-          : `<div class="cover-placeholder"><span>📖</span><h4>${book.title}</h4></div>`;
+        let activeMatType = activeMaterials[groupId] || 'sb';
+        const activeBook = group.materials[activeMatType] || group.materials['sb'];
 
-        // Generate quick chapter jump options if toc exists
-        let quickJumpHtml = '';
-        if (isReady && book.toc && book.toc.length > 0) {
-          const options = book.toc
-            .filter(item => item.page && (item.title.includes('Lesson') || item.title.includes('Unit') || item.title.includes('Review') || item.title.includes('附录') || item.title.includes('目录') || item.title.includes('练习')))
-            .map(item => `<option value="${item.page}">${item.title}</option>`)
-            .join('');
-
-          quickJumpHtml = `
-            <select class="quick-jump-select" onchange="if(this.value) window.location.href='reader.html?book=${book.id}&page=' + this.value">
-              <option value="">⚡ 直达指定章节/课次...</option>
-              ${options}
-            </select>
-          `;
+        // Search filtering: if query mentions '练习' or 'workbook', auto-switch to wb; if '答案' or 'key', switch to ak
+        if (searchQuery.trim()) {
+          const q = searchQuery.toLowerCase().trim();
+          if (q.includes('练习') || q.includes('workbook')) {
+            activeMatType = 'wb';
+          } else if (q.includes('答案') || q.includes('answer') || q.includes('key')) {
+            activeMatType = 'ak';
+          }
+          
+          // Check if any material matches search
+          const anyMatch = Object.values(group.materials).some(b => {
+            const matchTitle = (b.title || '').toLowerCase().includes(q);
+            const matchEn = (b.enTitle || '').toLowerCase().includes(q);
+            const matchDesc = (b.description || '').toLowerCase().includes(q);
+            const matchTags = (b.tags || []).some(t => t.toLowerCase().includes(q));
+            const matchTOC = (b.toc || []).some(item => (item.title || '').toLowerCase().includes(q));
+            return matchTitle || matchEn || matchDesc || matchTags || matchTOC;
+          });
+          if (!anyMatch) return;
         }
 
-        html += `
-          <div class="book-card">
-            <div class="card-top">
-              <div class="cover-container">
-                ${coverHtml}
+        displayItems.push({
+          type: 'cambridge_suite',
+          groupId: groupId,
+          activeType: activeMatType,
+          activeBook: group.materials[activeMatType] || group.materials['sb'],
+          allMaterials: group.materials
+        });
+      });
+
+      // 3. Render HTML
+      let html = '';
+
+      displayItems.forEach(item => {
+        if (item.type === 'standalone') {
+          const book = item.book;
+          const isReady = book.status === 'ready';
+          const coverHtml = book.cover 
+            ? `<img src="${book.cover}" alt="${book.title}" class="cover-img" loading="lazy">`
+            : `<div class="cover-placeholder"><span>📖</span><h4>${book.title}</h4></div>`;
+
+          let quickJumpHtml = '';
+          if (isReady && book.toc && book.toc.length > 0) {
+            const options = book.toc
+              .filter(i => i.page && (i.title.includes('Lesson') || i.title.includes('Unit') || i.title.includes('Review') || i.title.includes('附录') || i.title.includes('目录') || i.title.includes('练习')))
+              .map(i => `<option value="${i.page}">${i.title}</option>`)
+              .join('');
+
+            quickJumpHtml = `
+              <select class="quick-jump-select" onchange="if(this.value) window.location.href='reader.html?book=${book.id}&page=' + this.value">
+                <option value="">⚡ 直达指定章节/课次...</option>
+                ${options}
+              </select>
+            `;
+          }
+
+          html += `
+            <div class="book-card">
+              <div class="card-top">
+                <div class="cover-container">
+                  ${coverHtml}
+                </div>
+                <div class="book-info">
+                  <span class="book-series">${book.series || '英语教材'}</span>
+                  <h3 class="book-title">${book.title}</h3>
+                  <span class="book-author">${book.author} · ${book.publishYear}</span>
+                  <span class="status-badge ${book.status}">
+                    ${isReady ? '● ' + book.badge : '⏳ ' + book.badge}
+                  </span>
+                </div>
               </div>
-              <div class="book-info">
-                <span class="book-series">${book.series || '英语教材'}</span>
-                <h3 class="book-title">${book.title}</h3>
-                <span class="book-author">${book.author} · ${book.publishYear}</span>
-                <span class="status-badge ${book.status}">
-                  ${isReady ? '● ' + book.badge : '⏳ ' + book.badge}
-                </span>
+
+              <p class="book-desc">${book.description}</p>
+
+              <div class="book-tags">
+                ${(book.tags || []).map(tag => `<span class="tag-item">#${tag}</span>`).join('')}
+              </div>
+
+              <div class="book-stats">
+                <div class="stat-item">📄 <strong>${book.totalPages}</strong> 页</div>
+                <div class="stat-item">💾 <strong>${book.fileSize}</strong></div>
+                <div class="stat-item">📑 <strong>带目录跳转</strong></div>
+              </div>
+
+              <div class="card-actions">
+                ${isReady ? `
+                  <a href="reader.html?book=${book.id}" class="btn-read">
+                    <span>📖 立即在线阅读</span>
+                    <span style="font-size:12px;opacity:0.85">（精准目录）</span>
+                  </a>
+                  <div class="action-sub-row">
+                    ${quickJumpHtml}
+                    <a href="${book.pdfUrl}" download class="btn-sub" title="直接下载本教材原始 PDF 文件">
+                      <span>⬇️ 下载</span>
+                    </a>
+                  </div>
+                ` : `
+                  <button class="btn-read disabled" disabled>
+                    <span>⏳ 正在数字化排版制作中...</span>
+                  </button>
+                `}
               </div>
             </div>
+          `;
+        } else if (item.type === 'cambridge_suite') {
+          const { groupId, activeType, activeBook, allMaterials } = item;
+          const coverHtml = `<img src="${activeBook.cover}" alt="${activeBook.title}" class="cover-img" loading="lazy">`;
 
-            <p class="book-desc">${book.description}</p>
+          let quickJumpHtml = '';
+          if (activeBook.toc && activeBook.toc.length > 0) {
+            const options = activeBook.toc
+              .filter(i => i.page && (i.title.includes('Unit') || i.title.includes('Review') || i.title.includes('目录') || i.title.includes('拓展') || i.title.includes('答案')))
+              .map(i => `<option value="${i.page}">${i.title}</option>`)
+              .join('');
 
-            <div class="book-tags">
-              ${(book.tags || []).map(tag => `<span class="tag-item">#${tag}</span>`).join('')}
-            </div>
+            quickJumpHtml = `
+              <select class="quick-jump-select" onchange="if(this.value) window.location.href='reader.html?book=${activeBook.id}&page=' + this.value">
+                <option value="">⚡ 直达指定章节/课次...</option>
+                ${options}
+              </select>
+            `;
+          }
 
-            <div class="book-stats">
-              <div class="stat-item">📄 <strong>${book.totalPages}</strong> 页</div>
-              <div class="stat-item">💾 <strong>${book.fileSize}</strong></div>
-              <div class="stat-item">📑 <strong>带目录跳转</strong></div>
-            </div>
+          html += `
+            <div class="book-card cambridge-card" id="card-${groupId}">
+              <div class="card-top">
+                <div class="cover-container">
+                  ${coverHtml}
+                </div>
+                <div class="book-info">
+                  <span class="book-series">剑桥 EVOLVE 美语系列</span>
+                  <h3 class="book-title">剑桥 EVOLVE · Level ${activeBook.level}</h3>
+                  <span class="book-author">剑桥大学出版社 · 2026 第二版</span>
+                  <span class="status-badge ready">
+                    ● ${activeBook.badge}
+                  </span>
+                </div>
+              </div>
 
-            <div class="card-actions">
-              ${isReady ? `
-                <a href="reader.html?book=${book.id}" class="btn-read">
-                  <span>📖 立即在线阅读</span>
-                  <span style="font-size:12px;opacity:0.85">（完整目录快速跳转）</span>
+              <!-- Integrated Material Tab Switcher -->
+              <div class="card-material-bar">
+                <button class="mat-tab ${activeType === 'sb' ? 'active' : ''}" onclick="setCardMaterial('${groupId}', 'sb', event)">
+                  📘 学生用书
+                </button>
+                <button class="mat-tab ${activeType === 'wb' ? 'active' : ''}" onclick="setCardMaterial('${groupId}', 'wb', event)">
+                  📝 练习册
+                </button>
+                <button class="mat-tab ${activeType === 'ak' ? 'active' : ''}" onclick="setCardMaterial('${groupId}', 'ak', event)">
+                  🔑 参考答案
+                </button>
+              </div>
+
+              <p class="book-desc">${activeBook.description}</p>
+
+              <div class="book-tags">
+                ${(activeBook.tags || []).map(tag => `<span class="tag-item">#${tag}</span>`).join('')}
+              </div>
+
+              <div class="book-stats">
+                <div class="stat-item">📄 <strong>${activeBook.totalPages}</strong> 页</div>
+                <div class="stat-item">💾 <strong>${activeBook.fileSize}</strong></div>
+                <div class="stat-item">📑 <strong>全 12 单元跳转</strong></div>
+              </div>
+
+              <div class="card-actions">
+                <a href="reader.html?book=${activeBook.id}" class="btn-read">
+                  <span>📖 在线阅读【${activeBook.materialLabel}】</span>
+                  <span style="font-size:12px;opacity:0.85">（支持配套联动）</span>
                 </a>
                 <div class="action-sub-row">
                   ${quickJumpHtml}
-                  <a href="${book.pdfUrl}" download class="btn-sub" title="直接下载本教材原始 PDF 文件">
-                    <span>⬇️ 离线下载</span>
+                  <a href="${activeBook.pdfUrl}" download class="btn-sub" title="下载当前选中的 PDF">
+                    <span>⬇️ 下载</span>
                   </a>
                 </div>
-              ` : `
-                <button class="btn-read disabled" disabled>
-                  <span>⏳ 正在数字化排版制作中...</span>
-                </button>
-              `}
+              </div>
             </div>
-          </div>
-        `;
+          `;
+        }
       });
 
-      // Add a card for uploading/extending more books
+      // Add book placeholder card
       html += `
         <div class="add-card">
           <div class="add-icon">➕</div>
           <h3>支持扩展无限新教材</h3>
-          <p>后续新教材只需放入 PDF 文件并在配置中登记，即可自动在此展示并享有一键目录跳转功能。</p>
+          <p>后续新教材只需放入 PDF 文件并在配置中登记，即可自动在此展示并享有套件联动与目录跳转功能。</p>
           <span style="font-size: 11px; padding: 4px 10px; background: #e2e8f0; border-radius: 6px; color: #475569;">
             可随时导入初级、中级及任意 PDF
           </span>

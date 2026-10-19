@@ -229,7 +229,10 @@
 
     /* Collapsible TOC Sidebar */
     .toc-sidebar {
+      position: relative;
       width: var(--sidebar-width);
+      min-width: 240px;
+      max-width: 800px;
       background: var(--sidebar-bg);
       border-right: 1px solid var(--sidebar-border);
       display: flex;
@@ -241,6 +244,80 @@
     }
     .toc-sidebar.collapsed {
       margin-left: calc(-1 * var(--sidebar-width));
+    }
+
+    /* Draggable Splitter for Sidebar Resizing */
+    .sidebar-resizer {
+      position: absolute;
+      top: 0;
+      right: -5px;
+      bottom: 0;
+      width: 10px;
+      cursor: col-resize;
+      z-index: 95;
+      user-select: none;
+      -webkit-user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: none;
+    }
+    .sidebar-resizer-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 4px;
+      width: 2px;
+      background: transparent;
+      transition: background-color 0.15s ease;
+    }
+    .sidebar-resizer:hover .sidebar-resizer-line,
+    .sidebar-resizer.is-dragging .sidebar-resizer-line {
+      background: var(--primary);
+    }
+    .sidebar-resizer-handle {
+      position: relative;
+      width: 4px;
+      height: 38px;
+      border-radius: 4px;
+      background: #94a3b8;
+      opacity: 0;
+      transform: scaleY(0.7);
+      transition: opacity 0.15s ease, transform 0.15s ease, background-color 0.15s ease;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+    }
+    .sidebar-resizer:hover .sidebar-resizer-handle,
+    .sidebar-resizer.is-dragging .sidebar-resizer-handle {
+      opacity: 1;
+      transform: scaleY(1);
+      background: var(--primary);
+    }
+
+    /* While dragging, disable sidebar transition for 60fps fluidity, prevent text selection & block iframe events */
+    body.is-resizing-sidebar {
+      cursor: col-resize !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+    }
+    body.is-resizing-sidebar .toc-sidebar {
+      transition: none !important;
+    }
+    body.is-resizing-sidebar iframe,
+    body.is-resizing-sidebar .reader-viewport {
+      pointer-events: none !important;
+    }
+
+    /* Transparent drag overlay to capture mouse events even beyond browser boundaries */
+    .resize-drag-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      cursor: col-resize;
+      background: transparent;
+    }
+    body.is-resizing-sidebar .resize-drag-overlay {
+      display: block;
     }
     .toc-header {
       padding: 14px 16px;
@@ -333,9 +410,14 @@
       align-items: center;
       gap: 8px;
       overflow: hidden;
+      flex: 1;
+      min-width: 0;
+    }
+    .toc-item-title > span:last-child {
+      overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      flex: 1;
+      min-width: 0;
     }
     .toc-page-badge {
       font-size: 11px;
@@ -504,6 +586,9 @@
       }
       .sidebar-backdrop.show {
         display: block;
+      }
+      .sidebar-resizer {
+        display: none !important;
       }
       .reader-viewport {
         padding: 0;
@@ -699,6 +784,9 @@
     <!-- Backdrop for mobile sidebar drawer -->
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
+    <!-- Drag overlay to prevent iframe event interception during fast dragging -->
+    <div class="resize-drag-overlay" id="resizeDragOverlay"></div>
+
     <!-- Collapsible TOC Sidebar -->
     <aside class="toc-sidebar" id="tocSidebar">
       <div class="toc-header">
@@ -722,6 +810,12 @@
       <ul class="toc-list" id="tocList">
         <!-- Rendered dynamically -->
       </ul>
+
+      <!-- Draggable Splitter for Sidebar Resizing -->
+      <div class="sidebar-resizer" id="sidebarResizer" title="左右拖动调整目录宽度，双击恢复默认">
+        <div class="sidebar-resizer-line"></div>
+        <div class="sidebar-resizer-handle"></div>
+      </div>
     </aside>
 
     <!-- PDF Main Viewport -->
@@ -773,6 +867,7 @@
     const tocCountBadge = document.getElementById('tocCountBadge');
     const tocSearchInput = document.getElementById('tocSearchInput');
     const tocSidebar = document.getElementById('tocSidebar');
+    const sidebarResizer = document.getElementById('sidebarResizer');
     const sidebarBackdrop = document.getElementById('sidebarBackdrop');
     const btnToggleSidebar = document.getElementById('btnToggleSidebar');
     const btnPrevPage = document.getElementById('btnPrevPage');
@@ -1453,6 +1548,122 @@
 
     btnToggleSidebar.addEventListener('click', () => toggleSidebar());
     sidebarBackdrop.addEventListener('click', () => toggleSidebar(false));
+
+    // --- Draggable Resizable Sidebar Logic ---
+    const DEFAULT_SIDEBAR_WIDTH = 320;
+    const MIN_SIDEBAR_WIDTH = 240;
+
+    function getMaxSidebarWidth() {
+      return Math.min(Math.floor(window.innerWidth * 0.7), 800);
+    }
+
+    function applySidebarWidth(targetWidth, saveToStorage = false) {
+      const maxW = getMaxSidebarWidth();
+      const clampedWidth = Math.max(MIN_SIDEBAR_WIDTH, Math.min(targetWidth, maxW));
+      document.documentElement.style.setProperty('--sidebar-width', `${clampedWidth}px`);
+      if (saveToStorage) {
+        try {
+          localStorage.setItem('reader_sidebar_width', clampedWidth);
+        } catch (e) {}
+      }
+      return clampedWidth;
+    }
+
+    // Load saved width from localStorage on init
+    try {
+      const savedWidth = parseInt(localStorage.getItem('reader_sidebar_width'), 10);
+      if (savedWidth && !isNaN(savedWidth)) {
+        applySidebarWidth(savedWidth, false);
+      }
+    } catch (e) {}
+
+    // Window resize handler to prevent sidebar exceeding viewport boundary
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        const currentW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-width'), 10) || DEFAULT_SIDEBAR_WIDTH;
+        applySidebarWidth(currentW, false);
+      }
+    });
+
+    if (sidebarResizer) {
+      let isDragging = false;
+      let startX = 0;
+      let startWidth = DEFAULT_SIDEBAR_WIDTH;
+
+      function startResize(clientX) {
+        isDragging = true;
+        startX = clientX;
+        startWidth = tocSidebar.getBoundingClientRect().width;
+        document.body.classList.add('is-resizing-sidebar');
+        sidebarResizer.classList.add('is-dragging');
+      }
+
+      function updateResize(clientX) {
+        if (!isDragging) return;
+        const deltaX = clientX - startX;
+        const newWidth = startWidth + deltaX;
+        applySidebarWidth(newWidth, false);
+      }
+
+      function endResize() {
+        if (!isDragging) return;
+        isDragging = false;
+        document.body.classList.remove('is-resizing-sidebar');
+        sidebarResizer.classList.remove('is-dragging');
+
+        const finalWidth = tocSidebar.getBoundingClientRect().width;
+        applySidebarWidth(finalWidth, true);
+      }
+
+      // Mouse drag handlers
+      sidebarResizer.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return; // Only primary button
+        e.preventDefault();
+        startResize(e.clientX);
+
+        function onMouseMove(e) {
+          updateResize(e.clientX);
+        }
+
+        function onMouseUp() {
+          endResize();
+          window.removeEventListener('mousemove', onMouseMove);
+          window.removeEventListener('mouseup', onMouseUp);
+        }
+
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+      });
+
+      // Double click to reset to default width
+      sidebarResizer.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        applySidebarWidth(DEFAULT_SIDEBAR_WIDTH, true);
+        showToast('目录栏已恢复默认宽度 (320px)', '📐');
+      });
+
+      // Touch drag handlers (for touch screens / tablets)
+      sidebarResizer.addEventListener('touchstart', (e) => {
+        if (e.touches.length !== 1) return;
+        startResize(e.touches[0].clientX);
+
+        function onTouchMove(e) {
+          if (!isDragging || e.touches.length !== 1) return;
+          updateResize(e.touches[0].clientX);
+        }
+
+        function onTouchEnd() {
+          endResize();
+          window.removeEventListener('touchmove', onTouchMove);
+          window.removeEventListener('touchend', onTouchEnd);
+          window.removeEventListener('touchcancel', onTouchEnd);
+        }
+
+        window.addEventListener('touchmove', onTouchMove, { passive: true });
+        window.addEventListener('touchend', onTouchEnd);
+        window.addEventListener('touchcancel', onTouchEnd);
+      }, { passive: true });
+    }
 
     // Fullscreen
     btnFullscreen.addEventListener('click', () => {

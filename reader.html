@@ -757,13 +757,13 @@
 
     <!-- Right: Mode Switch & Utilities -->
     <div class="toolbar-right">
-      <button class="btn-tool" id="btnToggleEngine" title="在原生极速预览与连续画布排版间切换">
-        <span id="engineIcon">⚡</span>
-        <span class="btn-label" id="engineLabel">原生极速</span>
+      <button class="btn-tool" id="btnToggleEngine" title="在画布滚动与原生极速间切换">
+        <span id="engineIcon">🎨</span>
+        <span class="btn-label" id="engineLabel">画布滚动</span>
       </button>
       <div class="zoom-group" id="zoomGroup">
         <button class="zoom-btn" id="btnZoomOut" title="缩小 (−10%)">−</button>
-        <input type="text" class="zoom-input" id="zoomInput" value="100%" title="可直接手动输入任意缩放百分比 (如 110、120、130)，按回车确认">
+        <input type="text" class="zoom-input" id="zoomInput" value="150%" title="可直接手动输入任意缩放百分比 (如 110、120、130、150)，按回车确认">
         <button class="zoom-btn" id="btnZoomIn" title="放大 (+10%)">+</button>
       </div>
       <button class="btn-tool" id="btnFitWidth" title="自适应页面宽度">
@@ -821,10 +821,10 @@
     <!-- PDF Main Viewport -->
     <main class="reader-viewport" id="readerViewport">
       <!-- 1. Native PDF iframe (Zero-delay, works 100% on file:// and all browsers) -->
-      <iframe class="native-pdf-frame active" id="nativePdfFrame"></iframe>
+      <iframe class="native-pdf-frame" id="nativePdfFrame"></iframe>
 
       <!-- 2. High-res Continuous Canvas Scroll Wrap -->
-      <div class="pdf-pages-scroll-wrap hidden" id="canvasPagesWrap"></div>
+      <div class="pdf-pages-scroll-wrap" id="canvasPagesWrap"></div>
 
       <!-- Loading Indicator (confined inside reader viewport, never blocks sidebar clicks!) -->
       <div class="loading-overlay hidden" id="loadingOverlay">
@@ -834,7 +834,7 @@
       </div>
 
       <!-- Mode indicator tag -->
-      <div class="mode-indicator" id="modeIndicator">⚡ 原生极速模式</div>
+      <div class="mode-indicator" id="modeIndicator">🎨 高清画布模式 · 150%</div>
     </main>
   </div>
 
@@ -847,12 +847,24 @@
     let pdfDoc = null;
     let totalPages = 261;
     let currentPage = 1;
-    let currentScale = 1.0;
-    let fitWidthMode = true;
+    let currentScale = 1.5; // Default 150% as requested
+    let fitWidthMode = false;
     let tocEntries = [];
     let pageContainers = [];
-    let currentEngine = 'native'; // 'native' | 'canvas'
+    let currentEngine = 'canvas'; // Default to canvas (🎨 画布滚动)
     let isPdfJsReady = false;
+
+    // Load saved engine mode and zoom percent from localStorage
+    try {
+      const savedEngine = localStorage.getItem('reader_engine_mode');
+      if (savedEngine === 'native' || savedEngine === 'canvas') {
+        currentEngine = savedEngine;
+      }
+      const savedZoom = parseInt(localStorage.getItem('reader_zoom_percent'), 10);
+      if (savedZoom && !isNaN(savedZoom) && savedZoom >= 40 && savedZoom <= 300) {
+        currentScale = savedZoom / 100;
+      }
+    } catch (e) {}
 
     // Elements
     const topBookTitle = document.getElementById('topBookTitle');
@@ -1133,18 +1145,11 @@
       tocEntries = currentBook.toc || [];
       renderTOC(tocEntries);
 
-      // 1.2 Decide initial engine:
-      // In all browsers, native PDF iframe works instantly and has zero CORS restrictions on file:// or https://.
-      // We set Native mode as default for instant display, and prepare Canvas mode in background if supported!
-      setEngine('native', initialPage);
-
-      // 1.3 Pre-setup continuous containers in canvas wrap
+      // 1.2 Setup continuous containers in canvas wrap
       setupCanvasContainers(totalPages);
 
-      // 1.4 If online (http/https), optionally pre-warm PDF.js
-      if (window.location.protocol.startsWith('http') && window.pdfjsLib) {
-        initPdfJs(currentBook.pdfUrl);
-      }
+      // 1.3 Launch initial engine (defaults to Canvas mode · 150%)
+      setEngine(currentEngine, initialPage);
     }
 
     // 2. Render TOC List & Direct Click Handling
@@ -1186,6 +1191,9 @@
     let jumpCounter = 0;
     function setEngine(mode, pageToOpen) {
       currentEngine = mode;
+      try {
+        localStorage.setItem('reader_engine_mode', mode);
+      } catch (e) {}
       const targetPage = pageToOpen || currentPage;
 
       if (mode === 'native') {
@@ -1209,7 +1217,7 @@
         canvasPagesWrap.classList.remove('hidden');
         engineIcon.textContent = '🎨';
         engineLabel.textContent = '画布滚动';
-        modeIndicator.textContent = '🎨 高清画布连续滚动模式';
+        modeIndicator.textContent = `🎨 高清画布模式 · ${Math.round(currentScale * 100)}%`;
         zoomGroup.style.display = 'flex';
         btnFitWidth.style.display = 'inline-flex';
 
@@ -1283,13 +1291,16 @@
       canvasPagesWrap.innerHTML = '';
       pageContainers = [];
 
+      const initialWidth = Math.round(595 * currentScale);
+      const initialHeight = Math.round(842 * currentScale);
+
       for (let i = 1; i <= count; i++) {
         const container = document.createElement('div');
         container.className = 'pdf-page-container';
         container.id = `page-container-${i}`;
         container.setAttribute('data-page-number', i);
-        container.style.width = '750px';
-        container.style.height = '1060px'; // standard A4 ratio
+        container.style.width = `${initialWidth}px`;
+        container.style.height = `${initialHeight}px`;
 
         container.innerHTML = `
           <div class="page-placeholder">
@@ -1306,6 +1317,9 @@
       try {
         if (!window.pdfjsLib) return;
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'libs/pdf.worker.min.js';
+
+        // Clear rendered set so freshly switched books render properly
+        renderedPages.clear();
 
         // Only show loading spinner if currently in canvas mode
         if (currentEngine === 'canvas') {
@@ -1325,11 +1339,8 @@
         const vp = firstPage.getViewport({ scale: 1 });
         const ratio = vp.height / vp.width;
 
-        const baseWidth = Math.min(850, readerViewport.clientWidth - 40);
-        const rawScale = baseWidth / vp.width;
-        // Round to neat 10% integer (e.g. 110% instead of 111%)
-        const neatPct = Math.max(50, Math.min(250, Math.round((rawScale * 100) / 10) * 10));
-        updateZoomDisplay(neatPct / 100);
+        // Keep and display the configured scale (default 150%)
+        updateZoomDisplay(currentScale);
 
         pageContainers.forEach(c => {
           const w = vp.width * currentScale;
@@ -1444,13 +1455,21 @@
       if (zoomInput) {
         zoomInput.value = `${pct}%`;
       }
+      if (modeIndicator && currentEngine === 'canvas') {
+        modeIndicator.textContent = `🎨 高清画布模式 · ${pct}%`;
+      }
     }
 
-    function applyZoomPercent(pct) {
+    function applyZoomPercent(pct, saveToStorage = true) {
       if (currentEngine !== 'canvas') setEngine('canvas');
       // Clamp between 40% and 300%
       let targetPct = Math.max(40, Math.min(300, Math.round(pct)));
       updateZoomDisplay(targetPct / 100);
+      if (saveToStorage) {
+        try {
+          localStorage.setItem('reader_zoom_percent', targetPct);
+        } catch (e) {}
+      }
       reRenderAllCanvases();
     }
 
@@ -1460,7 +1479,7 @@
       // Snap up to next multiple of 10
       let nextPct = Math.floor(currentPct / 10) * 10 + 10;
       if (nextPct <= currentPct) nextPct = currentPct + 10;
-      applyZoomPercent(nextPct);
+      applyZoomPercent(nextPct, true);
     });
 
     btnZoomOut.addEventListener('click', () => {
@@ -1468,7 +1487,7 @@
       // Snap down to previous multiple of 10
       let prevPct = Math.ceil(currentPct / 10) * 10 - 10;
       if (prevPct >= currentPct) prevPct = currentPct - 10;
-      applyZoomPercent(prevPct);
+      applyZoomPercent(prevPct, true);
     });
 
     // Manual input: user can type any custom percentage like 110, 120, 130, 150
@@ -1481,7 +1500,7 @@
         const val = zoomInput.value.replace(/[^0-9]/g, '');
         const num = parseInt(val, 10);
         if (!isNaN(num) && num > 0) {
-          applyZoomPercent(num);
+          applyZoomPercent(num, true);
         } else {
           updateZoomDisplay(currentScale);
         }
@@ -1507,7 +1526,7 @@
         const baseWidth = readerViewport.clientWidth - 40;
         const rawScale = baseWidth / firstPage.getViewport({ scale: 1 }).width;
         const neatPct = Math.max(50, Math.min(250, Math.round((rawScale * 100) / 10) * 10));
-        applyZoomPercent(neatPct);
+        applyZoomPercent(neatPct, true);
       }
     });
 

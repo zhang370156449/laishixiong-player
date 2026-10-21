@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;900&family=Fira+Code:wght@500;600&display=swap">
   <style>
     :root {
-      --base-size: 16px;
+      --base-size: 18.5px;
       --primary: #4f46e5;
       --primary-hover: #4338ca;
       --primary-light: #eef2ff;
@@ -59,9 +59,9 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
     }
     .nav-container {
-      max-width: 1200px;
+      max-width: 1720px;
       margin: 0 auto;
-      padding: 10px 16px;
+      padding: 12px 28px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -128,7 +128,7 @@
     .search-box {
       flex: 1;
       min-width: 220px;
-      max-width: 380px;
+      max-width: 500px;
       position: relative;
     }
     .search-input {
@@ -282,9 +282,9 @@
 
     /* Main Content Area */
     .main-wrapper {
-      max-width: 1200px;
-      margin: 20px auto 0;
-      padding: 0 16px;
+      max-width: 1720px;
+      margin: 24px auto 0;
+      padding: 0 28px;
     }
 
     /* Section Banner */
@@ -329,7 +329,7 @@
     .cards-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 18px;
+      gap: 22px;
     }
     @media (min-width: 900px) {
       .cards-grid {
@@ -442,7 +442,12 @@
     .card-insights-row {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
+      gap: 12px;
+    }
+    @media (min-width: 640px) {
+      .card-insights-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
     .insight-box {
       border-radius: 8px;
@@ -989,7 +994,7 @@
     // Apply font size
     function applyFontSize(pct) {
       currentFontSizePct = pct;
-      rootHtml.style.setProperty('--base-size', (16 * pct / 100) + 'px');
+      rootHtml.style.setProperty('--base-size', (18.5 * pct / 100) + 'px');
       fontLabel.textContent = pct === 100 ? '标准' : `${pct}%`;
       try { localStorage.setItem('chunks_font_pct', pct); } catch(e) {}
     }

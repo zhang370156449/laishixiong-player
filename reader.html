@@ -1472,8 +1472,8 @@
         // Create textLayer for text selection and copying
         const textLayerDiv = document.createElement('div');
         textLayerDiv.className = 'textLayer';
-        textLayerDiv.style.width = ${viewport.width}px;
-        textLayerDiv.style.height = ${viewport.height}px;
+        textLayerDiv.style.width = viewport.width + 'px';
+        textLayerDiv.style.height = viewport.height + 'px';
         textLayerDiv.style.setProperty('--scale-factor', viewport.scale);
 
         container.innerHTML = '';
@@ -1490,7 +1490,7 @@
             }).promise;
           }
         } catch (textErr) {
-          console.warn(TextLayer error on page :, textErr);
+          console.warn('TextLayer error on page ' + pageNum + ':', textErr);
         }
       } catch (e) {
         renderedPages.delete(pageNum);

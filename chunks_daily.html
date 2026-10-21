@@ -771,12 +771,17 @@
         <div class="brand-title-wrap">
           <img src="chunklab_logo.png" class="brand-logo-img" alt="ChunkLab Logo">
           <div class="brand-text">
-            <h1>ChunkLab · 语块点读台 <span class="brand-badge" id="totalCardBadge">218 词块</span></h1>
+            <h1>ChunkLab · 语块点读台 <span class="brand-badge" id="totalCardBadge">218 词块</span> <span class="brand-version" style="font-size: 11px; padding: 2px 7px; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 999px; font-weight: 600; margin-left: 6px;">v1.1 (最新)</span></h1>
             <span class="brand-sub">日常生存与交流篇 · 218 核心功能词块 · MiniMax 原声点读</span>
           </div>
         </div>
 
         <div class="tools-group">
+                    <!-- Force Reload / Cache Buster -->
+          <button class="tool-btn-pill" onclick="window.location.href = window.location.pathname + '?v=' + Date.now()" title="强制清除网页与音频缓存并刷新">
+            <span>🔄</span> <span>更新刷新</span>
+          </button>
+
           <!-- Font Size Controls -->
           <div class="font-stepper" title="自由调节字号大小">
             <button class="font-btn" id="btnFontDec" title="缩小字号">A-</button>
@@ -901,7 +906,11 @@
         this.currentFallbackText = text;
 
         if (item.localAudio) {
-          this.audio.src = item.localAudio;
+          let src = item.localAudio;
+          if (window.location.protocol.startsWith('http')) {
+            src += (src.includes('?') ? '&' : '?') + 't=' + Date.now();
+          }
+          this.audio.src = src;
           this.audio.playbackRate = currentSpeed;
           this.audio.play().catch(() => {
             this.speakText(text);

@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>🧱 1.日常生存与交流 | 核心词块点读工作台</title>
-  <link rel="icon" href="favicon.png" type="image/png">
+  <title>ChunkLab · 语块点读台</title>
+  <link rel="icon" href="favicon_chunklab.png" type="image/png">
+  <link rel="apple-touch-icon" href="favicon_chunklab.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;900&family=Fira+Code:wght@500;600&display=swap">
   <style>
     :root {
@@ -71,6 +72,18 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
+    }
+        .brand-logo-img {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.15);
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .brand-logo-img:hover {
+      transform: scale(1.05);
     }
     .brand-title-wrap {
       display: flex;
@@ -751,10 +764,10 @@
     <div class="nav-container">
       <div class="nav-header-row">
         <div class="brand-title-wrap">
-          <span class="brand-icon">🧱</span>
+          <img src="chunklab_logo.png" class="brand-logo-img" alt="ChunkLab Logo">
           <div class="brand-text">
-            <h1>1.日常生存与交流 · 词块篇 <span class="brand-badge" id="totalCardBadge">218 词块</span></h1>
-            <span class="brand-sub">原声音频点读 · 大字排版 · 告别 Notion 卡顿</span>
+            <h1>ChunkLab · 语块点读台 <span class="brand-badge" id="totalCardBadge">218 词块</span></h1>
+            <span class="brand-sub">日常生存与交流篇 · 218 核心功能词块 · MiniMax 原声点读</span>
           </div>
         </div>
 

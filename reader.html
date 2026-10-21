@@ -485,6 +485,59 @@
       width: 100%;
       height: 100%;
       border-radius: 4px;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    /* PDF.js Text Layer (Enables native text selection & copying) */
+    .textLayer {
+      position: absolute;
+      text-align: initial;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      opacity: 1;
+      line-height: 1.0;
+      text-size-adjust: none;
+      -webkit-text-size-adjust: none;
+      forced-color-adjust: none;
+      transform-origin: 0 0;
+      z-index: 2;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+    .textLayer span,
+    .textLayer span > span,
+    .textLayer br {
+      color: transparent;
+      position: absolute;
+      white-space: pre;
+      cursor: text;
+      transform-origin: 0% 0%;
+    }
+    .textLayer ::selection {
+      background: rgba(79, 70, 229, 0.35);
+      color: transparent;
+    }
+    .textLayer ::-moz-selection {
+      background: rgba(79, 70, 229, 0.35);
+      color: transparent;
+    }
+    .textLayer .endOfContent {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      cursor: default;
+      user-select: none;
+    }
+    .textLayer .endOfContent.active {
+      top: 0;
     }
     .page-placeholder {
       display: flex;
@@ -1416,8 +1469,29 @@
 
         await page.render({ canvasContext: ctx, viewport: viewport }).promise;
 
+        // Create textLayer for text selection and copying
+        const textLayerDiv = document.createElement('div');
+        textLayerDiv.className = 'textLayer';
+        textLayerDiv.style.width = ${viewport.width}px;
+        textLayerDiv.style.height = ${viewport.height}px;
+        textLayerDiv.style.setProperty('--scale-factor', viewport.scale);
+
         container.innerHTML = '';
         container.appendChild(canvas);
+        container.appendChild(textLayerDiv);
+
+        try {
+          const textContent = await page.getTextContent();
+          if (pdfjsLib.renderTextLayer && textContent && textContent.items && textContent.items.length > 0) {
+            await pdfjsLib.renderTextLayer({
+              textContentSource: textContent,
+              container: textLayerDiv,
+              viewport: viewport
+            }).promise;
+          }
+        } catch (textErr) {
+          console.warn(TextLayer error on page :, textErr);
+        }
       } catch (e) {
         renderedPages.delete(pageNum);
       }

@@ -4,6 +4,358 @@
  */
 window.BOOKS_DATABASE = [
   {
+    "id": "longman_roots_3000",
+    "title": "朗文3000核心词根速记图谱",
+    "enTitle": "Longman 3000 Core Roots & Affixes Field Guide",
+    "subtitle": "朗文交际3000词核心母词根拆解 · 24前缀 + 30黄金主根 + 16后缀 + 6对孪生混淆词",
+    "author": "词汇实验室 & 朗文3000项目组",
+    "series": "朗文词汇突破系列",
+    "category": "vocab",
+    "cover": "cover_longman_roots.png",
+    "pdfUrl": "longman_roots_3000.pdf",
+    "totalPages": 79,
+    "fileSize": "12.4 MB",
+    "publishYear": "2026 典藏全彩版",
+    "status": "ready",
+    "badge": "全新首发",
+    "tags": [
+      "朗文3000词",
+      "核心词根",
+      "24高频前缀",
+      "30黄金词根",
+      "孪生混淆词",
+      "大字号全彩图谱",
+      "矢量高清"
+    ],
+    "description": "专为攻克《朗文当代英语大辞典》3000核心高频词设计。摒弃密集压抑的字典排版，精选24个关键前缀、30个辐射力极强的黄金核心词根、16个词性后缀与6组高频易混孪生词。单根双页大卡片、超大号醒目字体、高频固定搭配与实战例句，彻底掌握以根生词的科学记忆法。",
+    "toc": [
+      {
+        "title": "封面 · 朗文3000核心词根速记图谱",
+        "page": 1,
+        "level": 1,
+        "icon": "📕"
+      },
+      {
+        "title": "前言 · 为什么背单词必须懂词根词缀",
+        "page": 2,
+        "level": 1,
+        "icon": "💡"
+      },
+      {
+        "title": "全书目录导览 (上)",
+        "page": 3,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "全书目录导览 (下)",
+        "page": 4,
+        "level": 1,
+        "icon": "📑"
+      },
+      {
+        "title": "第一章 · 构词底层逻辑与辅音同化法则",
+        "page": 5,
+        "level": 1,
+        "icon": "🏷️"
+      },
+      {
+        "title": "1.1 构词三大罗盘：前缀、词根与后缀",
+        "page": 5,
+        "level": 2,
+        "icon": "⚡"
+      },
+      {
+        "title": "1.2 发音生理省力规律：辅音同化法则全解",
+        "page": 6,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "第二章 · 朗文 3000 之 24 个超级前缀速记",
+        "page": 7,
+        "level": 1,
+        "icon": "⚡"
+      },
+      {
+        "title": "2.1 空间与方向类超级前缀 (01 - 04)",
+        "page": 7,
+        "level": 2,
+        "icon": "⚡"
+      },
+      {
+        "title": "2.2 空间与方向类超级前缀 (05 - 08)",
+        "page": 8,
+        "level": 2,
+        "icon": "⚡"
+      },
+      {
+        "title": "2.3 空间越级与否定类超级前缀 (09 - 12)",
+        "page": 9,
+        "level": 2,
+        "icon": "⚡"
+      },
+      {
+        "title": "2.4 否定、偏离与对抗类超级前缀 (13 - 16)",
+        "page": 10,
+        "level": 2,
+        "icon": "⚡"
+      },
+      {
+        "title": "2.5 聚合聚集与超越程度类超级前缀 (17 - 20)",
+        "page": 11,
+        "level": 2,
+        "icon": "⚡"
+      },
+      {
+        "title": "2.6 胜出超越与时数类超级前缀 (21 - 24)",
+        "page": 12,
+        "level": 2,
+        "icon": "⚡"
+      },
+      {
+        "title": "第三章 · 朗文 3000 之 30 大黄金词根全景图谱",
+        "page": 13,
+        "level": 1,
+        "icon": "🏷️"
+      },
+      {
+        "title": "词根 #01 · pos / pon (放置、摆放)",
+        "page": 13,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #02 · spect / spic (看、视察)",
+        "page": 15,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #03 · port (运送、携带)",
+        "page": 17,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #04 · dict / dic (说、言语、指示)",
+        "page": 19,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #05 · tract (拉、拖引、拽)",
+        "page": 21,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #06 · press (挤压、推压、催促)",
+        "page": 23,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #07 · form (形状、形式、规范)",
+        "page": 25,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #08 · scrib / script (写、划记)",
+        "page": 27,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #09 · vent / ven (来、到达、聚集)",
+        "page": 29,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #10 · duc / duct (引导、带领、输送)",
+        "page": 31,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #11 · cur / curs / course (跑、流动、进程)",
+        "page": 33,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #12 · fact / fect / fic (做、制作、达成)",
+        "page": 35,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #13 · tend / tens / tent (伸展、拉伸、趋向)",
+        "page": 37,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #14 · miss / mit (投送、发射、让去)",
+        "page": 39,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #15 · vis / vid (看、察觉)",
+        "page": 41,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #16 · sens / sent (感觉、知觉、体会)",
+        "page": 43,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #17 · plic / ply / plex (折叠、交织、缠绕)",
+        "page": 45,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #18 · serv (保持、保全；服侍服务)",
+        "page": 47,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #19 · ced / ceed / cess (行走、行进；让步退却)",
+        "page": 49,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #20 · grad / gress (迈步、台阶、级别)",
+        "page": 51,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #21 · gen / gener (生育、产生、种类种族)",
+        "page": 53,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #22 · sta / sist / stat (站立、立住、稳定)",
+        "page": 55,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #23 · vert / vers (转动、翻转、转化)",
+        "page": 57,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #24 · clos / clud / clus (关、关闭、封闭)",
+        "page": 59,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #25 · cap / cip / cept (抓、拿取、容纳)",
+        "page": 61,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #26 · fin (界限、末尾、终结)",
+        "page": 63,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #27 · voc / vok (声音、呼唤、叫喊)",
+        "page": 65,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #28 · aud (听、倾听)",
+        "page": 67,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #29 · cred (相信、信任)",
+        "page": 69,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "词根 #30 · pel / puls (推动、驱使、打击)",
+        "page": 71,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "第四章 · 核心后缀与词性转换全景矩阵",
+        "page": 73,
+        "level": 1,
+        "icon": "🧩"
+      },
+      {
+        "title": "4.1 名词与形容词核心后缀矩阵",
+        "page": 73,
+        "level": 2,
+        "icon": "🧩"
+      },
+      {
+        "title": "4.2 动词/副词后缀与四位一体转换心法",
+        "page": 74,
+        "level": 2,
+        "icon": "🧩"
+      },
+      {
+        "title": "第五章 · 朗文 3000 黄金双子星高频辨析",
+        "page": 75,
+        "level": 1,
+        "icon": "🏷️"
+      },
+      {
+        "title": "5.1 economic vs. economical / historic vs. historical",
+        "page": 75,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "5.2 sensible vs. sensitive / respectful vs. respectable",
+        "page": 76,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "5.3 continual vs. continuous / complain vs. complaint",
+        "page": 77,
+        "level": 2,
+        "icon": "📖"
+      },
+      {
+        "title": "第六章 · 词根辐射五步法与 30 天速通路线",
+        "page": 78,
+        "level": 1,
+        "icon": "🏷️"
+      },
+      {
+        "title": "封底 (Back Cover)",
+        "page": 79,
+        "level": 1,
+        "icon": "📖"
+      }
+    ]
+  },
+  {
     "id": "laishi_beginner",
     "title": "美语入门教程",
     "enTitle": "American English - Beginner's Guide",

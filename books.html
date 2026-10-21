@@ -577,6 +577,7 @@
     </div>
     <div class="category-pills" id="categoryPills">
       <div class="pill active" data-cat="all">全部教材</div>
+      <div class="pill" data-cat="vocab">⚡ 朗文3000词根速记</div>
       <div class="pill" data-cat="laishi">赖世雄美语</div>
       <div class="pill" data-cat="cambridge">剑桥 EVOLVE 全套</div>
       <div class="pill" data-cat="cambridge_sb">📘 学生用书</div>
@@ -658,6 +659,7 @@
         // filter check
         if (currentFilter === 'cambridge' || currentFilter.startsWith('cambridge_')) return;
         if (currentFilter === 'laishi' && book.category !== 'laishi') return;
+        if (currentFilter === 'vocab' && book.category !== 'vocab') return;
         if (currentFilter === 'upcoming' && book.status !== 'upcoming') return;
 
         // search check
@@ -676,7 +678,7 @@
       // Add Cambridge suite cards
       Object.keys(cambridgeGroups).sort().forEach(groupId => {
         const group = cambridgeGroups[groupId];
-        if (currentFilter === 'laishi' || currentFilter === 'upcoming') return;
+        if (currentFilter === 'laishi' || currentFilter === 'vocab' || currentFilter === 'upcoming') return;
 
         let activeMatType = activeMaterials[groupId] || 'sb';
         const activeBook = group.materials[activeMatType] || group.materials['sb'];
@@ -725,7 +727,7 @@
           let quickJumpHtml = '';
           if (isReady && book.toc && book.toc.length > 0) {
             const options = book.toc
-              .filter(i => i.page && (i.title.includes('Lesson') || i.title.includes('Unit') || i.title.includes('Review') || i.title.includes('附录') || i.title.includes('目录') || i.title.includes('练习')))
+              .filter(i => i.page && (i.title.includes('Lesson') || i.title.includes('Unit') || i.title.includes('Review') || i.title.includes('附录') || i.title.includes('目录') || i.title.includes('练习') || i.title.includes('章') || i.title.includes('根') || i.level === 1))
               .map(i => `<option value="${i.page}">${i.title}</option>`)
               .join('');
 

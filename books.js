@@ -15,7 +15,7 @@ window.BOOKS_DATABASE = [
     "pdfUrl": "longman_roots_3000.pdf",
     "totalPages": 79,
     "fileSize": "12.4 MB",
-    "publishYear": "2026 典藏全彩版",
+    "publishYear": "2026 全彩版",
     "status": "ready",
     "badge": "全新首发",
     "tags": [

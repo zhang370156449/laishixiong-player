@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>经典英语教材文库 · 数字化重制中心</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <title>TomeLab ｜ 大卷研读所 · 经典英语教材数字化重制中心</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="tomelab_logo.png">
+  <link rel="icon" type="image/png" href="favicon_tomelab.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
   <style>
     :root {
@@ -60,25 +60,53 @@
       text-decoration: none;
       color: var(--text-main);
     }
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+    .brand-logo-img {
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18);
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .brand-logo-img:hover {
+      transform: scale(1.06);
+    }
+    .brand-title-row {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+      gap: 8px;
     }
     .brand-text h1 {
-      font-size: 17px;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      margin: 0;
+      color: var(--text-main);
+    }
+    .brand-tag {
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: -0.3px;
+      color: #6366f1;
+      background: #eef2ff;
+      border: 1px solid #e0e7ff;
+      padding: 2px 7px;
+      border-radius: 6px;
+      letter-spacing: 0;
     }
     .brand-text p {
       font-size: 12px;
       color: var(--text-muted);
+    }
+    .nav-btn-outline {
+      background: #ffffff;
+      color: #6366f1;
+      border: 1px solid #c7d2fe;
+    }
+    .nav-btn-outline:hover {
+      background: #eef2ff;
+      border-color: #a5b4fc;
+      color: #4f46e5;
     }
     .nav-actions {
       display: flex;
@@ -564,9 +592,9 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-badge">✨ 矢量高清 · 课件练习全配套 · 目录一键直达</div>
-    <h2>经典英语教材数字化阅读中心</h2>
-    <p>收录赖世雄经典美语与剑桥原版 EVOLVE 全系列。独创【学生用书 / 练习册 / 参考答案】三位一体同步切换，畅享极致自学体验。</p>
+    <div class="hero-badge">✨ 矢量大字重制 · 朗文/赖世雄/剑桥三大典籍 · 目录一键直达</div>
+    <h2>研读原版大卷，构筑英语底层知识殿堂</h2>
+    <p>收录《朗文3000核心词根图谱》、赖世雄美语全套及剑桥原版 EVOLVE 全系列。独创【学生用书 / 练习册 / 参考答案】三位一体极速跳转与翻阅体验。</p>
   </section>
 
   <!-- Controls: Search & Category Filter -->
@@ -594,7 +622,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2026 经典英语教材数字化文库计划 · 打造最纯净舒适的英语学习工具</p>
+    <p>© 2026 TomeLab ｜ 大卷研读所 · 打造最纯净舒适的英语学习工具</p>
   </footer>
 
   <!-- Include database -->

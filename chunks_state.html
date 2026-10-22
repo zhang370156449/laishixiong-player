@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ChunkLab · 💭 状态与感受点读台</title>
+  <link rel="icon" href="favicon_chunklab.png" type="image/png">
+  <link rel="apple-touch-icon" href="favicon_chunklab.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;900&family=Fira+Code:wght@500;600&display=swap">
+  <style>
+    :root {
+      --base-size: 18.5px;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --primary-border: #c7d2fe;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      --core-bg: #eff6ff;
+      --core-border: #bfdbfe;
+      --core-text: #1e40af;
+      --usage-bg: #faf5ff;
+      --usage-border: #e9d5ff;
+      --usage-text: #6b21a8;
+      --warn-bg: #fffbeb;
+      --warn-border: #fde68a;
+      --warn-text: #92400e;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 10px 25px -4px rgba(15, 23, 42, 0.1);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { font-size: var(--base-size); scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 90px;
+    }
+
+    /* Top Sticky Navigation Bar */
+    .top-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--surface-border);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+    .nav-container {
+      max-width: 1720px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nav-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.15);
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .brand-logo-img:hover { transform: scale(1.05); }
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #ede9fe;
+      color: #6d28d9;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .brand-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Module Navigation Tabs */
+    .module-nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 0 4px 0;
+      scrollbar-width: none;
+    }
+    .module-nav-tabs::-webkit-scrollbar { display: none; }
+    .module-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #475569;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .module-tab:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .module-tab.active {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+    }
+    .module-tab-badge {
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+    .module-tab.active .module-tab-badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+
+    /* Controls Bar */
+    .nav-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      max-width: 460px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      height: 38px;
+      padding: 0 12px 0 36px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus {
+      background: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.95rem;
+      color: #94a3b8;
+      pointer-events: none;
+    }
+    .btn-clear-search {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    .tools-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tool-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 36px;
+      padding: 0 12px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: #334155;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .tool-btn-pill:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .tool-btn-pill.active {
+      background: #ede9fe;
+      border-color: #c4b5fd;
+      color: #6d28d9;
+    }
+    .font-stepper {
+      display: inline-flex;
+      align-items: center;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 36px;
+    }
+    .font-btn {
+      background: transparent;
+      border: none;
+      width: 32px;
+      height: 100%;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: #475569;
+      transition: background 0.15s;
+    }
+    .font-btn:hover { background: #e2e8f0; }
+    .font-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0 6px;
+      color: #64748b;
+      min-width: 38px;
+      text-align: center;
+    }
+
+    /* Section Pills Bar */
+    .section-pill-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 2px 0;
+      scrollbar-width: none;
+    }
+    .section-pill-bar::-webkit-scrollbar { display: none; }
+    .sec-pill {
+      padding: 5px 12px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .sec-pill:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+    .sec-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+    }
+
+    /* Main Container & Grid */
+    .main-content {
+      max-width: 1720px;
+      margin: 16px auto 0;
+      padding: 0 24px;
+    }
+    .section-block {
+      margin-bottom: 28px;
+    }
+    .section-header-banner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--primary-border);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+    .section-header-banner h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1e1b4b;
+      letter-spacing: -0.01em;
+    }
+    .section-intro-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .section-badge-count {
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--primary-border);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 768px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .nav-container { padding: 8px 12px; }
+      .main-content { padding: 0 12px; }
+    }
+
+    /* Chunk Card Component */
+    .chunk-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .chunk-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+    .chunk-card.is-starred {
+      border-left: 4px solid #f59e0b;
+      background: linear-gradient(to right, rgba(254, 243, 199, 0.15), var(--surface));
+    }
+    .chunk-card.is-speaking {
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3), var(--shadow-md);
+    }
+
+    .card-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .chunk-identity-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .card-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-number-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #94a3b8;
+      font-family: 'Fira Code', monospace;
+    }
+    .card-category-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 1px 7px;
+      border-radius: 4px;
+    }
+    .chunk-en-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1e1b4b;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.15s;
+    }
+    .chunk-en-title:hover {
+      color: var(--primary);
+    }
+    .chunk-zh-meaning {
+      font-size: 0.92rem;
+      color: #475569;
+      font-weight: 600;
+    }
+    .btn-star {
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: #cbd5e1;
+      line-height: 1;
+      transition: all 0.2s;
+    }
+    .btn-star:hover { transform: scale(1.15); color: #f59e0b; }
+    .btn-star.active { color: #f59e0b; }
+
+    /* Insights Layout */
+    .card-insights-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 580px) {
+      .card-insights-row { grid-template-columns: 1fr; }
+    }
+    .insight-box {
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+    .insight-box-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .insight-core {
+      background: var(--core-bg);
+      border: 1px solid var(--core-border);
+      color: var(--core-text);
+    }
+    .insight-usage {
+      background: var(--usage-bg);
+      border: 1px solid var(--usage-border);
+      color: var(--usage-text);
+    }
+    .warn-box {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn-text);
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .warn-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .tip-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .tip-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    /* Examples & Subchunks List */
+    .examples-wrap {
+      margin-top: 4px;
+    }
+    .examples-header-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #059669;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sentence-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 12px;
+      background: #f8fafc;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-md);
+      transition: all 0.15s;
+    }
+    .sentence-card:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+    }
+    .sentence-card.is-speaking {
+      background: #ecfdf5;
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+    .sentence-content {
+      flex: 1;
+      cursor: pointer;
+    }
+    .sentence-en {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+    .sentence-zh {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .btn-audio-play {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+    .btn-audio-play:hover {
+      background: var(--primary);
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    /* Subchunks (Action Page) */
+    .subchunks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .subchunk-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 7px 12px;
+      background: #f8fafc;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-sm);
+      transition: all 0.15s;
+    }
+    .subchunk-card:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+    }
+    .subchunk-card.is-speaking {
+      background: #ecfdf5;
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+    .subchunk-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+    }
+    .subchunk-code code {
+      font-family: 'Fira Code', monospace;
+      font-weight: 700;
+      color: #4338ca;
+      font-size: 0.95rem;
+    }
+    .subchunk-zh {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Dialogue (Action & Kids) */
+    .dialogue-wrap {
+      margin-top: 10px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+    }
+    .dialogue-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #166534;
+    }
+    .btn-dialogue-play {
+      background: #16a34a;
+      border: none;
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.15s;
+    }
+    .btn-dialogue-play:hover { background: #15803d; }
+    .dialogue-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .dialogue-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .dialogue-speaker {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .dialogue-bubble {
+      flex: 1;
+    }
+    .dialogue-en {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #0f172a;
+    }
+    .dialogue-zh {
+      font-size: 0.82rem;
+      color: #4b5563;
+    }
+
+    /* Baby Say (Kids Page) */
+    .baby-say-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .baby-say-box:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+    }
+    .baby-say-left {
+      flex: 1;
+    }
+    .baby-say-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #1e40af;
+      margin-bottom: 3px;
+    }
+    .baby-say-en {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e3a8a;
+    }
+    .baby-say-zh {
+      font-size: 0.85rem;
+      color: #475569;
+    }
+    .role-badge {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .role-baby { background: #dbeafe; color: #1e40af; }
+    .role-mom { background: #fef3c7; color: #92400e; }
+
+    /* State Pills (State Page) */
+    .state-pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 0.82rem;
+    }
+
+    /* Masking Modes */
+    body.mask-en .sentence-en,
+    body.mask-en .subchunk-code,
+    body.mask-en .baby-say-en,
+    body.mask-en .dialogue-en {
+      filter: blur(6px);
+      cursor: pointer;
+      user-select: none;
+      transition: filter 0.15s;
+    }
+    body.mask-en .sentence-en:hover,
+    body.mask-en .subchunk-code:hover,
+    body.mask-en .baby-say-en:hover,
+    body.mask-en .dialogue-en:hover {
+      filter: none;
+    }
+    body.mask-zh .sentence-zh,
+    body.mask-zh .subchunk-zh,
+    body.mask-zh .baby-say-zh,
+    body.mask-zh .chunk-zh-meaning,
+    body.mask-zh .dialogue-zh {
+      filter: blur(6px);
+      cursor: pointer;
+      user-select: none;
+      transition: filter 0.15s;
+    }
+    body.mask-zh .sentence-zh:hover,
+    body.mask-zh .subchunk-zh:hover,
+    body.mask-zh .baby-say-zh:hover,
+    body.mask-zh .chunk-zh-meaning:hover,
+    body.mask-zh .dialogue-zh:hover {
+      filter: none;
+    }
+
+    /* Bottom Floating Audio Player */
+    .bottom-player-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 24px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .bottom-player-bar.active {
+      display: flex;
+    }
+    .now-playing-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .now-playing-icon {
+      font-size: 1.2rem;
+      animation: pulse 1.2s infinite;
+      color: #10b981;
+    }
+    .now-playing-text {
+      min-width: 0;
+    }
+    .now-playing-en {
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #f8fafc;
+    }
+    .now-playing-zh {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-player-action {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-player-action:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .btn-player-action.loop-on {
+      background: #10b981;
+      border-color: #10b981;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.95); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <header class="top-navbar">
+    <div class="nav-container">
+      <div class="nav-header-row">
+        <div class="brand-title-wrap">
+          <img src="chunklab_logo.png" class="brand-logo-img" alt="ChunkLab Logo">
+          <div class="brand-text">
+            <h1>ChunkLab · 💭 状态与感受点读台 <span class="brand-badge" id="totalCardBadge">15 状态</span> <span class="brand-version" style="font-size: 11px; padding: 2px 7px; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 999px; font-weight: 600; margin-left: 6px;">v1.2 (最新)</span></h1>
+            <span class="brand-sub">15 核心 be 介词状态家族 · 45 典型例句 · MiniMax 原声点读</span>
+          </div>
+        </div>
+
+        <div class="tools-group">
+          <!-- Force Reload -->
+          <button class="tool-btn-pill" onclick="window.location.href = window.location.pathname + '?v=' + Date.now()" title="强制清除网页与音频缓存并刷新">
+            <span>🔄</span> <span>更新刷新</span>
+          </button>
+
+          <!-- Font Size Controls -->
+          <div class="font-stepper" title="自由调节字号大小">
+            <button class="font-btn" id="btnFontDec" title="缩小字号">A-</button>
+            <span class="font-label" id="fontLabel">标准</span>
+            <button class="font-btn" id="btnFontInc" title="放大字号">A+</button>
+          </div>
+
+          <!-- Speed Controls -->
+          <button class="tool-btn-pill" id="btnSpeedToggle" title="切换播放语速">
+            <span>⚡</span> <span id="speedLabel">1.0x</span>
+          </button>
+
+          <!-- Masking Test Modes -->
+          <button class="tool-btn-pill" id="btnMaskToggle" title="自测遮盖背词">
+            <span>👁️</span> <span id="maskLabel">正常</span>
+          </button>
+
+          <!-- Star Filter -->
+          <button class="tool-btn-pill" id="btnStarFilter" title="只看生词收藏">
+            <span>⭐</span> <span id="starFilterLabel">生词本</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Module Navigation Tabs -->
+      <div class="module-nav-tabs">
+          <a href="chunks_daily.html" data-desktop-href="1.日常生存与交流_核心词块点读工作台.html" class="module-tab">
+            <span class="module-tab-title">🌟 日常生存与交流</span>
+            <span class="module-tab-badge">218 词块</span>
+          </a>
+          <a href="chunks_action.html" data-desktop-href="2.高频动作词_核心词块点读工作台.html" class="module-tab">
+            <span class="module-tab-title">🏃 高频动作词</span>
+            <span class="module-tab-badge">75 动词</span>
+          </a>
+          <a href="chunks_state.html" data-desktop-href="3.状态感受_核心词块点读工作台.html" class="module-tab active">
+            <span class="module-tab-title">💭 状态与感受</span>
+            <span class="module-tab-badge">15 状态</span>
+          </a>
+          <a href="chunks_kids.html" data-desktop-href="4.亲子生活英语_核心词块点读工作台.html" class="module-tab">
+            <span class="module-tab-title">🧸 亲子生活英语</span>
+            <span class="module-tab-badge">44 亲子</span>
+          </a>
+        </div>
+
+      <!-- Controls & Search -->
+      <div class="nav-controls-row">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" id="searchInput" placeholder="搜索英文、中文意思、例句、核心功能..." autocomplete="off">
+          <button class="btn-clear-search" id="btnClearSearch">×</button>
+        </div>
+
+        <!-- Section Navigation Tabs -->
+        <div class="section-pill-bar" id="sectionPillBar">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Cards Feed -->
+  <main class="main-content" id="mainContainer">
+    <!-- Populated by JavaScript -->
+  </main>
+
+  <!-- Bottom Floating Audio Player Bar -->
+  <div class="bottom-player-bar" id="bottomPlayerBar">
+    <div class="now-playing-wrap">
+      <span class="now-playing-icon">🔊</span>
+      <div class="now-playing-text">
+        <div class="now-playing-en" id="nowPlayingEn">Ready</div>
+        <div class="now-playing-zh" id="nowPlayingZh">点读音频已就绪</div>
+      </div>
+    </div>
+
+    <div class="player-controls">
+      <button class="btn-player-action" id="btnPrevCard" title="上一个">⏮</button>
+      <button class="btn-player-action" id="btnPlayPause" title="重播当前句">▶ 播放</button>
+      <button class="btn-player-action" id="btnNextCard" title="下一个">⏭</button>
+      <button class="btn-player-action" id="btnLoopToggle" title="循环播放当前音频">🔁 单曲循环</button>
+      <button class="btn-player-action" id="btnClosePlayer" title="关闭播放条">✕</button>
+    </div>
+  </div>
+
+  <script>
+    // Embedded Database
+    window.CURRENT_DB = {"sections": [{"secIdx": 1, "title": "一、喜好与倾向", "intro": "表达“喜欢什么、厌倦什么”，be 后面的介词是灵魂。", "count": 5}, {"secIdx": 2, "title": "二、情绪与感受", "intro": "表达害怕、担心、羞愧等内心感受，介词一个都不能少。", "count": 5}, {"secIdx": 3, "title": "三、生活状态与处境", "intro": "表达忙碌、准备就绪、缺钱缺时间等日常生活状态。", "count": 5}], "cards": [{"id": 1, "secIdx": 1, "secTitle": "一、喜好与倾向", "num": "01", "en": "be crazy about", "zh": "对……着迷", "audioChunk": "st_01_chunk_be_crazy_about.mp3", "chunkLocal": "audio_chunks/st_01_chunk_be_crazy_about.mp3", "core": "非常喜欢某样东西，程度比 like 强很多，口语常用。", "warn": "介词用 about，不是 for：be crazy about + 名词/动名词。", "chunks": [{"en": "be crazy about basketball", "zh": "对篮球着迷"}, {"en": "be crazy about K-pop", "zh": "迷韩流"}], "examples": [{"en": "I’m crazy about basketball.", "zh": "我对篮球特别着迷。", "audio": "st_01_s0_I_m_crazy_about_basketball.mp3", "localAudio": "audio_chunks/st_01_s0_I_m_crazy_about_basketball.mp3"}, {"en": "She’s crazy about that singer.", "zh": "她迷死那个歌手了。", "audio": "st_01_s1_She_s_crazy_about_that_singer.mp3", "localAudio": "audio_chunks/st_01_s1_She_s_crazy_about_that_singer.mp3"}]}, {"id": 2, "secIdx": 1, "secTitle": "一、喜好与倾向", "num": "02", "en": "be fond of", "zh": "喜爱（稍正式）", "audioChunk": "st_02_chunk_be_fond_of.mp3", "chunkLocal": "audio_chunks/st_02_chunk_be_fond_of.mp3", "core": "温和地表达长期喜爱，比 like 文气一点。", "warn": "of 不能丢：fond 后面必须接 of。", "chunks": [{"en": "be fond of reading", "zh": "喜爱阅读"}, {"en": "be fond of classical music", "zh": "喜欢古典音乐"}], "examples": [{"en": "He’s fond of classical music.", "zh": "他喜欢古典音乐。", "audio": "st_02_s0_He_s_fond_of_classical_music.mp3", "localAudio": "audio_chunks/st_02_s0_He_s_fond_of_classical_music.mp3"}, {"en": "I’m fond of early morning walks.", "zh": "我喜欢清晨散步。", "audio": "st_02_s1_I_m_fond_of_early_morning_walks.mp3", "localAudio": "audio_chunks/st_02_s1_I_m_fond_of_early_morning_walks.mp3"}]}, {"id": 3, "secIdx": 1, "secTitle": "一、喜好与倾向", "num": "03", "en": "be tired of", "zh": "对……厌倦", "audioChunk": "st_03_chunk_be_tired_of.mp3", "chunkLocal": "audio_chunks/st_03_chunk_be_tired_of.mp3", "core": "受够了某件重复发生的事，带负面情绪。", "warn": "be tired of = 厌倦；be tired from = 因……而累，介词不同意思不同。", "chunks": [{"en": "be tired of waiting", "zh": "等烦了"}, {"en": "be tired of the same food", "zh": "吃同样吃腻了"}], "examples": [{"en": "I’m tired of waiting.", "zh": "我等得不耐烦了。", "audio": "st_03_s0_I_m_tired_of_waiting.mp3", "localAudio": "audio_chunks/st_03_s0_I_m_tired_of_waiting.mp3"}, {"en": "She’s tired of the same food every day.", "zh": "她厌倦了每天吃一样的。", "audio": "st_03_s1_She_s_tired_of_the_same_food_every_day.mp3", "localAudio": "audio_chunks/st_03_s1_She_s_tired_of_the_same_food_every_day.mp3"}]}, {"id": 4, "secIdx": 1, "secTitle": "一、喜好与倾向", "num": "04", "en": "be good at", "zh": "擅长", "audioChunk": "st_04_chunk_be_good_at.mp3", "chunkLocal": "audio_chunks/st_04_chunk_be_good_at.mp3", "core": "擅长做某事，at 后面接名词或动名词。", "warn": "at 后接动词要用 -ing：be good at swimming，不说 be good at swim；介词是 at 不是 in。", "chunks": [{"en": "be good at fixing things", "zh": "擅长修东西"}, {"en": "be good at math", "zh": "数学好"}], "examples": [{"en": "He’s good at fixing things.", "zh": "他很会修东西。", "audio": "st_04_s0_He_s_good_at_fixing_things.mp3", "localAudio": "audio_chunks/st_04_s0_He_s_good_at_fixing_things.mp3"}, {"en": "I’m good at math but bad at singing.", "zh": "我数学好但唱歌不行。", "audio": "st_04_s1_I_m_good_at_math_but_bad_at_singing.mp3", "localAudio": "audio_chunks/st_04_s1_I_m_good_at_math_but_bad_at_singing.mp3"}]}, {"id": 5, "secIdx": 1, "secTitle": "一、喜好与倾向", "num": "05", "en": "be bad at", "zh": "不擅长", "audioChunk": "st_05_chunk_be_bad_at.mp3", "chunkLocal": "audio_chunks/st_05_chunk_be_bad_at.mp3", "core": "good at 的反义搭档，结构完全一样。", "warn": "和 be good at 同款结构，at 别写成 in。", "chunks": [{"en": "be bad at math", "zh": "数学差"}, {"en": "be bad at lying", "zh": "不会撒谎"}], "examples": [{"en": "I’m bad at lying.", "zh": "我不会撒谎。", "audio": "st_05_s0_I_m_bad_at_lying.mp3", "localAudio": "audio_chunks/st_05_s0_I_m_bad_at_lying.mp3"}, {"en": "He’s bad at remembering names.", "zh": "他记不住人名。", "audio": "st_05_s1_He_s_bad_at_remembering_names.mp3", "localAudio": "audio_chunks/st_05_s1_He_s_bad_at_remembering_names.mp3"}]}, {"id": 6, "secIdx": 2, "secTitle": "二、情绪与感受", "num": "06", "en": "be famous for", "zh": "因……出名", "audioChunk": "st_06_chunk_be_famous_for.mp3", "chunkLocal": "audio_chunks/st_06_chunk_be_famous_for.mp3", "core": "某地/某人因某个特点或产物而出名。", "warn": "因物用 for；作为某身份出名用 as：be famous as a writer。", "chunks": [{"en": "be famous for its food", "zh": "以美食出名"}, {"en": "be famous for hot springs", "zh": "以温泉出名"}], "examples": [{"en": "The city is famous for its food.", "zh": "这座城市以美食出名。", "audio": "st_06_s0_The_city_is_famous_for_its_food.mp3", "localAudio": "audio_chunks/st_06_s0_The_city_is_famous_for_its_food.mp3"}, {"en": "Chengdu is famous for its pandas.", "zh": "成都因熊猫出名。", "audio": "st_06_s1_Chengdu_is_famous_for_its_pandas.mp3", "localAudio": "audio_chunks/st_06_s1_Chengdu_is_famous_for_its_pandas.mp3"}]}, {"id": 7, "secIdx": 2, "secTitle": "二、情绪与感受", "num": "07", "en": "be capable of", "zh": "有能力做到", "audioChunk": "st_07_chunk_be_capable_of.mp3", "chunkLocal": "audio_chunks/st_07_chunk_be_capable_of.mp3", "core": "强调“有这个能力”，常指超出预期的事。", "warn": "of 后接动名词：be capable of handling，不说 be capable to handle。", "chunks": [{"en": "be capable of handling it", "zh": "有能力处理好"}, {"en": "be capable of more", "zh": "潜力不止于此"}], "examples": [{"en": "She’s capable of handling it alone.", "zh": "她一个人就能搞定。", "audio": "st_07_s0_She_s_capable_of_handling_it_alone.mp3", "localAudio": "audio_chunks/st_07_s0_She_s_capable_of_handling_it_alone.mp3"}, {"en": "He’s capable of much more.", "zh": "他能做到的远不止这些。", "audio": "st_07_s1_He_s_capable_of_much_more.mp3", "localAudio": "audio_chunks/st_07_s1_He_s_capable_of_much_more.mp3"}]}, {"id": 8, "secIdx": 2, "secTitle": "二、情绪与感受", "num": "08", "en": "be afraid of", "zh": "害怕", "audioChunk": "st_08_chunk_be_afraid_of.mp3", "chunkLocal": "audio_chunks/st_08_chunk_be_afraid_of.mp3", "core": "害怕某物或害怕发生某事。", "warn": "of 后接名词或动名词；注意 I’m afraid so / not 是“恐怕”，和害怕无关。", "chunks": [{"en": "be afraid of spiders", "zh": "怕蜘蛛"}, {"en": "be afraid of making mistakes", "zh": "怕犯错"}], "examples": [{"en": "I’m afraid of spiders.", "zh": "我怕蜘蛛。", "audio": "st_08_s0_I_m_afraid_of_spiders.mp3", "localAudio": "audio_chunks/st_08_s0_I_m_afraid_of_spiders.mp3"}, {"en": "Don’t be afraid of making mistakes.", "zh": "别怕犯错。", "audio": "st_08_s1_Don_t_be_afraid_of_making_mistakes.mp3", "localAudio": "audio_chunks/st_08_s1_Don_t_be_afraid_of_making_mistakes.mp3"}]}, {"id": 9, "secIdx": 2, "secTitle": "二、情绪与感受", "num": "09", "en": "be worried about", "zh": "担心", "audioChunk": "st_09_chunk_be_worried_about.mp3", "chunkLocal": "audio_chunks/st_09_chunk_be_worried_about.mp3", "core": "为某人某事担心，about 固定搭配。", "warn": "介词是 about，不说 be worried of；worried 后不接 about 时意思会变。", "chunks": [{"en": "be worried about the test", "zh": "担心考试"}, {"en": "be worried about him", "zh": "担心他"}], "examples": [{"en": "Don’t be worried about the test.", "zh": "别担心考试。", "audio": "st_09_s0_Don_t_be_worried_about_the_test.mp3", "localAudio": "audio_chunks/st_09_s0_Don_t_be_worried_about_the_test.mp3"}, {"en": "I’m worried about you.", "zh": "我担心你。", "audio": "st_09_s1_I_m_worried_about_you.mp3", "localAudio": "audio_chunks/st_09_s1_I_m_worried_about_you.mp3"}]}, {"id": 10, "secIdx": 2, "secTitle": "二、情绪与感受", "num": "10", "en": "be proud of", "zh": "为……自豪", "audioChunk": "st_10_chunk_be_proud_of.mp3", "chunkLocal": "audio_chunks/st_10_chunk_be_proud_of.mp3", "core": "为某人（包括自己）的成绩感到骄傲。", "warn": "of 不能丢也不能换：be proud of sb/sth。", "chunks": [{"en": "be proud of you", "zh": "为你骄傲"}, {"en": "be proud of his progress", "zh": "为他的进步自豪"}], "examples": [{"en": "I’m proud of you.", "zh": "我为你骄傲。", "audio": "st_10_s0_I_m_proud_of_you.mp3", "localAudio": "audio_chunks/st_10_s0_I_m_proud_of_you.mp3"}, {"en": "She’s proud of her team.", "zh": "她为团队自豪。", "audio": "st_10_s1_She_s_proud_of_her_team.mp3", "localAudio": "audio_chunks/st_10_s1_She_s_proud_of_her_team.mp3"}]}, {"id": 11, "secIdx": 3, "secTitle": "三、生活状态与处境", "num": "11", "en": "be aware of", "zh": "意识到", "audioChunk": "st_11_chunk_be_aware_of.mp3", "chunkLocal": "audio_chunks/st_11_chunk_be_aware_of.mp3", "core": "知道、察觉到某情况的存在。", "warn": "of 后接名词；接句子时用 be aware that...。", "chunks": [{"en": "be aware of the risks", "zh": "意识到风险"}, {"en": "be aware of the time", "zh": "注意时间"}], "examples": [{"en": "Be aware of the risks.", "zh": "要意识到风险。", "audio": "st_11_s0_Be_aware_of_the_risks.mp3", "localAudio": "audio_chunks/st_11_s0_Be_aware_of_the_risks.mp3"}, {"en": "I wasn’t aware of that rule.", "zh": "我不知道有这条规定。", "audio": "st_11_s1_I_wasn_t_aware_of_that_rule.mp3", "localAudio": "audio_chunks/st_11_s1_I_wasn_t_aware_of_that_rule.mp3"}]}, {"id": 12, "secIdx": 3, "secTitle": "三、生活状态与处境", "num": "12", "en": "be ready for", "zh": "为……准备好", "audioChunk": "st_12_chunk_be_ready_for.mp3", "chunkLocal": "audio_chunks/st_12_chunk_be_ready_for.mp3", "core": "对即将到来的人或事做好了准备。", "warn": "for + 名词；接动词要换成 be ready to do。", "chunks": [{"en": "be ready for the interview", "zh": "为面试准备好"}, {"en": "be ready for anything", "zh": "做好万全准备"}], "examples": [{"en": "I’m ready for the interview.", "zh": "我面试准备好了。", "audio": "st_12_s0_I_m_ready_for_the_interview.mp3", "localAudio": "audio_chunks/st_12_s0_I_m_ready_for_the_interview.mp3"}, {"en": "Are you ready for winter?", "zh": "过冬的东西备齐了吗？", "audio": "st_12_s1_Are_you_ready_for_winter.mp3", "localAudio": "audio_chunks/st_12_s1_Are_you_ready_for_winter.mp3"}]}, {"id": 13, "secIdx": 3, "secTitle": "三、生活状态与处境", "num": "13", "en": "be similar to", "zh": "与……相似", "audioChunk": "st_13_chunk_be_similar_to.mp3", "chunkLocal": "audio_chunks/st_13_chunk_be_similar_to.mp3", "core": "两者有相似之处，介词固定用 to。", "warn": "用 to，不说 be similar with；说“在某方面像”用 be similar in。", "chunks": [{"en": "be similar to yours", "zh": "和你的像"}, {"en": "be similar in size", "zh": "大小相近"}], "examples": [{"en": "My taste is similar to yours.", "zh": "我的品味和你很像。", "audio": "st_13_s0_My_taste_is_similar_to_yours.mp3", "localAudio": "audio_chunks/st_13_s0_My_taste_is_similar_to_yours.mp3"}, {"en": "The two words are similar in meaning.", "zh": "这两个词意思相近。", "audio": "st_13_s1_The_two_words_are_similar_in_meaning.mp3", "localAudio": "audio_chunks/st_13_s1_The_two_words_are_similar_in_meaning.mp3"}]}, {"id": 14, "secIdx": 3, "secTitle": "三、生活状态与处境", "num": "14", "en": "be full of", "zh": "充满", "audioChunk": "st_14_chunk_be_full_of.mp3", "chunkLocal": "audio_chunks/st_14_chunk_be_full_of.mp3", "core": "里面装满了、到处都是。", "warn": "full 接 of；be filled with 是同义但介词不同，别混。", "chunks": [{"en": "be full of toys", "zh": "全是玩具"}, {"en": "be full of energy", "zh": "精力充沛"}], "examples": [{"en": "The box is full of toys.", "zh": "箱子里全是玩具。", "audio": "st_14_s0_The_box_is_full_of_toys.mp3", "localAudio": "audio_chunks/st_14_s0_The_box_is_full_of_toys.mp3"}, {"en": "Kids are full of energy.", "zh": "孩子精力无穷。", "audio": "st_14_s1_Kids_are_full_of_energy.mp3", "localAudio": "audio_chunks/st_14_s1_Kids_are_full_of_energy.mp3"}]}, {"id": 15, "secIdx": 3, "secTitle": "三、生活状态与处境", "num": "15", "en": "be short of", "zh": "缺乏", "audioChunk": "st_15_chunk_be_short_of.mp3", "chunkLocal": "audio_chunks/st_15_chunk_be_short_of.mp3", "core": "不够用、缺货、缺人。", "warn": "of 不能丢；时间紧用 be short on time 也常见。", "chunks": [{"en": "be short of milk", "zh": "牛奶不够了"}, {"en": "be short of staff", "zh": "缺人手"}], "examples": [{"en": "We’re short of milk.", "zh": "我们牛奶不够了。", "audio": "st_15_s0_We_re_short_of_milk.mp3", "localAudio": "audio_chunks/st_15_s0_We_re_short_of_milk.mp3"}, {"en": "The restaurant is short of staff today.", "zh": "餐厅今天人手不够。", "audio": "st_15_s1_The_restaurant_is_short_of_staff_today.mp3", "localAudio": "audio_chunks/st_15_s1_The_restaurant_is_short_of_staff_today.mp3"}]}]};
+
+    // State Variables
+    let currentScale = 1.0;
+    const fontScales = [
+      { label: '偏小', size: '16.5px' },
+      { label: '标准', size: '18.5px' },
+      { label: '放大', size: '20.5px' },
+      { label: '超大', size: '23.0px' }
+    ];
+    let fontScaleIdx = 1;
+
+    let currentSpeed = 1.0;
+    const speeds = [1.0, 0.8, 1.2];
+    let speedIdx = 0;
+
+    let currentMask = 'none'; // 'none' | 'en' | 'zh'
+    const maskModes = [
+      { id: 'none', label: '正常' },
+      { id: 'en', label: '遮英文' },
+      { id: 'zh', label: '遮中文' }
+    ];
+    let maskIdx = 0;
+
+    let onlyStarred = false;
+    let starredIds = new Set();
+    const STAR_STORAGE_KEY = 'chunklab_state_starred';
+
+    let activeSection = null;
+    let searchQuery = '';
+    let isLooping = false;
+    let loopItem = null;
+
+    // Load Starred from localStorage
+    try {
+      const savedStars = localStorage.getItem(STAR_STORAGE_KEY);
+      if (savedStars) {
+        starredIds = new Set(JSON.parse(savedStars));
+      }
+    } catch(e) {}
+
+    // Audio Engine
+    class AudioEngine {
+      constructor() {
+        this.audio = new Audio();
+        this.speechSynth = window.speechSynthesis;
+        this.currentActiveEl = null;
+
+        this.audio.onerror = () => {
+          if (this.currentFallbackText) {
+            this.speakText(this.currentFallbackText);
+          }
+        };
+
+        this.audio.onended = () => {
+          if (isLooping && loopItem) {
+            this.playItem(loopItem);
+          } else {
+            this.clearPlayingUI();
+          }
+        };
+      }
+
+      playItem(item) {
+        this.stop();
+        loopItem = item;
+        updateBottomPlayer(item);
+
+        const text = item.en;
+        this.currentFallbackText = text;
+
+        if (item.localAudio) {
+          let src = item.localAudio;
+          if (window.location.protocol.startsWith('http')) {
+            src += (src.includes('?') ? '&' : '?') + 't=' + Date.now();
+          }
+          this.audio.src = src;
+          this.audio.playbackRate = currentSpeed;
+          this.audio.play().catch(() => {
+            this.speakText(text);
+          });
+        } else {
+          this.speakText(text);
+        }
+      }
+
+      speakText(text) {
+        if (!this.speechSynth) return;
+        this.speechSynth.cancel();
+
+        const cleanText = text
+          .replace(/\+\s*名词/g, '')
+          .replace(/\+\s*动词[^\s]*/g, '')
+          .replace(/\.(2,)/g, '')
+          .replace(/[\/\(\)]/g, ' ')
+          .replace(/\$/g, ' dollars ')
+          .trim();
+
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = 'en-US';
+        utterance.rate = currentSpeed;
+        this.speechSynth.speak(utterance);
+      }
+
+      stop() {
+        this.audio.pause();
+        this.audio.currentTime = 0;
+        if (this.speechSynth) this.speechSynth.cancel();
+      }
+
+      clearPlayingUI() {
+        document.querySelectorAll('.is-speaking').forEach(el => el.classList.remove('is-speaking'));
+        const btn = document.getElementById('btnPlayPause');
+        if (btn) btn.textContent = '▶ 播放';
+      }
+    }
+
+    const player = new AudioEngine();
+
+    // DOM Elements
+    const mainContainer = document.getElementById('mainContainer');
+    const searchInput = document.getElementById('searchInput');
+    const btnClearSearch = document.getElementById('btnClearSearch');
+    const sectionPillBar = document.getElementById('sectionPillBar');
+
+    const btnFontDec = document.getElementById('btnFontDec');
+    const btnFontInc = document.getElementById('btnFontInc');
+    const fontLabel = document.getElementById('fontLabel');
+
+    const btnSpeedToggle = document.getElementById('btnSpeedToggle');
+    const speedLabel = document.getElementById('speedLabel');
+
+    const btnMaskToggle = document.getElementById('btnMaskToggle');
+    const maskLabel = document.getElementById('maskLabel');
+
+    const btnStarFilter = document.getElementById('btnStarFilter');
+    const starFilterLabel = document.getElementById('starFilterLabel');
+
+    const bottomPlayerBar = document.getElementById('bottomPlayerBar');
+    const nowPlayingEn = document.getElementById('nowPlayingEn');
+    const nowPlayingZh = document.getElementById('nowPlayingZh');
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const btnLoopToggle = document.getElementById('btnLoopToggle');
+    const btnClosePlayer = document.getElementById('btnClosePlayer');
+
+    // Desktop Link Auto Switch
+    if (window.location.protocol === 'file:') {
+      document.querySelectorAll('.module-tab').forEach(tab => {
+        const dh = tab.getAttribute('data-desktop-href');
+        if (dh) tab.setAttribute('href', dh);
+      });
+    }
+
+    // Initialize UI
+    function init() {
+      renderSectionPills();
+      renderCards();
+      bindEvents();
+    }
+
+    function renderSectionPills() {
+      const sections = window.CURRENT_DB.sections;
+      let html = `<button class="sec-pill ${activeSection === null ? 'active' : ''}" data-sec="all">全部 (${window.CURRENT_DB.cards.length})</button>`;
+
+      sections.forEach(s => {
+        html += `<button class="sec-pill ${activeSection === s.secIdx ? 'active' : ''}" data-sec="${s.secIdx}">${s.title} (${s.count})</button>`;
+      });
+
+      sectionPillBar.innerHTML = html;
+    }
+
+    function renderCards() {
+      const sections = window.CURRENT_DB.sections;
+      const allCards = window.CURRENT_DB.cards;
+
+      let renderedSectionCount = 0;
+      let totalRenderedCards = 0;
+      let html = '';
+
+      sections.forEach(sec => {
+        if (activeSection !== null && sec.secIdx !== activeSection) return;
+
+        const matchingCards = allCards.filter(c => {
+          if (c.secIdx !== sec.secIdx) return false;
+          if (onlyStarred && !starredIds.has(c.id)) return false;
+          if (searchQuery) {
+            const q = searchQuery;
+            const inEn = (c.en || '').toLowerCase().includes(q);
+            const inZh = (c.zh || '').toLowerCase().includes(q);
+            const inCore = (c.core || '').toLowerCase().includes(q);
+            const inUsage = (c.usage || '').toLowerCase().includes(q);
+            const inWarn = (c.warn || '').toLowerCase().includes(q);
+            const inEx = (c.examples || []).some(ex => (ex.en || '').toLowerCase().includes(q) || (ex.zh || '').toLowerCase().includes(q));
+            const inChunks = (c.chunks || []).some(sc => (sc.en || '').toLowerCase().includes(q) || (sc.zh || '').toLowerCase().includes(q));
+            const inDial = (c.dialogue || []).some(d => (d.en || '').toLowerCase().includes(q) || (d.zh || '').toLowerCase().includes(q));
+            if (!inEn && !inZh && !inCore && !inUsage && !inWarn && !inEx && !inChunks && !inDial) return false;
+          }
+          return true;
+        });
+
+        if (matchingCards.length === 0) return;
+
+        renderedSectionCount++;
+        totalRenderedCards += matchingCards.length;
+
+        html += `
+          <section class="section-block" id="section-block-${sec.secIdx}">
+            <div class="section-header-banner">
+              <div>
+                <h2>${sec.title}</h2>
+                ${sec.intro ? `<p class="section-intro-text">${sec.intro}</p>` : ''}
+              </div>
+              <span class="section-badge-count">${matchingCards.length} 项</span>
+            </div>
+
+            <div class="cards-grid">
+              ${matchingCards.map(c => renderSingleCard(c)).join('')}
+            </div>
+          </section>
+        `;
+      });
+
+      if (totalRenderedCards === 0) {
+        html = `
+          <div style="text-align:center; padding: 60px 20px; color: #94a3b8;">
+            <div style="font-size: 3rem; margin-bottom: 12px;">🔍</div>
+            <h3 style="font-size: 1.2rem; color: #475569; margin-bottom: 6px;">没有找到符合条件的内容</h3>
+            <p style="font-size: 0.9rem;">请尝试更换搜索关键词，或者重置生词本筛选条件</p>
+          </div>
+        `;
+      }
+
+      mainContainer.innerHTML = html;
+      document.getElementById('totalCardBadge').textContent = `${totalRenderedCards} 词块`;
+    }
+
+    
+    function renderSingleCard(card) {
+      const isStarred = starredIds.has(card.id);
+      const subchunksHtml = (card.chunks || []).map(sc => `
+        <span class="state-pill-tag"><code>${sc.en}</code> <span style="color:#64748b;">${sc.zh}</span></span>
+      `).join('');
+
+      const examplesHtml = (card.examples || []).map((ex, idx) => `
+        <div class="sentence-card" id="sent-${card.id}-${idx}">
+          <div class="sentence-content" onclick="playSentence(${card.id}, ${idx})">
+            <div class="sentence-en">${ex.en}</div>
+            <div class="sentence-zh">${ex.zh}</div>
+          </div>
+          <div class="sentence-actions">
+            <button class="btn-audio-play" onclick="playSentence(${card.id}, ${idx}, event)" title="点击发音">▶</button>
+          </div>
+        </div>
+      `).join('');
+
+      return `
+        <article class="chunk-card ${isStarred ? 'is-starred' : ''}" id="card-${card.id}">
+          <div class="card-top-row">
+            <div class="chunk-identity-group">
+              <div class="card-meta-line">
+                <span class="card-number-badge">#${String(card.num).padStart(2, '0')}</span>
+                <span class="card-category-tag">${card.secTitle.replace(/^[一二三四五六七八九十]+[、.]/, '')}</span>
+              </div>
+              <div class="chunk-en-title" onclick="playChunk(${card.id})" title="点击发音">
+                <span>${card.en}</span>
+                <span style="font-size: 1rem; color: var(--primary); opacity: 0.8;">🔊</span>
+              </div>
+              <div class="chunk-zh-meaning">${card.zh}</div>
+            </div>
+            <button class="btn-star ${isStarred ? 'active' : ''}" onclick="toggleStar(${card.id}, event)" title="加入生词本">
+              ${isStarred ? '⭐' : '☆'}
+            </button>
+          </div>
+
+          ${card.core ? `
+            <div class="insight-box insight-core" style="margin-bottom: 12px;">
+              <div class="insight-box-title">🧠 先抓核心</div>
+              <div>${card.core}</div>
+            </div>
+          ` : ''}
+
+          ${subchunksHtml ? `
+            <div class="state-pills-wrap" style="margin-bottom: 12px;">
+              <div class="examples-header-label" style="margin-bottom: 6px;"><span>🧩 常用搭配</span></div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                ${subchunksHtml}
+              </div>
+            </div>
+          ` : ''}
+
+          ${examplesHtml ? `
+            <div class="examples-wrap">
+              <div class="examples-header-label">
+                <span>💬 状态例句 · 逐句点读</span>
+              </div>
+              <div class="examples-list">
+                ${examplesHtml}
+              </div>
+            </div>
+          ` : ''}
+
+          ${card.warn ? `
+            <div class="warn-box" style="margin-top: 12px;">
+              <div class="warn-title">⚠️ 容易弄错</div>
+              <div>${card.warn}</div>
+            </div>
+          ` : ''}
+        </article>
+      `;
+    }
+
+    window.playSentence = function(cardId, sentIdx, event) {
+      if (event) event.stopPropagation();
+      const card = window.CURRENT_DB.cards.find(c => c.id === cardId);
+      if (!card || !card.examples || !card.examples[sentIdx]) return;
+      const ex = card.examples[sentIdx];
+
+      player.clearPlayingUI();
+      const sentEl = document.getElementById(`sent-${cardId}-${sentIdx}`);
+      if (sentEl) sentEl.classList.add('is-speaking');
+
+      player.playItem({
+        en: ex.en,
+        zh: ex.zh,
+        localAudio: ex.localAudio
+      });
+    };
+
+
+    // Play action
+    window.playChunk = function(cardId, event) {
+      if (event) event.stopPropagation();
+      const card = window.CURRENT_DB.cards.find(c => c.id === cardId);
+      if (!card) return;
+
+      player.clearPlayingUI();
+      const cardEl = document.getElementById(`card-${cardId}`);
+      if (cardEl) cardEl.classList.add('is-speaking');
+
+      player.playItem({
+        en: card.en,
+        zh: card.zh,
+        localAudio: card.chunkLocal
+      });
+    };
+
+    window.toggleStar = function(cardId, event) {
+      if (event) event.stopPropagation();
+      if (starredIds.has(cardId)) {
+        starredIds.delete(cardId);
+      } else {
+        starredIds.add(cardId);
+      }
+
+      try {
+        localStorage.setItem(STAR_STORAGE_KEY, JSON.stringify([...starredIds]));
+      } catch(e) {}
+
+      renderCards();
+    };
+
+    function updateBottomPlayer(item) {
+      nowPlayingEn.textContent = item.en;
+      nowPlayingZh.textContent = item.zh || '';
+      bottomPlayerBar.classList.add('active');
+      btnPlayPause.textContent = '⏸ 暂停';
+    }
+
+    function bindEvents() {
+      // Font Sizing
+      btnFontDec.onclick = () => {
+        if (fontScaleIdx > 0) {
+          fontScaleIdx--;
+          document.documentElement.style.setProperty('--base-size', fontScales[fontScaleIdx].size);
+          fontLabel.textContent = fontScales[fontScaleIdx].label;
+        }
+      };
+      btnFontInc.onclick = () => {
+        if (fontScaleIdx < fontScales.length - 1) {
+          fontScaleIdx++;
+          document.documentElement.style.setProperty('--base-size', fontScales[fontScaleIdx].size);
+          fontLabel.textContent = fontScales[fontScaleIdx].label;
+        }
+      };
+
+      // Speed Toggle
+      btnSpeedToggle.onclick = () => {
+        speedIdx = (speedIdx + 1) % speeds.length;
+        currentSpeed = speeds[speedIdx];
+        speedLabel.textContent = `${currentSpeed.toFixed(1)}x`;
+        player.audio.playbackRate = currentSpeed;
+      };
+
+      // Mask Mode Toggle
+      btnMaskToggle.onclick = () => {
+        maskIdx = (maskIdx + 1) % maskModes.length;
+        const mode = maskModes[maskIdx];
+        maskLabel.textContent = mode.label;
+        document.body.classList.remove('mask-en', 'mask-zh');
+        if (mode.id === 'en') document.body.classList.add('mask-en');
+        if (mode.id === 'zh') document.body.classList.add('mask-zh');
+        btnMaskToggle.classList.toggle('active', mode.id !== 'none');
+      };
+
+      // Star Filter
+      btnStarFilter.onclick = () => {
+        onlyStarred = !onlyStarred;
+        btnStarFilter.classList.toggle('active', onlyStarred);
+        starFilterLabel.textContent = onlyStarred ? `已收藏 (${starredIds.size})` : '生词本';
+        renderCards();
+      };
+
+      // Search Filter
+      searchInput.oninput = (e) => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        btnClearSearch.style.display = searchQuery ? 'block' : 'none';
+        renderCards();
+      };
+      btnClearSearch.onclick = () => {
+        searchInput.value = '';
+        searchQuery = '';
+        btnClearSearch.style.display = 'none';
+        renderCards();
+      };
+
+      // Section Pill Clicks
+      sectionPillBar.onclick = (e) => {
+        const btn = e.target.closest('.sec-pill');
+        if (!btn) return;
+        const secVal = btn.dataset.sec;
+        activeSection = secVal === 'all' ? null : parseInt(secVal);
+        renderSectionPills();
+        renderCards();
+      };
+
+      // Bottom Player Controls
+      btnPlayPause.onclick = () => {
+        if (player.audio.paused) {
+          if (loopItem) {
+            player.playItem(loopItem);
+          }
+        } else {
+          player.audio.pause();
+          btnPlayPause.textContent = '▶ 播放';
+          player.clearPlayingUI();
+        }
+      };
+
+      btnLoopToggle.onclick = () => {
+        isLooping = !isLooping;
+        btnLoopToggle.classList.toggle('loop-on', isLooping);
+        btnLoopToggle.textContent = isLooping ? '🔂 正在循环' : '🔁 单曲循环';
+      };
+
+      btnClosePlayer.onclick = () => {
+        player.stop();
+        bottomPlayerBar.classList.remove('active');
+        player.clearPlayingUI();
+      };
+
+      // Card Navigation Prev / Next
+      document.getElementById('btnPrevCard').onclick = () => {
+        if (!loopItem) return;
+        const cards = window.CURRENT_DB.cards;
+        const curIdx = cards.findIndex(c => c.en === loopItem.en || (c.examples && c.examples.some(ex => ex.en === loopItem.en)));
+        if (curIdx > 0) {
+          playChunk(cards[curIdx - 1].id);
+        }
+      };
+
+      document.getElementById('btnNextCard').onclick = () => {
+        if (!loopItem) return;
+        const cards = window.CURRENT_DB.cards;
+        const curIdx = cards.findIndex(c => c.en === loopItem.en || (c.examples && c.examples.some(ex => ex.en === loopItem.en)));
+        if (curIdx >= 0 && curIdx < cards.length - 1) {
+          playChunk(cards[curIdx + 1].id);
+        }
+      };
+    }
+
+    init();
+  </script>
+</body>
+</html>

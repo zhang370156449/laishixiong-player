@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ChunkLab · 🏃 高频动作词点读台</title>
+  <link rel="icon" href="favicon_chunklab.png" type="image/png">
+  <link rel="apple-touch-icon" href="favicon_chunklab.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;900&family=Fira+Code:wght@500;600&display=swap">
+  <style>
+    :root {
+      --base-size: 18.5px;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --primary-border: #c7d2fe;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      --core-bg: #eff6ff;
+      --core-border: #bfdbfe;
+      --core-text: #1e40af;
+      --usage-bg: #faf5ff;
+      --usage-border: #e9d5ff;
+      --usage-text: #6b21a8;
+      --warn-bg: #fffbeb;
+      --warn-border: #fde68a;
+      --warn-text: #92400e;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 10px 25px -4px rgba(15, 23, 42, 0.1);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { font-size: var(--base-size); scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 90px;
+    }
+
+    /* Top Sticky Navigation Bar */
+    .top-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--surface-border);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+    .nav-container {
+      max-width: 1720px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nav-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.15);
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .brand-logo-img:hover { transform: scale(1.05); }
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #ede9fe;
+      color: #6d28d9;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .brand-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Module Navigation Tabs */
+    .module-nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 0 4px 0;
+      scrollbar-width: none;
+    }
+    .module-nav-tabs::-webkit-scrollbar { display: none; }
+    .module-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #475569;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .module-tab:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .module-tab.active {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+    }
+    .module-tab-badge {
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+    .module-tab.active .module-tab-badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+
+    /* Controls Bar */
+    .nav-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      max-width: 460px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      height: 38px;
+      padding: 0 12px 0 36px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus {
+      background: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.95rem;
+      color: #94a3b8;
+      pointer-events: none;
+    }
+    .btn-clear-search {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    .tools-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tool-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 36px;
+      padding: 0 12px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: #334155;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .tool-btn-pill:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .tool-btn-pill.active {
+      background: #ede9fe;
+      border-color: #c4b5fd;
+      color: #6d28d9;
+    }
+    .font-stepper {
+      display: inline-flex;
+      align-items: center;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 36px;
+    }
+    .font-btn {
+      background: transparent;
+      border: none;
+      width: 32px;
+      height: 100%;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: #475569;
+      transition: background 0.15s;
+    }
+    .font-btn:hover { background: #e2e8f0; }
+    .font-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0 6px;
+      color: #64748b;
+      min-width: 38px;
+      text-align: center;
+    }
+
+    /* Section Pills Bar */
+    .section-pill-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 2px 0;
+      scrollbar-width: none;
+    }
+    .section-pill-bar::-webkit-scrollbar { display: none; }
+    .sec-pill {
+      padding: 5px 12px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .sec-pill:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+    .sec-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+    }
+
+    /* Main Container & Grid */
+    .main-content {
+      max-width: 1720px;
+      margin: 16px auto 0;
+      padding: 0 24px;
+    }
+    .section-block {
+      margin-bottom: 28px;
+    }
+    .section-header-banner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--primary-border);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+    .section-header-banner h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1e1b4b;
+      letter-spacing: -0.01em;
+    }
+    .section-intro-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .section-badge-count {
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--primary-border);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 768px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .nav-container { padding: 8px 12px; }
+      .main-content { padding: 0 12px; }
+    }
+
+    /* Chunk Card Component */
+    .chunk-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .chunk-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+    .chunk-card.is-starred {
+      border-left: 4px solid #f59e0b;
+      background: linear-gradient(to right, rgba(254, 243, 199, 0.15), var(--surface));
+    }
+    .chunk-card.is-speaking {
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3), var(--shadow-md);
+    }
+
+    .card-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .chunk-identity-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .card-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-number-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #94a3b8;
+      font-family: 'Fira Code', monospace;
+    }
+    .card-category-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 1px 7px;
+      border-radius: 4px;
+    }
+    .chunk-en-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1e1b4b;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.15s;
+    }
+    .chunk-en-title:hover {
+      color: var(--primary);
+    }
+    .chunk-zh-meaning {
+      font-size: 0.92rem;
+      color: #475569;
+      font-weight: 600;
+    }
+    .btn-star {
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: #cbd5e1;
+      line-height: 1;
+      transition: all 0.2s;
+    }
+    .btn-star:hover { transform: scale(1.15); color: #f59e0b; }
+    .btn-star.active { color: #f59e0b; }
+
+    /* Insights Layout */
+    .card-insights-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 580px) {
+      .card-insights-row { grid-template-columns: 1fr; }
+    }
+    .insight-box {
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+    .insight-box-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .insight-core {
+      background: var(--core-bg);
+      border: 1px solid var(--core-border);
+      color: var(--core-text);
+    }
+    .insight-usage {
+      background: var(--usage-bg);
+      border: 1px solid var(--usage-border);
+      color: var(--usage-text);
+    }
+    .warn-box {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn-text);
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .warn-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .tip-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .tip-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    /* Examples & Subchunks List */
+    .examples-wrap {
+      margin-top: 4px;
+    }
+    .examples-header-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #059669;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sentence-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 12px;
+      background: #f8fafc;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-md);
+      transition: all 0.15s;
+    }
+    .sentence-card:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+    }
+    .sentence-card.is-speaking {
+      background: #ecfdf5;
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+    .sentence-content {
+      flex: 1;
+      cursor: pointer;
+    }
+    .sentence-en {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+    .sentence-zh {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .btn-audio-play {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+    .btn-audio-play:hover {
+      background: var(--primary);
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    /* Subchunks (Action Page) */
+    .subchunks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .subchunk-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 7px 12px;
+      background: #f8fafc;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-sm);
+      transition: all 0.15s;
+    }
+    .subchunk-card:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+    }
+    .subchunk-card.is-speaking {
+      background: #ecfdf5;
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+    .subchunk-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+    }
+    .subchunk-code code {
+      font-family: 'Fira Code', monospace;
+      font-weight: 700;
+      color: #4338ca;
+      font-size: 0.95rem;
+    }
+    .subchunk-zh {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Dialogue (Action & Kids) */
+    .dialogue-wrap {
+      margin-top: 10px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+    }
+    .dialogue-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #166534;
+    }
+    .btn-dialogue-play {
+      background: #16a34a;
+      border: none;
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.15s;
+    }
+    .btn-dialogue-play:hover { background: #15803d; }
+    .dialogue-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .dialogue-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .dialogue-speaker {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .dialogue-bubble {
+      flex: 1;
+    }
+    .dialogue-en {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #0f172a;
+    }
+    .dialogue-zh {
+      font-size: 0.82rem;
+      color: #4b5563;
+    }
+
+    /* Baby Say (Kids Page) */
+    .baby-say-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .baby-say-box:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+    }
+    .baby-say-left {
+      flex: 1;
+    }
+    .baby-say-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #1e40af;
+      margin-bottom: 3px;
+    }
+    .baby-say-en {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e3a8a;
+    }
+    .baby-say-zh {
+      font-size: 0.85rem;
+      color: #475569;
+    }
+    .role-badge {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .role-baby { background: #dbeafe; color: #1e40af; }
+    .role-mom { background: #fef3c7; color: #92400e; }
+
+    /* State Pills (State Page) */
+    .state-pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 0.82rem;
+    }
+
+    /* Masking Modes */
+    body.mask-en .sentence-en,
+    body.mask-en .subchunk-code,
+    body.mask-en .baby-say-en,
+    body.mask-en .dialogue-en {
+      filter: blur(6px);
+      cursor: pointer;
+      user-select: none;
+      transition: filter 0.15s;
+    }
+    body.mask-en .sentence-en:hover,
+    body.mask-en .subchunk-code:hover,
+    body.mask-en .baby-say-en:hover,
+    body.mask-en .dialogue-en:hover {
+      filter: none;
+    }
+    body.mask-zh .sentence-zh,
+    body.mask-zh .subchunk-zh,
+    body.mask-zh .baby-say-zh,
+    body.mask-zh .chunk-zh-meaning,
+    body.mask-zh .dialogue-zh {
+      filter: blur(6px);
+      cursor: pointer;
+      user-select: none;
+      transition: filter 0.15s;
+    }
+    body.mask-zh .sentence-zh:hover,
+    body.mask-zh .subchunk-zh:hover,
+    body.mask-zh .baby-say-zh:hover,
+    body.mask-zh .chunk-zh-meaning:hover,
+    body.mask-zh .dialogue-zh:hover {
+      filter: none;
+    }
+
+    /* Bottom Floating Audio Player */
+    .bottom-player-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 24px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .bottom-player-bar.active {
+      display: flex;
+    }
+    .now-playing-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .now-playing-icon {
+      font-size: 1.2rem;
+      animation: pulse 1.2s infinite;
+      color: #10b981;
+    }
+    .now-playing-text {
+      min-width: 0;
+    }
+    .now-playing-en {
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #f8fafc;
+    }
+    .now-playing-zh {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-player-action {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-player-action:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .btn-player-action.loop-on {
+      background: #10b981;
+      border-color: #10b981;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.95); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <header class="top-navbar">
+    <div class="nav-container">
+      <div class="nav-header-row">
+        <div class="brand-title-wrap">
+          <img src="chunklab_logo.png" class="brand-logo-img" alt="ChunkLab Logo">
+          <div class="brand-text">
+            <h1>ChunkLab · 🏃 高频动作词点读台 <span class="brand-badge" id="totalCardBadge">75 动词</span> <span class="brand-version" style="font-size: 11px; padding: 2px 7px; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 999px; font-weight: 600; margin-left: 6px;">v1.2 (最新)</span></h1>
+            <span class="brand-sub">75 核心动作动词 · 385 搭配词块与场景对话 · MiniMax 原声点读</span>
+          </div>
+        </div>
+
+        <div class="tools-group">
+          <!-- Force Reload -->
+          <button class="tool-btn-pill" onclick="window.location.href = window.location.pathname + '?v=' + Date.now()" title="强制清除网页与音频缓存并刷新">
+            <span>🔄</span> <span>更新刷新</span>
+          </button>
+
+          <!-- Font Size Controls -->
+          <div class="font-stepper" title="自由调节字号大小">
+            <button class="font-btn" id="btnFontDec" title="缩小字号">A-</button>
+            <span class="font-label" id="fontLabel">标准</span>
+            <button class="font-btn" id="btnFontInc" title="放大字号">A+</button>
+          </div>
+
+          <!-- Speed Controls -->
+          <button class="tool-btn-pill" id="btnSpeedToggle" title="切换播放语速">
+            <span>⚡</span> <span id="speedLabel">1.0x</span>
+          </button>
+
+          <!-- Masking Test Modes -->
+          <button class="tool-btn-pill" id="btnMaskToggle" title="自测遮盖背词">
+            <span>👁️</span> <span id="maskLabel">正常</span>
+          </button>
+
+          <!-- Star Filter -->
+          <button class="tool-btn-pill" id="btnStarFilter" title="只看生词收藏">
+            <span>⭐</span> <span id="starFilterLabel">生词本</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Module Navigation Tabs -->
+      <div class="module-nav-tabs">
+          <a href="chunks_daily.html" data-desktop-href="1.日常生存与交流_核心词块点读工作台.html" class="module-tab">
+            <span class="module-tab-title">🌟 日常生存与交流</span>
+            <span class="module-tab-badge">218 词块</span>
+          </a>
+          <a href="chunks_action.html" data-desktop-href="2.高频动作词_核心词块点读工作台.html" class="module-tab active">
+            <span class="module-tab-title">🏃 高频动作词</span>
+            <span class="module-tab-badge">75 动词</span>
+          </a>
+          <a href="chunks_state.html" data-desktop-href="3.状态感受_核心词块点读工作台.html" class="module-tab">
+            <span class="module-tab-title">💭 状态与感受</span>
+            <span class="module-tab-badge">15 状态</span>
+          </a>
+          <a href="chunks_kids.html" data-desktop-href="4.亲子生活英语_核心词块点读工作台.html" class="module-tab">
+            <span class="module-tab-title">🧸 亲子生活英语</span>
+            <span class="module-tab-badge">44 亲子</span>
+          </a>
+        </div>
+
+      <!-- Controls & Search -->
+      <div class="nav-controls-row">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" id="searchInput" placeholder="搜索英文、中文意思、例句、核心功能..." autocomplete="off">
+          <button class="btn-clear-search" id="btnClearSearch">×</button>
+        </div>
+
+        <!-- Section Navigation Tabs -->
+        <div class="section-pill-bar" id="sectionPillBar">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Cards Feed -->
+  <main class="main-content" id="mainContainer">
+    <!-- Populated by JavaScript -->
+  </main>
+
+  <!-- Bottom Floating Audio Player Bar -->
+  <div class="bottom-player-bar" id="bottomPlayerBar">
+    <div class="now-playing-wrap">
+      <span class="now-playing-icon">🔊</span>
+      <div class="now-playing-text">
+        <div class="now-playing-en" id="nowPlayingEn">Ready</div>
+        <div class="now-playing-zh" id="nowPlayingZh">点读音频已就绪</div>
+      </div>
+    </div>
+
+    <div class="player-controls">
+      <button class="btn-player-action" id="btnPrevCard" title="上一个">⏮</button>
+      <button class="btn-player-action" id="btnPlayPause" title="重播当前句">▶ 播放</button>
+      <button class="btn-player-action" id="btnNextCard" title="下一个">⏭</button>
+      <button class="btn-player-action" id="btnLoopToggle" title="循环播放当前音频">🔁 单曲循环</button>
+      <button class="btn-player-action" id="btnClosePlayer" title="关闭播放条">✕</button>
+    </div>
+  </div>
+
+  <script>
+    // Embedded Database
+    window.CURRENT_DB = {"sections": [{"secIdx": 1, "title": "一、最基础 20 个", "intro": "日常交流最高频的 20 个核心动词，先保证这 20 个词块张口就来。", "count": 20}, {"secIdx": 2, "title": "二、生活场景 30 个", "intro": "生活起居、出行购物、工作学习中不可或缺的 30 个高频动作。", "count": 30}, {"secIdx": 3, "title": "三、补充 25 个", "intro": "进一步扩展表达维度的 25 个精选动作词，整块记忆、精准套用。", "count": 25}], "cards": [{"id": 1, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "01", "en": "go", "zh": "去", "audioChunk": "go_word_youdao.mp3", "chunkLocal": "audio_chunks/go_word_youdao.mp3", "core": "最基础的“去某地”：go to + 地点。", "warn": "回家说 go home，中间不加 to。", "chunks": [{"en": "go to school", "zh": "去上学", "audio": "go_to_school.mp3", "localAudio": "audio_chunks/go_to_school.mp3"}, {"en": "go home", "zh": "回家", "audio": "go_home.mp3", "localAudio": "audio_chunks/go_home.mp3"}, {"en": "go shopping", "zh": "去购物", "audio": "go_shopping.mp3", "localAudio": "audio_chunks/go_shopping.mp3"}], "dialogue": [{"speaker": "A: Where are you going?", "en": "你去哪？", "zh": ""}, {"speaker": "B: I’m going to the store.", "en": "我去趟商店。", "zh": ""}], "dialogueAudio": "go_dialogue.mp3", "dialogueLocal": "audio_chunks/go_dialogue.mp3"}, {"id": 2, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "02", "en": "come", "zh": "来", "audioChunk": "02_w0_come.mp3", "chunkLocal": "audio_chunks/02_w0_come.mp3", "core": "朝说话人的方向移动；请人进来、叫人过来都用它。", "warn": "朋友叫你去他家也用 come：Can you come over?（以说话人为中心）。", "chunks": [{"en": "come here", "zh": "过来", "audio": "02_c0.mp3", "localAudio": "audio_chunks/02_c0.mp3"}, {"en": "come in", "zh": "进来", "audio": "02_c1.mp3", "localAudio": "audio_chunks/02_c1.mp3"}, {"en": "come with me", "zh": "跟我来", "audio": "02_c2.mp3", "localAudio": "audio_chunks/02_c2.mp3"}], "dialogue": [{"speaker": "A: Knock knock!", "en": "咚咚！", "zh": ""}, {"speaker": "B: Come in, please!", "en": "请进！", "zh": ""}], "dialogueAudio": "02_d.mp3", "dialogueLocal": "audio_chunks/02_d.mp3"}, {"id": 3, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "03", "en": "make", "zh": "做、制作", "audioChunk": "03_w0_make.mp3", "chunkLocal": "audio_chunks/03_w0_make.mp3", "core": "把东西从无到有做出来；万能词块极多。", "warn": "交朋友是 make friends，说 make a friend 反而奇怪。", "chunks": [{"en": "make coffee", "zh": "做咖啡", "audio": "03_c0.mp3", "localAudio": "audio_chunks/03_c0.mp3"}, {"en": "make a mistake", "zh": "犯错", "audio": "03_c1.mp3", "localAudio": "audio_chunks/03_c1.mp3"}, {"en": "make friends", "zh": "交朋友", "audio": "03_c2.mp3", "localAudio": "audio_chunks/03_c2.mp3"}], "dialogue": [{"speaker": "A: This cake is delicious!", "en": "蛋糕太好吃了！", "zh": ""}, {"speaker": "B: Thanks, I made it myself.", "en": "谢谢，我自己做的。", "zh": ""}], "dialogueAudio": "03_d.mp3", "dialogueLocal": "audio_chunks/03_d.mp3"}, {"id": 4, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "04", "en": "take", "zh": "拿、乘、花", "audioChunk": "04_w0_take.mp3", "chunkLocal": "audio_chunks/04_w0_take.mp3", "core": "一词多义之王：拿走、乘坐、花费时间都靠它。", "warn": "take a shower 是固定说法，别理解成“拿一个淋浴”。", "chunks": [{"en": "take the bus", "zh": "坐公交", "audio": "04_c0.mp3", "localAudio": "audio_chunks/04_c0.mp3"}, {"en": "take a shower", "zh": "洗澡", "audio": "04_c1.mp3", "localAudio": "audio_chunks/04_c1.mp3"}, {"en": "take a break", "zh": "休息一下", "audio": "04_c2.mp3", "localAudio": "audio_chunks/04_c2.mp3"}], "dialogue": [{"speaker": "A: How do you get to work?", "en": "你怎么上班？", "zh": ""}, {"speaker": "B: I take the subway.", "en": "我坐地铁。", "zh": ""}], "dialogueAudio": "04_d.mp3", "dialogueLocal": "audio_chunks/04_d.mp3"}, {"id": 5, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "05", "en": "get", "zh": "得到、变成、到达", "audioChunk": "05_w0_get.mp3", "chunkLocal": "audio_chunks/05_w0_get.mp3", "core": "万能动词：拿到、买到、到达、变成都可以。", "warn": "到家 get home；去学校 get to school；大地方 get to Beijing。", "chunks": [{"en": "get a job", "zh": "找到工作", "audio": "05_c0.mp3", "localAudio": "audio_chunks/05_c0.mp3"}, {"en": "get home", "zh": "到家", "audio": "05_c1.mp3", "localAudio": "audio_chunks/05_c1.mp3"}, {"en": "get better", "zh": "好转", "audio": "05_c2.mp3", "localAudio": "audio_chunks/05_c2.mp3"}], "dialogue": [{"speaker": "A: Did you get my message?", "en": "你收到我的消息了吗？", "zh": ""}, {"speaker": "B: Sorry, I didn’t.", "en": "抱歉，没收到。", "zh": ""}], "dialogueAudio": "05_d.mp3", "dialogueLocal": "audio_chunks/05_d.mp3"}, {"id": 6, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "06", "en": "do", "zh": "做", "audioChunk": "06_w0_do.mp3", "chunkLocal": "audio_chunks/06_w0_do.mp3", "core": "做事情、做任务；问句和否定句里也必须有它。", "warn": "do 和 make 都是“做”，但搭配固定：do homework / make dinner，别混。", "chunks": [{"en": "do homework", "zh": "做作业", "audio": "06_c0.mp3", "localAudio": "audio_chunks/06_c0.mp3"}, {"en": "do your best", "zh": "尽力", "audio": "06_c1.mp3", "localAudio": "audio_chunks/06_c1.mp3"}, {"en": "What do you do?", "zh": "你做什么工作？", "audio": "06_c2.mp3", "localAudio": "audio_chunks/06_c2.mp3"}], "dialogue": [{"speaker": "A: What do you do?", "en": "你是做什么工作的？", "zh": ""}, {"speaker": "B: I’m a nurse.", "en": "我是护士。", "zh": ""}], "dialogueAudio": "06_d.mp3", "dialogueLocal": "audio_chunks/06_d.mp3"}, {"id": 7, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "07", "en": "have", "zh": "有、吃", "audioChunk": "07_w0_have.mp3", "chunkLocal": "audio_chunks/07_w0_have.mp3", "core": "“有”和“吃喝”都用它；have to 还表示“不得不”。", "warn": "第三人称用 has：He has a car。", "chunks": [{"en": "have a car", "zh": "有一辆车", "audio": "07_c0.mp3", "localAudio": "audio_chunks/07_c0.mp3"}, {"en": "have breakfast", "zh": "吃早饭", "audio": "07_c1.mp3", "localAudio": "audio_chunks/07_c1.mp3"}, {"en": "have to go", "zh": "不得不走", "audio": "07_c2.mp3", "localAudio": "audio_chunks/07_c2.mp3"}], "dialogue": [{"speaker": "A: Do you have a pen?", "en": "你有笔吗？", "zh": ""}, {"speaker": "B: Yes, here you go.", "en": "有，给你。", "zh": ""}], "dialogueAudio": "07_d.mp3", "dialogueLocal": "audio_chunks/07_d.mp3"}, {"id": 8, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "08", "en": "give", "zh": "给", "audioChunk": "08_w0_give.mp3", "chunkLocal": "audio_chunks/08_w0_give.mp3", "core": "把东西交给别人；口语里 give me 很直接。", "warn": "give me a hand 是“帮个忙”，不是字面的“给我一只手”。", "chunks": [{"en": "give me a hand", "zh": "帮我一下", "audio": "08_c0.mp3", "localAudio": "audio_chunks/08_c0.mp3"}, {"en": "give it to me", "zh": "把它给我", "audio": "08_c1.mp3", "localAudio": "audio_chunks/08_c1.mp3"}, {"en": "give a present", "zh": "送礼物", "audio": "08_c2.mp3", "localAudio": "audio_chunks/08_c2.mp3"}], "dialogue": [{"speaker": "A: Can you give me a hand?", "en": "能帮我一下吗？", "zh": ""}, {"speaker": "B: Sure, what’s up?", "en": "可以，怎么了？", "zh": ""}], "dialogueAudio": "08_d.mp3", "dialogueLocal": "audio_chunks/08_d.mp3"}, {"id": 9, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "09", "en": "put", "zh": "放", "audioChunk": "09_w0_put.mp3", "chunkLocal": "audio_chunks/09_w0_put.mp3", "core": "把东西放到某处：put + 东西 + 地点。", "warn": "put it on 的代词放中间；put on it 不对。", "chunks": [{"en": "put it on the table", "zh": "把它放桌上", "audio": "09_c0.mp3", "localAudio": "audio_chunks/09_c0.mp3"}, {"en": "put on clothes", "zh": "穿上衣服", "audio": "09_c1.mp3", "localAudio": "audio_chunks/09_c1.mp3"}, {"en": "put away", "zh": "收好", "audio": "09_c2.mp3", "localAudio": "audio_chunks/09_c2.mp3"}], "dialogue": [{"speaker": "A: Where should I put this?", "en": "这个放哪？", "zh": ""}, {"speaker": "B: Put it on the shelf.", "en": "放架子上。", "zh": ""}], "dialogueAudio": "09_d.mp3", "dialogueLocal": "audio_chunks/09_d.mp3"}, {"id": 10, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "10", "en": "see", "zh": "看见", "audioChunk": "10_w0_see.mp3", "chunkLocal": "audio_chunks/10_w0_see.mp3", "core": "看见、明白、见面；告别说 See you!", "warn": "看医生是 see a doctor，不是 look at doctor。", "chunks": [{"en": "see a doctor", "zh": "看医生", "audio": "10_c0.mp3", "localAudio": "audio_chunks/10_c0.mp3"}, {"en": "see you tomorrow", "zh": "明天见", "audio": "10_c1.mp3", "localAudio": "audio_chunks/10_c1.mp3"}, {"en": "I see.", "zh": "我明白了。", "audio": "10_c2.mp3", "localAudio": "audio_chunks/10_c2.mp3"}], "dialogue": [{"speaker": "A: I don’t feel well.", "en": "我不舒服。", "zh": ""}, {"speaker": "B: You should see a doctor.", "en": "你该去看看医生。", "zh": ""}], "dialogueAudio": "10_d.mp3", "dialogueLocal": "audio_chunks/10_d.mp3"}, {"id": 11, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "11", "en": "know", "zh": "知道", "audioChunk": "11_w0_know.mp3", "chunkLocal": "audio_chunks/11_w0_know.mp3", "core": "知道事情、认识人；不知道就是 I don’t know。", "warn": "know 是状态，不说 I am knowing。", "chunks": [{"en": "I don’t know.", "zh": "我不知道", "audio": "11_c0.mp3", "localAudio": "audio_chunks/11_c0.mp3"}, {"en": "know him well", "zh": "很了解他", "audio": "11_c1.mp3", "localAudio": "audio_chunks/11_c1.mp3"}, {"en": "You know what?", "zh": "你知道吗", "audio": "11_c2.mp3", "localAudio": "audio_chunks/11_c2.mp3"}], "dialogue": [{"speaker": "A: Where’s the bank?", "en": "银行在哪？", "zh": ""}, {"speaker": "B: Sorry, I don’t know.", "en": "抱歉，我不知道。", "zh": ""}], "dialogueAudio": "11_d.mp3", "dialogueLocal": "audio_chunks/11_d.mp3"}, {"id": 12, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "12", "en": "think", "zh": "想、认为", "audioChunk": "12_w0_think.mp3", "chunkLocal": "audio_chunks/12_w0_think.mp3", "core": "发表看法用 I think...；思考某事用 think about。", "warn": "“我认为”就是 I think，别逐字翻译成中文的“我心里想”。", "chunks": [{"en": "I think so.", "zh": "我觉得是", "audio": "12_c0.mp3", "localAudio": "audio_chunks/12_c0.mp3"}, {"en": "think about it", "zh": "想想这事", "audio": "12_c1.mp3", "localAudio": "audio_chunks/12_c1.mp3"}, {"en": "What do you think?", "zh": "你觉得呢？", "audio": "12_c2.mp3", "localAudio": "audio_chunks/12_c2.mp3"}], "dialogue": [{"speaker": "A: Is this restaurant good?", "en": "这家餐厅好吗？", "zh": ""}, {"speaker": "B: I think so. The reviews are great.", "en": "应该不错，评价很好。", "zh": ""}], "dialogueAudio": "12_d.mp3", "dialogueLocal": "audio_chunks/12_d.mp3"}, {"id": 13, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "13", "en": "want", "zh": "想要", "audioChunk": "13_w0_want.mp3", "chunkLocal": "audio_chunks/13_w0_want.mp3", "core": "想要某物 want + 名词；想做某事 want to do。", "warn": "对服务员、不熟的人用 I’d like... 更礼貌。", "chunks": [{"en": "want a coffee", "zh": "想要杯咖啡", "audio": "13_c0.mp3", "localAudio": "audio_chunks/13_c0.mp3"}, {"en": "want to rest", "zh": "想休息", "audio": "13_c1.mp3", "localAudio": "audio_chunks/13_c1.mp3"}, {"en": "What do you want?", "zh": "你想要什么？", "audio": "13_c2.mp3", "localAudio": "audio_chunks/13_c2.mp3"}], "dialogue": [{"speaker": "A: What do you want for dinner?", "en": "晚饭想吃什么？", "zh": ""}, {"speaker": "B: I want noodles.", "en": "想吃面条。", "zh": ""}], "dialogueAudio": "13_d.mp3", "dialogueLocal": "audio_chunks/13_d.mp3"}, {"id": 14, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "14", "en": "need", "zh": "需要", "audioChunk": "14_w0_need.mp3", "chunkLocal": "audio_chunks/14_w0_need.mp3", "core": "需要某物 need + 名词；需要做某事 need to do。", "warn": "需要做某事是 need to do，先学这个形式最稳。", "chunks": [{"en": "need help", "zh": "需要帮助", "audio": "14_c0.mp3", "localAudio": "audio_chunks/14_c0.mp3"}, {"en": "need to go", "zh": "需要走了", "audio": "14_c1.mp3", "localAudio": "audio_chunks/14_c1.mp3"}, {"en": "Do you need...?", "zh": "你需要……吗", "audio": "14_c2.mp3", "localAudio": "audio_chunks/14_c2.mp3"}], "dialogue": [{"speaker": "A: Do you need anything from the store?", "en": "要在超市帮你带什么吗？", "zh": ""}, {"speaker": "B: I need some milk.", "en": "带点牛奶。", "zh": ""}], "dialogueAudio": "14_d.mp3", "dialogueLocal": "audio_chunks/14_d.mp3"}, {"id": 15, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "15", "en": "like", "zh": "喜欢", "audioChunk": "15_w0_like.mp3", "chunkLocal": "audio_chunks/15_w0_like.mp3", "core": "喜欢某人某物；would like 是“想要”，跟 like 意思不同。", "warn": "I like = 我喜欢；I’d like = 我想要。", "chunks": [{"en": "like music", "zh": "喜欢音乐", "audio": "15_c0.mp3", "localAudio": "audio_chunks/15_c0.mp3"}, {"en": "like watching movies", "zh": "喜欢看电影", "audio": "15_c1.mp3", "localAudio": "audio_chunks/15_c1.mp3"}, {"en": "would like tea", "zh": "想要茶", "audio": "15_c2.mp3", "localAudio": "audio_chunks/15_c2.mp3"}], "dialogue": [{"speaker": "A: Do you like coffee?", "en": "你喜欢咖啡吗？", "zh": ""}, {"speaker": "B: Yes, but I like tea more.", "en": "喜欢，但我更爱茶。", "zh": ""}], "dialogueAudio": "15_d.mp3", "dialogueLocal": "audio_chunks/15_d.mp3"}, {"id": 16, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "16", "en": "say", "zh": "说", "audioChunk": "16_w0_say.mp3", "chunkLocal": "audio_chunks/16_w0_say.mp3", "core": "重点是“说出的内容”：say hello / say it again。", "warn": "say + 内容；tell + 人。告诉我 = tell me，不说 say me。", "chunks": [{"en": "say it again", "zh": "再说一遍", "audio": "16_c0.mp3", "localAudio": "audio_chunks/16_c0.mp3"}, {"en": "say hello", "zh": "打招呼", "audio": "16_c1.mp3", "localAudio": "audio_chunks/16_c1.mp3"}, {"en": "say sorry", "zh": "道歉", "audio": "16_c2.mp3", "localAudio": "audio_chunks/16_c2.mp3"}], "dialogue": [{"speaker": "A: What did he say?", "en": "他说什么？", "zh": ""}, {"speaker": "B: He said the meeting is at 3.", "en": "他说会议三点开。", "zh": ""}], "dialogueAudio": "16_d.mp3", "dialogueLocal": "audio_chunks/16_d.mp3"}, {"id": 17, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "17", "en": "tell", "zh": "告诉", "audioChunk": "17_w0_tell.mp3", "chunkLocal": "audio_chunks/17_w0_tell.mp3", "core": "告诉某人某事：tell + 人 + 内容。", "warn": "tell 是“告诉人”，say 是“说出话”，方向别用反。", "chunks": [{"en": "tell me the truth", "zh": "跟我说实话", "audio": "17_c0.mp3", "localAudio": "audio_chunks/17_c0.mp3"}, {"en": "tell a joke", "zh": "讲笑话", "audio": "17_c1.mp3", "localAudio": "audio_chunks/17_c1.mp3"}, {"en": "tell him to call me", "zh": "让他给我打电话", "audio": "17_c2.mp3", "localAudio": "audio_chunks/17_c2.mp3"}], "dialogue": [{"speaker": "A: Don’t tell anyone, OK?", "en": "别告诉任何人，好吗？", "zh": ""}, {"speaker": "B: My lips are sealed.", "en": "我守口如瓶。", "zh": ""}], "dialogueAudio": "17_d.mp3", "dialogueLocal": "audio_chunks/17_d.mp3"}, {"id": 18, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "18", "en": "ask", "zh": "问、请求", "audioChunk": "18_w0_ask.mp3", "chunkLocal": "audio_chunks/18_w0_ask.mp3", "core": "问问题 ask a question；请求帮忙 ask for help。", "warn": "请求某物要加 for：ask for the bill。", "chunks": [{"en": "ask a question", "zh": "问个问题", "audio": "18_c0.mp3", "localAudio": "audio_chunks/18_c0.mp3"}, {"en": "ask for help", "zh": "寻求帮助", "audio": "18_c1.mp3", "localAudio": "audio_chunks/18_c1.mp3"}, {"en": "ask the way", "zh": "问路", "audio": "18_c2.mp3", "localAudio": "audio_chunks/18_c2.mp3"}], "dialogue": [{"speaker": "A: I’m lost. I’ll ask for directions.", "en": "我迷路了，我去问个路。", "zh": ""}, {"speaker": "B: Ask that police officer.", "en": "去问那个警察。", "zh": ""}], "dialogueAudio": "18_d.mp3", "dialogueLocal": "audio_chunks/18_d.mp3"}, {"id": 19, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "19", "en": "buy", "zh": "买", "audioChunk": "19_w0_buy.mp3", "chunkLocal": "audio_chunks/19_w0_buy.mp3", "core": "买某物 buy sth；给某人买 buy sb sth。", "warn": "也可以 buy flowers for her，两种说法都对。", "chunks": [{"en": "buy a ticket", "zh": "买票", "audio": "19_c0.mp3", "localAudio": "audio_chunks/19_c0.mp3"}, {"en": "buy groceries", "zh": "买菜", "audio": "19_c1.mp3", "localAudio": "audio_chunks/19_c1.mp3"}, {"en": "buy her flowers", "zh": "给她买花", "audio": "19_c2.mp3", "localAudio": "audio_chunks/19_c2.mp3"}], "dialogue": [{"speaker": "A: Where did you buy this bag?", "en": "这包在哪买的？", "zh": ""}, {"speaker": "B: Online. It was on sale.", "en": "网上买的，赶上打折。", "zh": ""}], "dialogueAudio": "19_d.mp3", "dialogueLocal": "audio_chunks/19_d.mp3"}, {"id": 20, "secIdx": 1, "secTitle": "一、最基础 20 个", "num": "20", "en": "pay", "zh": "付款", "audioChunk": "20_w0_pay.mp3", "chunkLocal": "audio_chunks/20_w0_pay.mp3", "core": "付账 pay the bill；为某物付钱 pay for sth。", "warn": "pay the bill 不加 for；pay for the dinner 才加 for。", "chunks": [{"en": "pay the bill", "zh": "买单", "audio": "20_c0.mp3", "localAudio": "audio_chunks/20_c0.mp3"}, {"en": "pay by card", "zh": "刷卡", "audio": "20_c1.mp3", "localAudio": "audio_chunks/20_c1.mp3"}, {"en": "pay for it", "zh": "为它付钱", "audio": "20_c2.mp3", "localAudio": "audio_chunks/20_c2.mp3"}], "dialogue": [{"speaker": "A: Let me pay today.", "en": "今天我来付。", "zh": ""}, {"speaker": "B: No, it’s my treat.", "en": "不行，我请客。", "zh": ""}], "dialogueAudio": "20_d.mp3", "dialogueLocal": "audio_chunks/20_d.mp3"}, {"id": 21, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "21", "en": "eat", "zh": "吃", "audioChunk": "21_w0_eat.mp3", "chunkLocal": "audio_chunks/21_w0_eat.mp3", "core": "吃东西；出去吃、在外面吃是 eat out。", "warn": "吃药不说 eat medicine，是 take medicine。", "chunks": [{"en": "eat out", "zh": "出去吃", "audio": "21_c0.mp3", "localAudio": "audio_chunks/21_c0.mp3"}, {"en": "eat breakfast", "zh": "吃早饭", "audio": "21_c1.mp3", "localAudio": "audio_chunks/21_c1.mp3"}, {"en": "something to eat", "zh": "吃点东西", "audio": "21_c2.mp3", "localAudio": "audio_chunks/21_c2.mp3"}], "dialogue": [{"speaker": "A: Let’s eat out tonight.", "en": "今晚出去吃吧。", "zh": ""}, {"speaker": "B: Good idea, I don’t want to cook.", "en": "好主意，我不想做饭。", "zh": ""}], "dialogueAudio": "21_d.mp3", "dialogueLocal": "audio_chunks/21_d.mp3"}, {"id": 22, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "22", "en": "drink", "zh": "喝", "audioChunk": "22_w0_drink.mp3", "chunkLocal": "audio_chunks/22_w0_drink.mp3", "core": "喝水喝咖啡都用它；单独说 He drinks 常指“喝酒”。", "warn": "“你想喝点什么”对客人说时很常用，值得整句背。", "chunks": [{"en": "drink water", "zh": "喝水", "audio": "22_c0.mp3", "localAudio": "audio_chunks/22_c0.mp3"}, {"en": "drink coffee", "zh": "喝咖啡", "audio": "22_c1.mp3", "localAudio": "audio_chunks/22_c1.mp3"}, {"en": "something to drink", "zh": "喝点东西", "audio": "22_c2.mp3", "localAudio": "audio_chunks/22_c2.mp3"}], "dialogue": [{"speaker": "A: Want something to drink?", "en": "想喝点什么吗？", "zh": ""}, {"speaker": "B: Just water, thanks.", "en": "白水就行，谢谢。", "zh": ""}], "dialogueAudio": "22_d.mp3", "dialogueLocal": "audio_chunks/22_d.mp3"}, {"id": 23, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "23", "en": "watch", "zh": "看（动态）", "audioChunk": "23_w0_watch.mp3", "chunkLocal": "audio_chunks/23_w0_watch.mp3", "core": "看电视、看比赛、看电影这类“动态画面”用 watch。", "warn": "看书用 read，看医生用 see，别都用 watch。", "chunks": [{"en": "watch TV", "zh": "看电视", "audio": "23_c0.mp3", "localAudio": "audio_chunks/23_c0.mp3"}, {"en": "watch a movie", "zh": "看电影", "audio": "23_c1.mp3", "localAudio": "audio_chunks/23_c1.mp3"}, {"en": "watch the kids", "zh": "看着孩子", "audio": "23_c2.mp3", "localAudio": "audio_chunks/23_c2.mp3"}], "dialogue": [{"speaker": "A: What are you doing tonight?", "en": "今晚干嘛？", "zh": ""}, {"speaker": "B: Watching a movie at home.", "en": "在家看电影。", "zh": ""}], "dialogueAudio": "23_d.mp3", "dialogueLocal": "audio_chunks/23_d.mp3"}, {"id": 24, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "24", "en": "read", "zh": "读", "audioChunk": "24_w0_read.mp3", "chunkLocal": "audio_chunks/24_w0_read.mp3", "core": "读书、看报、看消息；看手机信息也常说 read。", "warn": "read 过去式拼写不变，但读音变成 /red/。", "chunks": [{"en": "read a book", "zh": "读书", "audio": "24_c0.mp3", "localAudio": "audio_chunks/24_c0.mp3"}, {"en": "read the news", "zh": "看新闻", "audio": "24_c1.mp3", "localAudio": "audio_chunks/24_c1.mp3"}, {"en": "read it aloud", "zh": "朗读", "audio": "24_c2.mp3", "localAudio": "audio_chunks/24_c2.mp3"}], "dialogue": [{"speaker": "A: What are you reading?", "en": "你在读什么？", "zh": ""}, {"speaker": "B: A novel. It’s really good.", "en": "一本小说，特别好看。", "zh": ""}], "dialogueAudio": "24_d.mp3", "dialogueLocal": "audio_chunks/24_d.mp3"}, {"id": 25, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "25", "en": "listen", "zh": "听", "audioChunk": "25_w0_listen.mp3", "chunkLocal": "audio_chunks/25_w0_listen.mp3", "core": "听声音、听音乐；后面必须加 to。", "warn": "listen to music；hear 是“听见”这个结果。", "chunks": [{"en": "listen to music", "zh": "听音乐", "audio": "25_c0.mp3", "localAudio": "audio_chunks/25_c0.mp3"}, {"en": "listen carefully", "zh": "仔细听", "audio": "25_c1.mp3", "localAudio": "audio_chunks/25_c1.mp3"}, {"en": "Listen!", "zh": "听着！", "audio": "25_c2.mp3", "localAudio": "audio_chunks/25_c2.mp3"}], "dialogue": [{"speaker": "A: You’re not listening to me.", "en": "你没在听我说话。", "zh": ""}, {"speaker": "B: Sorry, what did you say?", "en": "抱歉，你说什么？", "zh": ""}], "dialogueAudio": "25_d.mp3", "dialogueLocal": "audio_chunks/25_d.mp3"}, {"id": 26, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "26", "en": "walk", "zh": "走", "audioChunk": "26_w0_walk.mp3", "chunkLocal": "audio_chunks/26_w0_walk.mp3", "core": "走路去某地 walk to...；散步 take a walk。", "warn": "散步固定说 take a walk 或 go for a walk。", "chunks": [{"en": "walk to work", "zh": "走路上班", "audio": "26_c0.mp3", "localAudio": "audio_chunks/26_c0.mp3"}, {"en": "take a walk", "zh": "散步", "audio": "26_c1.mp3", "localAudio": "audio_chunks/26_c1.mp3"}, {"en": "walk the dog", "zh": "遛狗", "audio": "26_c2.mp3", "localAudio": "audio_chunks/26_c2.mp3"}], "dialogue": [{"speaker": "A: Do you drive to work?", "en": "你开车上班吗？", "zh": ""}, {"speaker": "B: No, I walk. It’s 10 minutes.", "en": "不，走路去，十分钟。", "zh": ""}], "dialogueAudio": "26_d.mp3", "dialogueLocal": "audio_chunks/26_d.mp3"}, {"id": 27, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "27", "en": "run", "zh": "跑、经营", "audioChunk": "27_w0_run.mp3", "chunkLocal": "audio_chunks/27_w0_run.mp3", "core": "跑步、奔跑；run a company 是“经营公司”。", "warn": "run 不只是“跑”：run a shop 是开店做生意。", "chunks": [{"en": "run fast", "zh": "跑得快", "audio": "27_c0.mp3", "localAudio": "audio_chunks/27_c0.mp3"}, {"en": "go for a run", "zh": "去跑步", "audio": "27_c1.mp3", "localAudio": "audio_chunks/27_c1.mp3"}, {"en": "run a company", "zh": "经营公司", "audio": "27_c2.mp3", "localAudio": "audio_chunks/27_c2.mp3"}], "dialogue": [{"speaker": "A: Do you exercise?", "en": "你锻炼吗？", "zh": ""}, {"speaker": "B: I run every morning before work.", "en": "每天上班前跑步。", "zh": ""}], "dialogueAudio": "27_d.mp3", "dialogueLocal": "audio_chunks/27_d.mp3"}, {"id": 28, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "28", "en": "sleep", "zh": "睡", "audioChunk": "28_w0_sleep.mp3", "chunkLocal": "audio_chunks/28_w0_sleep.mp3", "core": "睡着、睡觉的状态；去睡觉也常说 go to bed。", "warn": "“睡过头”是 oversleep，不是 sleep too much。", "chunks": [{"en": "sleep well", "zh": "睡得好", "audio": "28_c0.mp3", "localAudio": "audio_chunks/28_c0.mp3"}, {"en": "go to sleep", "zh": "入睡", "audio": "28_c1.mp3", "localAudio": "audio_chunks/28_c1.mp3"}, {"en": "get some sleep", "zh": "补个觉", "audio": "28_c2.mp3", "localAudio": "audio_chunks/28_c2.mp3"}], "dialogue": [{"speaker": "A: You look tired.", "en": "你看起来很累。", "zh": ""}, {"speaker": "B: I didn’t sleep well last night.", "en": "昨晚没睡好。", "zh": ""}], "dialogueAudio": "28_d.mp3", "dialogueLocal": "audio_chunks/28_d.mp3"}, {"id": 29, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "29", "en": "rest", "zh": "休息", "audioChunk": "29_w0_rest.mp3", "chunkLocal": "audio_chunks/29_w0_rest.mp3", "core": "休息一会儿；可作动词也可作名词。", "warn": "休息一下最地道的是 take a rest 或 take a break。", "chunks": [{"en": "take a rest", "zh": "休息一下", "audio": "29_c0.mp3", "localAudio": "audio_chunks/29_c0.mp3"}, {"en": "rest for a while", "zh": "休息一会儿", "audio": "29_c1.mp3", "localAudio": "audio_chunks/29_c1.mp3"}, {"en": "rest your eyes", "zh": "让眼睛歇会儿", "audio": "29_c2.mp3", "localAudio": "audio_chunks/29_c2.mp3"}], "dialogue": [{"speaker": "A: You’ve been working for 3 hours.", "en": "你已经干了三个小时了。", "zh": ""}, {"speaker": "B: You’re right, I need a rest.", "en": "是啊，我需要休息。", "zh": ""}], "dialogueAudio": "29_d.mp3", "dialogueLocal": "audio_chunks/29_d.mp3"}, {"id": 30, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "30", "en": "help", "zh": "帮助", "audioChunk": "30_w0_help.mp3", "chunkLocal": "audio_chunks/30_w0_help.mp3", "core": "帮某人做某事 help sb with sth；店员常问 Can I help you?", "warn": "help sb do 和 help sb to do 都对，to 常省略。", "chunks": [{"en": "help me", "zh": "帮我", "audio": "30_c0.mp3", "localAudio": "audio_chunks/30_c0.mp3"}, {"en": "help sb with sth", "zh": "帮某人做某事", "audio": "30_c1.mp3", "localAudio": "audio_chunks/30_c1.mp3"}, {"en": "Can I help you?", "zh": "我能帮你吗？", "audio": "30_c2.mp3", "localAudio": "audio_chunks/30_c2.mp3"}], "dialogue": [{"speaker": "A: Can you help me with this box?", "en": "能帮我抬这个箱子吗？", "zh": ""}, {"speaker": "B: No problem.", "en": "没问题。", "zh": ""}], "dialogueAudio": "30_d.mp3", "dialogueLocal": "audio_chunks/30_d.mp3"}, {"id": 31, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "31", "en": "open", "zh": "开", "audioChunk": "31_w0_open.mp3", "chunkLocal": "audio_chunks/31_w0_open.mp3", "core": "开门、开窗、开盒子；电器要用 turn on。", "warn": "灯、电视、手机用 turn on，门窗盒子才用 open。", "chunks": [{"en": "open the door", "zh": "开门", "audio": "31_c0.mp3", "localAudio": "audio_chunks/31_c0.mp3"}, {"en": "open the window", "zh": "开窗", "audio": "31_c1.mp3", "localAudio": "audio_chunks/31_c1.mp3"}, {"en": "It’s open.", "zh": "开着呢。", "audio": "31_c2.mp3", "localAudio": "audio_chunks/31_c2.mp3"}], "dialogue": [{"speaker": "A: Can you open the window?", "en": "能开下窗吗？", "zh": ""}, {"speaker": "B: Sure.", "en": "没问题。", "zh": ""}], "dialogueAudio": "31_d.mp3", "dialogueLocal": "audio_chunks/31_d.mp3"}, {"id": 32, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "32", "en": "close", "zh": "关", "audioChunk": "32_w0_close.mp3", "chunkLocal": "audio_chunks/32_w0_close.mp3", "core": "关门关窗；close the door 最基础。", "warn": "电器用 turn off；close 过去式是 closed。", "chunks": [{"en": "close the door", "zh": "关门", "audio": "32_c0.mp3", "localAudio": "audio_chunks/32_c0.mp3"}, {"en": "close the window", "zh": "关窗", "audio": "32_c1.mp3", "localAudio": "audio_chunks/32_c1.mp3"}, {"en": "close your eyes", "zh": "闭眼", "audio": "32_c2.mp3", "localAudio": "audio_chunks/32_c2.mp3"}], "dialogue": [{"speaker": "A: Close the door, please. It’s cold.", "en": "关下门，冷。", "zh": ""}, {"speaker": "B: OK, done.", "en": "好，关了。", "zh": ""}], "dialogueAudio": "32_d.mp3", "dialogueLocal": "audio_chunks/32_d.mp3"}, {"id": 33, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "33", "en": "wait", "zh": "等", "audioChunk": "33_w0_wait.mp3", "chunkLocal": "audio_chunks/33_w0_wait.mp3", "core": "等某人某物要加 for：wait for。", "warn": "wait 后面必须加 for：wait for the bus。", "chunks": [{"en": "wait for me", "zh": "等我", "audio": "33_c0.mp3", "localAudio": "audio_chunks/33_c0.mp3"}, {"en": "wait a moment", "zh": "稍等", "audio": "33_c1.mp3", "localAudio": "audio_chunks/33_c1.mp3"}, {"en": "can’t wait", "zh": "等不及", "audio": "33_c2.mp3", "localAudio": "audio_chunks/33_c2.mp3"}], "dialogue": [{"speaker": "A: Wait for me! I’m coming!", "en": "等等我！来了！", "zh": ""}, {"speaker": "B: Hurry up, we’re late!", "en": "快点，迟到了！", "zh": ""}], "dialogueAudio": "33_d.mp3", "dialogueLocal": "audio_chunks/33_d.mp3"}, {"id": 34, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "34", "en": "start", "zh": "开始", "audioChunk": "34_w0_start.mp3", "chunkLocal": "audio_chunks/34_w0_start.mp3", "core": "开始做事；发动车、开业也用它。", "warn": "start to do 和 start doing 都正确。", "chunks": [{"en": "start work", "zh": "开始上班", "audio": "34_c0.mp3", "localAudio": "audio_chunks/34_c0.mp3"}, {"en": "start the car", "zh": "发动车", "audio": "34_c1.mp3", "localAudio": "audio_chunks/34_c1.mp3"}, {"en": "start over", "zh": "从头再来", "audio": "34_c2.mp3", "localAudio": "audio_chunks/34_c2.mp3"}], "dialogue": [{"speaker": "A: What time do you start work?", "en": "你几点上班？", "zh": ""}, {"speaker": "B: At 9.", "en": "九点。", "zh": ""}], "dialogueAudio": "34_d.mp3", "dialogueLocal": "audio_chunks/34_d.mp3"}, {"id": 35, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "35", "en": "stop", "zh": "停", "audioChunk": "35_w0_stop.mp3", "chunkLocal": "audio_chunks/35_w0_stop.mp3", "core": "停止、停下；stop doing 和 stop to do 意思完全不同。", "warn": "stop smoking = 不抽了；stop to smoke = 停下来抽一根。", "chunks": [{"en": "stop the car", "zh": "停车", "audio": "35_c0.mp3", "localAudio": "audio_chunks/35_c0.mp3"}, {"en": "stop doing", "zh": "停止做", "audio": "35_c1.mp3", "localAudio": "audio_chunks/35_c1.mp3"}, {"en": "stop to rest", "zh": "停下来休息", "audio": "35_c2.mp3", "localAudio": "audio_chunks/35_c2.mp3"}], "dialogue": [{"speaker": "A: Stop the car! I see the sign.", "en": "停车！我看到标志了。", "zh": ""}, {"speaker": "B: OK, pulling over.", "en": "好，靠边停。", "zh": ""}], "dialogueAudio": "35_d.mp3", "dialogueLocal": "audio_chunks/35_d.mp3"}, {"id": 36, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "36", "en": "stay", "zh": "停留", "audioChunk": "36_w0_stay.mp3", "chunkLocal": "audio_chunks/36_w0_stay.mp3", "core": "待在某地、保持某状态；待在家 stay home。", "warn": "stay home 和 stay at home 都对，口语里前者更多。", "chunks": [{"en": "stay home", "zh": "待在家", "audio": "36_c0.mp3", "localAudio": "audio_chunks/36_c0.mp3"}, {"en": "stay for dinner", "zh": "留下吃晚饭", "audio": "36_c1.mp3", "localAudio": "audio_chunks/36_c1.mp3"}, {"en": "stay healthy", "zh": "保持健康", "audio": "36_c2.mp3", "localAudio": "audio_chunks/36_c2.mp3"}], "dialogue": [{"speaker": "A: Are you coming out?", "en": "出来玩吗？", "zh": ""}, {"speaker": "B: No, I’ll stay home tonight.", "en": "不，今晚待在家。", "zh": ""}], "dialogueAudio": "36_d.mp3", "dialogueLocal": "audio_chunks/36_d.mp3"}, {"id": 37, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "37", "en": "return", "zh": "还、退、返回", "audioChunk": "37_w0_return.mp3", "chunkLocal": "audio_chunks/37_w0_return.mp3", "core": "还书还钱、退货退票、回家都可以。", "warn": "return 已经包含“回”，不说 return back。", "chunks": [{"en": "return the book", "zh": "还书", "audio": "37_c0.mp3", "localAudio": "audio_chunks/37_c0.mp3"}, {"en": "return this shirt", "zh": "退这件衬衫", "audio": "37_c1.mp3", "localAudio": "audio_chunks/37_c1.mp3"}, {"en": "return home", "zh": "回家", "audio": "37_c2.mp3", "localAudio": "audio_chunks/37_c2.mp3"}], "dialogue": [{"speaker": "A: I need to return this. It’s broken.", "en": "我要退这个，坏了。", "zh": ""}, {"speaker": "B: Do you have the receipt?", "en": "有购物小票吗？", "zh": ""}], "dialogueAudio": "37_d.mp3", "dialogueLocal": "audio_chunks/37_d.mp3"}, {"id": 38, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "38", "en": "change", "zh": "换、改变", "audioChunk": "38_w0_change.mp3", "chunkLocal": "audio_chunks/38_w0_change.mp3", "core": "换衣服、改计划、换钱都用它；“零钱”也是 change。", "warn": "Keep the change. = 不用找了（打车常听）。", "chunks": [{"en": "change clothes", "zh": "换衣服", "audio": "38_c0.mp3", "localAudio": "audio_chunks/38_c0.mp3"}, {"en": "change the plan", "zh": "改计划", "audio": "38_c1.mp3", "localAudio": "audio_chunks/38_c1.mp3"}, {"en": "change money", "zh": "换钱", "audio": "38_c2.mp3", "localAudio": "audio_chunks/38_c2.mp3"}], "dialogue": [{"speaker": "A: I need to change my flight.", "en": "我要改签航班。", "zh": ""}, {"speaker": "B: Call the airline first.", "en": "先给航空公司打电话。", "zh": ""}], "dialogueAudio": "38_d.mp3", "dialogueLocal": "audio_chunks/38_d.mp3"}, {"id": 39, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "39", "en": "call", "zh": "打电话、称呼", "audioChunk": "39_w0_call.mp3", "chunkLocal": "audio_chunks/39_w0_call.mp3", "core": "打电话、称呼某人都用它。", "warn": "打给我是 call me，不加 to。", "chunks": [{"en": "call me", "zh": "打给我", "audio": "39_c0.mp3", "localAudio": "audio_chunks/39_c0.mp3"}, {"en": "call back", "zh": "回电话", "audio": "39_c1.mp3", "localAudio": "audio_chunks/39_c1.mp3"}, {"en": "call him Tom", "zh": "管他叫汤姆", "audio": "39_c2.mp3", "localAudio": "audio_chunks/39_c2.mp3"}], "dialogue": [{"speaker": "A: I’ll call you tonight.", "en": "今晚我打给你。", "zh": ""}, {"speaker": "B: OK, after 8.", "en": "好，八点以后。", "zh": ""}], "dialogueAudio": "39_d.mp3", "dialogueLocal": "audio_chunks/39_d.mp3"}, {"id": 40, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "40", "en": "send", "zh": "发送", "audioChunk": "40_w0_send.mp3", "chunkLocal": "audio_chunks/40_w0_send.mp3", "core": "发消息、发邮件、寄包裹。", "warn": "send me the file = send the file to me，两种都对。", "chunks": [{"en": "send an email", "zh": "发邮件", "audio": "40_c0.mp3", "localAudio": "audio_chunks/40_c0.mp3"}, {"en": "send me the file", "zh": "把文件发我", "audio": "40_c1.mp3", "localAudio": "audio_chunks/40_c1.mp3"}, {"en": "send a message", "zh": "发消息", "audio": "40_c2.mp3", "localAudio": "audio_chunks/40_c2.mp3"}], "dialogue": [{"speaker": "A: Did you send the report?", "en": "报告发了吗？", "zh": ""}, {"speaker": "B: Yes, check your email.", "en": "发了，看邮箱。", "zh": ""}], "dialogueAudio": "40_d.mp3", "dialogueLocal": "audio_chunks/40_d.mp3"}, {"id": 41, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "41", "en": "receive", "zh": "收到", "audioChunk": "41_w0_receive.mp3", "chunkLocal": "audio_chunks/41_w0_receive.mp3", "core": "收到邮件、礼物、付款；正式场合多用它。", "warn": "口语里更常说 get：I got your email。", "chunks": [{"en": "receive an email", "zh": "收到邮件", "audio": "41_c0.mp3", "localAudio": "audio_chunks/41_c0.mp3"}, {"en": "receive a gift", "zh": "收到礼物", "audio": "41_c1.mp3", "localAudio": "audio_chunks/41_c1.mp3"}, {"en": "receive the payment", "zh": "收到付款", "audio": "41_c2.mp3", "localAudio": "audio_chunks/41_c2.mp3"}], "dialogue": [{"speaker": "A: Did you receive my payment?", "en": "你收到我的付款了吗？", "zh": ""}, {"speaker": "B: Yes, got it this morning.", "en": "收到了，今早到的。", "zh": ""}], "dialogueAudio": "41_d.mp3", "dialogueLocal": "audio_chunks/41_d.mp3"}, {"id": 42, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "42", "en": "find", "zh": "找到", "audioChunk": "42_w0_find.mp3", "chunkLocal": "audio_chunks/42_w0_find.mp3", "core": "强调“找到”的结果；正在找用 look for。", "warn": "找的过程 look for，找到的结果 find：I’m looking for it. / I found it!", "chunks": [{"en": "find my keys", "zh": "找到钥匙", "audio": "42_c0.mp3", "localAudio": "audio_chunks/42_c0.mp3"}, {"en": "find a job", "zh": "找工作", "audio": "42_c1.mp3", "localAudio": "audio_chunks/42_c1.mp3"}, {"en": "find it online", "zh": "在网上找到的", "audio": "42_c2.mp3", "localAudio": "audio_chunks/42_c2.mp3"}], "dialogue": [{"speaker": "A: Did you find your phone?", "en": "手机找到了吗？", "zh": ""}, {"speaker": "B: Yes, it was in my coat.", "en": "找到了，在外套里。", "zh": ""}], "dialogueAudio": "42_d.mp3", "dialogueLocal": "audio_chunks/42_d.mp3"}, {"id": 43, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "43", "en": "lose", "zh": "丢失", "audioChunk": "43_w0_lose.mp3", "chunkLocal": "audio_chunks/43_w0_lose.mp3", "core": "丢东西、输掉比赛、减肥都是它。", "warn": "减肥 lose weight；迷路 lose my way / get lost。", "chunks": [{"en": "lose my keys", "zh": "丢了钥匙", "audio": "43_c0.mp3", "localAudio": "audio_chunks/43_c0.mp3"}, {"en": "lose weight", "zh": "减肥", "audio": "43_c1.mp3", "localAudio": "audio_chunks/43_c1.mp3"}, {"en": "lose the game", "zh": "输了比赛", "audio": "43_c2.mp3", "localAudio": "audio_chunks/43_c2.mp3"}], "dialogue": [{"speaker": "A: I lost my wallet!", "en": "我钱包丢了！", "zh": ""}, {"speaker": "B: Check your jacket pockets.", "en": "看看外套口袋。", "zh": ""}], "dialogueAudio": "43_d.mp3", "dialogueLocal": "audio_chunks/43_d.mp3"}, {"id": 44, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "44", "en": "show", "zh": "展示、给……看", "audioChunk": "44_w0_show.mp3", "chunkLocal": "audio_chunks/44_w0_show.mp3", "core": "给某人看、演示、出示证件。", "warn": "show me the way = show the way to me，代词提前更口语。", "chunks": [{"en": "show me", "zh": "给我看看", "audio": "44_c0.mp3", "localAudio": "audio_chunks/44_c0.mp3"}, {"en": "show sb around", "zh": "带某人转转", "audio": "44_c1.mp3", "localAudio": "audio_chunks/44_c1.mp3"}, {"en": "show your ID", "zh": "出示证件", "audio": "44_c2.mp3", "localAudio": "audio_chunks/44_c2.mp3"}], "dialogue": [{"speaker": "A: Can you show me how it works?", "en": "能演示下怎么用吗？", "zh": ""}, {"speaker": "B: Sure, look.", "en": "当然，看好了。", "zh": ""}], "dialogueAudio": "44_d.mp3", "dialogueLocal": "audio_chunks/44_d.mp3"}, {"id": 45, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "45", "en": "try", "zh": "尝试", "audioChunk": "45_w0_try.mp3", "chunkLocal": "audio_chunks/45_w0_try.mp3", "core": "试试看；试穿衣服要说 try it on。", "warn": "try to do 强调“努力做”；try doing 是“试试看会发生什么”。", "chunks": [{"en": "try it on", "zh": "试穿", "audio": "45_c0.mp3", "localAudio": "audio_chunks/45_c0.mp3"}, {"en": "try again", "zh": "再试一次", "audio": "45_c1.mp3", "localAudio": "audio_chunks/45_c1.mp3"}, {"en": "try my best", "zh": "尽力", "audio": "45_c2.mp3", "localAudio": "audio_chunks/45_c2.mp3"}], "dialogue": [{"speaker": "A: This shirt looks nice.", "en": "这件衬衫不错。", "zh": ""}, {"speaker": "B: Try it on!", "en": "试试呗！", "zh": ""}], "dialogueAudio": "45_d.mp3", "dialogueLocal": "audio_chunks/45_d.mp3"}, {"id": 46, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "46", "en": "work", "zh": "工作、起作用", "audioChunk": "46_w0_work.mp3", "chunkLocal": "audio_chunks/46_w0_work.mp3", "core": "上班、工作；机器“好使”也是 It works。", "warn": "It works! 表示“有效、好用”，不是“它在工作”。", "chunks": [{"en": "go to work", "zh": "上班", "audio": "46_c0.mp3", "localAudio": "audio_chunks/46_c0.mp3"}, {"en": "work from home", "zh": "在家办公", "audio": "46_c1.mp3", "localAudio": "audio_chunks/46_c1.mp3"}, {"en": "It works.", "zh": "好使的。", "audio": "46_c2.mp3", "localAudio": "audio_chunks/46_c2.mp3"}], "dialogue": [{"speaker": "A: Where do you work?", "en": "你在哪上班？", "zh": ""}, {"speaker": "B: At a hospital, I’m a nurse.", "en": "在医院，我是护士。", "zh": ""}], "dialogueAudio": "46_d.mp3", "dialogueLocal": "audio_chunks/46_d.mp3"}, {"id": 47, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "47", "en": "study", "zh": "学习", "audioChunk": "47_w0_study.mp3", "chunkLocal": "audio_chunks/47_w0_study.mp3", "core": "学、复习的过程；学会、掌握是 learn。", "warn": "study 是过程，learn 是结果：I studied but didn’t learn much.", "chunks": [{"en": "study English", "zh": "学英语", "audio": "47_c0.mp3", "localAudio": "audio_chunks/47_c0.mp3"}, {"en": "study for the test", "zh": "备考复习", "audio": "47_c1.mp3", "localAudio": "audio_chunks/47_c1.mp3"}, {"en": "study abroad", "zh": "出国留学", "audio": "47_c2.mp3", "localAudio": "audio_chunks/47_c2.mp3"}], "dialogue": [{"speaker": "A: What are you studying?", "en": "你在学什么？", "zh": ""}, {"speaker": "B: English. I study every night.", "en": "英语，我每晚都学。", "zh": ""}], "dialogueAudio": "47_d.mp3", "dialogueLocal": "audio_chunks/47_d.mp3"}, {"id": 48, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "48", "en": "play", "zh": "玩、演奏", "audioChunk": "48_w0_play.mp3", "chunkLocal": "audio_chunks/48_w0_play.mp3", "core": "玩游戏、踢球、弹乐器；乐器要加 the。", "warn": "play the piano 要 the；play basketball 不要 the。", "chunks": [{"en": "play games", "zh": "玩游戏", "audio": "48_c0.mp3", "localAudio": "audio_chunks/48_c0.mp3"}, {"en": "play the piano", "zh": "弹钢琴", "audio": "48_c1.mp3", "localAudio": "audio_chunks/48_c1.mp3"}, {"en": "play soccer", "zh": "踢足球", "audio": "48_c2.mp3", "localAudio": "audio_chunks/48_c2.mp3"}], "dialogue": [{"speaker": "A: Do you play any instruments?", "en": "你会乐器吗？", "zh": ""}, {"speaker": "B: I play the guitar.", "en": "我会弹吉他。", "zh": ""}], "dialogueAudio": "48_d.mp3", "dialogueLocal": "audio_chunks/48_d.mp3"}, {"id": 49, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "49", "en": "meet", "zh": "见面、认识", "audioChunk": "49_w0_meet.mp3", "chunkLocal": "audio_chunks/49_w0_meet.mp3", "core": "和人见面、初次认识；第一次见面说 Nice to meet you。", "warn": "第一次见面 meet；认识之后再见用 see：See you later.", "chunks": [{"en": "meet friends", "zh": "见朋友", "audio": "49_c0.mp3", "localAudio": "audio_chunks/49_c0.mp3"}, {"en": "meet new people", "zh": "认识新朋友", "audio": "49_c1.mp3", "localAudio": "audio_chunks/49_c1.mp3"}, {"en": "Nice to meet you.", "zh": "很高兴认识你", "audio": "49_c2.mp3", "localAudio": "audio_chunks/49_c2.mp3"}], "dialogue": [{"speaker": "A: Let’s meet at 7.", "en": "七点见。", "zh": ""}, {"speaker": "B: OK, see you at the gate.", "en": "好，大门口见。", "zh": ""}], "dialogueAudio": "49_d.mp3", "dialogueLocal": "audio_chunks/49_d.mp3"}, {"id": 50, "secIdx": 2, "secTitle": "二、生活场景 30 个", "num": "50", "en": "visit", "zh": "拜访、参观", "audioChunk": "50_w0_visit.mp3", "chunkLocal": "audio_chunks/50_w0_visit.mp3", "core": "看望人、参观地方；浏览网站也用 visit。", "warn": "看网站 visit our website；看望人也叫 see。", "chunks": [{"en": "visit my parents", "zh": "看望父母", "audio": "50_c0.mp3", "localAudio": "audio_chunks/50_c0.mp3"}, {"en": "visit a museum", "zh": "参观博物馆", "audio": "50_c1.mp3", "localAudio": "audio_chunks/50_c1.mp3"}, {"en": "come for a visit", "zh": "来玩呀", "audio": "50_c2.mp3", "localAudio": "audio_chunks/50_c2.mp3"}], "dialogue": [{"speaker": "A: We’re visiting grandma this weekend.", "en": "周末去看奶奶。", "zh": ""}, {"speaker": "B: Say hi to her for me.", "en": "替我问她好。", "zh": ""}], "dialogueAudio": "50_d.mp3", "dialogueLocal": "audio_chunks/50_d.mp3"}, {"id": 51, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "51", "en": "wear", "zh": "穿、戴", "audioChunk": "51_w0_wear.mp3", "chunkLocal": "audio_chunks/51_w0_wear.mp3", "core": "专指“穿在身上、戴在身上”的状态；“穿上”这个动作要用 put on。", "warn": "正在穿的动作不说 wearing：正在穿鞋是 putting on shoes。", "chunks": [{"en": "wear a coat", "zh": "穿外套", "audio": "51_c0.mp3", "localAudio": "audio_chunks/51_c0.mp3"}, {"en": "wear glasses", "zh": "戴眼镜", "audio": "51_c1.mp3", "localAudio": "audio_chunks/51_c1.mp3"}, {"en": "wear size M", "zh": "穿 M 码", "audio": "51_c2.mp3", "localAudio": "audio_chunks/51_c2.mp3"}], "dialogue": [{"speaker": "A: What should I wear to the party?", "en": "我穿什么去参加聚会？", "zh": ""}, {"speaker": "B: Wear something casual.", "en": "穿休闲点就行。", "zh": ""}], "dialogueAudio": "51_d.mp3", "dialogueLocal": "audio_chunks/51_d.mp3"}, {"id": 52, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "52", "en": "bring / carry", "zh": "拿来／携带", "audioChunk": "52_w0_bring.mp3", "chunkLocal": "audio_chunks/52_w0_bring.mp3", "core": "bring 是“朝说话人这边拿来”，take 是“拿走”；carry 强调随身携带、搬运。", "warn": "对方要到你这边用 bring；你从对方那边拿走用 take。", "chunks": [{"en": "bring it here", "zh": "把它拿过来", "audio": "52_c0.mp3", "localAudio": "audio_chunks/52_c0.mp3"}, {"en": "bring an umbrella", "zh": "带把伞", "audio": "52_c1.mp3", "localAudio": "audio_chunks/52_c1.mp3"}, {"en": "carry a heavy bag", "zh": "背着很重的包", "audio": "52_c2.mp3", "localAudio": "audio_chunks/52_c2.mp3"}], "dialogue": [{"speaker": "A: Can you bring some drinks?", "en": "你能带点喝的吗？", "zh": ""}, {"speaker": "B: Sure, I’ll bring some juice.", "en": "可以，我带点果汁。", "zh": ""}], "dialogueAudio": "52_d.mp3", "dialogueLocal": "audio_chunks/52_d.mp3"}, {"id": 53, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "53", "en": "use", "zh": "使用", "audioChunk": "53_w0_use.mp3", "chunkLocal": "audio_chunks/53_w0_use.mp3", "core": "用某样东西完成事情，口语极高频；礼貌请求借用也靠它。", "warn": "“借用一下”说 Can I use...?，不说 Can I lend...?（lend 是借出）。", "chunks": [{"en": "use my phone", "zh": "用我的手机", "audio": "53_c0.mp3", "localAudio": "audio_chunks/53_c0.mp3"}, {"en": "Can I use...?", "zh": "我能用一下……吗", "audio": "53_c1.mp3", "localAudio": "audio_chunks/53_c1.mp3"}, {"en": "use it for work", "zh": "工作用它", "audio": "53_c2.mp3", "localAudio": "audio_chunks/53_c2.mp3"}], "dialogue": [{"speaker": "A: Can I use your charger for a minute?", "en": "我能用一下你的充电器吗？", "zh": ""}, {"speaker": "B: Of course, go ahead.", "en": "当然，用吧。", "zh": ""}], "dialogueAudio": "53_d.mp3", "dialogueLocal": "audio_chunks/53_d.mp3"}, {"id": 54, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "54", "en": "turn on / turn off", "zh": "打开／关闭（设备）", "audioChunk": "54_w0_turn_on.mp3", "chunkLocal": "audio_chunks/54_w0_turn_on.mp3", "core": "灯、电器、手机都用 turn on / turn off，不用 open / close。", "warn": "灯和电器不说 open the light / close the TV。", "chunks": [{"en": "turn on the light", "zh": "开灯", "audio": "54_c0.mp3", "localAudio": "audio_chunks/54_c0.mp3"}, {"en": "turn off the AC", "zh": "关空调", "audio": "54_c1.mp3", "localAudio": "audio_chunks/54_c1.mp3"}, {"en": "turn it off", "zh": "把它关掉", "audio": "54_c2.mp3", "localAudio": "audio_chunks/54_c2.mp3"}], "dialogue": [{"speaker": "A: It’s so dark in here.", "en": "这里好暗。", "zh": ""}, {"speaker": "B: Let me turn on the light.", "en": "我来开灯。", "zh": ""}], "dialogueAudio": "54_d.mp3", "dialogueLocal": "audio_chunks/54_d.mp3"}, {"id": 55, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "55", "en": "cook / clean", "zh": "做饭／打扫", "audioChunk": "55_w0_cook.mp3", "chunkLocal": "audio_chunks/55_w0_cook.mp3", "core": "cook 是做饭，clean 是打扫；洗碗的地道说法是 do the dishes。", "warn": "“洗碗”是 do the dishes，不是 wash the dishes（能懂但不地道）。", "chunks": [{"en": "cook dinner", "zh": "做晚饭", "audio": "55_c0.mp3", "localAudio": "audio_chunks/55_c0.mp3"}, {"en": "clean the room", "zh": "打扫房间", "audio": "55_c1.mp3", "localAudio": "audio_chunks/55_c1.mp3"}, {"en": "do the dishes", "zh": "洗碗", "audio": "55_c2.mp3", "localAudio": "audio_chunks/55_c2.mp3"}], "dialogue": [{"speaker": "A: What’s for dinner tonight?", "en": "今晚吃什么？", "zh": ""}, {"speaker": "B: I’ll cook pasta. It only takes 15 minutes.", "en": "我做意面，只要十五分钟。", "zh": ""}], "dialogueAudio": "55_d.mp3", "dialogueLocal": "audio_chunks/55_d.mp3"}, {"id": 56, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "56", "en": "fix", "zh": "修理", "audioChunk": "56_w0_fix.mp3", "chunkLocal": "audio_chunks/56_w0_fix.mp3", "core": "把坏了的东西修好，口语里比 repair 更常用。", "warn": "fix 后面直接加东西：fix the bike，不说 fix up the bike（那是彻底翻新）。", "chunks": [{"en": "fix the car", "zh": "修车", "audio": "56_c0.mp3", "localAudio": "audio_chunks/56_c0.mp3"}, {"en": "fix my laptop", "zh": "修我的笔记本", "audio": "56_c1.mp3", "localAudio": "audio_chunks/56_c1.mp3"}, {"en": "Can you fix it?", "zh": "你能修好吗？", "audio": "56_c2.mp3", "localAudio": "audio_chunks/56_c2.mp3"}], "dialogue": [{"speaker": "A: My sink is leaking.", "en": "我家水槽漏水了。", "zh": ""}, {"speaker": "B: I’ll call someone to fix it tomorrow.", "en": "我明天找人修。", "zh": ""}], "dialogueAudio": "56_d.mp3", "dialogueLocal": "audio_chunks/56_d.mp3"}, {"id": 57, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "57", "en": "remember / forget", "zh": "记住／忘记", "audioChunk": "57_w0_remember.mp3", "chunkLocal": "audio_chunks/57_w0_remember.mp3", "core": "最常用的框架是 remember to do / forget to do（记得/忘了要去做）。", "warn": "忘了做过的事是 forget doing；忘了要做的是 forget to do，两者意思不同。", "chunks": [{"en": "remember to lock the door", "zh": "记得锁门", "audio": "57_c0.mp3", "localAudio": "audio_chunks/57_c0.mp3"}, {"en": "forget the password", "zh": "忘了密码", "audio": "57_c1.mp3", "localAudio": "audio_chunks/57_c1.mp3"}, {"en": "I forgot to...", "zh": "我忘了做……", "audio": "57_c2.mp3", "localAudio": "audio_chunks/57_c2.mp3"}], "dialogue": [{"speaker": "A: Did you remember to bring the tickets?", "en": "你记得带票了吗？", "zh": ""}, {"speaker": "B: Oh no, I completely forgot!", "en": "哎呀，我全忘了！", "zh": ""}], "dialogueAudio": "57_d.mp3", "dialogueLocal": "audio_chunks/57_d.mp3"}, {"id": 58, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "58", "en": "understand", "zh": "明白、理解", "audioChunk": "58_w0_understand.mp3", "chunkLocal": "audio_chunks/58_w0_understand.mp3", "core": "比 know 更强调“听懂、搞懂”；口语常说 I don’t quite understand。", "warn": "understand 是瞬间明白，一般不说 I am understanding。", "chunks": [{"en": "I don’t quite understand.", "zh": "我不太明白", "audio": "58_c0.mp3", "localAudio": "audio_chunks/58_c0.mp3"}, {"en": "I totally understand.", "zh": "我完全理解", "audio": "58_c1.mp3", "localAudio": "audio_chunks/58_c1.mp3"}, {"en": "understand the instructions", "zh": "看懂说明", "audio": "58_c2.mp3", "localAudio": "audio_chunks/58_c2.mp3"}], "dialogue": [{"speaker": "A: Do you understand the homework?", "en": "你看懂作业要求了吗？", "zh": ""}, {"speaker": "B: Not really. Can you explain it again?", "en": "还没有，能再讲一遍吗？", "zh": ""}], "dialogueAudio": "58_d.mp3", "dialogueLocal": "audio_chunks/58_d.mp3"}, {"id": 59, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "59", "en": "decide / choose", "zh": "决定／选择", "audioChunk": "59_w0_decide.mp3", "chunkLocal": "audio_chunks/59_w0_decide.mp3", "core": "choose 是在几个里“挑”，decide 是“定下来”；决定也常说 make a decision。", "warn": "decide 后接 to do；choose 后接名词或 between A and B。", "chunks": [{"en": "decide to go", "zh": "决定去", "audio": "59_c0.mp3", "localAudio": "audio_chunks/59_c0.mp3"}, {"en": "choose one", "zh": "挑一个", "audio": "59_c1.mp3", "localAudio": "audio_chunks/59_c1.mp3"}, {"en": "make a decision", "zh": "做决定", "audio": "59_c2.mp3", "localAudio": "audio_chunks/59_c2.mp3"}], "dialogue": [{"speaker": "A: Which one should I choose?", "en": "我该选哪个？", "zh": ""}, {"speaker": "B: Just decide quickly, we’re late!", "en": "快定吧，我们要迟到了！", "zh": ""}], "dialogueAudio": "59_d.mp3", "dialogueLocal": "audio_chunks/59_d.mp3"}, {"id": 60, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "60", "en": "spend / cost", "zh": "花（钱、时间）", "audioChunk": "60_w0_spend.mp3", "chunkLocal": "audio_chunks/60_w0_spend.mp3", "core": "人 spend 钱/时间；东西 cost 钱。主语完全不同，不能混用。", "warn": "不能说 The jacket spends \\$80；cost 的主语是东西。", "chunks": [{"en": "spend money on...", "zh": "在……上花钱", "audio": "60_c0.mp3", "localAudio": "audio_chunks/60_c0.mp3"}, {"en": "spend time with family", "zh": "陪家人", "audio": "60_c1.mp3", "localAudio": "audio_chunks/60_c1.mp3"}, {"en": "It costs...", "zh": "它花费……", "audio": "60_c2.mp3", "localAudio": "audio_chunks/60_c2.mp3"}], "dialogue": [{"speaker": "A: How much does this jacket cost?", "en": "这件夹克多少钱？", "zh": ""}, {"speaker": "B: \\$80. I spend too much on clothes.", "en": "八十美元。我花在衣服上的钱太多了。", "zh": ""}], "dialogueAudio": "60_d.mp3", "dialogueLocal": "audio_chunks/60_d.mp3"}, {"id": 61, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "61", "en": "arrive / leave", "zh": "到达／离开", "audioChunk": "61_w0_arrive.mp3", "chunkLocal": "audio_chunks/61_w0_arrive.mp3", "core": "arrive in + 大地方，arrive at + 具体地点；leave 后面直接加地点，不加 to。", "warn": "不说 leave to Beijing，直接 leave Beijing。", "chunks": [{"en": "arrive at the airport", "zh": "到机场", "audio": "61_c0.mp3", "localAudio": "audio_chunks/61_c0.mp3"}, {"en": "leave early", "zh": "早走", "audio": "61_c1.mp3", "localAudio": "audio_chunks/61_c1.mp3"}, {"en": "What time do you arrive?", "zh": "你几点到？", "audio": "61_c2.mp3", "localAudio": "audio_chunks/61_c2.mp3"}], "dialogue": [{"speaker": "A: What time does your flight arrive?", "en": "你的航班几点到？", "zh": ""}, {"speaker": "B: It arrives at 9, and I leave the airport around 10.", "en": "九点到，十点左右出机场。", "zh": ""}], "dialogueAudio": "61_d.mp3", "dialogueLocal": "audio_chunks/61_d.mp3"}, {"id": 62, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "62", "en": "learn", "zh": "学会", "audioChunk": "62_w0_learn.mp3", "chunkLocal": "audio_chunks/62_w0_learn.mp3", "core": "study 强调“学”的过程，learn 强调“学会、掌握”的结果。", "warn": "“学会开车”是 learn to drive；study driving 意思会变奇怪。", "chunks": [{"en": "learn English", "zh": "学英语", "audio": "62_c0.mp3", "localAudio": "audio_chunks/62_c0.mp3"}, {"en": "learn how to cook", "zh": "学做饭", "audio": "62_c1.mp3", "localAudio": "audio_chunks/62_c1.mp3"}, {"en": "learn from mistakes", "zh": "从错误中学习", "audio": "62_c2.mp3", "localAudio": "audio_chunks/62_c2.mp3"}], "dialogue": [{"speaker": "A: I studied English for years but can’t speak.", "en": "我学了多年英语，但还是不会说。", "zh": ""}, {"speaker": "B: You need to learn chunks, not single words.", "en": "你要学词块，不是背单词。", "zh": ""}], "dialogueAudio": "62_d.mp3", "dialogueLocal": "audio_chunks/62_d.mp3"}, {"id": 63, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "63", "en": "borrow / lend", "zh": "借入／借出", "audioChunk": "63_w0_borrow.mp3", "chunkLocal": "audio_chunks/63_w0_borrow.mp3", "core": "borrow 是“借进来”，lend 是“借出去”。同一件事，方向相反。", "warn": "方向别反：我借你的 = I borrow from you；你借我 = you lend to me。", "chunks": [{"en": "borrow a pen", "zh": "借支笔", "audio": "63_c0.mp3", "localAudio": "audio_chunks/63_c0.mp3"}, {"en": "Can you lend me...?", "zh": "你能借我……吗", "audio": "63_c1.mp3", "localAudio": "audio_chunks/63_c1.mp3"}, {"en": "borrow money", "zh": "借钱", "audio": "63_c2.mp3", "localAudio": "audio_chunks/63_c2.mp3"}], "dialogue": [{"speaker": "A: Can I borrow your pen?", "en": "能借你的笔吗？", "zh": ""}, {"speaker": "B: Sure, I’ll lend you my best one.", "en": "可以，把我最好的那支借你。", "zh": ""}], "dialogueAudio": "63_d.mp3", "dialogueLocal": "audio_chunks/63_d.mp3"}, {"id": 64, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "64", "en": "hurt", "zh": "疼、弄伤", "audioChunk": "64_w0_hurt.mp3", "chunkLocal": "audio_chunks/64_w0_hurt.mp3", "core": "身体部位 + hurts = 某处疼；hurt oneself / hurt my ankle = 弄伤。", "warn": "“我头疼”说 My head hurts 或 I have a headache，不说 I am painful。", "chunks": [{"en": "My back hurts.", "zh": "我背疼", "audio": "64_c0.mp3", "localAudio": "audio_chunks/64_c0.mp3"}, {"en": "hurt my ankle", "zh": "崴了脚", "audio": "64_c1.mp3", "localAudio": "audio_chunks/64_c1.mp3"}, {"en": "Does it hurt?", "zh": "疼吗？", "audio": "64_c2.mp3", "localAudio": "audio_chunks/64_c2.mp3"}], "dialogue": [{"speaker": "A: You look pale. What’s wrong?", "en": "你脸色不太好，怎么了？", "zh": ""}, {"speaker": "B: My stomach hurts. I need to see a doctor.", "en": "我胃疼，得去看医生。", "zh": ""}], "dialogueAudio": "64_d.mp3", "dialogueLocal": "audio_chunks/64_d.mp3"}, {"id": 65, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "65", "en": "feel", "zh": "感觉", "audioChunk": "65_w0_feel.mp3", "chunkLocal": "audio_chunks/65_w0_feel.mp3", "core": "描述身体或心情状态，后面直接加形容词：feel sick / feel better。", "warn": "feel 后面直接加形容词，不说 feel sickly。", "chunks": [{"en": "feel sick", "zh": "感觉不舒服", "audio": "65_c0.mp3", "localAudio": "audio_chunks/65_c0.mp3"}, {"en": "feel better", "zh": "好多了", "audio": "65_c1.mp3", "localAudio": "audio_chunks/65_c1.mp3"}, {"en": "feel nervous", "zh": "感到紧张", "audio": "65_c2.mp3", "localAudio": "audio_chunks/65_c2.mp3"}], "dialogue": [{"speaker": "A: How do you feel today?", "en": "今天感觉怎么样？", "zh": ""}, {"speaker": "B: I feel much better, thanks.", "en": "好多了，谢谢。", "zh": ""}], "dialogueAudio": "65_d.mp3", "dialogueLocal": "audio_chunks/65_d.mp3"}, {"id": 66, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "66", "en": "invite", "zh": "邀请", "audioChunk": "66_w0_invite.mp3", "chunkLocal": "audio_chunks/66_w0_invite.mp3", "core": "请别人来参加活动或来家里；邀请函这个名词是 invitation。", "warn": "邀请某人做某事：invite sb to a party / to come over。", "chunks": [{"en": "invite you to dinner", "zh": "请你吃饭", "audio": "66_c0.mp3", "localAudio": "audio_chunks/66_c0.mp3"}, {"en": "invite sb over", "zh": "请某人来家里", "audio": "66_c1.mp3", "localAudio": "audio_chunks/66_c1.mp3"}, {"en": "Thanks for inviting me.", "zh": "谢谢你邀请我", "audio": "66_c2.mp3", "localAudio": "audio_chunks/66_c2.mp3"}], "dialogue": [{"speaker": "A: We’re having BBQ on Saturday. Can we invite you?", "en": "周六我们烧烤，能叫上你吗？", "zh": ""}, {"speaker": "B: I’d love to! Thanks for inviting me.", "en": "太好了！谢谢你邀请我。", "zh": ""}], "dialogueAudio": "66_d.mp3", "dialogueLocal": "audio_chunks/66_d.mp3"}, {"id": 67, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "67", "en": "share", "zh": "分享、合用", "audioChunk": "67_w0_share.mp3", "chunkLocal": "audio_chunks/67_w0_share.mp3", "core": "共用、分摊、分享都可以；AA 付账就是 share the bill。", "warn": "share 后接 with：share it with him，不说 share to him。", "chunks": [{"en": "share the bill", "zh": "AA 付账", "audio": "67_c0.mp3", "localAudio": "audio_chunks/67_c0.mp3"}, {"en": "share a room", "zh": "合住房间", "audio": "67_c1.mp3", "localAudio": "audio_chunks/67_c1.mp3"}, {"en": "share it with me", "zh": "跟我分享一下", "audio": "67_c2.mp3", "localAudio": "audio_chunks/67_c2.mp3"}], "dialogue": [{"speaker": "A: Shall we share the bill?", "en": "我们各付各的吧？", "zh": ""}, {"speaker": "B: No, it’s on me today.", "en": "不用，今天我请。", "zh": ""}], "dialogueAudio": "67_d.mp3", "dialogueLocal": "audio_chunks/67_d.mp3"}, {"id": 68, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "68", "en": "join", "zh": "加入", "audioChunk": "68_w0_join.mp3", "chunkLocal": "audio_chunks/68_w0_join.mp3", "core": "加入人群、活动、组织；邀请别人一起常说 Join us!", "warn": "说 join us，不说 join with us。", "chunks": [{"en": "join us", "zh": "加入我们", "audio": "68_c0.mp3", "localAudio": "audio_chunks/68_c0.mp3"}, {"en": "join the gym", "zh": "办健身卡", "audio": "68_c1.mp3", "localAudio": "audio_chunks/68_c1.mp3"}, {"en": "join the meeting", "zh": "参加会议", "audio": "68_c2.mp3", "localAudio": "audio_chunks/68_c2.mp3"}], "dialogue": [{"speaker": "A: We’re going for hotpot. Want to join us?", "en": "我们去吃火锅，一起来吗？", "zh": ""}, {"speaker": "B: Count me in!", "en": "算我一个！", "zh": ""}], "dialogueAudio": "68_d.mp3", "dialogueLocal": "audio_chunks/68_d.mp3"}, {"id": 69, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "69", "en": "explain", "zh": "解释", "audioChunk": "69_w0_explain.mp3", "chunkLocal": "audio_chunks/69_w0_explain.mp3", "core": "给某人解释某事：explain sth to sb，不能双宾语。", "warn": "explain to me，不说 explain me：不能 explain sb sth。", "chunks": [{"en": "explain it again", "zh": "再解释一遍", "audio": "69_c0.mp3", "localAudio": "audio_chunks/69_c0.mp3"}, {"en": "explain how it works", "zh": "讲讲怎么用", "audio": "69_c1.mp3", "localAudio": "audio_chunks/69_c1.mp3"}, {"en": "Let me explain.", "zh": "我来解释一下。", "audio": "69_c2.mp3", "localAudio": "audio_chunks/69_c2.mp3"}], "dialogue": [{"speaker": "A: I don’t get this rule.", "en": "我不懂这条规则。", "zh": ""}, {"speaker": "B: Let me explain with an example.", "en": "我用例子给你解释。", "zh": ""}], "dialogueAudio": "69_d.mp3", "dialogueLocal": "audio_chunks/69_d.mp3"}, {"id": 70, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "70", "en": "mean", "zh": "意思是", "audioChunk": "70_w0_mean.mp3", "chunkLocal": "audio_chunks/70_w0_mean.mp3", "core": "问意思、解释自己刚说的话都靠它；口语高频 What do you mean?", "warn": "mean 的名词是 meaning，不是 means（那是方式）。", "chunks": [{"en": "What does it mean?", "zh": "这是什么意思", "audio": "70_c0.mp3", "localAudio": "audio_chunks/70_c0.mp3"}, {"en": "I mean...", "zh": "我是说……", "audio": "70_c1.mp3", "localAudio": "audio_chunks/70_c1.mp3"}, {"en": "What do you mean?", "zh": "你什么意思？", "audio": "70_c2.mp3", "localAudio": "audio_chunks/70_c2.mp3"}], "dialogue": [{"speaker": "A: The meeting is “optional”.", "en": "这个会是“自愿参加”的。", "zh": ""}, {"speaker": "B: What does that mean exactly?", "en": "具体是什么意思？", "zh": ""}], "dialogueAudio": "70_d.mp3", "dialogueLocal": "audio_chunks/70_d.mp3"}, {"id": 71, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "71", "en": "agree / disagree", "zh": "同意／不同意", "audioChunk": "71_w0_agree.mp3", "chunkLocal": "audio_chunks/71_w0_agree.mp3", "core": "agree with sb / sth；加强语气说 I couldn’t agree more（再同意不过）。", "warn": "agree 是动词，别写 I am agree；直接说 I agree。", "chunks": [{"en": "I agree with you.", "zh": "我同意你", "audio": "71_c0.mp3", "localAudio": "audio_chunks/71_c0.mp3"}, {"en": "I couldn’t agree more.", "zh": "我完全同意", "audio": "71_c1.mp3", "localAudio": "audio_chunks/71_c1.mp3"}, {"en": "I disagree.", "zh": "我不同意", "audio": "71_c2.mp3", "localAudio": "audio_chunks/71_c2.mp3"}], "dialogue": [{"speaker": "A: I think the plan is too expensive.", "en": "我觉得这个方案太贵了。", "zh": ""}, {"speaker": "B: I couldn’t agree more.", "en": "我完全同意。", "zh": ""}], "dialogueAudio": "71_d.mp3", "dialogueLocal": "audio_chunks/71_d.mp3"}, {"id": 72, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "72", "en": "suggest", "zh": "建议", "audioChunk": "72_w0_suggest.mp3", "chunkLocal": "audio_chunks/72_w0_suggest.mp3", "core": "suggest + doing 或 suggest 名词；不能说 suggest sb to do。", "warn": "不说 suggest to go；要说 suggest going。", "chunks": [{"en": "suggest doing", "zh": "建议做", "audio": "72_c0.mp3", "localAudio": "audio_chunks/72_c0.mp3"}, {"en": "suggest a place", "zh": "推荐个地方", "audio": "72_c1.mp3", "localAudio": "audio_chunks/72_c1.mp3"}, {"en": "What do you suggest?", "zh": "你有什么建议？", "audio": "72_c2.mp3", "localAudio": "audio_chunks/72_c2.mp3"}], "dialogue": [{"speaker": "A: Where should we eat?", "en": "咱们吃什么？", "zh": ""}, {"speaker": "B: I suggest the new Thai place.", "en": "我推荐新开的那家泰餐。", "zh": ""}], "dialogueAudio": "72_d.mp3", "dialogueLocal": "audio_chunks/72_d.mp3"}, {"id": 73, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "73", "en": "introduce", "zh": "介绍", "audioChunk": "73_w0_introduce.mp3", "chunkLocal": "audio_chunks/73_w0_introduce.mp3", "core": "自我介绍 introduce myself；把 A 介绍给 B 是 introduce A to B。", "warn": "introduce A to B；名词是 introduction。", "chunks": [{"en": "introduce myself", "zh": "自我介绍", "audio": "73_c0.mp3", "localAudio": "audio_chunks/73_c0.mp3"}, {"en": "Let me introduce...", "zh": "我来介绍一下……", "audio": "73_c1.mp3", "localAudio": "audio_chunks/73_c1.mp3"}, {"en": "introduce A to B", "zh": "把 A 介绍给 B", "audio": "73_c2.mp3", "localAudio": "audio_chunks/73_c2.mp3"}], "dialogue": [{"speaker": "A: Hi, I don’t think we’ve met.", "en": "你好，我们好像没见过。", "zh": ""}, {"speaker": "B: Let me introduce myself. I’m Lin.", "en": "我自我介绍一下，我叫林。", "zh": ""}], "dialogueAudio": "73_d.mp3", "dialogueLocal": "audio_chunks/73_d.mp3"}, {"id": 74, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "74", "en": "promise", "zh": "承诺、保证", "audioChunk": "74_w0_promise.mp3", "chunkLocal": "audio_chunks/74_w0_promise.mp3", "core": "答应做某事 promise to do；口语里单说 I promise 就很有力。", "warn": "promise to do；口语也说 I promise I won’t be late。", "chunks": [{"en": "I promise.", "zh": "我保证", "audio": "74_c0.mp3", "localAudio": "audio_chunks/74_c0.mp3"}, {"en": "promise to do", "zh": "答应做", "audio": "74_c1.mp3", "localAudio": "audio_chunks/74_c1.mp3"}, {"en": "keep a promise", "zh": "信守承诺", "audio": "74_c2.mp3", "localAudio": "audio_chunks/74_c2.mp3"}], "dialogue": [{"speaker": "A: You’ll pick me up at 8, right?", "en": "你八点来接我，对吧？", "zh": ""}, {"speaker": "B: I promise. I won’t be late.", "en": "我保证，不会迟到。", "zh": ""}], "dialogueAudio": "74_d.mp3", "dialogueLocal": "audio_chunks/74_d.mp3"}, {"id": 75, "secIdx": 3, "secTitle": "三、补充 25 个", "num": "75", "en": "thank / apologize", "zh": "感谢／道歉", "audioChunk": "75_w0_thank.mp3", "chunkLocal": "audio_chunks/75_w0_thank.mp3", "core": "thank sb for sth；apologize for sth。口语更常说 Thanks for... / I’m sorry for...", "warn": "thank sb for doing；道歉名词是 apology，动词是 apologize。", "chunks": [{"en": "thank you for...", "zh": "谢谢你……", "audio": "75_c0.mp3", "localAudio": "audio_chunks/75_c0.mp3"}, {"en": "apologize for...", "zh": "为……道歉", "audio": "75_c1.mp3", "localAudio": "audio_chunks/75_c1.mp3"}, {"en": "I’m sorry for...", "zh": "实在抱歉……", "audio": "75_c2.mp3", "localAudio": "audio_chunks/75_c2.mp3"}], "dialogue": [{"speaker": "A: Thanks for helping me move.", "en": "谢谢你帮我搬家。", "zh": ""}, {"speaker": "B: No problem. Sorry I couldn’t stay longer.", "en": "小事。抱歉没能多待会儿。", "zh": ""}], "dialogueAudio": "75_d.mp3", "dialogueLocal": "audio_chunks/75_d.mp3"}]};
+
+    // State Variables
+    let currentScale = 1.0;
+    const fontScales = [
+      { label: '偏小', size: '16.5px' },
+      { label: '标准', size: '18.5px' },
+      { label: '放大', size: '20.5px' },
+      { label: '超大', size: '23.0px' }
+    ];
+    let fontScaleIdx = 1;
+
+    let currentSpeed = 1.0;
+    const speeds = [1.0, 0.8, 1.2];
+    let speedIdx = 0;
+
+    let currentMask = 'none'; // 'none' | 'en' | 'zh'
+    const maskModes = [
+      { id: 'none', label: '正常' },
+      { id: 'en', label: '遮英文' },
+      { id: 'zh', label: '遮中文' }
+    ];
+    let maskIdx = 0;
+
+    let onlyStarred = false;
+    let starredIds = new Set();
+    const STAR_STORAGE_KEY = 'chunklab_action_starred';
+
+    let activeSection = null;
+    let searchQuery = '';
+    let isLooping = false;
+    let loopItem = null;
+
+    // Load Starred from localStorage
+    try {
+      const savedStars = localStorage.getItem(STAR_STORAGE_KEY);
+      if (savedStars) {
+        starredIds = new Set(JSON.parse(savedStars));
+      }
+    } catch(e) {}
+
+    // Audio Engine
+    class AudioEngine {
+      constructor() {
+        this.audio = new Audio();
+        this.speechSynth = window.speechSynthesis;
+        this.currentActiveEl = null;
+
+        this.audio.onerror = () => {
+          if (this.currentFallbackText) {
+            this.speakText(this.currentFallbackText);
+          }
+        };
+
+        this.audio.onended = () => {
+          if (isLooping && loopItem) {
+            this.playItem(loopItem);
+          } else {
+            this.clearPlayingUI();
+          }
+        };
+      }
+
+      playItem(item) {
+        this.stop();
+        loopItem = item;
+        updateBottomPlayer(item);
+
+        const text = item.en;
+        this.currentFallbackText = text;
+
+        if (item.localAudio) {
+          let src = item.localAudio;
+          if (window.location.protocol.startsWith('http')) {
+            src += (src.includes('?') ? '&' : '?') + 't=' + Date.now();
+          }
+          this.audio.src = src;
+          this.audio.playbackRate = currentSpeed;
+          this.audio.play().catch(() => {
+            this.speakText(text);
+          });
+        } else {
+          this.speakText(text);
+        }
+      }
+
+      speakText(text) {
+        if (!this.speechSynth) return;
+        this.speechSynth.cancel();
+
+        const cleanText = text
+          .replace(/\+\s*名词/g, '')
+          .replace(/\+\s*动词[^\s]*/g, '')
+          .replace(/\.(2,)/g, '')
+          .replace(/[\/\(\)]/g, ' ')
+          .replace(/\$/g, ' dollars ')
+          .trim();
+
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = 'en-US';
+        utterance.rate = currentSpeed;
+        this.speechSynth.speak(utterance);
+      }
+
+      stop() {
+        this.audio.pause();
+        this.audio.currentTime = 0;
+        if (this.speechSynth) this.speechSynth.cancel();
+      }
+
+      clearPlayingUI() {
+        document.querySelectorAll('.is-speaking').forEach(el => el.classList.remove('is-speaking'));
+        const btn = document.getElementById('btnPlayPause');
+        if (btn) btn.textContent = '▶ 播放';
+      }
+    }
+
+    const player = new AudioEngine();
+
+    // DOM Elements
+    const mainContainer = document.getElementById('mainContainer');
+    const searchInput = document.getElementById('searchInput');
+    const btnClearSearch = document.getElementById('btnClearSearch');
+    const sectionPillBar = document.getElementById('sectionPillBar');
+
+    const btnFontDec = document.getElementById('btnFontDec');
+    const btnFontInc = document.getElementById('btnFontInc');
+    const fontLabel = document.getElementById('fontLabel');
+
+    const btnSpeedToggle = document.getElementById('btnSpeedToggle');
+    const speedLabel = document.getElementById('speedLabel');
+
+    const btnMaskToggle = document.getElementById('btnMaskToggle');
+    const maskLabel = document.getElementById('maskLabel');
+
+    const btnStarFilter = document.getElementById('btnStarFilter');
+    const starFilterLabel = document.getElementById('starFilterLabel');
+
+    const bottomPlayerBar = document.getElementById('bottomPlayerBar');
+    const nowPlayingEn = document.getElementById('nowPlayingEn');
+    const nowPlayingZh = document.getElementById('nowPlayingZh');
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const btnLoopToggle = document.getElementById('btnLoopToggle');
+    const btnClosePlayer = document.getElementById('btnClosePlayer');
+
+    // Desktop Link Auto Switch
+    if (window.location.protocol === 'file:') {
+      document.querySelectorAll('.module-tab').forEach(tab => {
+        const dh = tab.getAttribute('data-desktop-href');
+        if (dh) tab.setAttribute('href', dh);
+      });
+    }
+
+    // Initialize UI
+    function init() {
+      renderSectionPills();
+      renderCards();
+      bindEvents();
+    }
+
+    function renderSectionPills() {
+      const sections = window.CURRENT_DB.sections;
+      let html = `<button class="sec-pill ${activeSection === null ? 'active' : ''}" data-sec="all">全部 (${window.CURRENT_DB.cards.length})</button>`;
+
+      sections.forEach(s => {
+        html += `<button class="sec-pill ${activeSection === s.secIdx ? 'active' : ''}" data-sec="${s.secIdx}">${s.title} (${s.count})</button>`;
+      });
+
+      sectionPillBar.innerHTML = html;
+    }
+
+    function renderCards() {
+      const sections = window.CURRENT_DB.sections;
+      const allCards = window.CURRENT_DB.cards;
+
+      let renderedSectionCount = 0;
+      let totalRenderedCards = 0;
+      let html = '';
+
+      sections.forEach(sec => {
+        if (activeSection !== null && sec.secIdx !== activeSection) return;
+
+        const matchingCards = allCards.filter(c => {
+          if (c.secIdx !== sec.secIdx) return false;
+          if (onlyStarred && !starredIds.has(c.id)) return false;
+          if (searchQuery) {
+            const q = searchQuery;
+            const inEn = (c.en || '').toLowerCase().includes(q);
+            const inZh = (c.zh || '').toLowerCase().includes(q);
+            const inCore = (c.core || '').toLowerCase().includes(q);
+            const inUsage = (c.usage || '').toLowerCase().includes(q);
+            const inWarn = (c.warn || '').toLowerCase().includes(q);
+            const inEx = (c.examples || []).some(ex => (ex.en || '').toLowerCase().includes(q) || (ex.zh || '').toLowerCase().includes(q));
+            const inChunks = (c.chunks || []).some(sc => (sc.en || '').toLowerCase().includes(q) || (sc.zh || '').toLowerCase().includes(q));
+            const inDial = (c.dialogue || []).some(d => (d.en || '').toLowerCase().includes(q) || (d.zh || '').toLowerCase().includes(q));
+            if (!inEn && !inZh && !inCore && !inUsage && !inWarn && !inEx && !inChunks && !inDial) return false;
+          }
+          return true;
+        });
+
+        if (matchingCards.length === 0) return;
+
+        renderedSectionCount++;
+        totalRenderedCards += matchingCards.length;
+
+        html += `
+          <section class="section-block" id="section-block-${sec.secIdx}">
+            <div class="section-header-banner">
+              <div>
+                <h2>${sec.title}</h2>
+                ${sec.intro ? `<p class="section-intro-text">${sec.intro}</p>` : ''}
+              </div>
+              <span class="section-badge-count">${matchingCards.length} 项</span>
+            </div>
+
+            <div class="cards-grid">
+              ${matchingCards.map(c => renderSingleCard(c)).join('')}
+            </div>
+          </section>
+        `;
+      });
+
+      if (totalRenderedCards === 0) {
+        html = `
+          <div style="text-align:center; padding: 60px 20px; color: #94a3b8;">
+            <div style="font-size: 3rem; margin-bottom: 12px;">🔍</div>
+            <h3 style="font-size: 1.2rem; color: #475569; margin-bottom: 6px;">没有找到符合条件的内容</h3>
+            <p style="font-size: 0.9rem;">请尝试更换搜索关键词，或者重置生词本筛选条件</p>
+          </div>
+        `;
+      }
+
+      mainContainer.innerHTML = html;
+      document.getElementById('totalCardBadge').textContent = `${totalRenderedCards} 词块`;
+    }
+
+    
+    function renderSingleCard(card) {
+      const isStarred = starredIds.has(card.id);
+
+      const subchunksHtml = (card.chunks || []).map((sc, idx) => `
+        <div class="subchunk-card" id="sc-${card.id}-${idx}">
+          <div class="subchunk-content" onclick="playSubChunk(${card.id}, ${idx})">
+            <span class="subchunk-code"><code>${sc.en}</code></span>
+            <span class="subchunk-zh">${sc.zh}</span>
+          </div>
+          <button class="btn-audio-play" onclick="playSubChunk(${card.id}, ${idx}, event)" title="点击发音">▶</button>
+        </div>
+      `).join('');
+
+      const dialogueHtml = (card.dialogue && card.dialogue.length) ? `
+        <div class="dialogue-wrap">
+          <div class="dialogue-header-bar">
+            <span>💬 场景实战对话</span>
+            ${card.dialogueLocal ? `
+              <button class="btn-dialogue-play" onclick="playDialogue(${card.id}, event)" title="点击收听整段对话">
+                <span>▶</span> <span>整段对话点读</span>
+              </button>
+            ` : ''}
+          </div>
+          <div class="dialogue-lines">
+            ${card.dialogue.map(d => `
+              <div class="dialogue-row">
+                <span class="dialogue-speaker speaker-${(d.speaker || '').toLowerCase().trim()}">${d.speaker}</span>
+                <div class="dialogue-bubble">
+                  <div class="dialogue-en">${d.en}</div>
+                  <div class="dialogue-zh">${d.zh}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : '';
+
+      return `
+        <article class="chunk-card ${isStarred ? 'is-starred' : ''}" id="card-${card.id}">
+          <div class="card-top-row">
+            <div class="chunk-identity-group">
+              <div class="card-meta-line">
+                <span class="card-number-badge">#${String(card.num).padStart(2, '0')}</span>
+                <span class="card-category-tag">${card.secTitle.replace(/^[一二三四五六七八九十]+[、.]/, '')}</span>
+              </div>
+              <div class="chunk-en-title" onclick="playChunk(${card.id})" title="点击发音">
+                <span>${card.en}</span>
+                <span style="font-size: 1rem; color: var(--primary); opacity: 0.8;">🔊</span>
+              </div>
+              <div class="chunk-zh-meaning">${card.zh}</div>
+            </div>
+            <button class="btn-star ${isStarred ? 'active' : ''}" onclick="toggleStar(${card.id}, event)" title="加入生词本">
+              ${isStarred ? '⭐' : '☆'}
+            </button>
+          </div>
+
+          ${card.core ? `
+            <div class="insight-box insight-core" style="margin-bottom: 12px;">
+              <div class="insight-box-title">🧠 先抓核心</div>
+              <div>${card.core}</div>
+            </div>
+          ` : ''}
+
+          ${subchunksHtml ? `
+            <div class="subchunks-wrap">
+              <div class="examples-header-label">
+                <span>🧩 高频词块 · 搭配拓展</span>
+              </div>
+              <div class="subchunks-list">
+                ${subchunksHtml}
+              </div>
+            </div>
+          ` : ''}
+
+          ${dialogueHtml}
+
+          ${card.warn ? `
+            <div class="warn-box" style="margin-top: 12px;">
+              <div class="warn-title">⚠️ 容易弄错</div>
+              <div>${card.warn}</div>
+            </div>
+          ` : ''}
+        </article>
+      `;
+    }
+
+    window.playSubChunk = function(cardId, scIdx, event) {
+      if (event) event.stopPropagation();
+      const card = window.CURRENT_DB.cards.find(c => c.id === cardId);
+      if (!card || !card.chunks || !card.chunks[scIdx]) return;
+      const sc = card.chunks[scIdx];
+
+      player.clearPlayingUI();
+      const scEl = document.getElementById(`sc-${cardId}-${scIdx}`);
+      if (scEl) scEl.classList.add('is-speaking');
+
+      player.playItem({
+        en: sc.en,
+        zh: sc.zh,
+        localAudio: sc.localAudio
+      });
+    };
+
+    window.playDialogue = function(cardId, event) {
+      if (event) event.stopPropagation();
+      const card = window.CURRENT_DB.cards.find(c => c.id === cardId);
+      if (!card || !card.dialogueLocal) return;
+
+      player.clearPlayingUI();
+      const cardEl = document.getElementById(`card-${cardId}`);
+      if (cardEl) cardEl.classList.add('is-speaking');
+
+      player.playItem({
+        en: `${card.en} - 对话实战`,
+        zh: card.zh,
+        localAudio: card.dialogueLocal
+      });
+    };
+
+
+    // Play action
+    window.playChunk = function(cardId, event) {
+      if (event) event.stopPropagation();
+      const card = window.CURRENT_DB.cards.find(c => c.id === cardId);
+      if (!card) return;
+
+      player.clearPlayingUI();
+      const cardEl = document.getElementById(`card-${cardId}`);
+      if (cardEl) cardEl.classList.add('is-speaking');
+
+      player.playItem({
+        en: card.en,
+        zh: card.zh,
+        localAudio: card.chunkLocal
+      });
+    };
+
+    window.toggleStar = function(cardId, event) {
+      if (event) event.stopPropagation();
+      if (starredIds.has(cardId)) {
+        starredIds.delete(cardId);
+      } else {
+        starredIds.add(cardId);
+      }
+
+      try {
+        localStorage.setItem(STAR_STORAGE_KEY, JSON.stringify([...starredIds]));
+      } catch(e) {}
+
+      renderCards();
+    };
+
+    function updateBottomPlayer(item) {
+      nowPlayingEn.textContent = item.en;
+      nowPlayingZh.textContent = item.zh || '';
+      bottomPlayerBar.classList.add('active');
+      btnPlayPause.textContent = '⏸ 暂停';
+    }
+
+    function bindEvents() {
+      // Font Sizing
+      btnFontDec.onclick = () => {
+        if (fontScaleIdx > 0) {
+          fontScaleIdx--;
+          document.documentElement.style.setProperty('--base-size', fontScales[fontScaleIdx].size);
+          fontLabel.textContent = fontScales[fontScaleIdx].label;
+        }
+      };
+      btnFontInc.onclick = () => {
+        if (fontScaleIdx < fontScales.length - 1) {
+          fontScaleIdx++;
+          document.documentElement.style.setProperty('--base-size', fontScales[fontScaleIdx].size);
+          fontLabel.textContent = fontScales[fontScaleIdx].label;
+        }
+      };
+
+      // Speed Toggle
+      btnSpeedToggle.onclick = () => {
+        speedIdx = (speedIdx + 1) % speeds.length;
+        currentSpeed = speeds[speedIdx];
+        speedLabel.textContent = `${currentSpeed.toFixed(1)}x`;
+        player.audio.playbackRate = currentSpeed;
+      };
+
+      // Mask Mode Toggle
+      btnMaskToggle.onclick = () => {
+        maskIdx = (maskIdx + 1) % maskModes.length;
+        const mode = maskModes[maskIdx];
+        maskLabel.textContent = mode.label;
+        document.body.classList.remove('mask-en', 'mask-zh');
+        if (mode.id === 'en') document.body.classList.add('mask-en');
+        if (mode.id === 'zh') document.body.classList.add('mask-zh');
+        btnMaskToggle.classList.toggle('active', mode.id !== 'none');
+      };
+
+      // Star Filter
+      btnStarFilter.onclick = () => {
+        onlyStarred = !onlyStarred;
+        btnStarFilter.classList.toggle('active', onlyStarred);
+        starFilterLabel.textContent = onlyStarred ? `已收藏 (${starredIds.size})` : '生词本';
+        renderCards();
+      };
+
+      // Search Filter
+      searchInput.oninput = (e) => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        btnClearSearch.style.display = searchQuery ? 'block' : 'none';
+        renderCards();
+      };
+      btnClearSearch.onclick = () => {
+        searchInput.value = '';
+        searchQuery = '';
+        btnClearSearch.style.display = 'none';
+        renderCards();
+      };
+
+      // Section Pill Clicks
+      sectionPillBar.onclick = (e) => {
+        const btn = e.target.closest('.sec-pill');
+        if (!btn) return;
+        const secVal = btn.dataset.sec;
+        activeSection = secVal === 'all' ? null : parseInt(secVal);
+        renderSectionPills();
+        renderCards();
+      };
+
+      // Bottom Player Controls
+      btnPlayPause.onclick = () => {
+        if (player.audio.paused) {
+          if (loopItem) {
+            player.playItem(loopItem);
+          }
+        } else {
+          player.audio.pause();
+          btnPlayPause.textContent = '▶ 播放';
+          player.clearPlayingUI();
+        }
+      };
+
+      btnLoopToggle.onclick = () => {
+        isLooping = !isLooping;
+        btnLoopToggle.classList.toggle('loop-on', isLooping);
+        btnLoopToggle.textContent = isLooping ? '🔂 正在循环' : '🔁 单曲循环';
+      };
+
+      btnClosePlayer.onclick = () => {
+        player.stop();
+        bottomPlayerBar.classList.remove('active');
+        player.clearPlayingUI();
+      };
+
+      // Card Navigation Prev / Next
+      document.getElementById('btnPrevCard').onclick = () => {
+        if (!loopItem) return;
+        const cards = window.CURRENT_DB.cards;
+        const curIdx = cards.findIndex(c => c.en === loopItem.en || (c.examples && c.examples.some(ex => ex.en === loopItem.en)));
+        if (curIdx > 0) {
+          playChunk(cards[curIdx - 1].id);
+        }
+      };
+
+      document.getElementById('btnNextCard').onclick = () => {
+        if (!loopItem) return;
+        const cards = window.CURRENT_DB.cards;
+        const curIdx = cards.findIndex(c => c.en === loopItem.en || (c.examples && c.examples.some(ex => ex.en === loopItem.en)));
+        if (curIdx >= 0 && curIdx < cards.length - 1) {
+          playChunk(cards[curIdx + 1].id);
+        }
+      };
+    }
+
+    init();
+  </script>
+</body>
+</html>

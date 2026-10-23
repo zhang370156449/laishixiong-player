@@ -662,7 +662,348 @@
       .zh { font-size: calc(0.88rem * var(--font-scale)); }
       .btn-play { width: 38px; height: 38px; font-size: 14px; }
     }
+  
+    /* ==========================================================================
+       Night Mode / Dark Theme (Obsidian Slate Aesthetic)
+       ========================================================================== */
+    body.theme-dark {
+      --primary: #818cf8;
+      --primary-hover: #a5b4fc;
+      --primary-light: rgba(99, 102, 241, 0.18);
+      --primary-glow: rgba(99, 102, 241, 0.35);
+      --accent: #a78bfa;
+      --accent-light: rgba(167, 139, 250, 0.16);
+      --bg: #090c15;
+      --surface: rgba(18, 24, 39, 0.94);
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --surface-border-subtle: rgba(255, 255, 255, 0.04);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-light: #64748b;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.75);
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #090c15 50%, #06080e 100%);
+      background-color: #090c15;
+      background-attachment: fixed;
+      color: var(--text-main);
+    }
+
+    /* Navbar Dark */
+    body.theme-dark .navbar {
+      background: rgba(12, 16, 28, 0.88);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    body.theme-dark .brand-text h1 {
+      color: #f8fafc;
+    }
+    body.theme-dark .brand-badge {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: rgba(99, 102, 241, 0.4);
+      color: #a5b4fc;
+    }
+    body.theme-dark .brand-sub {
+      color: #94a3b8;
+    }
+    body.theme-dark .btn-chunklab {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+    body.theme-dark .btn-chunklab:hover {
+      background: rgba(16, 185, 129, 0.22);
+      border-color: #34d399;
+      color: #6ee7b7;
+    }
+    body.theme-dark .btn-tomelab {
+      background: rgba(99, 102, 241, 0.14);
+      color: #a5b4fc;
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+    body.theme-dark .btn-tomelab:hover {
+      background: rgba(99, 102, 241, 0.24);
+      border-color: #a5b4fc;
+      color: #c7d2fe;
+    }
+
+    /* Theme Toggle Button */
+    .btn-theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid var(--surface-border);
+      background: var(--surface);
+      color: var(--text-main);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-theme-toggle:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
+    }
+    .theme-icon {
+      font-size: 14px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .btn-theme-toggle:hover .theme-icon {
+      transform: rotate(20deg) scale(1.15);
+    }
+    body.theme-dark .btn-theme-toggle {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.16);
+      color: #f8fafc;
+    }
+    body.theme-dark .btn-theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.26);
+    }
+
+    /* Sticky Toolbar Dark */
+    body.theme-dark .sticky-toolbar {
+      background: rgba(9, 12, 21, 0.92);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .series-tabs {
+      background: rgba(255, 255, 255, 0.06);
+    }
+    body.theme-dark .tab-btn {
+      color: #94a3b8;
+    }
+    body.theme-dark .tab-btn:hover {
+      color: #f8fafc;
+    }
+    body.theme-dark .tab-btn.active {
+      background: rgba(99, 102, 241, 0.28);
+      color: #e0e7ff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    }
+    body.theme-dark .tab-badge {
+      background: rgba(139, 92, 246, 0.25);
+      color: #ddd6fe;
+    }
+    body.theme-dark .tab-badge.loading {
+      background: rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+    }
+
+    body.theme-dark .search-input {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+    }
+    body.theme-dark .search-input:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #818cf8;
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+    }
+    body.theme-dark .search-input::placeholder {
+      color: #64748b;
+    }
+
+    body.theme-dark .custom-select {
+      background-color: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    }
+    body.theme-dark .custom-select option {
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+
+    body.theme-dark .counter-pill {
+      background: rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+    }
+
+    /* Toolbar Row 2 Controls */
+    body.theme-dark .tool-pill-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #e2e8f0;
+    }
+    body.theme-dark .tool-pill-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    body.theme-dark .tool-pill-btn.active {
+      background: rgba(139, 92, 246, 0.25);
+      border-color: #a78bfa;
+      color: #ede9fe;
+      box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.3);
+    }
+
+    body.theme-dark .tool-select-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    body.theme-dark .tool-select-pill label {
+      color: #94a3b8;
+    }
+    body.theme-dark .pill-dropdown {
+      color: #f8fafc;
+    }
+    body.theme-dark .pill-dropdown option {
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+
+    body.theme-dark .font-stepper {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    body.theme-dark .font-btn {
+      color: #f8fafc;
+    }
+    body.theme-dark .font-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    body.theme-dark .font-indicator {
+      color: #a5b4fc;
+    }
+
+    /* Sentence Cards Dark */
+    body.theme-dark .row {
+      background: rgba(20, 26, 42, 0.88);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+    body.theme-dark .row:hover {
+      background: rgba(26, 34, 54, 0.95);
+      border-color: rgba(129, 140, 248, 0.4);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+    }
+    body.theme-dark .row.playing {
+      background: rgba(49, 36, 92, 0.5);
+      border-color: #a78bfa;
+      box-shadow: 0 0 0 2px #a78bfa, 0 8px 25px rgba(139, 92, 246, 0.35);
+    }
+    body.theme-dark .row.waiting {
+      background: rgba(30, 27, 75, 0.4);
+      border-color: rgba(167, 139, 250, 0.6);
+      box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.4);
+    }
+
+    body.theme-dark .row-no {
+      color: #64748b;
+    }
+    body.theme-dark .tag-l {
+      background: rgba(139, 92, 246, 0.2);
+      color: #c4b5fd;
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+    body.theme-dark .tag-e {
+      background: rgba(56, 189, 248, 0.18);
+      color: #7dd3fc;
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+    body.theme-dark .tag-p {
+      background: rgba(245, 158, 11, 0.18);
+      color: #fcd34d;
+      border-color: rgba(245, 158, 11, 0.35);
+    }
+
+    body.theme-dark .en {
+      color: #ffffff;
+    }
+    body.theme-dark .zh {
+      color: #94a3b8;
+    }
+    body.theme-dark .note {
+      background: rgba(139, 92, 246, 0.2);
+      border-color: rgba(167, 139, 250, 0.35);
+      color: #d8b4fe;
+    }
+
+    body.theme-dark .loop-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+    }
+    body.theme-dark .loop-pill:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+    }
+    body.theme-dark .loop-pill.on {
+      background: rgba(139, 92, 246, 0.25);
+      border-color: #a78bfa;
+      color: #ede9fe;
+    }
+
+    body.theme-dark .empty-loading-card {
+      background: rgba(20, 26, 42, 0.8);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .empty-loading-card h3 {
+      color: #f8fafc;
+    }
+    body.theme-dark .empty-loading-card p {
+      color: #94a3b8;
+    }
+
   </style>
+  <script>
+
+  // ==========================================
+  // Theme Management (Light / Dark)
+  // ==========================================
+  const THEME_STORAGE_KEY = 'echoloop_theme';
+  let currentTheme = localStorage.getItem(THEME_STORAGE_KEY) || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+  function applyTheme() {
+    const isDark = (currentTheme === 'dark');
+    document.body.classList.toggle('theme-dark', isDark);
+    document.documentElement.classList.toggle('theme-dark', isDark);
+    const icon = document.getElementById('themeIcon');
+    const label = document.getElementById('themeLabel');
+    const btn = document.getElementById('btnThemeToggle');
+    if (icon && label) {
+      if (isDark) {
+        icon.textContent = '☀️';
+        label.textContent = '日间模式';
+        if (btn) btn.classList.add('active');
+      } else {
+        icon.textContent = '🌙';
+        label.textContent = '夜间模式';
+        if (btn) btn.classList.remove('active');
+      }
+    }
+  }
+
+  function toggleTheme() {
+    currentTheme = (currentTheme === 'light') ? 'dark' : 'light';
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, currentTheme);
+    } catch(e) {}
+    applyTheme();
+  }
+
+  // Initial apply when script runs
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyTheme);
+  } else {
+    applyTheme();
+  }
+
+
+    (function() {
+      try {
+        const saved = localStorage.getItem('echoloop_theme');
+        if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('theme-dark');
+          document.addEventListener('DOMContentLoaded', () => document.body.classList.add('theme-dark'));
+        }
+      } catch(e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -680,7 +1021,11 @@
           <p class="brand-sub">点哪句播哪句 · 赖世雄入门篇 / Extra English / 高频短语原声点读</p>
         </div>
       </a>
-      <div class="nav-actions">
+            <div class="nav-actions">
+        <button class="btn-theme-toggle" id="btnThemeToggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+          <span class="theme-icon" id="themeIcon">🌙</span>
+          <span class="theme-label" id="themeLabel">夜间模式</span>
+        </button>
         <a href="chunks_daily.html" class="nav-link-btn btn-chunklab" title="前往 ChunkLab 核心词块实验工作台">
           <span>🧩 ChunkLab 词块实验</span>
         </a>

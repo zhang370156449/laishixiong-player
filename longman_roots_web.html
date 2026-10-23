@@ -785,9 +785,37 @@
       color: var(--text-sub);
       background: var(--sub-card-bg);
       border-left: 4px solid var(--accent);
-      padding: 10px 14px;
-      border-radius: 0 10px 10px 0;
+      padding: 12px 18px;
+      border-radius: 0 12px 12px 0;
       line-height: 1.65;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .rwc-example-en {
+      font-size: 15.5px;
+      color: var(--text-main);
+      line-height: 1.65;
+      font-weight: 500;
+    }
+    .rwc-example-zh {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .rwc-zh-label {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--accent-light);
+      background: var(--formula-bg);
+      border: 1px solid var(--formula-border);
+      padding: 1px 6px;
+      border-radius: 5px;
+      flex-shrink: 0;
+      letter-spacing: 0.5px;
     }
 
     /* Mask / Self-Testing Mode */
@@ -2505,7 +2533,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pro- (向前) + pose (放)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>propose a plan 提出方案</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The committee proposed changes to the existing policy.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The committee proposed changes to the existing policy.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>委员会对现有政策提出了修改建议。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="expose" onclick="playWord('expose', this)">
@@ -2523,7 +2554,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (向外) + pose (放)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>expose the truth 揭露真相</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Do not expose your skin to strong sunlight for too long.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Do not expose your skin to strong sunlight for too long.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>切勿将皮肤长时间暴露在强烈的阳光下。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="oppose" onclick="playWord('oppose', this)">
@@ -2541,7 +2575,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>op- (相反/对立) + pose (放)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>strongly oppose 坚决反对</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Many local residents oppose the construction of the highway.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Many local residents oppose the construction of the highway.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>许多当地居民反对修建这条公路。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="compose" onclick="playWord('compose', this)">
@@ -2559,7 +2596,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>com- (共同) + pose (放)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>be composed of 由...组成</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Water is composed of hydrogen and oxygen atoms.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Water is composed of hydrogen and oxygen atoms.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>水是由氢原子和氧原子构成的。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="suppose" onclick="playWord('suppose', this)">
@@ -2577,7 +2617,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sup- (在下方) + pose (放)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>be supposed to 应该、理应</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>What are you supposed to do when an alarm rings?</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>What are you supposed to do when an alarm rings?</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>警报响起时，你应该做些什么？</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="deposit" onclick="playWord('deposit', this)">
@@ -2595,7 +2638,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>de- (向下) + posit (放)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>pay a deposit 支付押金</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>You need to pay a one-month deposit to rent the flat.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>You need to pay a one-month deposit to rent the flat.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>租下这套公寓你需要先支付一个月的押金。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="postpone" onclick="playWord('postpone', this)">
@@ -2613,7 +2659,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>post- (在后) + pone (放)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>postpone the meeting 延期会议</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The match was postponed due to heavy rain.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The match was postponed due to heavy rain.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>由于大雨，比赛被迫推迟举行。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="component" onclick="playWord('component', this)">
@@ -2631,7 +2680,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>com- (一起) + pon (放) + -ent (物)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>key component 关键部件</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Trust is a vital component of any healthy relationship.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Trust is a vital component of any healthy relationship.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>信任是任何健康人际关系中至关重要的基石。</span></div>
+                </div>
               </div>
         
             </div>
@@ -2680,7 +2732,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (向内) + spect (看)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>inspect the site 现场视察</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Officials arrived early to inspect the school kitchen.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Officials arrived early to inspect the school kitchen.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>官员们提早赶到，以便视察学校食堂。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="expect" onclick="playWord('expect', this)">
@@ -2698,7 +2753,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (向外) + spect (看)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>expect results 期待结果</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>We expect the economy to recover steadily this year.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>We expect the economy to recover steadily this year.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我们预计今年经济将稳步复苏。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="respect" onclick="playWord('respect', this)">
@@ -2716,7 +2774,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (再/回) + spect (看)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>have respect for 敬重某人</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>You should always treat your colleagues with respect.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>You should always treat your colleagues with respect.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>你应当始终对你的同事保持尊重。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="aspect" onclick="playWord('aspect', this)">
@@ -2734,7 +2795,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>a- (朝向) + spect (看)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>every aspect of life 生活的各方面</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Technology has transformed almost every aspect of modern work.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Technology has transformed almost every aspect of modern work.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>科技几乎改变了现代工作的方方面面。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="prospect" onclick="playWord('prospect', this)">
@@ -2752,7 +2816,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pro- (向前) + spect (看)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>career prospects 职业前景</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Job prospects for graduates are improving rapidly.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Job prospects for graduates are improving rapidly.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>大学毕业生的就业前景正在迅速改善。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="suspect" onclick="playWord('suspect', this)">
@@ -2770,7 +2837,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sub- (下) + spect (看)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>suspect foul play 怀疑有诈</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Police suspect that the fire was started deliberately.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Police suspect that the fire was started deliberately.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>警方怀疑这起火灾是有人故意纵火引发的。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="perspective" onclick="playWord('perspective', this)">
@@ -2788,7 +2858,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>per- (贯穿) + spect (看) + -ive</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>from my perspective 依我看</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Traveling gives you a fresh perspective on life.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Traveling gives you a fresh perspective on life.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>旅行能为你的人生带来全新的视角。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="spectacular" onclick="playWord('spectacular', this)">
@@ -2806,7 +2879,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>spect (看) + -ac- + -ular (形)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>spectacular view 绝美风光</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The sunset over the grand canyon was truly spectacular.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The sunset over the grand canyon was truly spectacular.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>大峡谷上的日落景象真是壮丽绝伦。</span></div>
+                </div>
               </div>
         
             </div>
@@ -2855,7 +2931,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (出) + port (运)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>major export 主要出口产品</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The country exports high-tech electronics around the world.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The country exports high-tech electronics around the world.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>该国向世界各地出口高科技电子产品。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="import" onclick="playWord('import', this)">
@@ -2873,7 +2952,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>im- (入) + port (运)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>import goods 进口货物</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>We import raw materials from overseas suppliers.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>We import raw materials from overseas suppliers.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我们从海外供应商那里进口原材料。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="report" onclick="playWord('report', this)">
@@ -2891,7 +2973,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (回) + port (运/带)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>annual report 年度报告</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Please report any security issues immediately.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Please report any security issues immediately.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>如发现任何安全隐患，请立即报告。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="support" onclick="playWord('support', this)">
@@ -2909,7 +2994,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sub- (从下) + port (托/运)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>support a family 养家糊口</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>My parents always support my career decisions.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>My parents always support my career decisions.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我的父母一贯支持我的职业抉择。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="transport" onclick="playWord('transport', this)">
@@ -2927,7 +3015,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>trans- (跨越) + port (运)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>public transport 公共交通</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Electric buses have revolutionized city transport.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Electric buses have revolutionized city transport.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>电动公交车彻底改变了城市交通运输。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="portable" onclick="playWord('portable', this)">
@@ -2945,7 +3036,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>port (带) + -able (可...的)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>portable charger 移动电源</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Laptops are light and highly portable for business trips.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Laptops are light and highly portable for business trips.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>笔记本电脑轻便小巧，出差时非常便携。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="opportunity" onclick="playWord('opportunity', this)">
@@ -2963,7 +3057,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>op- (朝向) + port (港口) + -unity</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>golden opportunity 绝佳良机</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Never miss an opportunity to learn something new.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Never miss an opportunity to learn something new.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>永远不要错失学习新知识的宝贵机会。</span></div>
+                </div>
               </div>
         
             </div>
@@ -3012,7 +3109,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pre- (前) + dict (说)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>hard to predict 难以预测</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Experts predict inflation will drop by next spring.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Experts predict inflation will drop by next spring.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>专家预测通货膨胀将在明年春季前下降。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="indicate" onclick="playWord('indicate', this)">
@@ -3030,7 +3130,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (朝向) + dic (说/指) + -ate</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>indicate a trend 表明趋势</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The red warning light indicates low battery power.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The red warning light indicates low battery power.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>红色警示灯表明电池电量严重不足。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="dictate" onclick="playWord('dictate', this)">
@@ -3048,7 +3151,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>dict (说) + -ate (动词后缀)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>dictate terms 强加条件</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Circumstances will dictate how we respond next.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Circumstances will dictate how we respond next.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>未来的客观形势将决定我们接下来如何应对。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="addict" onclick="playWord('addict', this)">
@@ -3066,7 +3172,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (一再) + dict (宣判随从)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>drug addict / coffee addict 咖啡控</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Many teenagers are practically addicted to short videos.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Many teenagers are practically addicted to short videos.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>许多青少年几乎对短视频严重上瘾。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="contradict" onclick="playWord('contradict', this)">
@@ -3084,7 +3193,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>contra- (反) + dict (说)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>contradict each other 彼此矛盾</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Witness statements directly contradicted the suspect&#x27;s claim.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Witness statements directly contradicted the suspect&#x27;s claim.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>目击者的证词与嫌疑人的说法完全相互矛盾。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="verdict" onclick="playWord('verdict', this)">
@@ -3102,7 +3214,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ver- (真实) + dict (说出)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>reach a verdict 作出裁定</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The jury took three days to reach a unanimous verdict.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The jury took three days to reach a unanimous verdict.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>陪审团经过整整三天的商议才达成一致裁决。</span></div>
+                </div>
               </div>
         
             </div>
@@ -3151,7 +3266,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (朝向) + tract (拉)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>attract customers 吸引顾客</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The museum attracts thousands of visitors every weekend.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The museum attracts thousands of visitors every weekend.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>该博物馆每逢周末都能吸引数千名游客。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="contract" onclick="playWord('contract', this)">
@@ -3169,7 +3287,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (合拢) + tract (拉)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>sign a contract 签署合同</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Metal expands when heated and contracts when cooled.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Metal expands when heated and contracts when cooled.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>金属受热膨胀，遇冷收缩。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="distract" onclick="playWord('distract', this)">
@@ -3187,7 +3308,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>dis- (分散) + tract (拉)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>distract attention 分散注意力</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Do not allow loud music to distract you while driving.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Do not allow loud music to distract you while driving.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>驾驶途中切莫让嘈杂的音乐分散注意力。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="extract" onclick="playWord('extract', this)">
@@ -3205,7 +3329,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (外) + tract (拔/拉)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>extract oil 采油 / plant extract 植物萃取</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The dentist had to extract the damaged tooth.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The dentist had to extract the damaged tooth.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>牙医不得不拔掉那颗受损的坏牙。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="subtract" onclick="playWord('subtract', this)">
@@ -3223,7 +3350,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sub- (下) + tract (拉掉)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>subtract A from B 从B中减去A</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>If you subtract five from twelve, you get seven.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>If you subtract five from twelve, you get seven.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>十二减去五等于七。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="abstract" onclick="playWord('abstract', this)">
@@ -3241,7 +3371,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>abs- (离) + tract (拉出)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>abstract concept 抽象概念</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Mathematics often deals with highly abstract ideas.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Mathematics often deals with highly abstract ideas.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>数学常常研究高度抽象的概念与理论。</span></div>
+                </div>
               </div>
         
             </div>
@@ -3290,7 +3423,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>v. / adj. + ex- (外) + press (压/挤)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>express feelings 表达感受</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Words cannot fully express how grateful I am.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Words cannot fully express how grateful I am.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>言语根本无法完全表达我内心的感激之情。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="impress" onclick="playWord('impress', this)">
@@ -3308,7 +3444,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>im- (在心内) + press (压印)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>impress the interviewer 打动面试官</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Her dedication and fluency impressed the entire team.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Her dedication and fluency impressed the entire team.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>她的敬业精神与流利表达给整个团队留下了深刻印象。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="depress" onclick="playWord('depress', this)">
@@ -3326,7 +3465,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>de- (向下) + press (压)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>depress the economy 压制经济</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Rainy, gloomy days always seem to depress me.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Rainy, gloomy days always seem to depress me.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>阴雨沉闷的天气总是让我感到郁郁寡欢。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="pressure" onclick="playWord('pressure', this)">
@@ -3344,7 +3486,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>press (压) + -ure (名词后缀)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>under pressure 承受压力</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>He performs exceptionally well even under intense pressure.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>He performs exceptionally well even under intense pressure.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>即便面临巨大压力，他的表现依然非常出色。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="compress" onclick="playWord('compress', this)">
@@ -3362,7 +3507,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>com- (合拢) + press (压)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>compress files 压缩文件</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>You should compress large video files before sending them.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>You should compress large video files before sending them.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>在发送大型视频文件前，你应当先进行压缩。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="oppress" onclick="playWord('oppress', this)">
@@ -3380,7 +3528,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ob- (对着) + press (重压)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>oppress the poor 压迫穷人</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Corrupt rulers often oppress minority groups.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Corrupt rulers often oppress minority groups.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>腐败的统治者往往会残暴压迫少数群体。</span></div>
+                </div>
               </div>
         
             </div>
@@ -3429,7 +3580,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (内) + form (塑形/观念)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>keep me informed 随时通知我</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Please inform us of any changes to your address.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Please inform us of any changes to your address.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>如果您的地址发生任何变更，请及时告知我们。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="reform" onclick="playWord('reform', this)">
@@ -3447,7 +3601,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (重新) + form (塑形)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>tax reform 税制改革</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The government launched ambitious plans to reform education.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The government launched ambitious plans to reform education.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>政府启动了雄心勃勃的教育体系改革计划。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="conform" onclick="playWord('conform', this)">
@@ -3465,7 +3622,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (共同) + form (形状)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>conform to regulations 符合规定</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>All exported products must conform to safety standards.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>All exported products must conform to safety standards.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>所有出口商品都必须符合严格的安全规范标准。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="transform" onclick="playWord('transform', this)">
@@ -3483,7 +3643,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>trans- (跨越/转变) + form (形态)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>transform the industry 颠覆行业</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Artificial intelligence will transform how humans work.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Artificial intelligence will transform how humans work.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>人工智能将深刻改变人类未来的工作模式。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="uniform" onclick="playWord('uniform', this)">
@@ -3501,7 +3664,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>n. / adj. + uni- (单一) + form (式样)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>school uniform 校服</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Flight attendants wear a distinctive blue uniform.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Flight attendants wear a distinctive blue uniform.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>空中乘务员身着极具辨识度的蓝色制服。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="perform" onclick="playWord('perform', this)">
@@ -3519,7 +3685,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>per- (彻底) + form (完成形态)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>perform a surgery 做手术</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Musicians will perform live on stage tonight.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Musicians will perform live on stage tonight.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>音乐家们今晚将在舞台上献上现场表演。</span></div>
+                </div>
               </div>
         
             </div>
@@ -3568,7 +3737,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>de- (向下/细部) + scribe (写)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>describe in detail 详尽描述</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Can you describe the appearance of the missing person?</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Can you describe the appearance of the missing person?</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>你能描述一下失踪人员的外貌特征吗？</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="prescribe" onclick="playWord('prescribe', this)">
@@ -3586,7 +3758,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pre- (事先) + scribe (写)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>prescribe medicine 开药</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The doctor prescribed antibiotics to treat the infection.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The doctor prescribed antibiotics to treat the infection.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>医生开具了抗生素用以治疗细菌感染。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="subscribe" onclick="playWord('subscribe', this)">
@@ -3604,7 +3779,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sub- (在底页) + scribe (签名)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>subscribe to a channel 订阅频道</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Millions of users subscribe to the streaming service.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Millions of users subscribe to the streaming service.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>数以百万计的用户订阅了该流媒体平台服务。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="script" onclick="playWord('script', this)">
@@ -3622,7 +3800,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>script (写成之物)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>movie script 电影剧本</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The actors spent weeks memorizing the dialogue from the script.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The actors spent weeks memorizing the dialogue from the script.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>演员们花了数周时间背诵剧本里的台词。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="manuscript" onclick="playWord('manuscript', this)">
@@ -3640,7 +3821,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>manu- (手) + script (书写)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>original manuscript 原始手稿</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The author submitted the final manuscript to the publisher.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The author submitted the final manuscript to the publisher.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>作者向出版社提交了最终版的书籍手稿。</span></div>
+                </div>
               </div>
         
             </div>
@@ -3689,7 +3873,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pre- (在前) + vent (来到拦截)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>prevent accidents 防止事故</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Regular exercise can help prevent heart disease.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Regular exercise can help prevent heart disease.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>规律的体育锻炼有助于有效预防心脏疾病。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="event" onclick="playWord('event', this)">
@@ -3707,7 +3894,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>e- (出) + vent (来到现身)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>sporting event 体育赛事</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The music festival was the biggest social event of the summer.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The music festival was the biggest social event of the summer.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这场音乐节是今年夏天规模最大的社交盛事。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="invent" onclick="playWord('invent', this)">
@@ -3725,7 +3915,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (进入未知) + vent (碰巧来到)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>invent new tools 发明新工具</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Who actually invented the first working telephone?</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Who actually invented the first working telephone?</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>究竟是谁最先发明了第一部实用电话？</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="convention" onclick="playWord('convention', this)">
@@ -3743,7 +3936,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (共同) + vent (走来) + -ion</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>break with convention 打破常规</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Thousands attended the international technology convention.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Thousands attended the international technology convention.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>数千人出席了这场国际高新技术峰会。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="convenient" onclick="playWord('convenient', this)">
@@ -3761,7 +3957,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (合) + ven (来到一处) + -ient</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>convenient location 便利位置</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Online shopping is extremely fast and convenient.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Online shopping is extremely fast and convenient.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>线上网络购物既快速又十分便捷。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="revenue" onclick="playWord('revenue', this)">
@@ -3779,7 +3978,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (回) + ven (来) + -ue (钱财)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>tax revenue 税收收入</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The company reported record quarterly sales revenue.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The company reported record quarterly sales revenue.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>公司公布了创历史新高的季度销售营业收入。</span></div>
+                </div>
               </div>
         
             </div>
@@ -3828,7 +4030,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>intro- (向内) + duce (引导)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>introduce a friend 介绍朋友</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Allow me to introduce our guest speaker for today.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Allow me to introduce our guest speaker for today.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>请允许我为大家隆重介绍今天的特邀演讲嘉宾。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="produce" onclick="playWord('produce', this)">
@@ -3846,7 +4051,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pro- (向前) + duce (引出)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>produce goods 生产商品</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The solar panels produce clean electricity for the hospital.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The solar panels produce clean electricity for the hospital.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这些太阳能电池板为整座医院提供清洁电能。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="reduce" onclick="playWord('reduce', this)">
@@ -3864,7 +4072,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (退回) + duce (引导)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>reduce costs 削减成本</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>We must take urgent action to reduce carbon emissions.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>We must take urgent action to reduce carbon emissions.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我们必须立即采取紧急行动来减少碳排放量。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="conduct" onclick="playWord('conduct', this)">
@@ -3882,7 +4093,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (共同) + duct (引导)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>conduct research 开展调研</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Scientists conducted a series of controlled experiments.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Scientists conducted a series of controlled experiments.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>科学家们严密展开了一系列对照科学实验。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="educate" onclick="playWord('educate', this)">
@@ -3900,7 +4114,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>e- (出) + duc (引导灵智) + -ate</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>educate children 教育孩子</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Schools aim to educate pupils to become responsible citizens.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Schools aim to educate pupils to become responsible citizens.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>学校的育人目标是把学生培养为有责任感的公民。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="deduce" onclick="playWord('deduce', this)">
@@ -3918,7 +4135,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>de- (从...向下) + duce (引出)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>deduce from clues 从线索推论</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>From the footprints, detectives could deduce the suspect&#x27;s height.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>From the footprints, detectives could deduce the suspect&#x27;s height.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>通过现场脚印，刑警能够推断出嫌疑人的大致身高。</span></div>
+                </div>
               </div>
         
             </div>
@@ -3967,7 +4187,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ob- (朝前迎面) + cur (跑来)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>occur suddenly 突然发生</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The accident occurred during the morning rush hour.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The accident occurred during the morning rush hour.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这起交通事故发生在早晨的交通早高峰时段。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="current" onclick="playWord('current', this)">
@@ -3985,7 +4208,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>cur (流/跑) + -ent (状态/物)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>current situation 当前局势</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Under current regulations, smoking is strictly forbidden indoors.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Under current regulations, smoking is strictly forbidden indoors.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>根据现行法律规章，室内严禁吸烟。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="currency" onclick="playWord('currency', this)">
@@ -4003,7 +4229,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>cur (流转流通) + -ency</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>foreign currency 外币</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The dollar remains the world&#x27;s most traded currency.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The dollar remains the world&#x27;s most traded currency.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>美元至今仍是全球交易量最大的流通货币。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="course" onclick="playWord('course', this)">
@@ -4021,7 +4250,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>course (跑道/既定流向)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>of course 当然；training course 培训课程</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>He enrolled in an intensive business English course.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>He enrolled in an intensive business English course.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>他报名参加了一门密集型商务英语进阶课程。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="excursion" onclick="playWord('excursion', this)">
@@ -4039,7 +4271,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (出) + curs (跑/游) + -ion</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>day excursion 一日短途游</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The students enjoyed a guided weekend excursion to the mountains.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The students enjoyed a guided weekend excursion to the mountains.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>学生们在导游带领下享受了愉快的周末登山远足。</span></div>
+                </div>
               </div>
         
             </div>
@@ -4088,7 +4323,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (对准) + fect (施加动作)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>adversely affect 负面影响</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The economic crisis directly affected small business owners.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The economic crisis directly affected small business owners.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这场经济危机直接冲击了众多小微企业主。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="effect" onclick="playWord('effect', this)">
@@ -4106,7 +4344,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (出) + fect (做出来的结果)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>have an effect on 对...有影响</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Good nutrition has an immediate effect on concentration.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Good nutrition has an immediate effect on concentration.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>良好的营养膳食对提升注意力有着立竿见影的效果。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="perfect" onclick="playWord('perfect', this)">
@@ -4124,7 +4365,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>adj. / v. + per- (彻底) + fect (做好完成)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>perfect match 天作之合</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Practice every day to perfect your spoken pronunciation.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Practice every day to perfect your spoken pronunciation.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>坚持每日朗读练习，才能让你的口语发音日臻完美。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="efficient" onclick="playWord('efficient', this)">
@@ -4142,7 +4386,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (出) + fic (做) + -ient</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>energy efficient 节能高效的</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Modern high-speed rail is both fast and fuel efficient.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Modern high-speed rail is both fast and fuel efficient.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>现代高铁不仅风驰电掣，而且极为节能高效。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="defect" onclick="playWord('defect', this)">
@@ -4160,7 +4407,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>de- (欠缺) + fect (做)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>manufacturing defect 制造缺陷</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The car model was recalled due to a minor brake defect.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The car model was recalled due to a minor brake defect.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>由于刹车系统存在微小缺陷，该批次汽车被召回。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="sufficient" onclick="playWord('sufficient', this)">
@@ -4178,7 +4428,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sub- (足底) + fic (做满) + -ient</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>sufficient evidence 充分证据</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Make sure you get sufficient rest before the big exam.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Make sure you get sufficient rest before the big exam.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>在重大考试来临前，一定要确保睡眠充足。</span></div>
+                </div>
               </div>
         
             </div>
@@ -4227,7 +4480,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (向) + tend (伸出注意力)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>attend a meeting 参加会议</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Over two hundred delegates attended the annual conference.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Over two hundred delegates attended the annual conference.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>两百多名代表出席了今年的年度峰会。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="intend" onclick="playWord('intend', this)">
@@ -4245,7 +4501,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (向内) + tend (伸展心念)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>intend to do 打算做某事</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>I intend to finish writing my report by Friday afternoon.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>I intend to finish writing my report by Friday afternoon.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我打算在周五下午之前把工作报告写完。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="extend" onclick="playWord('extend', this)">
@@ -4263,7 +4522,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (向外) + tend (伸长拉出)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>extend the deadline 延长截止日</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The subway line will extend to the new international airport.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The subway line will extend to the new international airport.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这条地铁线路未来将延伸至新的国际机场。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="pretend" onclick="playWord('pretend', this)">
@@ -4281,7 +4543,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pre- (在前) + tend (拉出幌子遮掩)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>pretend not to notice 假装没看见</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>He pretended to be calm, but his hands were shaking.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>He pretended to be calm, but his hands were shaking.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>他假装镇定自若，但颤抖的双手出卖了他。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="intense" onclick="playWord('intense', this)">
@@ -4299,7 +4564,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (极度) + tens (拉紧)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>intense competition 激烈竞争</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Athletes undergo months of intense training before the Games.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Athletes undergo months of intense training before the Games.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>运动员们在奥运会前要历经数月的高强度训练。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="tendency" onclick="playWord('tendency', this)">
@@ -4317,7 +4585,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>tend (伸/倾) + -ency</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>natural tendency 自然倾向</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Prices show an undeniable tendency to rise during holidays.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Prices show an undeniable tendency to rise during holidays.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>每逢节假日期间，物价都呈现出无法避免的上涨趋势。</span></div>
+                </div>
               </div>
         
             </div>
@@ -4366,7 +4637,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (往里) + mit (放行/准入)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>admit mistakes 承认错误</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>He finally admitted that he had made a calculation error.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>He finally admitted that he had made a calculation error.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>他最终亲口承认自己在计算中出现了失误。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="commit" onclick="playWord('commit', this)">
@@ -4384,7 +4658,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>com- (全部) + mit (托送交付)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>commit a crime 犯罪；commit to 致力于</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The government has committed billions to clean energy.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The government has committed billions to clean energy.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>政府已承诺投入数百亿资金用于清洁绿色能源。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="dismiss" onclick="playWord('dismiss', this)">
@@ -4402,7 +4679,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>dis- (各方) + miss (送走)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>dismiss the idea 驳回想法</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The manager quickly dismissed the rumor as groundless.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The manager quickly dismissed the rumor as groundless.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>部门经理很快将这则流言斥为无稽之谈。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="permit" onclick="playWord('permit', this)">
@@ -4420,7 +4700,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>per- (穿过) + mit (放行)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>parking permit 停车许可证</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Weather permitting, we will hold the sports meet outdoors.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Weather permitting, we will hold the sports meet outdoors.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>如果天气条件允许，我们将在户外举行运动会。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="submit" onclick="playWord('submit', this)">
@@ -4438,7 +4721,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sub- (从下) + mit (递送)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>submit an application 提交申请</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Please submit your completed homework before midnight.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Please submit your completed homework before midnight.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>请在午夜前提交您填写完成的课后作业。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="transmit" onclick="playWord('transmit', this)">
@@ -4456,7 +4742,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>trans- (跨越) + mit (发送)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>transmit signals 传输信号</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Satellites transmit television signals across continents.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Satellites transmit television signals across continents.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>通信卫星跨越大洲大洋传输电视广播信号。</span></div>
+                </div>
               </div>
         
             </div>
@@ -4505,7 +4794,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>vis (看) + -ible (可...的)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>clearly visible 清晰可见</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The stars were brightly visible in the cloudless night sky.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The stars were brightly visible in the cloudless night sky.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>繁星在万里无云的静谧夜空中清晰可见。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="vision" onclick="playWord('vision', this)">
@@ -4523,7 +4815,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>vis (看) + -ion (名词后缀)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>have poor vision 视力不好</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Great leaders always possess a clear vision for the future.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Great leaders always possess a clear vision for the future.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>伟大的领袖人物往往对未来抱有清晰深远的远见。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="provide" onclick="playWord('provide', this)">
@@ -4541,7 +4836,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pro- (提前) + vide (看见需求)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>provide information 提供信息</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The organization provides shelter and meals for the homeless.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The organization provides shelter and meals for the homeless.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>该慈善机构为无家可归者提供温暖庇护所和免费餐食。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="evidence" onclick="playWord('evidence', this)">
@@ -4559,7 +4857,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>e- (清晰外显) + vid (看见) + -ence</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>solid evidence 确凿证据</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>There is no conclusive evidence to support that theory.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>There is no conclusive evidence to support that theory.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>目前尚无确凿证据足以支持这一假说。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="advise" onclick="playWord('advise', this)">
@@ -4577,7 +4878,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (向) + vise (看/给出观点)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>strongly advise 强烈建议</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Doctors advise drinking at least eight cups of water daily.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Doctors advise drinking at least eight cups of water daily.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>医生建议每天至少要喝足八杯温开水。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="supervise" onclick="playWord('supervise', this)">
@@ -4595,7 +4899,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>super- (高高在上) + vise (察看)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>supervise the construction 监理施工</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>A senior engineer will supervise the installation process.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>A senior engineer will supervise the installation process.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>一位资深工程师将全程监督安装施工流程。</span></div>
+                </div>
               </div>
         
             </div>
@@ -4644,7 +4951,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sens (感觉/感官)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>make sense 有道理；common sense 常识</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>It makes no sense to buy something you will never use.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>It makes no sense to buy something you will never use.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>购买一件你永远用不上的东西毫无意义。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="sensitive" onclick="playWord('sensitive', this)">
@@ -4662,7 +4972,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sens (感) + -itive (易...的)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>sensitive skin 敏感肌肤</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>He is extremely sensitive to any negative feedback.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>He is extremely sensitive to any negative feedback.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>他对任何负面批评意见都极度敏感脆弱。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="sensible" onclick="playWord('sensible', this)">
@@ -4680,7 +4993,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sens (理智) + -ible (能...的)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>sensible decision 明智的决定</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Wearing comfortable walking shoes was a very sensible choice.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Wearing comfortable walking shoes was a very sensible choice.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>出门穿一双舒适的徒步鞋是非常明智合理的选择。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="consent" onclick="playWord('consent', this)">
@@ -4698,7 +5014,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (同) + sent (感觉一致)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>written consent 书面同意</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Children cannot participate without parental consent.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Children cannot participate without parental consent.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>未经家长书面同意许可，未成年儿童不得擅自参加。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="resent" onclick="playWord('resent', this)">
@@ -4716,7 +5035,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (反向) + sent (感觉不适)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>resent being treated like a child</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>She deeply resented the unfair criticism from her boss.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>She deeply resented the unfair criticism from her boss.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>她对来自上司的不公苛责深感愤懑不平。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="sentiment" onclick="playWord('sentiment', this)">
@@ -4734,7 +5056,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sent (情感) + -iment</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>market sentiment 市场情绪</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Public sentiment has shifted decisively in favor of reform.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Public sentiment has shifted decisively in favor of reform.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>社会舆论与公众情绪已决定性地转向支持改革。</span></div>
+                </div>
               </div>
         
             </div>
@@ -4783,7 +5108,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (对准) + ply (折合贴附)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>apply for a job 应聘工作</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>You can apply online for the training scholarship.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>You can apply online for the training scholarship.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>你可以在线申请这一培训助学奖学金。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="imply" onclick="playWord('imply', this)">
@@ -4801,7 +5129,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (内) + ply (折叠深藏)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>imply that 暗指...</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Are you implying that the mistake was my fault?</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Are you implying that the mistake was my fault?</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>你是在拐弯抹角暗示这个过失全怪我吗？</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="reply" onclick="playWord('reply', this)">
@@ -4819,7 +5150,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (反/回) + ply (折回信函)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>reply to an email 回复邮件</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>I sent three inquiries but received no reply.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>I sent three inquiries but received no reply.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我先后发了三封咨询邮件，却未收到任何回音。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="complicate" onclick="playWord('complicate', this)">
@@ -4837,7 +5171,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>com- (多方) + plic (折缠) + -ate</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>complicate matters 使事情变复杂</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Bad weather will only complicate rescue efforts.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Bad weather will only complicate rescue efforts.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>恶劣的天气条件只会让搜救行动变得更加错综复杂。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="complex" onclick="playWord('complex', this)">
@@ -4855,7 +5192,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>com- (全) + plex (交织折叠)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>complex problem 复杂问题</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The human brain is an extraordinarily complex organ.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The human brain is an extraordinarily complex organ.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>人类的大脑是一个极其精密而复杂的器官。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="multiply" onclick="playWord('multiply', this)">
@@ -4873,7 +5213,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>multi- (多) + ply (重叠相加)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>multiply by 乘以...</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Bacteria can multiply extremely rapidly in warm milk.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Bacteria can multiply extremely rapidly in warm milk.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>在温暖的牛奶中，细菌滋生繁殖速度极快。</span></div>
+                </div>
               </div>
         
             </div>
@@ -4922,7 +5265,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ob- (对着) + serve (留心守看)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>observe behavior 观察行为</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Scientists carefully observed the behavior of chimpanzees.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Scientists carefully observed the behavior of chimpanzees.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>科学家们细致入微地观察着黑猩猩的行为习性。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="preserve" onclick="playWord('preserve', this)">
@@ -4940,7 +5286,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pre- (事先) + serve (保全守好)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>preserve historic buildings 保护古建筑</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Efforts are underway to preserve endangered coastal wetlands.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Efforts are underway to preserve endangered coastal wetlands.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>保护濒危沿海湿地生态的工作正在全面推进中。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="reserve" onclick="playWord('reserve', this)">
@@ -4958,7 +5307,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (往后留着) + serve (守住)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>reserve a table 预订餐位</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>I would like to reserve two tickets for tonight&#x27;s show.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>I would like to reserve two tickets for tonight&#x27;s show.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我想预订今晚演出门票两张。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="conserve" onclick="playWord('conserve', this)">
@@ -4976,7 +5328,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (全部) + serve (完好保持)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>conserve energy 节约能源</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Turn off unused lights to help conserve electricity.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Turn off unused lights to help conserve electricity.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>随手关掉不用的照明灯，有助于节约宝贵电能。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="deserve" onclick="playWord('deserve', this)">
@@ -4994,7 +5349,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>de- (完全) + serve (配得上服侍)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>deserve praise 值得表扬</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>You have worked tirelessly and deserve a good rest.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>You have worked tirelessly and deserve a good rest.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>你兢兢业业辛苦工作了这么久，理应好好放松休息一下。</span></div>
+                </div>
               </div>
         
             </div>
@@ -5043,7 +5401,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pro- (向前) + ceed (行进)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>proceed with caution 谨慎推进</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>After the interruption, the speaker proceeded with his talk.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>After the interruption, the speaker proceeded with his talk.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>被打断后，演讲者平静地继续进行他的专题发言。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="exceed" onclick="playWord('exceed', this)">
@@ -5061,7 +5422,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (超出) + ceed (走过界线)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>exceed expectations 超出预期</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Drivers who exceed the speed limit face heavy fines.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Drivers who exceed the speed limit face heavy fines.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>凡超速违规驾驶者都将面临沉重的经济罚单。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="succeed" onclick="playWord('succeed', this)">
@@ -5079,7 +5443,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>sub- (随后) + ceed (紧接着走上台)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>succeed in doing 成功做成</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>If you persevere and work smart, you will surely succeed.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>If you persevere and work smart, you will surely succeed.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>只要你坚持不懈并善用方法，就必定能够取得成功。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="access" onclick="playWord('access', this)">
@@ -5097,7 +5464,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (向) + cess (走近)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>internet access 上网权限</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>All registered students have free access to the library database.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>All registered students have free access to the library database.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>所有注册在校学生均可免费查阅使用图书馆核心数据库。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="process" onclick="playWord('process', this)">
@@ -5115,7 +5485,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pro- (向前) + cess (步步推进)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>learning process 学习过程</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Applying for a visa can be a lengthy and tedious process.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Applying for a visa can be a lengthy and tedious process.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>申办出国签证可能会是一个漫长且琐碎的磨人过程。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="recession" onclick="playWord('recession', this)">
@@ -5133,7 +5506,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (向后倒退) + cess (走) + -ion</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>economic recession 经济衰退</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Many businesses closed doors during the severe recession.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Many businesses closed doors during the severe recession.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>在那场严重的经济大衰退期间，许多商铺被迫关门歇业。</span></div>
+                </div>
               </div>
         
             </div>
@@ -5182,7 +5558,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pro- (向前) + gress (迈步)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>make steady progress 取得稳步进展</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>She has made remarkable progress in spoken English.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>She has made remarkable progress in spoken English.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>她在英语口语表达能力上取得了令人赞叹的飞跃进步。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="gradual" onclick="playWord('gradual', this)">
@@ -5200,7 +5579,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>grad (一步一级) + -ual (形)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>gradual change 渐变</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Learning a foreign language is a slow and gradual journey.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Learning a foreign language is a slow and gradual journey.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>熟练掌握一门外语是一个循序渐进的缓慢历程。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="graduate" onclick="playWord('graduate', this)">
@@ -5218,7 +5600,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>grad (迈过等级门槛) + -uate</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>graduate from college 大学毕业</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>He graduated with first-class honors in computer science.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>He graduated with first-class honors in computer science.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>他以优异的一等荣誉学位毕业于计算机科学系。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="aggressive" onclick="playWord('aggressive', this)">
@@ -5236,7 +5621,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (迎面) + gress (逼步) + -ive</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>aggressive marketing 激进式营销</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The stray dog became noticeably aggressive when approached.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The stray dog became noticeably aggressive when approached.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>当有人慢慢走近时，那只流浪狗变得明显具有攻击性。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="congress" onclick="playWord('congress', this)">
@@ -5254,7 +5642,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (齐聚) + gress (步入一堂)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>the US Congress 美国国会</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Congress passed the new environmental protection bill yesterday.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Congress passed the new environmental protection bill yesterday.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>国会于昨日正式表决通过了新的环境保护法案。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="ingredient" onclick="playWord('ingredient', this)">
@@ -5272,7 +5663,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (走入锅里) + gred (步/料) + -ient</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>fresh ingredients 新鲜食材</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Patience and hard practice are key ingredients for success.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Patience and hard practice are key ingredients for success.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>恒心与刻苦磨炼是迈向成功的不可或缺的核心要素。</span></div>
+                </div>
               </div>
         
             </div>
@@ -5321,7 +5715,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>gener (产生) + -ate (动词后缀)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>generate income 创造收入</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Wind turbines generate clean, renewable electricity.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Wind turbines generate clean, renewable electricity.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>大型风力发电机组源源不断地产生清洁可再生电力。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="general" onclick="playWord('general', this)">
@@ -5339,7 +5736,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>gener (整个群体种属) + -al</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>in general 总体上</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>In general, prices in big cities are slightly higher.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>In general, prices in big cities are slightly higher.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>总体而言，一线大都市的日常物价水平要稍高一些。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="generous" onclick="playWord('generous', this)">
@@ -5357,7 +5757,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>gener (良好门第种性) + -ous</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>generous donation 慷慨捐款</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Thank you for your generous hospitality during our visit.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Thank you for your generous hospitality during our visit.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>衷心感谢在我们到访期间您所展现的热情与慷慨款待。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="genuine" onclick="playWord('genuine', this)">
@@ -5375,7 +5778,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>gen (生来如此天生) + -uine</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>genuine leather 真皮</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>She showed a genuine interest in learning Chinese culture.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>She showed a genuine interest in learning Chinese culture.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>她对研习中华传统文化展现出了极其真挚由衷的浓厚兴趣。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="gender" onclick="playWord('gender', this)">
@@ -5393,7 +5799,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>gen (生物种类属性) + -der</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>gender equality 性别平等</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The company strives for true gender balance across management.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The company strives for true gender balance across management.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>该跨国公司在管理层队伍中全力追求真正的性别平等均衡。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="genius" onclick="playWord('genius', this)">
@@ -5411,7 +5820,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>gen (天生带来的神赋灵性)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>a stroke of genius 天才之举</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Einstein is widely revered as a scientific genius.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Einstein is widely revered as a scientific genius.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>爱因斯坦被举世公认为无可争议的科学旷世奇才。</span></div>
+                </div>
               </div>
         
             </div>
@@ -5460,7 +5872,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (始终) + stant (站着不动)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>constant noise 持续噪音</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Babies require constant care and gentle attention.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Babies require constant care and gentle attention.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>初生婴儿需要时刻不离人的悉心呵护与温柔照料。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="distant" onclick="playWord('distant', this)">
@@ -5478,7 +5893,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>dis- (分开) + stant (站立)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>distant relative 远亲</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>We could hear the distant sound of ocean waves.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>We could hear the distant sound of ocean waves.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>隐隐约约间，我们能听见远方海浪拍打礁石的声响。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="exist" onclick="playWord('exist', this)">
@@ -5496,7 +5914,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (外) + sist (立定现身)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>cease to exist 消亡</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Does intelligent extraterrestrial life really exist?</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Does intelligent extraterrestrial life really exist?</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>宇宙中究竟是否存在真正具备高级智能的外星生命？</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="insist" onclick="playWord('insist', this)">
@@ -5514,7 +5935,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (在内) + sist (死死站定)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>insist on doing 坚决要做</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>My grandfather insisted on paying the dinner bill.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>My grandfather insisted on paying the dinner bill.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我爷爷态度坚决地执意要由他来为今晚的晚餐买单。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="resist" onclick="playWord('resist', this)">
@@ -5532,7 +5956,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (反向) + sist (站住顶回去)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>resist temptation 抵挡诱惑</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>I simply couldn&#x27;t resist tasting the warm chocolate cake.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>I simply couldn&#x27;t resist tasting the warm chocolate cake.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>面对热气腾腾的现烤巧克力蛋糕，我实在抗拒不了诱惑。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="establish" onclick="playWord('establish', this)">
@@ -5550,7 +5977,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>e- + stabl (站稳扎牢) + -ish</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>establish relations 建立关系</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The hospital was established over a century ago in 1910.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The hospital was established over a century ago in 1910.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这家百年老字号医院早在 1910 年便已正式创立。</span></div>
+                </div>
               </div>
         
             </div>
@@ -5599,7 +6029,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (彻底) + vert (转向/改变)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>convert into 转换成...</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>You can easily convert PDF documents into editable Word files.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>You can easily convert PDF documents into editable Word files.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>你可以轻而易举地将 PDF 文档转换为可随意编辑的 Word 格式。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="reverse" onclick="playWord('reverse', this)">
@@ -5617,7 +6050,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>v. / adj. / n. + re- (往回) + verse (转动)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>reverse the decision 撤销决定</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The court reversed its earlier verdict after fresh evidence.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The court reversed its earlier verdict after fresh evidence.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>在出现全新铁证后，法院当庭推翻了原先的有罪判决。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="version" onclick="playWord('version', this)">
@@ -5635,7 +6071,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>vers (转动翻译/换算) + -ion</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>latest version 最新版本</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Make sure you update the app to the newest version.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Make sure you update the app to the newest version.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>请务必将手机软件更新升级至最新安全版本。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="advertise" onclick="playWord('advertise', this)">
@@ -5653,7 +6092,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (引向) + vert (将注意力转过来)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>advertise products 宣传商品</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Companies advertise heavily during major sports broadcasts.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Companies advertise heavily during major sports broadcasts.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>各大企业在顶级体育赛事直播期间都会砸重金投放广告。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="conversation" onclick="playWord('conversation', this)">
@@ -5671,7 +6113,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (彼此) + vers (转向互动) + -ation</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>have a conversation 交谈</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>We had a long, heartfelt conversation over freshly brewed tea.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>We had a long, heartfelt conversation over freshly brewed tea.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我们一边品味刚沏好的热茶，一边进行了一场推心置腹的长谈。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="universe" onclick="playWord('universe', this)">
@@ -5689,7 +6134,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>uni- (单一整体) + verse (万物旋转转为一个圆)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>the mysteries of the universe 宇宙奥秘</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Astronomers believe the universe is expanding continuously.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Astronomers believe the universe is expanding continuously.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>天文学家坚信浩瀚的宇宙一直处于永不停歇的加速膨胀之中。</span></div>
+                </div>
               </div>
         
             </div>
@@ -5738,7 +6186,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (往里) + clude (关在其中)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>price includes tax 价格含税</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The weekend package hotel rate includes breakfast.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The weekend package hotel rate includes breakfast.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>周末特惠度假套餐房费中已免费包含双人早餐。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="exclude" onclick="playWord('exclude', this)">
@@ -5756,7 +6207,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (往外) + clude (关在门外)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>exclude possibilities 排除可能</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The price deliberately excludes international travel insurance.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The price deliberately excludes international travel insurance.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>该报价特意剔除了国际跨境旅行医疗意外保险费。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="conclude" onclick="playWord('conclude', this)">
@@ -5774,7 +6228,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (全部事情) + clude (关拢收官)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>conclude a contract 订立合同</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The speaker concluded his speech with an inspiring quote.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The speaker concluded his speech with an inspiring quote.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>演讲者引用了一句发人深省的名言为演讲画上圆满句号。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="disclose" onclick="playWord('disclose', this)">
@@ -5792,7 +6249,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>dis- (打开) + close (关闭处)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>disclose confidential info 泄露机密</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The bank refused to disclose private client details.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The bank refused to disclose private client details.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>该商业银行严词拒绝向外界披露任何客户隐私细节。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="closet" onclick="playWord('closet', this)">
@@ -5810,7 +6270,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>close (封闭关着) + -et (小房间)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>walk-in closet 步入式衣帽间</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Hang your winter coats neatly in the hallway closet.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Hang your winter coats neatly in the hallway closet.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>请将你的厚冬大衣整整齐齐地挂在门厅的储物壁橱内。</span></div>
+                </div>
               </div>
         
             </div>
@@ -5859,7 +6322,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (迎向) + cept (抓拿)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>accept an offer 接受聘请</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>She happily accepted the prestigious job offer in London.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>She happily accepted the prestigious job offer in London.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>她满怀欣喜地接受了这份位于英国伦敦的知名高薪录用通知。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="concept" onclick="playWord('concept', this)">
@@ -5877,7 +6343,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (脑中共同构思) + cept (抓取模型)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>basic concept 基本概念</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The basic concept behind relativity is easy to grasp visually.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The basic concept behind relativity is easy to grasp visually.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>相对论背后的基础核心概念通过图像推导其实很容易领会。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="except" onclick="playWord('except', this)">
@@ -5895,7 +6364,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>prep. / conj. + ex- (拿开出去) + cept (取)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>except for 除了...</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The library is open daily except on national holidays.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The library is open daily except on national holidays.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>除法定公共假日闭馆外，本图书馆常年每日对外开放。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="capture" onclick="playWord('capture', this)">
@@ -5913,7 +6385,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>capt (抓住) + -ure</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>capture the moment 捕捉瞬间</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The photograph beautifully captured the joyful smile.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The photograph beautifully captured the joyful smile.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这张纪实照片精妙绝伦地定格了那个发自肺腑的灿烂笑容。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="participate" onclick="playWord('participate', this)">
@@ -5931,7 +6406,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>part- (一份) + cip (拿手) + -ate</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>participate in discussions 参与讨论</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>All club members are encouraged to participate in the debate.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>All club members are encouraged to participate in the debate.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我们真诚鼓励所有俱乐部社员积极参与本次辩论赛。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="receive" onclick="playWord('receive', this)">
@@ -5949,7 +6427,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (向回) + ceive (抓取拿到)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>receive a message 收到信息</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Did you receive my email confirmation yesterday?</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Did you receive my email confirmation yesterday?</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>你昨天是否收到了我发出的那封电子邮件确认函？</span></div>
+                </div>
               </div>
         
             </div>
@@ -5998,7 +6479,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>de- (强调) + fine (划清界限)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>clearly define 明确界定</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>It is difficult to define happiness in purely financial terms.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>It is difficult to define happiness in purely financial terms.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>单纯试图从金钱与财富的角度去定义幸福是极其困难的。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="definite" onclick="playWord('definite', this)">
@@ -6016,7 +6500,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>de- + fin (有边界) + -ite</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>definite answer 明确答复</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>I cannot give you a definite answer until tomorrow.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>I cannot give you a definite answer until tomorrow.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>在明天之前，恐怕我暂时还无法给你一个斩钉截铁的明确答复。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="infinite" onclick="playWord('infinite', this)">
@@ -6034,7 +6521,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (无) + fin (界限) + -ite</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>infinite patience 无限耐心</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The mysteries of deep space seem virtually infinite.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The mysteries of deep space seem virtually infinite.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>深邃无垠的宇宙深空之奥秘似乎真正是无穷无尽的。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="finance" onclick="playWord('finance', this)">
@@ -6052,7 +6542,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>fin (结算清账) + -ance</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>minister of finance 财政部长</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>He works in international corporate finance in Manhattan.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>He works in international corporate finance in Manhattan.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>他在曼哈顿华尔街的一家国际跨国金融投资机构任职。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="confine" onclick="playWord('confine', this)">
@@ -6070,7 +6563,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>con- (全部) + fine (困于界线内)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>confine oneself to 仅限于...</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Please confine your comments to the specific topic under review.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Please confine your comments to the specific topic under review.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>请将您的发言点评严格限定在本次审议的专门议题范围内。</span></div>
+                </div>
               </div>
         
             </div>
@@ -6119,7 +6615,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ad- (向前) + voc (发声喊话) + -ate</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>advocate human rights 倡导人权</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Doctors strongly advocate eating fresh organic greens.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Doctors strongly advocate eating fresh organic greens.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>医学界专家竭力倡导每日多摄入新鲜天然的有机果蔬。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="provoke" onclick="playWord('provoke', this)">
@@ -6137,7 +6636,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pro- (向前) + voke (叫嚣喊战)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>provoke anger 激怒</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Do not provoke the guard dogs behind the fence.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Do not provoke the guard dogs behind the fence.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>千万不要无故去激怒铁栅栏后面护卫巡视的看门烈犬。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="revoke" onclick="playWord('revoke', this)">
@@ -6155,7 +6657,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (往回) + voke (喊退指令)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>revoke a license 吊销驾照</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The police decided to revoke his driving license.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The police decided to revoke his driving license.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>鉴于严重违规行为，交通执法部门最终决定依法吊销他的驾照。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="vocabulary" onclick="playWord('vocabulary', this)">
@@ -6173,7 +6678,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>voc (呼喊词语) + -able + -ary</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>expand vocabulary 扩大词汇量</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Reading widely is the fastest way to expand your vocabulary.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Reading widely is the fastest way to expand your vocabulary.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>广泛浏览研读优质书籍，是快速扩充词汇储备量的不二法门。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="vocal" onclick="playWord('vocal', this)">
@@ -6191,7 +6699,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>voc (嗓音) + -al</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>vocal critic 直言不讳的批评者</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>She has been a very vocal opponent of tax increases.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>She has been a very vocal opponent of tax increases.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>她一直是加税政策最直言不讳、态度旗帜鲜明的坚决反对者。</span></div>
+                </div>
               </div>
         
             </div>
@@ -6240,7 +6751,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>aud (听) + -ience (人群)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>target audience 目标受众</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The speech captivated the audience from beginning to end.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The speech captivated the audience from beginning to end.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这场精彩绝伦的公开演说从头到尾紧紧抓住了全场听众的心。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="audio" onclick="playWord('audio', this)">
@@ -6258,7 +6772,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>n. / adj. + aud (听觉) + -io</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>audio quality 音质</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The microphone delivers crisp, professional audio quality.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The microphone delivers crisp, professional audio quality.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这款专业录音麦克风呈现出纯净通透、广播级别的清澈音质。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="audit" onclick="playWord('audit', this)">
@@ -6276,7 +6793,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>aud (现场听汇报审查账本)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>annual audit 年度审计</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>External accountants will audit the firm&#x27;s financial balance sheets.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>External accountants will audit the firm&#x27;s financial balance sheets.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>外部独立注册会计师团队将对该公司的财务资产负债表进行全面审计。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="inaudible" onclick="playWord('inaudible', this)">
@@ -6294,7 +6814,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (不) + aud (听) + -ible (能...的)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>practically inaudible 几乎听不清</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Her whispered reply was almost completely inaudible.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Her whispered reply was almost completely inaudible.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>她小声耳语做出的应答声极其微弱，几乎完全让人听不真切。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="auditorium" onclick="playWord('auditorium', this)">
@@ -6312,7 +6835,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>aud (听) + -orium (大型聚集场所)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>school auditorium 学校礼堂</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Graduation ceremonies are hosted in the university auditorium.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Graduation ceremonies are hosted in the university auditorium.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>每年的大学毕业典礼都在学校那座宏伟的大礼堂内隆重举行。</span></div>
+                </div>
               </div>
         
             </div>
@@ -6361,7 +6887,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>cred (信任) + -it</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>give credit to 赞赏/归功于</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>He deserves full credit for organizing the wonderful charity gala.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>He deserves full credit for organizing the wonderful charity gala.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>策划统筹并成功举办这场美妙的慈善晚会，他当居首功。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="credible" onclick="playWord('credible', this)">
@@ -6379,7 +6908,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>cred (信) + -ible (可...的)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>credible source 可靠信源</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Reporters rely only on verified, highly credible sources.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Reporters rely only on verified, highly credible sources.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>严谨的新闻记者只会采信来自经多方核实、高度权威可信的消息源。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="incredible" onclick="playWord('incredible', this)">
@@ -6397,7 +6929,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>in- (不/难) + cred (信) + -ible</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>incredible journey 难忘奇妙之旅</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The mountain panorama was an incredible, breathtaking sight.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The mountain panorama was an incredible, breathtaking sight.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>群峰连绵、云海翻腾的壮丽全景，真是一幅令人屏息的绝美画卷。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="credential" onclick="playWord('credential', this)">
@@ -6415,7 +6950,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>cred (信任) + -ential (名/复数)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>academic credentials 学术资历</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The applicant possesses impressive professional credentials.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The applicant possesses impressive professional credentials.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这位应聘者简历上拥有令人过目难忘、极为扎实的专业资历背景。</span></div>
+                </div>
               </div>
         
             </div>
@@ -6464,7 +7002,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>com- (全方位) + pel (推逼)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>feel compelled to 不得不...</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Duty compelled him to speak out against the injustice.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Duty compelled him to speak out against the injustice.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>内心强烈的道德使命感迫使他在面对不公时挺身而出、仗义执言。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="propel" onclick="playWord('propel', this)">
@@ -6482,7 +7023,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>pro- (向前) + pel (推力驱动)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>rocket-propelled 火箭推进的</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Steam turbines propel the giant modern cruise liner.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Steam turbines propel the giant modern cruise liner.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>大功率蒸汽轮机驱动着这艘现代超级远洋豪华邮轮劈波前行。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="expel" onclick="playWord('expel', this)">
@@ -6500,7 +7044,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>ex- (外) + pel (驱赶)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>expel from school 开除学籍</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>The unruly student was permanently expelled from campus.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>The unruly student was permanently expelled from campus.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>这名屡次违规滋事的劣迹学生最终被校方处以开除学籍的严厉惩处。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="impulse" onclick="playWord('impulse', this)">
@@ -6518,7 +7065,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>im- (在内心) + pulse (突然推撞)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>on impulse 一时冲动</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>I bought this expensive leather jacket on pure impulse.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>I bought this expensive leather jacket on pure impulse.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>我当时纯粹是一时冲动，才买下了这件昂贵的真皮夹克外套。</span></div>
+                </div>
               </div>
         
               <div class="root-word-card" data-word="repel" onclick="playWord('repel', this)">
@@ -6536,7 +7086,10 @@
 
                 <div class="rwc-formula-bar"><span style="opacity: 0.85; font-size: 19px;">🧩</span><span>re- (击退向后) + pel (驱打)</span></div>
                 <div class="rwc-colloc-box">⚡ <b>高频搭配：</b>repel attacks 击退进攻</div>
-                <div class="rwc-example-box">💬 <b>例句：</b>Like magnetic poles naturally repel each other.</div>
+                <div class="rwc-example-box">
+                  <div class="rwc-example-en">💬 <b>例句：</b>Like magnetic poles naturally repel each other.</div>
+                  <div class="rwc-example-zh"><span class="rwc-zh-label">译</span><span>依据物理定律，同名磁极相碰时天然会产生互相排斥的力量。</span></div>
+                </div>
               </div>
         
             </div>

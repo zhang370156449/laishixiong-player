@@ -236,11 +236,27 @@
       color: #86efac;
     }
     body.theme-dark .baby-say-box {
-      background: rgba(30, 58, 138, 0.22);
-      border-color: rgba(96, 165, 250, 0.35);
+      background: rgba(30, 58, 138, 0.32);
+      border: 1.5px solid rgba(96, 165, 250, 0.45);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+    body.theme-dark .baby-say-box:hover {
+      background: rgba(30, 58, 138, 0.45);
+      border-color: #60a5fa;
+    }
+    body.theme-dark .baby-say-box.is-speaking {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
     }
     body.theme-dark .baby-say-title {
       color: #93c5fd;
+    }
+    body.theme-dark .baby-say-en {
+      color: #ffffff !important;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    }
+    body.theme-dark .baby-say-zh {
+      color: #cbd5e1 !important;
     }
     body.theme-dark .bottom-player-bar {
       background: rgba(13, 17, 28, 0.96);
@@ -995,38 +1011,50 @@
 
     /* Baby Say (Kids Page) */
     .baby-say-box {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
+      background: rgba(59, 130, 246, 0.08);
+      border: 1.5px solid rgba(59, 130, 246, 0.25);
       border-radius: var(--radius-md);
-      padding: 10px 14px;
+      padding: 12px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.2s ease;
     }
     .baby-say-box:hover {
-      background: #dbeafe;
-      border-color: #93c5fd;
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.45);
+      transform: translateY(-1px);
+    }
+    .baby-say-box.is-speaking {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
     }
     .baby-say-left {
       flex: 1;
     }
     .baby-say-title {
-      font-size: 0.74rem;
+      font-size: 0.82rem;
       font-weight: 800;
-      color: #1e40af;
-      margin-bottom: 3px;
+      color: #2563eb;
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
     }
     .baby-say-en {
-      font-size: 1.05rem;
+      font-size: 1.25rem;
       font-weight: 800;
-      color: #1e3a8a;
+      color: #1e40af;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
     }
     .baby-say-zh {
-      font-size: 0.85rem;
-      color: #475569;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #334155;
+      margin-top: 4px;
+      line-height: 1.35;
     }
     .role-badge {
       display: inline-block;
@@ -1596,13 +1624,13 @@
           </div>
 
           ${(card.babySay || card.babySayZh) ? `
-            <div class="baby-say-box" onclick="playChunk(${card.id})" title="点击收听核心动作词">
+            <div class="baby-say-box" id="baby-box-${card.id}" onclick="playKidsDialogue(${card.id}, 0, event)" title="点击点读宝宝万能句型原声">
               <div class="baby-say-left">
                 <div class="baby-say-title"><span>🗣 宝宝说 (万能句型)</span></div>
                 <div class="baby-say-en">${card.babySay || ('I want to ' + card.en + '!')}</div>
                 <div class="baby-say-zh">${card.babySayZh || card.zh}</div>
               </div>
-              <button class="btn-audio-play" onclick="playChunk(${card.id}, event)" title="点击发音">▶</button>
+              <button class="btn-audio-play" onclick="playKidsDialogue(${card.id}, 0, event)" title="点击发音">▶</button>
             </div>
           ` : ''}
 
@@ -1636,6 +1664,8 @@
       player.clearPlayingUI();
       const kdEl = document.getElementById(`kd-${cardId}-${dIdx}`);
       if (kdEl) kdEl.classList.add('is-speaking');
+      const babyBox = document.getElementById(`baby-box-${cardId}`);
+      if (babyBox && dIdx === 0) babyBox.classList.add('is-speaking');
 
       player.playItem({
         en: d.en,

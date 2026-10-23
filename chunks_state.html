@@ -564,15 +564,16 @@
       border: 1px solid var(--primary-border);
     }
 
+    /* Grid Layout: Exactly 2 Big Columns on Desktop per user request */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 1100px) {
       .cards-grid { grid-template-columns: 1fr; }
-      .nav-container { padding: 8px 12px; }
-      .main-content { padding: 0 12px; }
+      .nav-container { padding: 8px 16px; }
+      .main-content { padding: 0 16px; }
     }
 
     /* Chunk Card Component */
@@ -580,11 +581,11 @@
       background: var(--surface);
       border: 1px solid var(--surface-border);
       border-radius: var(--radius-lg);
-      padding: 18px 20px;
+      padding: 20px 22px;
       box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
     }
@@ -602,55 +603,86 @@
       box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3), var(--shadow-md);
     }
 
-    .card-top-row {
+    /* Card Top Meta Bar */
+    .card-meta-bar {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 12px;
     }
-    .chunk-identity-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex: 1;
-    }
-    .card-meta-line {
+    .card-meta-left {
       display: flex;
       align-items: center;
       gap: 8px;
     }
     .card-number-badge {
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.78rem;
+      font-weight: 800;
       color: #94a3b8;
       font-family: 'Fira Code', monospace;
+      letter-spacing: 0.04em;
     }
     .card-category-tag {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #64748b;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-muted);
       background: #f1f5f9;
-      padding: 1px 7px;
-      border-radius: 4px;
+      padding: 2px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--surface-border);
     }
-    .chunk-en-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #1e1b4b;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+
+    /* Chunk Master Hero Row: Left English, Right Chinese, Large Prominent Fonts */
+    .chunk-hero-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 4px 0 12px 0;
+      border-bottom: 1px solid var(--surface-border);
       cursor: pointer;
       user-select: none;
-      transition: color 0.15s;
+      transition: all 0.15s ease;
     }
-    .chunk-en-title:hover {
+    .chunk-hero-row:hover .chunk-en-text {
       color: var(--primary);
     }
+    .chunk-hero-row:hover .chunk-spk-btn {
+      transform: scale(1.18);
+      opacity: 1;
+    }
+    .chunk-en-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.55rem; /* ~29px large on PC! */
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .chunk-en-text {
+      word-break: break-word;
+      transition: color 0.15s;
+    }
+    .chunk-spk-btn {
+      font-size: 1.15rem;
+      color: var(--primary);
+      opacity: 0.85;
+      flex-shrink: 0;
+      transition: transform 0.15s, opacity 0.15s;
+    }
     .chunk-zh-meaning {
-      font-size: 0.92rem;
-      color: #475569;
-      font-weight: 600;
+      font-size: 1.4rem; /* ~26px large on PC! */
+      font-weight: 900;
+      color: #334155;
+      text-align: right;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      flex-shrink: 0;
+      transition: color 0.15s, filter 0.2s ease, opacity 0.2s ease;
     }
     .btn-star {
       background: transparent;
@@ -663,6 +695,21 @@
     }
     .btn-star:hover { transform: scale(1.15); color: #f59e0b; }
     .btn-star.active { color: #f59e0b; }
+
+    @media (max-width: 600px) {
+      .chunk-hero-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .chunk-zh-meaning {
+        text-align: left;
+        font-size: 1.2rem;
+      }
+      .chunk-en-title {
+        font-size: 1.35rem;
+      }
+    }
 
     /* Insights Layout */
     .card-insights-row {
@@ -1530,21 +1577,22 @@
 
       return `
         <article class="chunk-card ${isStarred ? 'is-starred' : ''}" id="card-${card.id}">
-          <div class="card-top-row">
-            <div class="chunk-identity-group">
-              <div class="card-meta-line">
-                <span class="card-number-badge">#${String(card.num).padStart(2, '0')}</span>
-                <span class="card-category-tag">${card.secTitle.replace(/^[一二三四五六七八九十]+[、.]/, '')}</span>
-              </div>
-              <div class="chunk-en-title" onclick="playChunk(${card.id})" title="点击发音">
-                <span>${card.en}</span>
-                <span style="font-size: 1rem; color: var(--primary); opacity: 0.8;">🔊</span>
-              </div>
-              <div class="chunk-zh-meaning">${card.zh}</div>
+          <div class="card-meta-bar">
+            <div class="card-meta-left">
+              <span class="card-number-badge">#${String(card.num).padStart(2, '0')}</span>
+              <span class="card-category-tag">${card.secTitle.replace(/^[一二三四五六七八九十]+[、.]/, '')}</span>
             </div>
             <button class="btn-star ${isStarred ? 'active' : ''}" onclick="toggleStar(${card.id}, event)" title="加入生词本">
               ${isStarred ? '⭐' : '☆'}
             </button>
+          </div>
+
+          <div class="chunk-hero-row" onclick="playChunk(${card.id})" title="点击点读核心词块">
+            <div class="chunk-en-title">
+              <span class="chunk-en-text">${card.en}</span>
+              <span class="chunk-spk-btn">🔊</span>
+            </div>
+            <div class="chunk-zh-meaning">${card.zh}</div>
           </div>
 
           ${card.core ? `

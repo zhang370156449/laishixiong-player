@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>朗文 3000 核心词根互动学习台 · TomeLab</title>
+  <link rel="icon" type="image/png" href="favicon_tomelab.png">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(23, 29, 45, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(30, 39, 62, 0.9);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --prefix-tag-bg: rgba(56, 189, 248, 0.12);
+      --prefix-tag-border: rgba(56, 189, 248, 0.3);
+      --prefix-tag-text: #38bdf8;
+      --root-tag-bg: rgba(168, 85, 247, 0.12);
+      --root-tag-border: rgba(168, 85, 247, 0.3);
+      --root-tag-text: #c084fc;
+      --meaning-color: #f1f5f9;
+      --badge-bg: rgba(99, 102, 241, 0.15);
+      --badge-text: #a5b4fc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg) 50%);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    /* Top Sticky Navigation Bar */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(11, 15, 25, 0.85);
+      border-bottom: 1px solid var(--card-border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #6366f1, #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+    }
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #fff 50%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .brand-tag {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 20px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      font-weight: 500;
+    }
+
+    .controls-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 8px 14px 8px 34px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 13px;
+      width: 200px;
+      outline: none;
+      transition: all 0.2s ease;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 12px center;
+    }
+    .search-input:focus {
+      width: 260px;
+      border-color: var(--accent);
+      background-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.25);
+    }
+
+    .tool-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: #e2e8f0;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    .tool-btn:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: var(--accent);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .tool-btn.active {
+      background: var(--accent);
+      border-color: var(--accent-light);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1100px;
+      margin: 32px auto 0;
+      padding: 0 20px;
+    }
+
+    .chapter-banner {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .chapter-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+    .chapter-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .stats-pill {
+      font-size: 12px;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* Grid Layout */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 20px;
+    }
+    @media (max-width: 600px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-bar {
+        padding: 12px 16px;
+      }
+      .search-input {
+        width: 100%;
+      }
+    }
+
+    /* Root/Prefix Card */
+    .root-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .root-card:hover {
+      border-color: rgba(99, 102, 241, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .prefix-name {
+      font-size: 26px;
+      font-weight: 800;
+      color: #60a5fa;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .prefix-badge {
+      font-size: 13px;
+      font-weight: 600;
+      color: #93c5fd;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .group-play-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      color: #94a3b8;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .group-play-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent-light);
+    }
+
+    /* Core Insight Callout */
+    .mind-callout {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-left: 3px solid #f59e0b;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #e2e8f0;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mind-icon {
+      font-size: 15px;
+    }
+    .mind-title {
+      font-weight: 600;
+      color: #fbbf24;
+      flex-shrink: 0;
+    }
+
+    /* Word List Rows */
+    .words-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .word-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.15s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .word-row:hover {
+      background: rgba(99, 102, 241, 0.1);
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: translateX(4px);
+    }
+    .word-row.playing {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: #6366f1;
+      box-shadow: 0 0 16px rgba(99, 102, 241, 0.35);
+    }
+
+    .word-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .speaker-icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .word-row:hover .speaker-icon-btn {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent-light);
+      transform: scale(1.08);
+    }
+    .word-row.playing .speaker-icon-btn {
+      background: #38bdf8;
+      color: #0f172a;
+      border-color: #7dd3fc;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(56, 189, 248, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+    }
+
+    .word-text-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .word-headword {
+      font-size: 16px;
+      font-weight: 700;
+      color: #f8fafc;
+      letter-spacing: 0.2px;
+    }
+
+    /* Morph Lego Formula Chips */
+    .word-formula {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      font-size: 11px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      padding: 1px 7px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .chip-prefix {
+      background: var(--prefix-tag-bg);
+      color: var(--prefix-tag-text);
+      border: 1px solid var(--prefix-tag-border);
+    }
+    .chip-root {
+      background: var(--root-tag-bg);
+      color: var(--root-tag-text);
+      border: 1px solid var(--root-tag-border);
+    }
+    .chip-op {
+      color: #64748b;
+      font-size: 10px;
+    }
+
+    /* Meaning */
+    .word-right {
+      margin-left: 14px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+    .word-meaning {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--meaning-color);
+      transition: filter 0.2s ease, opacity 0.2s ease;
+    }
+
+    /* Mask test mode */
+    body.mask-meanings .word-meaning {
+      filter: blur(6px);
+      opacity: 0.2;
+      user-select: none;
+    }
+    body.mask-meanings .word-row:hover .word-meaning,
+    body.mask-meanings .word-row.revealed .word-meaning {
+      filter: blur(0);
+      opacity: 1;
+    }
+
+    /* Audio Toast */
+    .audio-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s ease;
+      z-index: 999;
+      backdrop-filter: blur(12px);
+    }
+    .audio-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .toast-word {
+      font-weight: 700;
+      color: #38bdf8;
+      font-size: 15px;
+    }
+    .toast-status {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation -->
+  <header class="nav-bar">
+    <div class="brand-area">
+      <div class="brand-logo">T</div>
+      <div class="brand-title">朗文 3000 · 黄金词根速通台</div>
+      <span class="brand-tag">母语美音点读</span>
+    </div>
+
+    <div class="controls-area">
+      <input type="text" id="searchInput" class="search-input" placeholder="瞬时搜索单词 / 前缀 / 释义..." oninput="handleSearch()">
+      <button id="maskBtn" class="tool-btn" onclick="toggleMaskMode()">
+        <span>👁️</span>
+        <span id="maskBtnText">遮挡释义自测</span>
+      </button>
+      <button id="loopAllBtn" class="tool-btn" onclick="toggleAutoPlayAll()">
+        <span>▶️</span>
+        <span id="autoPlayText">一键顺序磨耳朵</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="container">
+    <div class="chapter-banner">
+      <div>
+        <div class="chapter-title">第二章 · 黄金前缀速记图谱</div>
+        <div class="chapter-desc">告别字母死记，通过空间推进与核心心法，秒破 3000 高频词底层骨架</div>
+      </div>
+      <div class="stats-pill" id="statsPill">显示全部 16 核心词</div>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid">
+
+      <!-- Card 1: in- / im- -->
+      <section class="root-card" data-group="in- / im-">
+        <div class="card-top">
+          <div class="prefix-name">
+            <span>in- / im-</span>
+            <span class="prefix-badge">入、向内、深入</span>
+          </div>
+          <div class="card-actions">
+            <button class="group-play-btn" title="连播本组" onclick="playGroup(this)">▶</button>
+          </div>
+        </div>
+        <div class="mind-callout">
+          <span class="mind-icon">🧭</span>
+          <span class="mind-title">核心心法：</span>
+          <span>走入某个具体范围，或深沉浸入事物内部</span>
+        </div>
+        <div class="words-list">
+          <div class="word-row" data-word="import" onclick="playWord('import', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">import</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">im- (内)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">port (运)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">进口、输入</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="inspect" onclick="playWord('inspect', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">inspect</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">in- (内)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">spect (看)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">视察、细查</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="include" onclick="playWord('include', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">include</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">in- (内)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">clude (关)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">包含、计入</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="income" onclick="playWord('income', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">income</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">in- (内)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">come (来)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">收入、收益</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 2: sub- -->
+      <section class="root-card" data-group="sub-">
+        <div class="card-top">
+          <div class="prefix-name">
+            <span>sub-</span>
+            <span class="prefix-badge">在下面、次级、下层</span>
+          </div>
+          <div class="card-actions">
+            <button class="group-play-btn" title="连播本组" onclick="playGroup(this)">▶</button>
+          </div>
+        </div>
+        <div class="mind-callout">
+          <span class="mind-icon">🧭</span>
+          <span class="mind-title">核心心法：</span>
+          <span>低于标准线，或处于底座支撑的下层位置</span>
+        </div>
+        <div class="words-list">
+          <div class="word-row" data-word="subway" onclick="playWord('subway', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">subway</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">sub- (下)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">way (路)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">地铁</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="submit" onclick="playWord('submit', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">submit</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">sub- (下)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">mit (送)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">呈交；屈服</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="support" onclick="playWord('support', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">support</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">sub- (下)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">port (托)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">支持、支撑</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="subject" onclick="playWord('subject', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">subject</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">sub- (下)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">ject (扔)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">受制于；主题</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 3: trans- -->
+      <section class="root-card" data-group="trans-">
+        <div class="card-top">
+          <div class="prefix-name">
+            <span>trans-</span>
+            <span class="prefix-badge">跨越、穿过、转换</span>
+          </div>
+          <div class="card-actions">
+            <button class="group-play-btn" title="连播本组" onclick="playGroup(this)">▶</button>
+          </div>
+        </div>
+        <div class="mind-callout">
+          <span class="mind-icon">🧭</span>
+          <span class="mind-title">核心心法：</span>
+          <span>从一侧横跨穿透到另一侧，产生位置或性质跳变</span>
+        </div>
+        <div class="words-list">
+          <div class="word-row" data-word="transport" onclick="playWord('transport', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">transport</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">trans- (跨)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">port (运)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">运输、运送</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="translate" onclick="playWord('translate', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">translate</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">trans- (换)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">late (带)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">翻译、转变</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="transform" onclick="playWord('transform', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">transform</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">trans- (变)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">form (形)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">彻底改造、形变</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="transfer" onclick="playWord('transfer', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">transfer</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">trans- (跨)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">fer (运)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">调动、转让</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Card 4: inter- -->
+      <section class="root-card" data-group="inter-">
+        <div class="card-top">
+          <div class="prefix-name">
+            <span>inter-</span>
+            <span class="prefix-badge">在...之间、相互、交织</span>
+          </div>
+          <div class="card-actions">
+            <button class="group-play-btn" title="连播本组" onclick="playGroup(this)">▶</button>
+          </div>
+        </div>
+        <div class="mind-callout">
+          <span class="mind-icon">🧭</span>
+          <span class="mind-title">核心心法：</span>
+          <span>两个或多个实体互相联通、交叠渗透</span>
+        </div>
+        <div class="words-list">
+          <div class="word-row" data-word="internet" onclick="playWord('internet', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">internet</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">inter- (间)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">net (网)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">互联网</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="interview" onclick="playWord('interview', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">interview</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">inter- (互相)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">view (看)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">面试、访谈</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="international" onclick="playWord('international', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">international</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">inter- (国间)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">nation (国家)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">国际的</span>
+            </div>
+          </div>
+
+          <div class="word-row" data-word="interrupt" onclick="playWord('interrupt', this)">
+            <div class="word-left">
+              <div class="speaker-icon-btn">🔊</div>
+              <div class="word-text-group">
+                <span class="word-headword">interrupt</span>
+                <div class="word-formula">
+                  <span class="chip chip-prefix">inter- (中)</span>
+                  <span class="chip-op">+</span>
+                  <span class="chip-root">rupt (断)</span>
+                </div>
+              </div>
+            </div>
+            <div class="word-right">
+              <span class="word-meaning">打断、插话</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Floating Toast -->
+  <div id="audioToast" class="audio-toast">
+    <span class="toast-word" id="toastWord">import</span>
+    <span class="toast-status" id="toastStatus">正在播放权威美音真人原声...</span>
+  </div>
+
+  <script>
+    let activeAudio = null;
+    let activeRow = null;
+    let isAutoPlaying = false;
+    let autoPlayList = [];
+    let autoPlayIdx = 0;
+    let toastTimeout = null;
+
+    function showToast(word) {
+      const toast = document.getElementById('audioToast');
+      const toastWord = document.getElementById('toastWord');
+      toastWord.textContent = word;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 1800);
+    }
+
+    function playWord(word, rowEl, callback) {
+      if (activeAudio) {
+        activeAudio.pause();
+        activeAudio = null;
+      }
+      if (activeRow) {
+        activeRow.classList.remove('playing');
+        activeRow = null;
+      }
+
+      if (rowEl) {
+        rowEl.classList.add('playing');
+        activeRow = rowEl;
+      }
+
+      showToast(word);
+
+      // Authentic US Human audio from dictionary master database
+      const audioUrl = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(word)}&type=2`;
+      activeAudio = new Audio(audioUrl);
+
+      activeAudio.onended = () => {
+        if (activeRow) {
+          activeRow.classList.remove('playing');
+          activeRow = null;
+        }
+        if (callback) callback();
+      };
+
+      activeAudio.onerror = () => {
+        if (activeRow) {
+          activeRow.classList.remove('playing');
+          activeRow = null;
+        }
+        console.warn('Audio load error for', word);
+        if (callback) callback();
+      };
+
+      activeAudio.play().catch(e => {
+        console.warn('Play interrupted:', e);
+        if (activeRow) {
+          activeRow.classList.remove('playing');
+          activeRow = null;
+        }
+      });
+    }
+
+    // Mask / Self-testing toggle
+    function toggleMaskMode() {
+      document.body.classList.toggle('mask-meanings');
+      const isMasked = document.body.classList.contains('mask-meanings');
+      const btn = document.getElementById('maskBtn');
+      const btnText = document.getElementById('maskBtnText');
+      if (isMasked) {
+        btn.classList.add('active');
+        btnText.textContent = '遮挡已开启 (划过显现)';
+      } else {
+        btn.classList.remove('active');
+        btnText.textContent = '遮挡释义自测';
+      }
+    }
+
+    // Realtime Search
+    function handleSearch() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const cards = document.querySelectorAll('.root-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const group = card.getAttribute('data-group').toLowerCase();
+        const rows = card.querySelectorAll('.word-row');
+        let cardHasMatch = false;
+
+        rows.forEach(row => {
+          const word = row.getAttribute('data-word').toLowerCase();
+          const text = row.textContent.toLowerCase();
+          if (!q || word.includes(q) || text.includes(q) || group.includes(q)) {
+            row.style.display = 'flex';
+            cardHasMatch = true;
+            visibleCount++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        if (cardHasMatch) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('statsPill').textContent = q ? `匹配到 ${visibleCount} 个条目` : '显示全部 16 核心词';
+    }
+
+    // Play all in group
+    function playGroup(btn) {
+      const card = btn.closest('.root-card');
+      const rows = Array.from(card.querySelectorAll('.word-row:not([style*="display: none"])'));
+      if (!rows.length) return;
+
+      let idx = 0;
+      function next() {
+        if (idx < rows.length) {
+          const row = rows[idx++];
+          const word = row.getAttribute('data-word');
+          playWord(word, row, () => {
+            setTimeout(next, 400); // 400ms pause between words
+          });
+        }
+      }
+      next();
+    }
+
+    // Auto play all visible words
+    function toggleAutoPlayAll() {
+      const btn = document.getElementById('loopAllBtn');
+      const btnText = document.getElementById('autoPlayText');
+
+      if (isAutoPlaying) {
+        isAutoPlaying = false;
+        if (activeAudio) activeAudio.pause();
+        if (activeRow) activeRow.classList.remove('playing');
+        btn.classList.remove('active');
+        btnText.textContent = '一键顺序磨耳朵';
+        return;
+      }
+
+      const rows = Array.from(document.querySelectorAll('.word-row:not([style*="display: none"])'));
+      if (!rows.length) return;
+
+      isAutoPlaying = true;
+      btn.classList.add('active');
+      btnText.textContent = '正在顺序磨耳朵 (点击停止)';
+
+      let idx = 0;
+      function step() {
+        if (!isAutoPlaying) return;
+        if (idx >= rows.length) idx = 0; // loop
+        const row = rows[idx++];
+        const word = row.getAttribute('data-word');
+        playWord(word, row, () => {
+          if (isAutoPlaying) {
+            setTimeout(step, 600);
+          }
+        });
+      }
+      step();
+    }
+  </script>
+</body>
+</html>

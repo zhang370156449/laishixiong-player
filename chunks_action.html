@@ -2030,6 +2030,7 @@
         btnStarFilter.classList.toggle('active', onlyStarred);
         starFilterLabel.textContent = onlyStarred ? `已收藏 (${starredIds.size})` : '生词本';
         renderCards();
+        window.scrollTo(0, 0);
       };
 
       // Search Filter
@@ -2043,6 +2044,7 @@
         searchQuery = '';
         btnClearSearch.style.display = 'none';
         renderCards();
+        window.scrollTo(0, 0);
       };
 
       // Section Pill Clicks
@@ -2053,6 +2055,18 @@
         activeSection = secVal === 'all' ? null : parseInt(secVal);
         renderSectionPills();
         renderCards();
+
+        // Auto scroll to top of page when switching sections
+        window.scrollTo(0, 0);
+
+        // Center active pill in horizontal scrollbar
+        const activePill = sectionPillBar.querySelector('.sec-pill.active');
+        if (activePill) {
+          const barRect = sectionPillBar.getBoundingClientRect();
+          const pillRect = activePill.getBoundingClientRect();
+          const offset = pillRect.left - barRect.left - (barRect.width / 2) + (pillRect.width / 2);
+          sectionPillBar.scrollBy({ left: offset, behavior: 'smooth' });
+        }
       };
 
       // Bottom Player Controls

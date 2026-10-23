@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发音音质试听与对比 - TomeLab</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --card-bg: rgba(26, 31, 46, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg) 60%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .header {
+      text-align: center;
+      max-width: 680px;
+      margin-bottom: 36px;
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #fff 40%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .container {
+      width: 100%;
+      max-width: 820px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .word-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .word-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+    .word-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .word-title {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #38bdf8;
+    }
+    .word-meaning {
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .audio-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+    .audio-btn:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: #6366f1;
+      transform: translateY(-2px);
+    }
+    .audio-btn:active {
+      transform: translateY(0);
+    }
+    .audio-btn.playing {
+      background: #6366f1;
+      border-color: #818cf8;
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+    }
+    .btn-icon {
+      font-size: 18px;
+    }
+    .btn-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .recommend-badge {
+      font-size: 10px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-top: 2px;
+    }
+    .status-bar {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #64748b;
+      min-height: 18px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>朗文词根书 · 发音音源试听对比</h1>
+    <p>点击各音源按钮试听播放效果。推荐优先对比【权威美音真人】与【百度/谷歌 TTS】的听感差别。</p>
+  </div>
+
+  <div class="container">
+
+    <!-- Word 1: transport -->
+    <div class="word-card" id="card-transport">
+      <div class="word-header">
+        <span class="word-title">transport</span>
+        <span class="word-meaning">trans- (跨) + port (运) ｜ 运输、运送</span>
+      </div>
+      <div class="btn-grid">
+        <button class="audio-btn" onclick="playAudio('transport', 'us_human', this)">
+          <span class="btn-icon">🎙️</span>
+          <span>权威美音 (真人)</span>
+          <span class="recommend-badge">首选推荐</span>
+        </button>
+        <button class="audio-btn" onclick="playAudio('transport', 'uk_human', this)">
+          <span class="btn-icon">🇬🇧</span>
+          <span>权威英音 (真人)</span>
+          <span class="btn-tag">经典英腔</span>
+        </button>
+        <button class="audio-btn" onclick="playAudio('transport', 'baidu_tts', this)">
+          <span class="btn-icon">🤖</span>
+          <span>百度神经 TTS</span>
+          <span class="btn-tag">合成美音</span>
+        </button>
+        <button class="audio-btn" onclick="playAudio('transport', 'google_tts', this)">
+          <span class="btn-icon">🌐</span>
+          <span>谷歌标准 TTS</span>
+          <span class="btn-tag">标准美音</span>
+        </button>
+        <button class="audio-btn" onclick="playWebSpeech('transport', this)">
+          <span class="btn-icon">⚡</span>
+          <span>浏览器本地原生</span>
+          <span class="btn-tag">零延迟秒播</span>
+        </button>
+      </div>
+      <div class="status-bar" id="status-transport">准备就绪</div>
+    </div>
+
+    <!-- Word 2: subway -->
+    <div class="word-card" id="card-subway">
+      <div class="word-header">
+        <span class="word-title">subway</span>
+        <span class="word-meaning">sub- (下) + way (路) ｜ 地铁</span>
+      </div>
+      <div class="btn-grid">
+        <button class="audio-btn" onclick="playAudio('subway', 'us_human', this)">
+          <span class="btn-icon">🎙️</span>
+          <span>权威美音 (真人)</span>
+          <span class="recommend-badge">首选推荐</span>
+        </button>
+        <button class="audio-btn" onclick="playAudio('subway', 'uk_human', this)">
+          <span class="btn-icon">🇬🇧</span>
+          <span>权威英音 (真人)</span>
+          <span class="btn-tag">经典英腔</span>
+        </button>
+        <button class="audio-btn" onclick="playAudio('subway', 'baidu_tts', this)">
+          <span class="btn-icon">🤖</span>
+          <span>百度神经 TTS</span>
+          <span class="btn-tag">合成美音</span>
+        </button>
+        <button class="audio-btn" onclick="playAudio('subway', 'google_tts', this)">
+          <span class="btn-icon">🌐</span>
+          <span>谷歌标准 TTS</span>
+          <span class="btn-tag">标准美音</span>
+        </button>
+        <button class="audio-btn" onclick="playWebSpeech('subway', this)">
+          <span class="btn-icon">⚡</span>
+          <span>浏览器本地原生</span>
+          <span class="btn-tag">零延迟秒播</span>
+        </button>
+      </div>
+      <div class="status-bar" id="status-subway">准备就绪</div>
+    </div>
+
+    <!-- Word 3: interview -->
+    <div class="word-card" id="card-interview">
+      <div class="word-header">
+        <span class="word-title">interview</span>
+        <span class="word-meaning">inter- (互相) + view (看) ｜ 面试、访谈</span>
+      </div>
+      <div class="btn-grid">
+        <button class="audio-btn" onclick="playAudio('interview', 'us_human', this)">
+          <span class="btn-icon">🎙️</span>
+          <span>权威美音 (真人)</span>
+          <span class="recommend-badge">首选推荐</span>
+        </button>
+        <button class="audio-btn" onclick="playAudio('interview', 'uk_human', this)">
+          <span class="btn-icon">🇬🇧</span>
+          <span>权威英音 (真人)</span>
+          <span class="btn-tag">经典英腔</span>
+        </button>
+        <button class="audio-btn" onclick="playAudio('interview', 'baidu_tts', this)">
+          <span class="btn-icon">🤖</span>
+          <span>百度神经 TTS</span>
+          <span class="btn-tag">合成美音</span>
+        </button>
+        <button class="audio-btn" onclick="playAudio('interview', 'google_tts', this)">
+          <span class="btn-icon">🌐</span>
+          <span>谷歌标准 TTS</span>
+          <span class="btn-tag">标准美音</span>
+        </button>
+        <button class="audio-btn" onclick="playWebSpeech('interview', this)">
+          <span class="btn-icon">⚡</span>
+          <span>浏览器本地原生</span>
+          <span class="btn-tag">零延迟秒播</span>
+        </button>
+      </div>
+      <div class="status-bar" id="status-interview">准备就绪</div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentAudio = null;
+    let currentBtn = null;
+
+    function resetBtnState() {
+      if (currentBtn) {
+        currentBtn.classList.remove('playing');
+        currentBtn = null;
+      }
+    }
+
+    function playAudio(word, source, btn) {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+      }
+      resetBtnState();
+
+      const statusEl = document.getElementById('status-' + word);
+      btn.classList.add('playing');
+      currentBtn = btn;
+      statusEl.textContent = '正在播放音频...';
+
+      const audioPath = 'test_audio/' + word + '_' + source + '.mp3';
+      currentAudio = new Audio(audioPath);
+
+      currentAudio.onended = () => {
+        resetBtnState();
+        statusEl.textContent = '播放完毕';
+      };
+
+      currentAudio.onerror = () => {
+        resetBtnState();
+        statusEl.textContent = '音频加载失败，尝试直接在线获取...';
+        // fallback to live url
+        let fallbackUrl = '';
+        if (source === 'us_human') fallbackUrl = `https://dict.youdao.com/dictvoice?audio=${word}&type=2`;
+        else if (source === 'uk_human') fallbackUrl = `https://dict.youdao.com/dictvoice?audio=${word}&type=1`;
+        else if (source === 'baidu_tts') fallbackUrl = `https://fanyi.baidu.com/gettts?lan=en&text=${word}&spd=3&source=web`;
+        else if (source === 'google_tts') fallbackUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${word}&tl=en&client=tw-ob`;
+        
+        if (fallbackUrl) {
+          const fallbackAudio = new Audio(fallbackUrl);
+          fallbackAudio.play().catch(e => {
+            statusEl.textContent = '在线回退失败: ' + e.message;
+          });
+        }
+      };
+
+      currentAudio.play().catch(e => {
+        console.warn(e);
+        statusEl.textContent = '播放中断或受浏览器策略阻止，请再次点击';
+        resetBtnState();
+      });
+    }
+
+    function playWebSpeech(word, btn) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        resetBtnState();
+
+        const statusEl = document.getElementById('status-' + word);
+        btn.classList.add('playing');
+        currentBtn = btn;
+        statusEl.textContent = '正在调用浏览器本地原生语音引擎...';
+
+        const u = new SpeechSynthesisUtterance(word);
+        u.lang = 'en-US';
+        u.rate = 0.95;
+
+        u.onend = () => {
+          resetBtnState();
+          statusEl.textContent = '播放完毕';
+        };
+
+        u.onerror = () => {
+          resetBtnState();
+          statusEl.textContent = '本地语音引擎异常';
+        };
+
+        window.speechSynthesis.speak(u);
+      } else {
+        alert('您的浏览器不支持 Web Speech API');
+      }
+    }
+  </script>
+</body>
+</html>

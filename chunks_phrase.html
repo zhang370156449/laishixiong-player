@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ChunkLab · ⚡ 高频短句 · 扫盲篇点读台</title>
+  <link rel="icon" href="favicon_chunklab.png" type="image/png">
+  <link rel="apple-touch-icon" href="favicon_chunklab.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;900&family=Fira+Code:wght@500;600&display=swap">
+  <style>
+    :root {
+      --base-size: 18.5px;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --primary-border: #c7d2fe;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      --core-bg: #eff6ff;
+      --core-border: #bfdbfe;
+      --core-text: #1e40af;
+      --usage-bg: #faf5ff;
+      --usage-border: #e9d5ff;
+      --usage-text: #6b21a8;
+      --warn-bg: #fffbeb;
+      --warn-border: #fde68a;
+      --warn-text: #92400e;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 10px 25px -4px rgba(15, 23, 42, 0.1);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+    }
+
+    /* Night Theme (Obsidian Slate / Apple Space Black) */
+    body.theme-dark {
+      --primary: #818cf8;
+      --primary-hover: #a5b4fc;
+      --primary-light: rgba(99, 102, 241, 0.16);
+      --primary-border: rgba(99, 102, 241, 0.35);
+      --bg: #0a0d16;
+      --surface: rgba(20, 26, 42, 0.92);
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --core-bg: rgba(30, 58, 138, 0.25);
+      --core-border: rgba(96, 165, 250, 0.35);
+      --core-text: #93c5fd;
+      --usage-bg: rgba(107, 33, 168, 0.25);
+      --usage-border: rgba(192, 132, 252, 0.35);
+      --usage-text: #d8b4fe;
+      --warn-bg: rgba(146, 64, 14, 0.25);
+      --warn-border: rgba(251, 191, 36, 0.35);
+      --warn-text: #fde68a;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.65);
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0a0d16 55%, #07090f 100%);
+      background-color: #0a0d16;
+      background-attachment: fixed;
+    }
+
+    body.theme-dark .top-navbar {
+      background: rgba(13, 17, 28, 0.94);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    body.theme-dark .brand-text h1 {
+      color: #f8fafc;
+    }
+    body.theme-dark .brand-badge {
+      background: rgba(139, 92, 246, 0.22);
+      color: #c4b5fd;
+    }
+    body.theme-dark .module-tab {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+    }
+    body.theme-dark .module-tab:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+    body.theme-dark .module-tab.active {
+      background: #6366f1;
+      border-color: #6366f1;
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+    }
+    body.theme-dark .module-tab-badge {
+      background: rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+    }
+    body.theme-dark .search-input {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+    }
+    body.theme-dark .search-input:focus {
+      background: rgba(20, 26, 42, 0.95);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+    body.theme-dark .tool-btn-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+    }
+    body.theme-dark .tool-btn-pill:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+    }
+    body.theme-dark .tool-btn-pill.active {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: #818cf8;
+      color: #c7d2fe;
+    }
+    body.theme-dark .font-stepper {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    body.theme-dark .font-btn {
+      color: #cbd5e1;
+    }
+    body.theme-dark .font-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+    body.theme-dark .font-label {
+      color: #94a3b8;
+    }
+    body.theme-dark .sec-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+    }
+    body.theme-dark .sec-pill:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    body.theme-dark .sec-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+    }
+    body.theme-dark .section-header-banner {
+      border-bottom-color: rgba(99, 102, 241, 0.3);
+    }
+    body.theme-dark .section-header-banner h2 {
+      color: #f8fafc;
+    }
+    body.theme-dark .chunk-card {
+      background: var(--surface);
+      border-color: var(--surface-border);
+    }
+    body.theme-dark .chunk-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      background: rgba(26, 35, 58, 0.95);
+    }
+    body.theme-dark .card-category-tag {
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    body.theme-dark .chunk-en-title {
+      color: #f8fafc;
+    }
+    body.theme-dark .chunk-zh-meaning {
+      color: #cbd5e1;
+    }
+    body.theme-dark .sentence-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .sentence-card:hover {
+      background: rgba(99, 102, 241, 0.12);
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+    body.theme-dark .sentence-card.is-speaking {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: #10b981;
+    }
+    body.theme-dark .btn-audio-play {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--primary);
+    }
+    body.theme-dark .btn-audio-play:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    body.theme-dark .subchunk-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .subchunk-card:hover {
+      background: rgba(99, 102, 241, 0.12);
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+    body.theme-dark .subchunk-code code {
+      color: #a5b4fc;
+    }
+    body.theme-dark .subchunk-zh {
+      color: #cbd5e1;
+    }
+    body.theme-dark .dialogue-wrap {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .dialogue-header-bar {
+      color: #f8fafc;
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .dialogue-row:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+    body.theme-dark .dialogue-en {
+      color: #f8fafc;
+    }
+    body.theme-dark .dialogue-zh {
+      color: #cbd5e1;
+    }
+    body.theme-dark .tip-box {
+      background: rgba(20, 83, 45, 0.25);
+      border-color: rgba(74, 222, 128, 0.35);
+      color: #86efac;
+    }
+    body.theme-dark .baby-say-box {
+      background: rgba(30, 58, 138, 0.32);
+      border: 1.5px solid rgba(96, 165, 250, 0.45);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+    body.theme-dark .baby-say-box:hover {
+      background: rgba(30, 58, 138, 0.45);
+      border-color: #60a5fa;
+    }
+    body.theme-dark .baby-say-box.is-speaking {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+    }
+    body.theme-dark .baby-say-title {
+      color: #93c5fd;
+    }
+    body.theme-dark .baby-say-en {
+      color: #ffffff !important;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    }
+    body.theme-dark .baby-say-zh {
+      color: #cbd5e1 !important;
+    }
+    body.theme-dark .bottom-player-bar {
+      background: rgba(13, 17, 28, 0.96);
+      border-top-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.5);
+    }
+    body.theme-dark .btn-player-action {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+    }
+    body.theme-dark .btn-player-action:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { font-size: var(--base-size); scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 90px;
+    }
+
+    /* Top Sticky Navigation Bar */
+    .top-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--surface-border);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+    .nav-container {
+      max-width: 1720px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nav-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.15);
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .brand-logo-img:hover { transform: scale(1.05); }
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #ede9fe;
+      color: #6d28d9;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .brand-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Module Navigation Tabs */
+    .module-nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 0 4px 0;
+      scrollbar-width: none;
+    }
+    .module-nav-tabs::-webkit-scrollbar { display: none; }
+    .module-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #475569;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .module-tab:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .module-tab.active {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+    }
+    .module-tab-badge {
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+    .module-tab.active .module-tab-badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+
+    /* Controls Bar */
+    .nav-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      max-width: 460px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      height: 38px;
+      padding: 0 12px 0 36px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-input:focus {
+      background: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.95rem;
+      color: #94a3b8;
+      pointer-events: none;
+    }
+    .btn-clear-search {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    .tools-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tool-btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 36px;
+      padding: 0 12px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: #334155;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .tool-btn-pill:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .tool-btn-pill.active {
+      background: #ede9fe;
+      border-color: #c4b5fd;
+      color: #6d28d9;
+    }
+    .font-stepper {
+      display: inline-flex;
+      align-items: center;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 36px;
+    }
+    .font-btn {
+      background: transparent;
+      border: none;
+      width: 32px;
+      height: 100%;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: #475569;
+      transition: background 0.15s;
+    }
+    .font-btn:hover { background: #e2e8f0; }
+    .font-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0 6px;
+      color: #64748b;
+      min-width: 38px;
+      text-align: center;
+    }
+
+    /* Section Pills Bar */
+    .section-pill-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 2px 0;
+      scrollbar-width: none;
+    }
+    .section-pill-bar::-webkit-scrollbar { display: none; }
+    .sec-pill {
+      padding: 5px 12px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .sec-pill:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+    .sec-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+    }
+
+    /* Main Container & Grid */
+    .main-content {
+      max-width: 1720px;
+      margin: 16px auto 0;
+      padding: 0 24px;
+    }
+    .section-block {
+      margin-bottom: 28px;
+    }
+    .section-header-banner {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--primary-border);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+    .section-header-banner h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1e1b4b;
+      letter-spacing: -0.01em;
+    }
+    .section-intro-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .section-badge-count {
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--primary-border);
+    }
+
+    /* Grid Layout: Exactly 2 Big Columns on Desktop per user request */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 1100px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .nav-container { padding: 8px 16px; }
+      .main-content { padding: 0 16px; }
+    }
+
+    /* Chunk Card Component */
+    .chunk-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .chunk-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+    .chunk-card.is-starred {
+      border-left: 4px solid #f59e0b;
+      background: linear-gradient(to right, rgba(254, 243, 199, 0.15), var(--surface));
+    }
+    .chunk-card.is-speaking {
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3), var(--shadow-md);
+    }
+
+    /* Card Top Meta Bar */
+    .card-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .card-meta-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-number-badge {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #94a3b8;
+      font-family: 'Fira Code', monospace;
+      letter-spacing: 0.04em;
+    }
+    .card-category-tag {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 2px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--surface-border);
+    }
+
+    /* Chunk Master Hero Row: Left English, Right Chinese, Large Prominent Fonts */
+    .chunk-hero-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 4px 0 12px 0;
+      border-bottom: 1px solid var(--surface-border);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .chunk-hero-row:hover .chunk-en-text {
+      color: var(--primary);
+    }
+    .chunk-hero-row:hover .chunk-spk-btn {
+      transform: scale(1.18);
+      opacity: 1;
+    }
+    .chunk-en-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.55rem; /* ~29px large on PC! */
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .chunk-en-text {
+      word-break: break-word;
+      transition: color 0.15s;
+    }
+    .chunk-spk-btn {
+      font-size: 1.15rem;
+      color: var(--primary);
+      opacity: 0.85;
+      flex-shrink: 0;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .chunk-zh-meaning {
+      font-size: 1.4rem; /* ~26px large on PC! */
+      font-weight: 900;
+      color: #334155;
+      text-align: right;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      flex-shrink: 0;
+      transition: color 0.15s, filter 0.2s ease, opacity 0.2s ease;
+    }
+    .btn-star {
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: #cbd5e1;
+      line-height: 1;
+      transition: all 0.2s;
+    }
+    .btn-star:hover { transform: scale(1.15); color: #f59e0b; }
+    .btn-star.active { color: #f59e0b; }
+
+    @media (max-width: 600px) {
+      .chunk-hero-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .chunk-zh-meaning {
+        text-align: left;
+        font-size: 1.2rem;
+      }
+      .chunk-en-title {
+        font-size: 1.35rem;
+      }
+    }
+
+    /* Insights Layout */
+    .card-insights-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 580px) {
+      .card-insights-row { grid-template-columns: 1fr; }
+    }
+    .insight-box {
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+    .insight-box-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .insight-core {
+      background: var(--core-bg);
+      border: 1px solid var(--core-border);
+      color: var(--core-text);
+    }
+    .insight-usage {
+      background: var(--usage-bg);
+      border: 1px solid var(--usage-border);
+      color: var(--usage-text);
+    }
+    .warn-box {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn-text);
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .warn-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .tip-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .tip-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    /* Examples & Subchunks List */
+    .examples-wrap {
+      margin-top: 4px;
+    }
+    .examples-header-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #059669;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .examples-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sentence-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 12px;
+      background: #f8fafc;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-md);
+      transition: all 0.15s;
+    }
+    .sentence-card:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+    }
+    .sentence-card.is-speaking {
+      background: #ecfdf5;
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+    .sentence-content {
+      flex: 1;
+      cursor: pointer;
+    }
+    .sentence-en {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+    .sentence-zh {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .btn-audio-play {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+    .btn-audio-play:hover {
+      background: var(--primary);
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    /* Subchunks (Action Page) */
+    .subchunks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .subchunk-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 7px 12px;
+      background: #f8fafc;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-sm);
+      transition: all 0.15s;
+    }
+    .subchunk-card:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+    }
+    .subchunk-card.is-speaking {
+      background: #ecfdf5;
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+    .subchunk-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+    }
+    .subchunk-code code {
+      font-family: 'Fira Code', monospace;
+      font-weight: 700;
+      color: #4338ca;
+      font-size: 0.95rem;
+    }
+    .subchunk-zh {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Dialogue (Action & Kids) */
+    .dialogue-wrap {
+      margin-top: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+    }
+    .dialogue-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .dialogue-header-bar > span:first-child {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #047857;
+    }
+    .btn-dialogue-play {
+      background: #059669;
+      border: none;
+      color: #ffffff;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .btn-dialogue-play:hover {
+      background: #047857;
+      transform: translateY(-1px);
+    }
+    .dialogue-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dialogue-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 4px 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .dialogue-row:hover {
+      background: #f1f5f9;
+    }
+    .dialogue-speaker {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .dialogue-speaker.speaker-b {
+      background: #e0f2fe;
+      color: #0284c7;
+    }
+    .dialogue-bubble {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .dialogue-en {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: #1e293b;
+      line-height: 1.45;
+    }
+    .dialogue-zh {
+      font-size: 0.86rem;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* Baby Say (Kids Page) */
+    .baby-say-box {
+      background: rgba(59, 130, 246, 0.08);
+      border: 1.5px solid rgba(59, 130, 246, 0.25);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .baby-say-box:hover {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.45);
+      transform: translateY(-1px);
+    }
+    .baby-say-box.is-speaking {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+    }
+    .baby-say-left {
+      flex: 1;
+    }
+    .baby-say-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #2563eb;
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+    }
+    .baby-say-en {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1e40af;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+    .baby-say-zh {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #334155;
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+    .role-badge {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .role-baby { background: #dbeafe; color: #1e40af; }
+    .role-mom { background: #fef3c7; color: #92400e; }
+
+    /* State Pills (State Page) */
+    .state-pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 0.82rem;
+    }
+
+    /* Phrase Spoken Soundboard (Phrase Page) */
+    .phrase-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .phrase-scene-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(14, 165, 233, 0.1);
+      color: #0284c7;
+      border: 1px solid rgba(14, 165, 233, 0.25);
+      max-width: 240px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+    body.theme-dark .phrase-scene-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+    .phrase-speaker-box {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .phrase-speaker-box:hover {
+      background: #faf5ff;
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+    body.theme-dark .phrase-speaker-box {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .phrase-speaker-box:hover {
+      background: rgba(99, 102, 241, 0.12);
+      border-color: #818cf8;
+    }
+    .phrase-card.is-speaking .phrase-speaker-box {
+      background: #ecfdf5;
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+    body.theme-dark .phrase-card.is-speaking .phrase-speaker-box {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+    }
+    .phrase-main-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .phrase-en-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .phrase-en-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      word-break: break-word;
+    }
+    body.theme-dark .phrase-en-text {
+      color: #f8fafc;
+    }
+    .phrase-spk-icon {
+      font-size: 1.1rem;
+      color: var(--primary);
+      opacity: 0.85;
+      flex-shrink: 0;
+      transition: transform 0.15s;
+    }
+    .phrase-speaker-box:hover .phrase-spk-icon {
+      transform: scale(1.15);
+    }
+    .phrase-zh-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 5px;
+      line-height: 1.35;
+    }
+    body.theme-dark .phrase-zh-text {
+      color: #94a3b8;
+    }
+    .phrase-action-play {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+    .phrase-action-play:hover {
+      background: var(--primary-hover);
+      transform: scale(1.1);
+    }
+    .phrase-card.is-speaking .phrase-action-play {
+      background: #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3);
+      transform: scale(1.08);
+    }
+    .phrase-dialogue-card {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 3.5px solid #10b981;
+      border-radius: 8px;
+      padding: 9px 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .phrase-dialogue-card:hover {
+      background: #dcfce7;
+      border-color: #86efac;
+    }
+    body.theme-dark .phrase-dialogue-card {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(16, 185, 129, 0.25);
+      border-left-color: #34d399;
+    }
+    body.theme-dark .phrase-dialogue-card:hover {
+      background: rgba(16, 185, 129, 0.14);
+    }
+    .dialogue-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #059669;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    body.theme-dark .dialogue-tag {
+      color: #34d399;
+    }
+    .dialogue-content {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #1e293b;
+      line-height: 1.45;
+    }
+    body.theme-dark .dialogue-content {
+      color: #e2e8f0;
+    }
+    .phrase-insight-card {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 3.5px solid #3b82f6;
+      border-radius: 8px;
+      padding: 9px 12px;
+    }
+    body.theme-dark .phrase-insight-card {
+      background: rgba(59, 130, 246, 0.08);
+      border-color: rgba(59, 130, 246, 0.25);
+      border-left-color: #60a5fa;
+    }
+    .insight-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #1d4ed8;
+      margin-bottom: 3px;
+      letter-spacing: 0.02em;
+    }
+    body.theme-dark .insight-tag {
+      color: #60a5fa;
+    }
+    .insight-content {
+      font-size: 0.86rem;
+      color: #1e3a8a;
+      line-height: 1.45;
+    }
+    body.theme-dark .insight-content {
+      color: #cbd5e1;
+    }
+    .phrase-warn-card {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 3.5px solid #f59e0b;
+      border-radius: 8px;
+      padding: 9px 12px;
+    }
+    body.theme-dark .phrase-warn-card {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: rgba(245, 158, 11, 0.3);
+      border-left-color: #fbbf24;
+    }
+    .warn-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #b45309;
+      margin-bottom: 3px;
+      letter-spacing: 0.02em;
+    }
+    body.theme-dark .warn-tag {
+      color: #fbbf24;
+    }
+    .warn-content {
+      font-size: 0.85rem;
+      color: #92400e;
+      line-height: 1.45;
+    }
+    body.theme-dark .warn-content {
+      color: #fde68a;
+    }
+
+
+    /* Masking Modes */
+    body.mask-en .sentence-en,
+    body.mask-en .subchunk-code,
+    body.mask-en .baby-say-en,
+    body.mask-en .dialogue-en,
+    body.mask-en .phrase-en-text {
+      filter: blur(6px);
+      cursor: pointer;
+      user-select: none;
+      transition: filter 0.15s;
+    }
+    body.mask-en .sentence-en:hover,
+    body.mask-en .subchunk-code:hover,
+    body.mask-en .baby-say-en:hover,
+    body.mask-en .dialogue-en:hover,
+    body.mask-en .phrase-en-text:hover {
+      filter: none;
+    }
+    body.mask-zh .sentence-zh,
+    body.mask-zh .subchunk-zh,
+    body.mask-zh .baby-say-zh,
+    body.mask-zh .chunk-zh-meaning,
+    body.mask-zh .dialogue-zh,
+    body.mask-zh .phrase-zh-text {
+      filter: blur(6px);
+      cursor: pointer;
+      user-select: none;
+      transition: filter 0.15s;
+    }
+    body.mask-zh .sentence-zh:hover,
+    body.mask-zh .subchunk-zh:hover,
+    body.mask-zh .baby-say-zh:hover,
+    body.mask-zh .chunk-zh-meaning:hover,
+    body.mask-zh .dialogue-zh:hover,
+    body.mask-zh .phrase-zh-text:hover {
+      filter: none;
+    }
+
+    /* Bottom Floating Audio Player */
+    .bottom-player-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 24px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .bottom-player-bar.active {
+      display: flex;
+    }
+    .now-playing-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .now-playing-icon {
+      font-size: 1.2rem;
+      animation: pulse 1.2s infinite;
+      color: #10b981;
+    }
+    .now-playing-text {
+      min-width: 0;
+    }
+    .now-playing-en {
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #f8fafc;
+    }
+    .now-playing-zh {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-player-action {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-player-action:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .btn-player-action.loop-on {
+      background: #10b981;
+      border-color: #10b981;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.95); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <header class="top-navbar">
+    <div class="nav-container">
+      <div class="nav-header-row">
+        <div class="brand-title-wrap">
+          <img src="chunklab_logo.png" class="brand-logo-img" alt="ChunkLab Logo">
+          <div class="brand-text">
+            <h1>ChunkLab · ⚡ 高频短句 · 扫盲篇点读台 <span class="brand-badge" id="totalCardBadge">150 短句</span> <span class="brand-version" style="font-size: 11px; padding: 2px 7px; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 999px; font-weight: 600; margin-left: 6px;">v1.2 (最新)</span></h1>
+            <span class="brand-sub">高频短语｜扫盲篇 · 150 日常高频短句 · 场景原声点读</span>
+          </div>
+        </div>
+
+        <div class="tools-group">
+          <!-- Force Reload -->
+          <button class="tool-btn-pill" onclick="window.location.href = window.location.pathname + '?v=' + Date.now()" title="强制清除网页与音频缓存并刷新">
+            <span>🔄</span> <span>更新刷新</span>
+          </button>
+
+          <!-- Day/Night Mode Switcher -->
+          <button class="tool-btn-pill" id="btnThemeToggle" title="切换日间/夜间模式">
+            <span id="themeIcon">🌙</span> <span id="themeLabel">夜间模式</span>
+          </button>
+
+
+          <!-- Font Size Controls -->
+          <div class="font-stepper" title="自由调节字号大小">
+            <button class="font-btn" id="btnFontDec" title="缩小字号">A-</button>
+            <span class="font-label" id="fontLabel">标准</span>
+            <button class="font-btn" id="btnFontInc" title="放大字号">A+</button>
+          </div>
+
+          <!-- Speed Controls -->
+          <button class="tool-btn-pill" id="btnSpeedToggle" title="切换播放语速">
+            <span>⚡</span> <span id="speedLabel">1.0x</span>
+          </button>
+
+          <!-- Masking Test Modes -->
+          <button class="tool-btn-pill" id="btnMaskToggle" title="自测遮盖背词">
+            <span>👁️</span> <span id="maskLabel">正常</span>
+          </button>
+
+          <!-- Star Filter -->
+          <button class="tool-btn-pill" id="btnStarFilter" title="只看生词收藏">
+            <span>⭐</span> <span id="starFilterLabel">生词本</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Module Navigation Tabs -->
+      <div class="module-nav-tabs">
+          <a href="chunks_daily.html" data-desktop-href="1.日常生存与交流_核心词块点读工作台.html" class="module-tab">
+            <span class="module-tab-title">🌟 日常生存与交流</span>
+            <span class="module-tab-badge">263 词块</span>
+          </a>
+          <a href="chunks_action.html" data-desktop-href="2.高频动作词_核心词块点读工作台.html" class="module-tab">
+            <span class="module-tab-title">🏃 高频动作词</span>
+            <span class="module-tab-badge">85 动词</span>
+          </a>
+          <a href="chunks_state.html" data-desktop-href="3.状态感受_核心词块点读工作台.html" class="module-tab">
+            <span class="module-tab-title">💭 状态与感受</span>
+            <span class="module-tab-badge">15 状态</span>
+          </a>
+          <a href="chunks_kids.html" data-desktop-href="4.亲子生活英语_核心词块点读工作台.html" class="module-tab">
+            <span class="module-tab-title">🧸 亲子生活英语</span>
+            <span class="module-tab-badge">44 亲子</span>
+          </a>
+          <a href="chunks_phrase.html" data-desktop-href="5.高频短句_扫盲篇点读工作台.html" class="module-tab active">
+            <span class="module-tab-title">⚡ 高频短句 · 扫盲篇</span>
+            <span class="module-tab-badge">150 短句</span>
+          </a>
+        </div>
+
+      <!-- Controls & Search -->
+      <div class="nav-controls-row">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" id="searchInput" placeholder="搜索英文、中文意思、例句、核心功能..." autocomplete="off">
+          <button class="btn-clear-search" id="btnClearSearch">×</button>
+        </div>
+
+        <!-- Section Navigation Tabs -->
+        <div class="section-pill-bar" id="sectionPillBar">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Cards Feed -->
+  <main class="main-content" id="mainContainer">
+    <!-- Populated by JavaScript -->
+  </main>
+
+  <!-- Bottom Floating Audio Player Bar -->
+  <div class="bottom-player-bar" id="bottomPlayerBar">
+    <div class="now-playing-wrap">
+      <span class="now-playing-icon">🔊</span>
+      <div class="now-playing-text">
+        <div class="now-playing-en" id="nowPlayingEn">Ready</div>
+        <div class="now-playing-zh" id="nowPlayingZh">点读音频已就绪</div>
+      </div>
+    </div>
+
+    <div class="player-controls">
+      <button class="btn-player-action" id="btnPrevCard" title="上一个">⏮</button>
+      <button class="btn-player-action" id="btnPlayPause" title="重播当前句">▶ 播放</button>
+      <button class="btn-player-action" id="btnNextCard" title="下一个">⏭</button>
+      <button class="btn-player-action" id="btnLoopToggle" title="循环播放当前音频">🔁 单曲循环</button>
+      <button class="btn-player-action" id="btnClosePlayer" title="关闭播放条">✕</button>
+    </div>
+  </div>
+
+  <script>
+    // Embedded Database
+    window.CURRENT_DB = {"sections": [{"secIdx": 1, "title": "一、打招呼、寒暄与告别", "intro": "美式日常最自然的开场与收尾，避免只会说 How are you 和 Goodbye。", "count": 15}, {"secIdx": 2, "title": "二、同意、认可与接受", "intro": "从完全赞同到礼貌接受，轻松给出积极明确的回应。", "count": 15}, {"secIdx": 3, "title": "三、不确定、保留与不同意见", "intro": "委婉表达怀疑、观望与分歧，保持对话友好且有余地。", "count": 15}, {"secIdx": 4, "title": "四、感谢、道歉与安慰", "intro": "超越 Thank you 和 Sorry，掌握更真诚、更地道的人际温度表达。", "count": 15}, {"secIdx": 5, "title": "五、请求、许可与礼貌行动", "intro": "得体求助、询问允许与请求重复，职场与日常必备礼貌句式。", "count": 15}, {"secIdx": 6, "title": "六、控制对话、思考与补充说明", "intro": "争取思考时间、插话澄清与调整谈话节奏的控场短句。", "count": 15}, {"secIdx": 7, "title": "七、开始、进度、完成与负责", "intro": "推进事情进展、确认现状与承担责任的高频实干短句。", "count": 15}, {"secIdx": 8, "title": "八、计划、决定、时间与预防", "intro": "商定安排、即拍即合与预先留出退路的时间与决策句。", "count": 15}, {"secIdx": 9, "title": "九、惊讶、情绪与即时反应", "intro": "面对意外消息与各种情绪时刻的下意识原汁原味地道口语。", "count": 15}, {"secIdx": 10, "title": "十、生活服务、选择与收尾", "intro": "购物、点单、结账与收尾时的利落得体句式。", "count": 15}], "cards": [{"id": 1, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "1", "en": "How’s it going?", "zh": "最近怎么样？", "audio": "hf_phrase_001.mp3", "chunkLocal": "audio_chunks/hf_phrase_001.mp3", "localAudio": "audio_chunks/hf_phrase_001.mp3", "core": "字面像“事情进行得怎么样”，日常就是轻松地问近况，比 How are you? 更口语。", "scene": "见到同事、熟人或刚开始聊天。", "example": "How’s it going? — Pretty good.（最近怎么样？——挺好的。）", "warn": ""}, {"id": 2, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "2", "en": "What’s up?", "zh": "最近怎样？／怎么了？", "audio": "hf_phrase_002.mp3", "chunkLocal": "audio_chunks/hf_phrase_002.mp3", "localAudio": "audio_chunks/hf_phrase_002.mp3", "core": "询问“现在有什么事”。朋友见面时可表示“最近怎样”，看到对方异常时也可表示“怎么了”。", "scene": "熟人之间的非正式问候，或询问发生了什么。", "example": "You look worried. What’s up?（你看起来很担心，怎么了？）", "warn": "别人把它当问候时，可以回答 Not much.（没什么特别的。）"}, {"id": 3, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "3", "en": "How have you been?", "zh": "你最近过得怎么样？", "audio": "hf_phrase_003.mp3", "chunkLocal": "audio_chunks/hf_phrase_003.mp3", "localAudio": "audio_chunks/hf_phrase_003.mp3", "core": "关心从上次见面到现在这一段时间的近况，不只是问此刻感觉。", "scene": "一段时间没见后重新碰面。", "example": "How have you been? — I’ve been good.（你最近怎么样？——我挺好的。）", "warn": ""}, {"id": 4, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "4", "en": "Nice to meet you.", "zh": "很高兴认识你。", "audio": "hf_phrase_004.mp3", "chunkLocal": "audio_chunks/hf_phrase_004.mp3", "localAudio": "audio_chunks/hf_phrase_004.mp3", "core": "第一次见面时表达礼貌和友好，把整句当固定表达使用。", "scene": "第一次被介绍给别人。", "example": "I’m Gavin. Nice to meet you.（我是 Gavin，很高兴认识你。）", "warn": "不是第一次见面时更适合说 Nice to see you."}, {"id": 5, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "5", "en": "Long time no see.", "zh": "好久不见。", "audio": "hf_phrase_005.mp3", "chunkLocal": "audio_chunks/hf_phrase_005.mp3", "localAudio": "audio_chunks/hf_phrase_005.mp3", "core": "很久没见面后的轻松招呼，虽然结构不像完整语法句，但已是固定口语。", "scene": "重新见到老朋友或熟人。", "example": "Long time no see! How have you been?（好久不见！你最近怎么样？）", "warn": ""}, {"id": 6, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "6", "en": "Good to see you.", "zh": "见到你真好。", "audio": "hf_phrase_006.mp3", "chunkLocal": "audio_chunks/hf_phrase_006.mp3", "localAudio": "audio_chunks/hf_phrase_006.mp3", "core": "再次见到认识的人时表达高兴；第一次见面一般不用。", "scene": "朋友、客户或同事再次见面。", "example": "Good to see you again.（很高兴再次见到你。）", "warn": ""}, {"id": 7, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "7", "en": "Take care.", "zh": "保重。", "audio": "hf_phrase_007.mp3", "chunkLocal": "audio_chunks/hf_phrase_007.mp3", "localAudio": "audio_chunks/hf_phrase_007.mp3", "core": "告别时希望对方照顾好自己，语气温和，不一定表示发生了危险。", "scene": "结束见面、电话或聊天。", "example": "I have to go. Take care!（我得走了，保重！）", "warn": ""}, {"id": 8, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "8", "en": "See you around.", "zh": "回头见。", "audio": "hf_phrase_008.mp3", "chunkLocal": "audio_chunks/hf_phrase_008.mp3", "localAudio": "audio_chunks/hf_phrase_008.mp3", "core": "以后可能还会在附近或共同圈子里碰到，但没有约定具体时间。", "scene": "同事、邻居或常去同一地方的人告别。", "example": "It was nice talking to you. See you around.（很高兴和你聊天，回头见。）", "warn": ""}, {"id": 9, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "9", "en": "Have a good one.", "zh": "祝你今天过得愉快。", "audio": "hf_phrase_009.mp3", "chunkLocal": "audio_chunks/hf_phrase_009.mp3", "localAudio": "audio_chunks/hf_phrase_009.mp3", "core": "one 代替 day、evening 或 weekend，是很自然的美式告别语。", "scene": "商店、办公室或日常简短告别。", "example": "Thanks for stopping by. Have a good one!（谢谢你过来，祝你今天愉快！）", "warn": ""}, {"id": 10, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "10", "en": "Same to you.", "zh": "你也一样。", "audio": "hf_phrase_010.mp3", "chunkLocal": "audio_chunks/hf_phrase_010.mp3", "localAudio": "audio_chunks/hf_phrase_010.mp3", "core": "把对方给你的祝福原样送回去，不需要重复整句话。", "scene": "回应 Have a good day、Happy holidays 等祝福。", "example": "Have a great weekend! — Same to you!（周末愉快！——你也是！）", "warn": ""}, {"id": 11, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "11", "en": "Not bad.", "zh": "还不错。", "audio": "hf_phrase_011.mp3", "chunkLocal": "audio_chunks/hf_phrase_011.mp3", "localAudio": "audio_chunks/hf_phrase_011.mp3", "core": "字面是“不差”，实际通常是温和的正面评价，不一定表示勉强。", "scene": "回答近况，或评价食物、工作和体验。", "example": "How was the food? — Not bad.（食物怎么样？——还不错。）", "warn": ""}, {"id": 12, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "12", "en": "Pretty good.", "zh": "挺好的。", "audio": "hf_phrase_012.mp3", "chunkLocal": "audio_chunks/hf_phrase_012.mp3", "localAudio": "audio_chunks/hf_phrase_012.mp3", "core": "这里 pretty 不是“漂亮”，而是程度副词“相当、挺”。", "scene": "自然地回答近况或评价结果。", "example": "How are you doing? — Pretty good.（你最近怎么样？——挺好的。）", "warn": ""}, {"id": 13, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "13", "en": "Can’t complain.", "zh": "还不错，没什么可抱怨的。", "audio": "hf_phrase_013.mp3", "chunkLocal": "audio_chunks/hf_phrase_013.mp3", "localAudio": "audio_chunks/hf_phrase_013.mp3", "core": "不是说真的完全不能抱怨，而是委婉表示生活还可以。", "scene": "轻松回答 How’s it going?", "example": "How’s work? — Can’t complain.（工作怎么样？——还行。）", "warn": ""}, {"id": 14, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "14", "en": "So far, so good.", "zh": "到目前为止一切顺利。", "audio": "hf_phrase_014.mp3", "chunkLocal": "audio_chunks/hf_phrase_014.mp3", "localAudio": "audio_chunks/hf_phrase_014.mp3", "core": "so far 表示“到现在为止”；so good 表示“情况都不错”。暗含以后还不知道。", "scene": "回答项目、旅行、学习或新工作的当前进展。", "example": "How’s the new job going? — So far, so good.（新工作怎么样？——目前为止还不错。）", "warn": ""}, {"id": 15, "secIdx": 1, "secTitle": "一、打招呼、寒暄与告别", "num": "15", "en": "Same as usual.", "zh": "和平常一样。", "audio": "hf_phrase_015.mp3", "chunkLocal": "audio_chunks/hf_phrase_015.mp3", "localAudio": "audio_chunks/hf_phrase_015.mp3", "core": "表示今天或现在的情况没有明显变化；usual 是“通常的情况”。", "scene": "回答工作、生活或固定订单是否有变化。", "example": "How’s everything? — Same as usual.（一切怎么样？——和平常一样。）", "warn": ""}, {"id": 16, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "16", "en": "Sounds good.", "zh": "听起来不错／可以。", "audio": "hf_phrase_016.mp3", "chunkLocal": "audio_chunks/hf_phrase_016.mp3", "localAudio": "audio_chunks/hf_phrase_016.mp3", "core": "根据刚听到的建议或安排作出正面回应，实际常等于“好，就这么办”。", "scene": "接受时间、地点、计划或建议。", "example": "Let’s meet at three. — Sounds good.（我们三点见。——可以。）", "warn": ""}, {"id": 17, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "17", "en": "Works for me.", "zh": "我没问题／我方便。", "audio": "hf_phrase_017.mp3", "chunkLocal": "audio_chunks/hf_phrase_017.mp3", "localAudio": "audio_chunks/hf_phrase_017.mp3", "core": "某个安排对我的时间、需要或条件来说可行；work 在这里是“行得通”。", "scene": "确认会议时间、方案或地点。", "example": "How about Friday? — Works for me.（周五怎么样？——我可以。）", "warn": ""}, {"id": 18, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "18", "en": "That’s fine.", "zh": "那样可以／没关系。", "audio": "hf_phrase_018.mp3", "chunkLocal": "audio_chunks/hf_phrase_018.mp3", "localAudio": "audio_chunks/hf_phrase_018.mp3", "core": "表示某个结果在可接受范围内，不需要改变。", "scene": "接受替代方案，或告诉对方小问题没关系。", "example": "We only have the blue one. — That’s fine.（我们只有蓝色的。——蓝色也可以。）", "warn": ""}, {"id": 19, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "19", "en": "That’ll do.", "zh": "这样就行了。", "audio": "hf_phrase_019.mp3", "chunkLocal": "audio_chunks/hf_phrase_019.mp3", "localAudio": "audio_chunks/hf_phrase_019.mp3", "core": "当前东西或做法已经能达到目的，虽然不一定完美，但够用了。", "scene": "确认数量、工具、修改或准备程度已经足够。", "example": "Is this box big enough? — Yes, that’ll do.（这个箱子够大吗？——够了，这个就行。）", "warn": "语气偏干脆，对服务人员或长辈说可能显得敷衍，熟人之间用更自然。"}, {"id": 20, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "20", "en": "All good.", "zh": "都没问题／没事了。", "audio": "hf_phrase_020.mp3", "chunkLocal": "audio_chunks/hf_phrase_020.mp3", "localAudio": "audio_chunks/hf_phrase_020.mp3", "core": "整体情况已经正常，没有需要继续担心或处理的事。", "scene": "确认错误已解决，或回应道歉。", "example": "Sorry about the delay. — All good.（抱歉耽搁了。——没事。）", "warn": ""}, {"id": 21, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "21", "en": "Fair enough.", "zh": "有道理／可以理解。", "audio": "hf_phrase_021.mp3", "chunkLocal": "audio_chunks/hf_phrase_021.mp3", "localAudio": "audio_chunks/hf_phrase_021.mp3", "core": "你未必完全赞同，但承认对方的理由合理，愿意接受。", "scene": "听完解释、限制或不同看法后。", "example": "I need more time to decide. — Fair enough.（我需要更多时间决定。——可以理解。）", "warn": ""}, {"id": 22, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "22", "en": "Makes sense.", "zh": "有道理／说得通。", "audio": "hf_phrase_022.mp3", "chunkLocal": "audio_chunks/hf_phrase_022.mp3", "localAudio": "audio_chunks/hf_phrase_022.mp3", "core": "信息之间能连接起来，逻辑上容易理解。完整形式是 That makes sense.", "scene": "理解原因、流程或解释之后。", "example": "We ship them separately to avoid damage. — Makes sense.（我们分开发货以免损坏。——有道理。）", "warn": ""}, {"id": 23, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "23", "en": "Good point.", "zh": "说得有道理。", "audio": "hf_phrase_023.mp3", "chunkLocal": "audio_chunks/hf_phrase_023.mp3", "localAudio": "audio_chunks/hf_phrase_023.mp3", "core": "对方提出了一个值得注意的重要角度；point 在这里是“观点、要点”。", "scene": "讨论中认可对方提醒的一个细节。", "example": "We should check the shipping cost first. — Good point.（我们应该先确认运费。——说得有道理。）", "warn": ""}, {"id": 24, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "24", "en": "Exactly.", "zh": "完全正确／正是这样。", "audio": "hf_phrase_024.mp3", "chunkLocal": "audio_chunks/hf_phrase_024.mp3", "localAudio": "audio_chunks/hf_phrase_024.mp3", "core": "表示对方说的内容准确地表达了你的想法，比 Yes 更强。", "scene": "强烈同意或确认对方理解正确。", "example": "So the price includes packaging? — Exactly.（所以价格包含包装？——完全正确。）", "warn": ""}, {"id": 25, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "25", "en": "Absolutely.", "zh": "当然／完全同意。", "audio": "hf_phrase_025.mp3", "chunkLocal": "audio_chunks/hf_phrase_025.mp3", "localAudio": "audio_chunks/hf_phrase_025.mp3", "core": "没有保留地肯定，可表示强烈同意、允许或确认。", "scene": "比 Yes 更热情、更确定地回应。", "example": "Can we discuss this tomorrow? — Absolutely.（我们明天讨论可以吗？——当然。）", "warn": ""}, {"id": 26, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "26", "en": "I agree.", "zh": "我同意。", "audio": "hf_phrase_026.mp3", "chunkLocal": "audio_chunks/hf_phrase_026.mp3", "localAudio": "audio_chunks/hf_phrase_026.mp3", "core": "明确表示自己的观点和对方一致。", "scene": "讨论意见、决定或评价。", "example": "I think we should wait. — I agree.（我觉得我们应该等等。——我同意。）", "warn": "agree 是动词，不说 I’m agree。"}, {"id": 27, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "27", "en": "You’re right.", "zh": "你说得对。", "audio": "hf_phrase_027.mp3", "chunkLocal": "audio_chunks/hf_phrase_027.mp3", "localAudio": "audio_chunks/hf_phrase_027.mp3", "core": "承认对方的事实、判断或提醒是正确的。", "scene": "讨论后接受对方观点，或承认自己忽略了什么。", "example": "The address is wrong. — You’re right.（地址错了。——你说得对。）", "warn": ""}, {"id": 28, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "28", "en": "I think so.", "zh": "我想是的。", "audio": "hf_phrase_028.mp3", "chunkLocal": "audio_chunks/hf_phrase_028.mp3", "localAudio": "audio_chunks/hf_phrase_028.mp3", "core": "用 so 代替前面整件事，表示根据目前信息判断答案大概是“是”。", "scene": "不百分之百确定地同意或确认。", "example": "Is the store still open? — I think so.（商店还开着吗？——我想是的。）", "warn": ""}, {"id": 29, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "29", "en": "Me too.", "zh": "我也是。", "audio": "hf_phrase_029.mp3", "chunkLocal": "audio_chunks/hf_phrase_029.mp3", "localAudio": "audio_chunks/hf_phrase_029.mp3", "core": "对方说的是肯定情况，而你也有同样感受、经历或需求。", "scene": "快速表示相同。", "example": "I love coffee. — Me too.（我喜欢咖啡。——我也是。）", "warn": ""}, {"id": 30, "secIdx": 2, "secTitle": "二、同意、认可与接受", "num": "30", "en": "Me neither.", "zh": "我也不。", "audio": "hf_phrase_030.mp3", "chunkLocal": "audio_chunks/hf_phrase_030.mp3", "localAudio": "audio_chunks/hf_phrase_030.mp3", "core": "对方说的是否定情况，而你也一样。它是口语中很方便的整体回应。", "scene": "回应 I don’t… / I can’t… / I haven’t… 等否定句。", "example": "I don’t know. — Me neither.（我不知道。——我也不知道。）", "warn": ""}, {"id": 31, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "31", "en": "I don’t think so.", "zh": "我觉得不是／恐怕不行。", "audio": "hf_phrase_031.mp3", "chunkLocal": "audio_chunks/hf_phrase_031.mp3", "localAudio": "audio_chunks/hf_phrase_031.mp3", "core": "不直接说 No，而是把否定放进“我的判断”里，听起来更委婉。", "scene": "不同意判断，或认为某件事不会发生。", "example": "Is it open today? — I don’t think so.（今天开门吗？——我觉得不开。）", "warn": ""}, {"id": 32, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "32", "en": "Not really.", "zh": "不太是／不怎么。", "audio": "hf_phrase_032.mp3", "chunkLocal": "audio_chunks/hf_phrase_032.mp3", "localAudio": "audio_chunks/hf_phrase_032.mp3", "core": "柔和地否定，不一定是百分之百的“不”，而是“没有达到你说的程度”。", "scene": "回答喜好、感受或一般判断。", "example": "Do you like spicy food? — Not really.（你喜欢辣的食物吗？——不太喜欢。）", "warn": ""}, {"id": 33, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "33", "en": "I’m not sure.", "zh": "我不确定。", "audio": "hf_phrase_033.mp3", "chunkLocal": "audio_chunks/hf_phrase_033.mp3", "localAudio": "audio_chunks/hf_phrase_033.mp3", "core": "说明自己没有足够信息作出肯定答案，比 I don’t know 更保留。", "scene": "不确定事实、时间、选择或判断。", "example": "When will it arrive? — I’m not sure.（它什么时候到？——我不确定。）", "warn": ""}, {"id": 34, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "34", "en": "It depends.", "zh": "要看情况。", "audio": "hf_phrase_034.mp3", "chunkLocal": "audio_chunks/hf_phrase_034.mp3", "localAudio": "audio_chunks/hf_phrase_034.mp3", "core": "答案不是固定的，要由另一个条件决定。depends 后面常接 on。", "scene": "无法直接回答是或否。", "example": "Is shipping free? — It depends on the order size.（免运费吗？——要看订单大小。）", "warn": ""}, {"id": 35, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "35", "en": "Maybe.", "zh": "也许。", "audio": "hf_phrase_035.mp3", "chunkLocal": "audio_chunks/hf_phrase_035.mp3", "localAudio": "audio_chunks/hf_phrase_035.mp3", "core": "表示有可能，但说话人没有作出明确判断或承诺。", "scene": "回应不确定的计划或可能性。", "example": "Are you coming tonight? — Maybe.（你今晚来吗？——也许吧。）", "warn": ""}, {"id": 36, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "36", "en": "Probably.", "zh": "很可能。", "audio": "hf_phrase_036.mp3", "chunkLocal": "audio_chunks/hf_phrase_036.mp3", "localAudio": "audio_chunks/hf_phrase_036.mp3", "core": "可能性比 maybe 更高，但仍不是百分之百确定。", "scene": "根据已有信息作出较有把握的判断。", "example": "Will it arrive tomorrow? — Probably.（它明天会到吗？——很可能。）", "warn": ""}, {"id": 37, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "37", "en": "We’ll see.", "zh": "到时候再看。", "audio": "hf_phrase_037.mp3", "chunkLocal": "audio_chunks/hf_phrase_037.mp3", "localAudio": "audio_chunks/hf_phrase_037.mp3", "core": "现在不作最终决定，等信息更清楚或时间到了再判断。", "scene": "计划尚未确定，或不想立刻承诺。", "example": "Can we go this weekend? — We’ll see.（这周末能去吗？——到时候再看。）", "warn": ""}, {"id": 38, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "38", "en": "You never know.", "zh": "谁知道呢／说不定。", "audio": "hf_phrase_038.mp3", "chunkLocal": "audio_chunks/hf_phrase_038.mp3", "localAudio": "audio_chunks/hf_phrase_038.mp3", "core": "未来可能出现意外结果，所以不要过早断定不可能。", "scene": "保留希望，或提醒事情有不确定性。", "example": "Maybe they’ll agree. You never know.（也许他们会同意，谁知道呢。）", "warn": ""}, {"id": 39, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "39", "en": "I doubt it.", "zh": "我觉得不太可能。", "audio": "hf_phrase_039.mp3", "chunkLocal": "audio_chunks/hf_phrase_039.mp3", "localAudio": "audio_chunks/hf_phrase_039.mp3", "core": "doubt 是“怀疑”，整句表示你认为前面那件事发生的可能性很低。", "scene": "较明确但仍不粗鲁地表达不相信。", "example": "Will he come today? — I doubt it.（他今天会来吗？——我觉得不太可能。）", "warn": ""}, {"id": 40, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "40", "en": "I hope so.", "zh": "希望如此。", "audio": "hf_phrase_040.mp3", "chunkLocal": "audio_chunks/hf_phrase_040.mp3", "localAudio": "audio_chunks/hf_phrase_040.mp3", "core": "你希望前面提到的好结果是真的或会发生；so 代替整件事。", "scene": "对积极结果表达期待。", "example": "Do you think it’ll work? — I hope so.（你觉得会成功吗？——希望如此。）", "warn": ""}, {"id": 41, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "41", "en": "I hope not.", "zh": "希望不会。", "audio": "hf_phrase_041.mp3", "chunkLocal": "audio_chunks/hf_phrase_041.mp3", "localAudio": "audio_chunks/hf_phrase_041.mp3", "core": "你希望前面提到的不利情况不要发生。", "scene": "谈到延误、错误、坏天气等可能性。", "example": "Will the order be delayed? — I hope not.（订单会延误吗？——希望不会。）", "warn": ""}, {"id": 42, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "42", "en": "I’m afraid so.", "zh": "恐怕是这样。", "audio": "hf_phrase_042.mp3", "chunkLocal": "audio_chunks/hf_phrase_042.mp3", "localAudio": "audio_chunks/hf_phrase_042.mp3", "core": "不是表示“害怕”，而是礼貌地确认一个让人失望的事实。", "scene": "不得不告诉对方坏消息是真的。", "example": "Is it sold out? — I’m afraid so.（卖完了吗？——恐怕是的。）", "warn": ""}, {"id": 43, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "43", "en": "I’m afraid not.", "zh": "恐怕不行／恐怕不是。", "audio": "hf_phrase_043.mp3", "chunkLocal": "audio_chunks/hf_phrase_043.mp3", "localAudio": "audio_chunks/hf_phrase_043.mp3", "core": "礼貌地给出否定答案，减轻直接说 No 的生硬感。", "scene": "无法满足请求或事实答案是否定的。", "example": "Can you deliver today? — I’m afraid not.（今天能送吗？——恐怕不行。）", "warn": ""}, {"id": 44, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "44", "en": "Not necessarily.", "zh": "不一定。", "audio": "hf_phrase_044.mp3", "chunkLocal": "audio_chunks/hf_phrase_044.mp3", "localAudio": "audio_chunks/hf_phrase_044.mp3", "core": "对方说的结果有可能，但不是必然；还有其他可能性。", "scene": "纠正过度肯定的推断。", "example": "More expensive means better, right? — Not necessarily.（更贵就代表更好，对吗？——不一定。）", "warn": ""}, {"id": 45, "secIdx": 3, "secTitle": "三、不确定、保留与不同意见", "num": "45", "en": "That’s not what I meant.", "zh": "我不是那个意思。", "audio": "hf_phrase_045.mp3", "chunkLocal": "audio_chunks/hf_phrase_045.mp3", "localAudio": "audio_chunks/hf_phrase_045.mp3", "core": "对方理解的意思和你原本想表达的内容不同，用来温和纠正误会。", "scene": "解释聊天或工作沟通中的误解。", "example": "Are you saying it’s my fault? — That’s not what I meant.（你是说这是我的错吗？——我不是那个意思。）", "warn": ""}, {"id": 46, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "46", "en": "Thanks.", "zh": "谢谢。", "audio": "hf_phrase_046.mp3", "chunkLocal": "audio_chunks/hf_phrase_046.mp3", "localAudio": "audio_chunks/hf_phrase_046.mp3", "core": "最常用、自然的简短感谢，比 Thank you 稍随意，但不失礼。", "scene": "别人递东西、提供信息或完成小帮助。", "example": "Here’s your coffee. — Thanks.（这是你的咖啡。——谢谢。）", "warn": ""}, {"id": 47, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "47", "en": "Thanks a lot.", "zh": "非常感谢。", "audio": "hf_phrase_047.mp3", "chunkLocal": "audio_chunks/hf_phrase_047.mp3", "localAudio": "audio_chunks/hf_phrase_047.mp3", "core": "a lot 加强感谢程度，正常语气下是真诚感谢。", "scene": "对方提供了明显帮助。", "example": "Thanks a lot for your help.（非常感谢你的帮助。）", "warn": "如果故意用不满语气说，也可能带讽刺；初学时先掌握真诚用法。"}, {"id": 48, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "48", "en": "I appreciate it.", "zh": "我很感谢。", "audio": "hf_phrase_048.mp3", "chunkLocal": "audio_chunks/hf_phrase_048.mp3", "localAudio": "audio_chunks/hf_phrase_048.mp3", "core": "强调自己看到了并珍惜对方的帮助，比单说 Thanks 更郑重。", "scene": "工作沟通、别人额外帮忙或体谅你。", "example": "Thanks for checking. I really appreciate it.（谢谢你帮忙检查，我真的很感谢。）", "warn": ""}, {"id": 49, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "49", "en": "You’re welcome.", "zh": "不客气。", "audio": "hf_phrase_049.mp3", "chunkLocal": "audio_chunks/hf_phrase_049.mp3", "localAudio": "audio_chunks/hf_phrase_049.mp3", "core": "标准的感谢回应，表示对方接受你的帮助完全没问题。", "scene": "回应 Thank you.", "example": "Thank you. — You’re welcome.（谢谢。——不客气。）", "warn": ""}, {"id": 50, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "50", "en": "No problem.", "zh": "没问题／不客气。", "audio": "hf_phrase_050.mp3", "chunkLocal": "audio_chunks/hf_phrase_050.mp3", "localAudio": "audio_chunks/hf_phrase_050.mp3", "core": "表示帮助对自己来说不麻烦，也可以表示愿意接受一个请求。", "scene": "回应感谢、道歉或请求。", "example": "Could you send it today? — No problem.（你今天能发吗？——没问题。）", "warn": ""}, {"id": 51, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "51", "en": "No worries.", "zh": "没关系／不用担心。", "audio": "hf_phrase_051.mp3", "chunkLocal": "audio_chunks/hf_phrase_051.mp3", "localAudio": "audio_chunks/hf_phrase_051.mp3", "core": "告诉对方这件事没有造成需要担心的后果，语气轻松友好。", "scene": "回应小道歉、小麻烦或感谢。", "example": "Sorry I’m late. — No worries.（抱歉我迟到了。——没关系。）", "warn": ""}, {"id": 52, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "52", "en": "Don’t mention it.", "zh": "不用客气。", "audio": "hf_phrase_052.mp3", "chunkLocal": "audio_chunks/hf_phrase_052.mp3", "localAudio": "audio_chunks/hf_phrase_052.mp3", "core": "字面是“不必提”，实际表示这点帮助不值得一直感谢。", "scene": "回应对方较正式或反复的感谢。", "example": "Thank you so much. — Don’t mention it.（太感谢你了。——不用客气。）", "warn": ""}, {"id": 53, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "53", "en": "My pleasure.", "zh": "我的荣幸／很乐意帮忙。", "audio": "hf_phrase_053.mp3", "chunkLocal": "audio_chunks/hf_phrase_053.mp3", "localAudio": "audio_chunks/hf_phrase_053.mp3", "core": "帮助对方对自己也是愉快的事，语气比 No problem 更热情、礼貌。", "scene": "服务、工作或较正式的感谢回应。", "example": "Thanks for your time. — My pleasure.（谢谢你抽时间。——我的荣幸。）", "warn": ""}, {"id": 54, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "54", "en": "My bad.", "zh": "是我的错／怪我。", "audio": "hf_phrase_054.mp3", "chunkLocal": "audio_chunks/hf_phrase_054.mp3", "localAudio": "audio_chunks/hf_phrase_054.mp3", "core": "直接承认一个小错误是自己造成的，是很非正式的口语。", "scene": "朋友或同事之间的小失误。", "example": "I sent the wrong file. My bad.（我发错文件了，是我的错。）", "warn": "重大错误或正式道歉不要只说 My bad."}, {"id": 55, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "55", "en": "I’m sorry.", "zh": "对不起／我很遗憾。", "audio": "hf_phrase_055.mp3", "chunkLocal": "audio_chunks/hf_phrase_055.mp3", "localAudio": "audio_chunks/hf_phrase_055.mp3", "core": "既可为自己的错误道歉，也可对别人的不幸表示同情，要靠场景判断。", "scene": "承认错误，或听到坏消息。", "example": "I’m sorry I forgot to call.（对不起，我忘了打电话。）", "warn": ""}, {"id": 56, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "56", "en": "Excuse me.", "zh": "打扰一下／借过／不好意思。", "audio": "hf_phrase_056.mp3", "chunkLocal": "audio_chunks/hf_phrase_056.mp3", "localAudio": "audio_chunks/hf_phrase_056.mp3", "core": "在打扰发生前或正在发生时，先礼貌地提醒别人注意你。", "scene": "问路、叫服务员、从人群中经过或没听清。", "example": "Excuse me, is this seat taken?（打扰一下，这个座位有人吗？）", "warn": "I’m sorry 更常用于已经造成了错误；Excuse me 常用于即将打扰。"}, {"id": 57, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "57", "en": "That’s okay.", "zh": "没关系／这样也可以。", "audio": "hf_phrase_057.mp3", "chunkLocal": "audio_chunks/hf_phrase_057.mp3", "localAudio": "audio_chunks/hf_phrase_057.mp3", "core": "某个错误或方案仍在你能接受的范围内。", "scene": "回应道歉，或接受不完全理想的替代方案。", "example": "Sorry, we’re out of black. — That’s okay.（抱歉，黑色没货了。——没关系。）", "warn": ""}, {"id": 58, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "58", "en": "Never mind.", "zh": "算了／没关系／不用管了。", "audio": "hf_phrase_058.mp3", "chunkLocal": "audio_chunks/hf_phrase_058.mp3", "localAudio": "audio_chunks/hf_phrase_058.mp3", "core": "告诉对方不需要继续关注、回答或处理刚才的事。", "scene": "问题已经解决、改变主意，或不想继续解释。", "example": "Can you help me? Oh, never mind. I found it.（你能帮我吗？哦，不用了，我找到了。）", "warn": ""}, {"id": 59, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "59", "en": "Don’t worry about it.", "zh": "别放在心上。", "audio": "hf_phrase_059.mp3", "chunkLocal": "audio_chunks/hf_phrase_059.mp3", "localAudio": "audio_chunks/hf_phrase_059.mp3", "core": "告诉对方不要继续为这件事担心或自责。", "scene": "安慰犯了小错误或欠了人情的人。", "example": "I’m sorry about the mistake. — Don’t worry about it.（抱歉出了这个错。——别放在心上。）", "warn": ""}, {"id": 60, "secIdx": 4, "secTitle": "四、感谢、道歉与安慰", "num": "60", "en": "It happens.", "zh": "这种事难免会发生。", "audio": "hf_phrase_060.mp3", "chunkLocal": "audio_chunks/hf_phrase_060.mp3", "localAudio": "audio_chunks/hf_phrase_060.mp3", "core": "错误或意外是生活中可能发生的普通情况，用来降低对方的压力。", "scene": "安慰因小失误而道歉的人。", "example": "I missed the train. — It happens.（我没赶上火车。——这种事难免。）", "warn": ""}, {"id": 61, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "61", "en": "Could you help me?", "zh": "你能帮我吗？", "audio": "hf_phrase_061.mp3", "chunkLocal": "audio_chunks/hf_phrase_061.mp3", "localAudio": "audio_chunks/hf_phrase_061.mp3", "core": "用 could 把请求说得比 Help me 更委婉；这里不是在问过去能力。", "scene": "商店、工作、问路或遇到困难。", "example": "Could you help me with this form?（你能帮我填一下这张表吗？）", "warn": ""}, {"id": 62, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "62", "en": "Can you give me a hand?", "zh": "你能帮我一下吗？", "audio": "hf_phrase_062.mp3", "chunkLocal": "audio_chunks/hf_phrase_062.mp3", "localAudio": "audio_chunks/hf_phrase_062.mp3", "core": "give someone a hand 是“搭把手”，不是把手交给别人。", "scene": "需要别人帮助搬东西、操作或完成任务。", "example": "Can you give me a hand with these boxes?（你能帮我搬一下这些箱子吗？）", "warn": ""}, {"id": 63, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "63", "en": "Could you say that again?", "zh": "你能再说一遍吗？", "audio": "hf_phrase_063.mp3", "chunkLocal": "audio_chunks/hf_phrase_063.mp3", "localAudio": "audio_chunks/hf_phrase_063.mp3", "core": "没有听清时，请对方重复刚才的内容；that 代替对方刚说的话。", "scene": "听力交流、电话或环境嘈杂时。", "example": "Sorry, could you say that again?（抱歉，你能再说一遍吗？）", "warn": ""}, {"id": 64, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "64", "en": "Could you speak more slowly?", "zh": "你能说慢一点吗？", "audio": "hf_phrase_064.mp3", "chunkLocal": "audio_chunks/hf_phrase_064.mp3", "localAudio": "audio_chunks/hf_phrase_064.mp3", "core": "more slowly 是“比现在更慢”，用于礼貌调整对方语速。", "scene": "对方说得太快，自己跟不上。", "example": "Could you speak a little more slowly?（你能再说慢一点吗？）", "warn": ""}, {"id": 65, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "65", "en": "One more time, please.", "zh": "请再来一遍。", "audio": "hf_phrase_065.mp3", "chunkLocal": "audio_chunks/hf_phrase_065.mp3", "localAudio": "audio_chunks/hf_phrase_065.mp3", "core": "one more 表示“在已有次数上再加一次”，是非常简洁的重复请求。", "scene": "请人再说、再演示或再播放一次。", "example": "One more time, please. I didn’t catch that.（请再说一遍，我刚才没听清。）", "warn": ""}, {"id": 66, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "66", "en": "Can I…?", "zh": "我可以……吗？", "audio": "hf_phrase_066.mp3", "chunkLocal": "audio_chunks/hf_phrase_066.mp3", "localAudio": "audio_chunks/hf_phrase_066.mp3", "core": "询问自己是否有许可或条件做某事，后面接动词原形。", "scene": "请求使用、进入、试穿、付款或提问。", "example": "Can I try this on?（我可以试穿这个吗？）", "warn": ""}, {"id": 67, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "67", "en": "Is it okay if…?", "zh": "如果我……可以吗？", "audio": "hf_phrase_067.mp3", "chunkLocal": "audio_chunks/hf_phrase_067.mp3", "localAudio": "audio_chunks/hf_phrase_067.mp3", "core": "先提出自己的做法，再询问对方是否能接受，语气自然温和。", "scene": "改变安排、稍晚到或做可能影响别人的事。", "example": "Is it okay if I call you tomorrow?（我明天给你打电话可以吗？）", "warn": ""}, {"id": 68, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "68", "en": "Do you mind if…?", "zh": "你介意我……吗？", "audio": "hf_phrase_068.mp3", "chunkLocal": "audio_chunks/hf_phrase_068.mp3", "localAudio": "audio_chunks/hf_phrase_068.mp3", "core": "询问某个行动会不会让对方不舒服；mind 是“介意”。", "scene": "开窗、坐下、借用物品或改变安排前。", "example": "Do you mind if I sit here?（你介意我坐这里吗？）", "warn": "回答 No, not at all. 表示“不介意，可以”；直接回答 Yes 表示“介意”。"}, {"id": 69, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "69", "en": "Would you mind…?", "zh": "你介意……吗？／能否请你……？", "audio": "hf_phrase_069.mp3", "chunkLocal": "audio_chunks/hf_phrase_069.mp3", "localAudio": "audio_chunks/hf_phrase_069.mp3", "core": "非常礼貌地请求对方做事，后面通常接动词 -ing。", "scene": "希望对方降低音量、开门或稍等。", "example": "Would you mind closing the door?（能麻烦你关一下门吗？）", "warn": "说 closing，不说 would you mind to close。"}, {"id": 70, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "70", "en": "Go ahead.", "zh": "请吧／继续吧。", "audio": "hf_phrase_070.mp3", "chunkLocal": "audio_chunks/hf_phrase_070.mp3", "localAudio": "audio_chunks/hf_phrase_070.mp3", "core": "允许或鼓励对方开始、继续说或继续做。", "scene": "别人请求发言、使用东西或先行动。", "example": "Can I ask a question? — Go ahead.（我能问个问题吗？——问吧。）", "warn": ""}, {"id": 71, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "71", "en": "Feel free.", "zh": "请随意／不用顾虑。", "audio": "hf_phrase_071.mp3", "chunkLocal": "audio_chunks/hf_phrase_071.mp3", "localAudio": "audio_chunks/hf_phrase_071.mp3", "core": "告诉对方可以自由行动，不需要担心给你添麻烦。", "scene": "允许提问、取用物品或联系自己。", "example": "Feel free to ask questions.（有问题尽管问。）", "warn": ""}, {"id": 72, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "72", "en": "Be my guest.", "zh": "请便／尽管用。", "audio": "hf_phrase_072.mp3", "chunkLocal": "audio_chunks/hf_phrase_072.mp3", "localAudio": "audio_chunks/hf_phrase_072.mp3", "core": "把对方当客人一样欢迎，实际表示完全允许对方做刚才询问的事。", "scene": "允许别人借用、品尝或先做某事。", "example": "Can I use your charger? — Be my guest.（我能用你的充电器吗？——请便。）", "warn": ""}, {"id": 73, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "73", "en": "After you.", "zh": "你先请。", "audio": "hf_phrase_073.mp3", "chunkLocal": "audio_chunks/hf_phrase_073.mp3", "localAudio": "audio_chunks/hf_phrase_073.mp3", "core": "字面是“在你之后”，意思是我会在你后面，所以请你先走或先做。", "scene": "进门、上车、排队或礼貌让行。", "example": "After you. — Thank you.（你先请。——谢谢。）", "warn": ""}, {"id": 74, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "74", "en": "Take your time.", "zh": "慢慢来。", "audio": "hf_phrase_074.mp3", "chunkLocal": "audio_chunks/hf_phrase_074.mp3", "localAudio": "audio_chunks/hf_phrase_074.mp3", "core": "允许对方使用所需要的时间，不催促完成。", "scene": "对方正在选择、思考、填写或准备。", "example": "Take your time. There’s no hurry.（慢慢来，不着急。）", "warn": ""}, {"id": 75, "secIdx": 5, "secTitle": "五、请求、许可与礼貌行动", "num": "75", "en": "No rush.", "zh": "不着急。", "audio": "hf_phrase_075.mp3", "chunkLocal": "audio_chunks/hf_phrase_075.mp3", "localAudio": "audio_chunks/hf_phrase_075.mp3", "core": "rush 是匆忙；No rush 表示没有必须立刻完成的压力。", "scene": "交代任务、等待回复或对方道歉说需要时间。", "example": "Send it when you’re ready. No rush.（准备好再发，不着急。）", "warn": ""}, {"id": 76, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "76", "en": "Hold on.", "zh": "等一下。", "audio": "hf_phrase_076.mp3", "chunkLocal": "audio_chunks/hf_phrase_076.mp3", "localAudio": "audio_chunks/hf_phrase_076.mp3", "core": "请对方暂时停止或不要挂断，给你一点处理时间。", "scene": "电话、查信息或突然需要暂停。", "example": "Hold on. Let me check.（等一下，我查查。）", "warn": ""}, {"id": 77, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "77", "en": "Just a second.", "zh": "稍等一下。", "audio": "hf_phrase_077.mp3", "chunkLocal": "audio_chunks/hf_phrase_077.mp3", "localAudio": "audio_chunks/hf_phrase_077.mp3", "core": "second 字面是“一秒”，实际只是表示很短的等待，不是真的只有一秒。", "scene": "暂时离开、找东西或准备回答。", "example": "Just a second, please.（请稍等一下。）", "warn": ""}, {"id": 78, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "78", "en": "Give me a minute.", "zh": "给我一点时间。", "audio": "hf_phrase_078.mp3", "chunkLocal": "audio_chunks/hf_phrase_078.mp3", "localAudio": "audio_chunks/hf_phrase_078.mp3", "core": "请求一小段时间完成思考或处理；minute 也不一定严格等于一分钟。", "scene": "回复消息、完成手头动作或组织语言。", "example": "Give me a minute. I’m almost done.（给我一点时间，我快做完了。）", "warn": ""}, {"id": 79, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "79", "en": "Let me see.", "zh": "让我看看／让我想想。", "audio": "hf_phrase_079.mp3", "chunkLocal": "audio_chunks/hf_phrase_079.mp3", "localAudio": "audio_chunks/hf_phrase_079.mp3", "core": "给自己争取查看或回忆的时间；see 可以是真看，也可以是思考确认。", "scene": "查看库存、日程、菜单或回忆信息。", "example": "Do we have any left? — Let me see.（我们还有吗？——我看看。）", "warn": ""}, {"id": 80, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "80", "en": "Let me think.", "zh": "让我想想。", "audio": "hf_phrase_080.mp3", "chunkLocal": "audio_chunks/hf_phrase_080.mp3", "localAudio": "audio_chunks/hf_phrase_080.mp3", "core": "告诉对方你正在组织答案，而不是拒绝回应。", "scene": "需要回忆、选择或慎重回答。", "example": "Which one do you prefer? — Let me think.（你更喜欢哪个？——让我想想。）", "warn": ""}, {"id": 81, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "81", "en": "How should I put this?", "zh": "我该怎么说呢？", "audio": "hf_phrase_081.mp3", "chunkLocal": "audio_chunks/hf_phrase_081.mp3", "localAudio": "audio_chunks/hf_phrase_081.mp3", "core": "put 在这里是“把想法放进语言里”，表示正在寻找合适、委婉的说法。", "scene": "要表达复杂、敏感或可能让人失望的内容。", "example": "How should I put this? The result isn’t quite what we expected.（我该怎么说呢？结果不太符合预期。）", "warn": ""}, {"id": 82, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "82", "en": "What do you mean?", "zh": "你是什么意思？", "audio": "hf_phrase_082.mp3", "chunkLocal": "audio_chunks/hf_phrase_082.mp3", "localAudio": "audio_chunks/hf_phrase_082.mp3", "core": "询问对方刚才的话具体想表达什么。", "scene": "没有理解，或一句话可能有多种含义。", "example": "What do you mean by “later”?（你说的“晚点”具体是什么意思？）", "warn": "语气太重可能像质问；加 Sorry 或 exactly 会更柔和。"}, {"id": 83, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "83", "en": "What I’m saying is…", "zh": "我的意思是……", "audio": "hf_phrase_083.mp3", "chunkLocal": "audio_chunks/hf_phrase_083.mp3", "localAudio": "audio_chunks/hf_phrase_083.mp3", "core": "重新抓住自己真正想表达的重点，常用于澄清误解。", "scene": "对方没有理解，或自己前面说得太复杂。", "example": "What I’m saying is, we need more time.（我的意思是，我们需要更多时间。）", "warn": ""}, {"id": 84, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "84", "en": "In other words,…", "zh": "换句话说，……", "audio": "hf_phrase_084.mp3", "chunkLocal": "audio_chunks/hf_phrase_084.mp3", "localAudio": "audio_chunks/hf_phrase_084.mp3", "core": "用另一组更容易理解的话重述同一个意思，而不是增加新观点。", "scene": "解释专业内容、总结或确认理解。", "example": "In other words, the price is fixed.（换句话说，价格是固定的。）", "warn": ""}, {"id": 85, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "85", "en": "By the way,…", "zh": "顺便说一下，……", "audio": "hf_phrase_085.mp3", "chunkLocal": "audio_chunks/hf_phrase_085.mp3", "localAudio": "audio_chunks/hf_phrase_085.mp3", "core": "暂时从当前话题转到一个新但不太正式的重要事项。", "scene": "想起需要补充的问题或信息。", "example": "By the way, did you get my email?（顺便问一下，你收到我的邮件了吗？）", "warn": ""}, {"id": 86, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "86", "en": "Speaking of…", "zh": "说到……", "audio": "hf_phrase_086.mp3", "chunkLocal": "audio_chunks/hf_phrase_086.mp3", "localAudio": "audio_chunks/hf_phrase_086.mp3", "core": "利用刚出现的话题，自然联想到相关的新内容。", "scene": "转换到有关联的话题。", "example": "Speaking of coffee, do you know a good café nearby?（说到咖啡，你知道附近有不错的咖啡馆吗？）", "warn": ""}, {"id": 87, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "87", "en": "Anyway,…", "zh": "总之／不管怎样，……", "audio": "hf_phrase_087.mp3", "chunkLocal": "audio_chunks/hf_phrase_087.mp3", "localAudio": "audio_chunks/hf_phrase_087.mp3", "core": "结束岔开的内容，把谈话拉回重点，或表示前面的困难不改变接下来的决定。", "scene": "恢复主线、结束解释或准备告别。", "example": "Anyway, let’s get back to work.（总之，我们继续工作吧。）", "warn": ""}, {"id": 88, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "88", "en": "Back to the point.", "zh": "回到重点。", "audio": "hf_phrase_088.mp3", "chunkLocal": "audio_chunks/hf_phrase_088.mp3", "localAudio": "audio_chunks/hf_phrase_088.mp3", "core": "提醒大家停止偏题，重新讨论最主要的问题。", "scene": "会议、讨论或较长解释中。", "example": "Back to the point—when can we ship?（回到重点，我们什么时候能发货？）", "warn": ""}, {"id": 89, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "89", "en": "As I was saying,…", "zh": "正如我刚才所说……", "audio": "hf_phrase_089.mp3", "chunkLocal": "audio_chunks/hf_phrase_089.mp3", "localAudio": "audio_chunks/hf_phrase_089.mp3", "core": "谈话被打断或偏离后，继续自己刚才没有说完的内容。", "scene": "电话中断、有人插话或处理完临时事情后。", "example": "As I was saying, the order is ready.（正如我刚才所说，订单已经准备好了。）", "warn": ""}, {"id": 90, "secIdx": 6, "secTitle": "六、控制对话、思考与补充说明", "num": "90", "en": "Go on.", "zh": "继续说。", "audio": "hf_phrase_090.mp3", "chunkLocal": "audio_chunks/hf_phrase_090.mp3", "localAudio": "audio_chunks/hf_phrase_090.mp3", "core": "鼓励对方继续刚才的话，表示你正在听。", "scene": "对方停顿、犹豫或担心打扰你。", "example": "Sorry, I interrupted you. Go on.（抱歉，我打断你了，请继续。）", "warn": ""}, {"id": 91, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "91", "en": "Here we go.", "zh": "开始吧／来了。", "audio": "hf_phrase_091.mp3", "chunkLocal": "audio_chunks/hf_phrase_091.mp3", "localAudio": "audio_chunks/hf_phrase_091.mp3", "core": "某件等待中的事情现在正式开始或出现了，here 表示“就在现在”。", "scene": "准备出发、开始操作、端上东西，或预感某事又要发生。", "example": "Everyone ready? Here we go.（大家准备好了吗？开始吧。）", "warn": ""}, {"id": 92, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "92", "en": "There you go.", "zh": "给你／好了／这就对了。", "audio": "hf_phrase_092.mp3", "chunkLocal": "audio_chunks/hf_phrase_092.mp3", "localAudio": "audio_chunks/hf_phrase_092.mp3", "core": "表示对方需要的东西或结果已经到位。中文要根据动作翻译。", "scene": "递东西、完成服务、指导别人成功做到。", "example": "Here’s your receipt. There you go.（这是你的小票，给你。）", "warn": ""}, {"id": 93, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "93", "en": "That’s it.", "zh": "就是这样／就这些。", "audio": "hf_phrase_093.mp3", "chunkLocal": "audio_chunks/hf_phrase_093.mp3", "localAudio": "audio_chunks/hf_phrase_093.mp3", "core": "that 指向当前结果；it 表示目标已经准确达到，或内容到这里结束。", "scene": "确认答案、指导动作或结束点单。", "example": "Is that everything? — Yes, that’s it.（就这些吗？——对，就这些。）", "warn": ""}, {"id": 94, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "94", "en": "All set.", "zh": "都准备好了。", "audio": "hf_phrase_094.mp3", "chunkLocal": "audio_chunks/hf_phrase_094.mp3", "localAudio": "audio_chunks/hf_phrase_094.mp3", "core": "需要准备的各项内容都已放到正确状态，可以开始或离开。", "scene": "付款完成、行李准备好、系统设置完毕。", "example": "The payment went through. You’re all set.（付款成功了，都办好了。）", "warn": ""}, {"id": 95, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "95", "en": "I’m ready.", "zh": "我准备好了。", "audio": "hf_phrase_095.mp3", "chunkLocal": "audio_chunks/hf_phrase_095.mp3", "localAudio": "audio_chunks/hf_phrase_095.mp3", "core": "自己已经具备开始行动所需的状态。", "scene": "出发、点单、考试、会议或开始任务。", "example": "Are you ready to order? — Yes, I’m ready.（可以点单了吗？——可以了。）", "warn": ""}, {"id": 96, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "96", "en": "Let’s go.", "zh": "我们走吧／开始吧。", "audio": "hf_phrase_096.mp3", "chunkLocal": "audio_chunks/hf_phrase_096.mp3", "localAudio": "audio_chunks/hf_phrase_096.mp3", "core": "let us 的口语形式，邀请包括自己在内的人一起行动。", "scene": "出发，或用兴奋语气推动开始。", "example": "The taxi is here. Let’s go.（出租车到了，我们走吧。）", "warn": ""}, {"id": 97, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "97", "en": "Let’s get started.", "zh": "我们开始吧。", "audio": "hf_phrase_097.mp3", "chunkLocal": "audio_chunks/hf_phrase_097.mp3", "localAudio": "audio_chunks/hf_phrase_097.mp3", "core": "get started 表示“进入已经开始的状态”，比单说 Start 更友好。", "scene": "会议、课程、工作或共同任务开场。", "example": "Everyone is here, so let’s get started.（大家都到了，我们开始吧。）", "warn": ""}, {"id": 98, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "98", "en": "Almost there.", "zh": "快到了／快完成了。", "audio": "hf_phrase_098.mp3", "chunkLocal": "audio_chunks/hf_phrase_098.mp3", "localAudio": "audio_chunks/hf_phrase_098.mp3", "core": "距离地点或目标只剩一点；there 可以是真实地点，也可以是完成状态。", "scene": "路程、任务、下载或学习进度。", "example": "Are you done? — Almost there.（你完成了吗？——快了。）", "warn": ""}, {"id": 99, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "99", "en": "Not yet.", "zh": "还没有。", "audio": "hf_phrase_099.mp3", "chunkLocal": "audio_chunks/hf_phrase_099.mp3", "localAudio": "audio_chunks/hf_phrase_099.mp3", "core": "截至现在目标尚未发生，但 yet 暗示之后仍可能发生。", "scene": "回答是否完成、到达、吃过或收到。", "example": "Have you received it? — Not yet.（你收到了吗？——还没有。）", "warn": ""}, {"id": 100, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "100", "en": "I’m done.", "zh": "我做完了／我不再继续了。", "audio": "hf_phrase_100.mp3", "chunkLocal": "audio_chunks/hf_phrase_100.mp3", "localAudio": "audio_chunks/hf_phrase_100.mp3", "core": "当前任务已经结束。语气强烈时也可能表示“我受够了，不干了”。", "scene": "完成工作、吃完东西或结束一项活动。", "example": "I’m done with the report.（报告我做完了。）", "warn": ""}, {"id": 101, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "101", "en": "It’s up to you.", "zh": "由你决定。", "audio": "hf_phrase_101.mp3", "chunkLocal": "audio_chunks/hf_phrase_101.mp3", "localAudio": "audio_chunks/hf_phrase_101.mp3", "core": "决定权或责任现在落在你这里，别人不替你作选择。", "scene": "多个选择都可以，让对方决定。", "example": "We can go now or later. It’s up to you.（现在或晚点去都行，由你决定。）", "warn": ""}, {"id": 102, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "102", "en": "Leave it to me.", "zh": "交给我吧。", "audio": "hf_phrase_102.mp3", "chunkLocal": "audio_chunks/hf_phrase_102.mp3", "localAudio": "audio_chunks/hf_phrase_102.mp3", "core": "让这件事留在我这里处理，表示自己愿意接手并负责。", "scene": "主动承担任务、安慰对方不用处理。", "example": "Who will contact the client? — Leave it to me.（谁联系客户？——交给我吧。）", "warn": ""}, {"id": 103, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "103", "en": "I’ll take care of it.", "zh": "我会处理好的。", "audio": "hf_phrase_103.mp3", "chunkLocal": "audio_chunks/hf_phrase_103.mp3", "localAudio": "audio_chunks/hf_phrase_103.mp3", "core": "take care of 不只是“照顾人”，也表示负责处理问题直到妥当。", "scene": "接手错误、订单、文件或安排。", "example": "There’s a problem with the invoice. — I’ll take care of it.（发票有问题。——我来处理。）", "warn": ""}, {"id": 104, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "104", "en": "I’ll get back to you.", "zh": "我稍后回复你。", "audio": "hf_phrase_104.mp3", "chunkLocal": "audio_chunks/hf_phrase_104.mp3", "localAudio": "audio_chunks/hf_phrase_104.mp3", "core": "现在还不能给出答案，等查询或考虑后再次联系对方。", "scene": "工作邮件、电话、价格或时间尚未确认。", "example": "Let me check the stock, and I’ll get back to you.（我查一下库存，再回复你。）", "warn": ""}, {"id": 105, "secIdx": 7, "secTitle": "七、开始、进度、完成与负责", "num": "105", "en": "Keep me posted.", "zh": "有进展随时告诉我。", "audio": "hf_phrase_105.mp3", "chunkLocal": "audio_chunks/hf_phrase_105.mp3", "localAudio": "audio_chunks/hf_phrase_105.mp3", "core": "posted 在这里是“持续获得最新消息的状态”，不是“贴出来”。", "scene": "等待项目、物流、客户或问题处理的后续消息。", "example": "Please keep me posted on the delivery.（物流有进展请随时告诉我。）", "warn": ""}, {"id": 106, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "106", "en": "Sounds like a plan.", "zh": "听起来是个好计划／就这么办。", "audio": "hf_phrase_106.mp3", "chunkLocal": "audio_chunks/hf_phrase_106.mp3", "localAudio": "audio_chunks/hf_phrase_106.mp3", "core": "对方的安排听起来完整可行，所以愿意按这个计划行动。", "scene": "确认共同安排，比 Sounds good 更明确地指向计划。", "example": "I’ll call first, then we’ll decide. — Sounds like a plan.（我先打电话，然后我们再决定。——就这么办。）", "warn": ""}, {"id": 107, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "107", "en": "Let’s do it.", "zh": "就这么办吧。", "audio": "hf_phrase_107.mp3", "chunkLocal": "audio_chunks/hf_phrase_107.mp3", "localAudio": "audio_chunks/hf_phrase_107.mp3", "core": "讨论已经结束，现在同意把计划付诸行动；it 代替刚说过的事。", "scene": "接受建议并准备行动。", "example": "Should we order the samples? — Let’s do it.（我们要订样品吗？——订吧。）", "warn": ""}, {"id": 108, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "108", "en": "Why not?", "zh": "为什么不呢？／可以啊。", "audio": "hf_phrase_108.mp3", "chunkLocal": "audio_chunks/hf_phrase_108.mp3", "localAudio": "audio_chunks/hf_phrase_108.mp3", "core": "如果没有明显理由拒绝，那就可以尝试；常作为轻松的同意。", "scene": "接受邀请、建议或新尝试。", "example": "Want to get coffee? — Why not?（想去喝咖啡吗？——可以啊。）", "warn": ""}, {"id": 109, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "109", "en": "It’s worth a try.", "zh": "值得试一试。", "audio": "hf_phrase_109.mp3", "chunkLocal": "audio_chunks/hf_phrase_109.mp3", "localAudio": "audio_chunks/hf_phrase_109.mp3", "core": "虽然不能保证成功，但可能得到的好处值得付出一次尝试。", "scene": "讨论一个有风险但成本可接受的办法。", "example": "This method might work. It’s worth a try.（这个方法可能有用，值得试试。）", "warn": ""}, {"id": 110, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "110", "en": "Give it a try.", "zh": "试一试吧。", "audio": "hf_phrase_110.mp3", "chunkLocal": "audio_chunks/hf_phrase_110.mp3", "localAudio": "audio_chunks/hf_phrase_110.mp3", "core": "把“一次尝试”给这件事，实际就是鼓励对方亲自尝试。", "scene": "推荐产品、方法、食物或活动。", "example": "If you’re not sure, give it a try.（如果你不确定，就试一下。）", "warn": ""}, {"id": 111, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "111", "en": "Let’s see.", "zh": "看看再说／让我看看。", "audio": "hf_phrase_111.mp3", "chunkLocal": "audio_chunks/hf_phrase_111.mp3", "localAudio": "audio_chunks/hf_phrase_111.mp3", "core": "先观察、检查或等待结果，再作下一步决定。", "scene": "需要查看信息，或暂时不能确定未来结果。", "example": "Let’s see what happens.（我们看看会发生什么。）", "warn": ""}, {"id": 112, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "112", "en": "That’s fine for now.", "zh": "目前这样就行。", "audio": "hf_phrase_112.mp3", "chunkLocal": "audio_chunks/hf_phrase_112.mp3", "localAudio": "audio_chunks/hf_phrase_112.mp3", "core": "对眼下的安排表示接受，同时暗示以后可能再调整；比 That’s fine 更委婉、留有余地。", "scene": "回应临时安排、阶段性方案，或婉拒进一步修改。", "example": "How about Tuesday? — That’s fine for now.（周二怎么样？——目前这样就行。）", "warn": "要说完整的 That’s fine for now.，别单独只说 For now."}, {"id": 113, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "113", "en": "Sooner or later.", "zh": "迟早。", "audio": "hf_phrase_113.mp3", "chunkLocal": "audio_chunks/hf_phrase_113.mp3", "localAudio": "audio_chunks/hf_phrase_113.mp3", "core": "具体时间不确定，但相信事情最终会发生。", "scene": "谈论难以避免的结果或长期趋势。", "example": "Sooner or later, we’ll need to decide.（我们迟早需要作决定。）", "warn": ""}, {"id": 114, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "114", "en": "One step at a time.", "zh": "一步一步来。", "audio": "hf_phrase_114.mp3", "chunkLocal": "audio_chunks/hf_phrase_114.mp3", "localAudio": "audio_chunks/hf_phrase_114.mp3", "core": "不要同时解决所有问题，先完成眼前的一小步。", "scene": "任务复杂、对方焦虑或学习内容很多时。", "example": "Don’t worry. One step at a time.（别担心，一步一步来。）", "warn": ""}, {"id": 115, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "115", "en": "The sooner, the better.", "zh": "越快越好。", "audio": "hf_phrase_115.mp3", "chunkLocal": "audio_chunks/hf_phrase_115.mp3", "localAudio": "audio_chunks/hf_phrase_115.mp3", "core": "第一个 the sooner 表示时间越早，第二个 the better 表示结果越好，两边一起变化。", "scene": "希望尽快收到回复、付款、文件或处理结果。", "example": "When do you need it? — The sooner, the better.（你什么时候需要？——越快越好。）", "warn": ""}, {"id": 116, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "116", "en": "Just in case.", "zh": "以防万一。", "audio": "hf_phrase_116.mp3", "chunkLocal": "audio_chunks/hf_phrase_116.mp3", "localAudio": "audio_chunks/hf_phrase_116.mp3", "core": "提前准备一个备用方案，防止某个不确定的问题真的发生。", "scene": "带伞、保存文件、准备额外数量或留下联系方式。", "example": "Take an umbrella, just in case.（带把伞吧，以防万一。）", "warn": ""}, {"id": 117, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "117", "en": "Better safe than sorry.", "zh": "谨慎一点总比后悔好。", "audio": "hf_phrase_117.mp3", "chunkLocal": "audio_chunks/hf_phrase_117.mp3", "localAudio": "audio_chunks/hf_phrase_117.mp3", "core": "宁可现在多做一点预防，也不要出问题后再后悔。", "scene": "检查、备份、安全措施或保守决定。", "example": "Let’s double-check. Better safe than sorry.（我们再检查一遍，谨慎一点总没错。）", "warn": ""}, {"id": 118, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "118", "en": "As soon as possible.", "zh": "尽快。", "audio": "hf_phrase_118.mp3", "chunkLocal": "audio_chunks/hf_phrase_118.mp3", "localAudio": "audio_chunks/hf_phrase_118.mp3", "core": "在现实条件允许的最早时间完成，常缩写为 ASAP。", "scene": "工作请求、发货、回复或紧急处理。", "example": "Please send the file as soon as possible.（请尽快发送文件。）", "warn": "语气可能有压力，需要时可加 please 或具体截止时间。"}, {"id": 119, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "119", "en": "In advance.", "zh": "提前。", "audio": "hf_phrase_119.mp3", "chunkLocal": "audio_chunks/hf_phrase_119.mp3", "localAudio": "audio_chunks/hf_phrase_119.mp3", "core": "在预定事件发生之前先完成某件事。", "scene": "预订、付款、通知或感谢。", "example": "You need to book in advance.（你需要提前预订。）", "warn": ""}, {"id": 120, "secIdx": 8, "secTitle": "八、计划、决定、时间与预防", "num": "120", "en": "At the last minute.", "zh": "在最后一刻。", "audio": "hf_phrase_120.mp3", "chunkLocal": "audio_chunks/hf_phrase_120.mp3", "localAudio": "audio_chunks/hf_phrase_120.mp3", "core": "一直等到可用时间几乎结束才行动，通常暗含匆忙或风险。", "scene": "临时取消、赶工、改变安排。", "example": "They canceled at the last minute.（他们在最后一刻取消了。）", "warn": ""}, {"id": 121, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "121", "en": "Really?", "zh": "真的吗？", "audio": "hf_phrase_121.mp3", "chunkLocal": "audio_chunks/hf_phrase_121.mp3", "localAudio": "audio_chunks/hf_phrase_121.mp3", "core": "表示信息出乎意料，想确认真假，或鼓励对方继续讲。", "scene": "听到新消息、好消息或意外情况。", "example": "I got the job. — Really? That’s great!（我拿到工作了。——真的吗？太好了！）", "warn": ""}, {"id": 122, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "122", "en": "No way!", "zh": "不会吧！／不可能！", "audio": "hf_phrase_122.mp3", "chunkLocal": "audio_chunks/hf_phrase_122.mp3", "localAudio": "audio_chunks/hf_phrase_122.mp3", "core": "字面是“没有这种可能”，既可表示强烈惊讶，也可表示坚决拒绝。", "scene": "听到难以相信的消息，或拒绝一个过分要求。", "example": "She won the prize. — No way!（她获奖了。——不会吧！）", "warn": ""}, {"id": 123, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "123", "en": "Are you serious?", "zh": "你是认真的吗？", "audio": "hf_phrase_123.mp3", "chunkLocal": "audio_chunks/hf_phrase_123.mp3", "localAudio": "audio_chunks/hf_phrase_123.mp3", "core": "确认对方不是开玩笑，事情确实如此。", "scene": "消息非常意外、严重或难以相信。", "example": "The flight was canceled. — Are you serious?（航班取消了。——你是认真的吗？）", "warn": "重语气可能像质问，普通聊天要注意语调。"}, {"id": 124, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "124", "en": "That’s great.", "zh": "那太好了。", "audio": "hf_phrase_124.mp3", "chunkLocal": "audio_chunks/hf_phrase_124.mp3", "localAudio": "audio_chunks/hf_phrase_124.mp3", "core": "对对方的好消息作出明确积极回应。", "scene": "听到成功、进展或令人高兴的安排。", "example": "The order is ready. — That’s great.（订单准备好了。——太好了。）", "warn": ""}, {"id": 125, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "125", "en": "That’s too bad.", "zh": "那太遗憾了。", "audio": "hf_phrase_125.mp3", "chunkLocal": "audio_chunks/hf_phrase_125.mp3", "localAudio": "audio_chunks/hf_phrase_125.mp3", "core": "too bad 在这里不是批评“太坏”，而是对不理想结果表示遗憾。", "scene": "听到计划失败、错过机会或轻度坏消息。", "example": "I can’t come tonight. — That’s too bad.（我今晚来不了。——太遗憾了。）", "warn": ""}, {"id": 126, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "126", "en": "What a shame.", "zh": "真可惜。", "audio": "hf_phrase_126.mp3", "chunkLocal": "audio_chunks/hf_phrase_126.mp3", "localAudio": "audio_chunks/hf_phrase_126.mp3", "core": "shame 在这里主要表示“令人遗憾的事”，不一定是“羞耻”。", "scene": "对错过机会、取消或损失表示惋惜。", "example": "The café is closed. — What a shame.（咖啡馆关门了。——真可惜。）", "warn": ""}, {"id": 127, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "127", "en": "Lucky you.", "zh": "你真幸运。", "audio": "hf_phrase_127.mp3", "chunkLocal": "audio_chunks/hf_phrase_127.mp3", "localAudio": "audio_chunks/hf_phrase_127.mp3", "core": "省略了 are，完整想法是 You’re lucky；用于羡慕对方的好运。", "scene": "对方获得假期、礼物、机会或好天气。", "example": "I’m going to Hawaii next week. — Lucky you!（我下周去夏威夷。——你真幸运！）", "warn": ""}, {"id": 128, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "128", "en": "Good for you.", "zh": "真替你高兴／做得好。", "audio": "hf_phrase_128.mp3", "chunkLocal": "audio_chunks/hf_phrase_128.mp3", "localAudio": "audio_chunks/hf_phrase_128.mp3", "core": "认可对方为自己取得的进步、决定或成果。", "scene": "对方开始好习惯、完成目标或作出积极改变。", "example": "I finally finished the course. — Good for you!（我终于学完课程了。——真替你高兴！）", "warn": "冷淡语气可能显得讽刺，真诚使用时语气要温暖。"}, {"id": 129, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "129", "en": "I’m glad to hear that.", "zh": "听到这个我很高兴。", "audio": "hf_phrase_129.mp3", "chunkLocal": "audio_chunks/hf_phrase_129.mp3", "localAudio": "audio_chunks/hf_phrase_129.mp3", "core": "对方告诉你一个好转或好消息，你明确表示为他高兴。", "scene": "健康恢复、问题解决或进展顺利。", "example": "I’m feeling much better. — I’m glad to hear that.（我感觉好多了。——听到这个我很高兴。）", "warn": ""}, {"id": 130, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "130", "en": "I’m sorry to hear that.", "zh": "听到这个我很难过。", "audio": "hf_phrase_130.mp3", "chunkLocal": "audio_chunks/hf_phrase_130.mp3", "localAudio": "audio_chunks/hf_phrase_130.mp3", "core": "这里 sorry 不是承认自己犯错，而是对别人的坏消息表示同情。", "scene": "生病、损失、失败或其他不幸消息。", "example": "I lost my job. — I’m sorry to hear that.（我失业了。——听到这个我很难过。）", "warn": ""}, {"id": 131, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "131", "en": "That’s interesting.", "zh": "那挺有意思。", "audio": "hf_phrase_131.mp3", "chunkLocal": "audio_chunks/hf_phrase_131.mp3", "localAudio": "audio_chunks/hf_phrase_131.mp3", "core": "信息引起你的注意或思考，不一定表示喜欢，也可能只是礼貌回应。", "scene": "听到新知识、经历或不同观点。", "example": "This ingredient comes from seaweed. — That’s interesting.（这种成分来自海藻。——挺有意思。）", "warn": ""}, {"id": 132, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "132", "en": "That’s funny.", "zh": "真有趣／真奇怪。", "audio": "hf_phrase_132.mp3", "chunkLocal": "audio_chunks/hf_phrase_132.mp3", "localAudio": "audio_chunks/hf_phrase_132.mp3", "core": "funny 既可表示“好笑”，也可表示“奇怪、不寻常”，要看场景。", "scene": "回应笑话，或发现事情与预期不符。", "example": "That’s funny—I left my keys right here.（真奇怪，我明明把钥匙放这里了。）", "warn": "常带讽刺语气，等于“呵呵，真有意思”；真心觉得有趣时语调要上扬，否则容易被听成阴阳怪气。"}, {"id": 133, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "133", "en": "I can’t believe it.", "zh": "我简直不敢相信。", "audio": "hf_phrase_133.mp3", "chunkLocal": "audio_chunks/hf_phrase_133.mp3", "localAudio": "audio_chunks/hf_phrase_133.mp3", "core": "事情和预期相差太大，一时难以接受；可用于好消息也可用于坏消息。", "scene": "极度惊喜、震惊或失望。", "example": "We won! I can’t believe it!（我们赢了！我简直不敢相信！）", "warn": ""}, {"id": 134, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "134", "en": "What a relief.", "zh": "终于放心了。", "audio": "hf_phrase_134.mp3", "chunkLocal": "audio_chunks/hf_phrase_134.mp3", "localAudio": "audio_chunks/hf_phrase_134.mp3", "core": "担心的事情没有发生或问题已经解决，压力一下减轻。", "scene": "检查正常、物品找到、航班赶上或问题解决。", "example": "The test results are normal. — What a relief.（检查结果正常。——终于放心了。）", "warn": ""}, {"id": 135, "secIdx": 9, "secTitle": "九、惊讶、情绪与即时反应", "num": "135", "en": "Fingers crossed.", "zh": "希望顺利／祝好运。", "audio": "hf_phrase_135.mp3", "chunkLocal": "audio_chunks/hf_phrase_135.mp3", "localAudio": "audio_chunks/hf_phrase_135.mp3", "core": "源自交叉手指祈求好运的动作，口语中表示希望好结果发生。", "scene": "等待考试、申请、客户回复或重要结果。", "example": "I have an interview tomorrow. — Fingers crossed!（我明天面试。——祝你好运！）", "warn": ""}, {"id": 136, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "136", "en": "I’m good.", "zh": "我挺好／不用了，谢谢。", "audio": "hf_phrase_136.mp3", "chunkLocal": "audio_chunks/hf_phrase_136.mp3", "localAudio": "audio_chunks/hf_phrase_136.mp3", "core": "表示自己的当前状态已经满足，不需要额外帮助、食物或服务。", "scene": "回答近况，或礼貌拒绝别人继续提供东西。", "example": "Would you like more coffee? — I’m good, thanks.（还要咖啡吗？——不用了，谢谢。）", "warn": "它不是所有场景都只翻成“我很好”，要看前面问的是近况还是需要。"}, {"id": 137, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "137", "en": "I’m all set.", "zh": "我都准备好了／我不需要别的了。", "audio": "hf_phrase_137.mp3", "chunkLocal": "audio_chunks/hf_phrase_137.mp3", "localAudio": "audio_chunks/hf_phrase_137.mp3", "core": "自己所需的一切已经齐全，可以开始、离开或结束服务。", "scene": "付款、点单、准备出发或拒绝额外帮助。", "example": "Do you need anything else? — No, I’m all set.（你还需要别的吗？——不用，我都好了。）", "warn": ""}, {"id": 138, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "138", "en": "That’ll be all.", "zh": "就这些。", "audio": "hf_phrase_138.mp3", "chunkLocal": "audio_chunks/hf_phrase_138.mp3", "localAudio": "audio_chunks/hf_phrase_138.mp3", "core": "告诉服务人员自己需要的内容已经全部说完，不再添加。", "scene": "餐厅、商店、电话服务或提交要求。", "example": "Anything else? — No, that’ll be all.（还需要别的吗？——不用，就这些。）", "warn": ""}, {"id": 139, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "139", "en": "I’ve had plenty.", "zh": "够啦，谢谢。", "audio": "hf_phrase_139.mp3", "chunkLocal": "audio_chunks/hf_phrase_139.mp3", "localAudio": "audio_chunks/hf_phrase_139.mp3", "core": "礼貌表示“已经够了、吃不下了”，重点在感谢对方的盛情，而不是叫停。", "scene": "别人劝菜、续杯、问还要不要时婉拒。", "example": "Would you like more rice? — I’ve had plenty, thank you.（还要米饭吗？——够啦，谢谢。）", "warn": "That’s enough! 只用于叫停某个行为；回应别人的好意用它显得不客气。"}, {"id": 140, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "140", "en": "Help yourself.", "zh": "请自便／自己拿吧。", "audio": "hf_phrase_140.mp3", "chunkLocal": "audio_chunks/hf_phrase_140.mp3", "localAudio": "audio_chunks/hf_phrase_140.mp3", "core": "允许对方不必再询问，自己取用眼前的食物或物品。", "scene": "招待客人、共享零食或公共用品。", "example": "There’s coffee in the kitchen. Help yourself.（厨房有咖啡，自己拿吧。）", "warn": ""}, {"id": 141, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "141", "en": "Make yourself at home.", "zh": "别拘束，就像在自己家一样。", "audio": "hf_phrase_141.mp3", "chunkLocal": "audio_chunks/hf_phrase_141.mp3", "localAudio": "audio_chunks/hf_phrase_141.mp3", "core": "欢迎客人放松，不必过分客气；不是让对方真的把这里当成自己的房子。", "scene": "邀请别人到家里或私人空间。", "example": "Come in and make yourself at home.（进来吧，别拘束。）", "warn": ""}, {"id": 142, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "142", "en": "Here you are.", "zh": "给你。", "audio": "hf_phrase_142.mp3", "chunkLocal": "audio_chunks/hf_phrase_142.mp3", "localAudio": "audio_chunks/hf_phrase_142.mp3", "core": "把对方需要的东西递到他面前时使用，表示“你要的东西在这里”。", "scene": "递钱、证件、商品、菜单或文件。", "example": "Can I see your passport? — Sure, here you are.（能看一下你的护照吗？——当然，给你。）", "warn": ""}, {"id": 143, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "143", "en": "You’re all set.", "zh": "都为你办好了。", "audio": "hf_phrase_143.mp3", "chunkLocal": "audio_chunks/hf_phrase_143.mp3", "localAudio": "audio_chunks/hf_phrase_143.mp3", "core": "服务人员告诉你需要的步骤已经全部完成，现在可以继续下一步或离开。", "scene": "结账、酒店入住、预约、登记或系统设置。", "example": "Your reservation is confirmed. You’re all set.（你的预订已确认，都办好了。）", "warn": ""}, {"id": 144, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "144", "en": "It doesn’t matter.", "zh": "没关系／哪个都不重要。", "audio": "hf_phrase_144.mp3", "chunkLocal": "audio_chunks/hf_phrase_144.mp3", "localAudio": "audio_chunks/hf_phrase_144.mp3", "core": "某个差别或小错误不会影响结果，因此不需要继续担心或选择。", "scene": "两个选择都行，或小问题不影响自己。", "example": "Which color do you want? — It doesn’t matter.（你想要哪个颜色？——哪个都行。）", "warn": ""}, {"id": 145, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "145", "en": "Either way is fine.", "zh": "两种都可以。", "audio": "hf_phrase_145.mp3", "chunkLocal": "audio_chunks/hf_phrase_145.mp3", "localAudio": "audio_chunks/hf_phrase_145.mp3", "core": "在两个选择中，无论采用哪一种，对自己都能接受。", "scene": "确认付款、路线、时间或两种方案。", "example": "Should we call or email? — Either way is fine.（我们打电话还是发邮件？——两种都可以。）", "warn": ""}, {"id": 146, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "146", "en": "Anything else?", "zh": "还需要别的吗？", "audio": "hf_phrase_146.mp3", "chunkLocal": "audio_chunks/hf_phrase_146.mp3", "localAudio": "audio_chunks/hf_phrase_146.mp3", "core": "在已有内容之外，询问是否还有任何需要补充的东西或要求。", "scene": "商店、餐厅、客服或结束任务前。", "example": "Anything else? — No, that’s all.（还需要别的吗？——不用，就这些。）", "warn": ""}, {"id": 147, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "147", "en": "That’s all for now.", "zh": "目前就这些。", "audio": "hf_phrase_147.mp3", "chunkLocal": "audio_chunks/hf_phrase_147.mp3", "localAudio": "audio_chunks/hf_phrase_147.mp3", "core": "当前阶段没有更多内容，但 for now 暗示以后可能还会补充。", "scene": "结束汇报、订单、教学或暂时结束讨论。", "example": "That’s all for now. I’ll send the rest tomorrow.（目前就这些，剩下的我明天发。）", "warn": ""}, {"id": 148, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "148", "en": "Let me know.", "zh": "告诉我一声。", "audio": "hf_phrase_148.mp3", "chunkLocal": "audio_chunks/hf_phrase_148.mp3", "localAudio": "audio_chunks/hf_phrase_148.mp3", "core": "希望对方在知道结果、作出决定或需要帮助时，把信息传给自己。", "scene": "等待确认、选择、进展或问题反馈。", "example": "Let me know when you’re ready.（你准备好时告诉我一声。）", "warn": ""}, {"id": 149, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "149", "en": "Feel free to ask.", "zh": "有问题尽管问。", "audio": "hf_phrase_149.mp3", "chunkLocal": "audio_chunks/hf_phrase_149.mp3", "localAudio": "audio_chunks/hf_phrase_149.mp3", "core": "消除对方怕打扰的顾虑，明确表示欢迎提问。", "scene": "教学、客服、工作交接或介绍产品后。", "example": "If anything is unclear, feel free to ask.（如果有不清楚的地方，尽管问。）", "warn": ""}, {"id": 150, "secIdx": 10, "secTitle": "十、生活服务、选择与收尾", "num": "150", "en": "See what I mean?", "zh": "明白我的意思了吗？", "audio": "hf_phrase_150.mp3", "chunkLocal": "audio_chunks/hf_phrase_150.mp3", "localAudio": "audio_chunks/hf_phrase_150.mp3", "core": "确认对方是否看到了你想说明的逻辑、差别或结果；see 在这里是“理解”。", "scene": "解释、演示或举例之后。", "example": "This one is lighter and easier to carry. See what I mean?（这个更轻，也更容易携带。明白我的意思了吗？）", "warn": "重语气可能像质问，正常讲解时保持友好语调。"}]};
+
+    
+    // Theme Management (Light vs Dark)
+    const THEME_STORAGE_KEY = 'chunklab_theme';
+    let currentTheme = 'light';
+
+    function initTheme() {
+      try {
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light';
+        currentTheme = savedTheme;
+      } catch(e) {
+        currentTheme = 'light';
+      }
+      applyTheme();
+    }
+
+    function toggleTheme() {
+      currentTheme = (currentTheme === 'light') ? 'dark' : 'light';
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, currentTheme);
+      } catch(e) {}
+      applyTheme();
+    }
+
+    function applyTheme() {
+      const isDark = (currentTheme === 'dark');
+      document.body.classList.toggle('theme-dark', isDark);
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      const btn = document.getElementById('btnThemeToggle');
+      if (icon && label) {
+        if (isDark) {
+          icon.textContent = '☀️';
+          label.textContent = '日间模式';
+          if (btn) btn.classList.add('active');
+        } else {
+          icon.textContent = '🌙';
+          label.textContent = '夜间模式';
+          if (btn) btn.classList.remove('active');
+        }
+      }
+    }
+
+    // State Variables
+    let currentScale = 1.0;
+    const fontScales = [
+      { label: '偏小', size: '16.5px' },
+      { label: '标准', size: '18.5px' },
+      { label: '放大', size: '20.5px' },
+      { label: '超大', size: '23.0px' }
+    ];
+    let fontScaleIdx = 1;
+
+    let currentSpeed = 1.0;
+    const speeds = [1.0, 0.8, 1.2];
+    let speedIdx = 0;
+
+    let currentMask = 'none'; // 'none' | 'en' | 'zh'
+    const maskModes = [
+      { id: 'none', label: '正常' },
+      { id: 'en', label: '遮英文' },
+      { id: 'zh', label: '遮中文' }
+    ];
+    let maskIdx = 0;
+
+    let onlyStarred = false;
+    let starredIds = new Set();
+    const STAR_STORAGE_KEY = 'chunklab_phrase_starred';
+
+    let activeSection = null;
+    let searchQuery = '';
+    let isLooping = false;
+    let loopItem = null;
+
+    // Load Starred from localStorage
+    try {
+      const savedStars = localStorage.getItem(STAR_STORAGE_KEY);
+      if (savedStars) {
+        starredIds = new Set(JSON.parse(savedStars));
+      }
+    } catch(e) {}
+
+    // Audio Engine
+    class AudioEngine {
+      constructor() {
+        this.audio = new Audio();
+        this.speechSynth = window.speechSynthesis;
+        this.currentActiveEl = null;
+
+        this.audio.onerror = () => {
+          if (this.currentFallbackText) {
+            this.speakText(this.currentFallbackText);
+          }
+        };
+
+        this.audio.onended = () => {
+          if (isLooping && loopItem) {
+            this.playItem(loopItem);
+          } else {
+            this.clearPlayingUI();
+          }
+        };
+      }
+
+      playItem(item) {
+        this.stop();
+        loopItem = item;
+        updateBottomPlayer(item);
+
+        const text = item.en;
+        this.currentFallbackText = text;
+
+        if (item.localAudio) {
+          let src = item.localAudio;
+          if (window.location.protocol.startsWith('http')) {
+            src += (src.includes('?') ? '&' : '?') + 't=' + Date.now();
+          }
+          this.audio.src = src;
+          this.audio.playbackRate = currentSpeed;
+          this.audio.play().catch(() => {
+            this.speakText(text);
+          });
+        } else {
+          this.speakText(text);
+        }
+      }
+
+      speakText(text) {
+        if (!this.speechSynth) return;
+        this.speechSynth.cancel();
+
+        const cleanText = text
+          .replace(/\+\s*名词/g, '')
+          .replace(/\+\s*动词[^\s]*/g, '')
+          .replace(/\.(2,)/g, '')
+          .replace(/[\/\(\)]/g, ' ')
+          .replace(/\$/g, ' dollars ')
+          .trim();
+
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = 'en-US';
+        utterance.rate = currentSpeed;
+        this.speechSynth.speak(utterance);
+      }
+
+      stop() {
+        this.audio.pause();
+        this.audio.currentTime = 0;
+        if (this.speechSynth) this.speechSynth.cancel();
+      }
+
+      clearPlayingUI() {
+        document.querySelectorAll('.is-speaking').forEach(el => el.classList.remove('is-speaking'));
+        const btn = document.getElementById('btnPlayPause');
+        if (btn) btn.textContent = '▶ 播放';
+      }
+    }
+
+    const player = new AudioEngine();
+
+    // DOM Elements
+    const mainContainer = document.getElementById('mainContainer');
+    const searchInput = document.getElementById('searchInput');
+    const btnClearSearch = document.getElementById('btnClearSearch');
+    const sectionPillBar = document.getElementById('sectionPillBar');
+
+    const btnFontDec = document.getElementById('btnFontDec');
+    const btnFontInc = document.getElementById('btnFontInc');
+    const fontLabel = document.getElementById('fontLabel');
+
+    const btnSpeedToggle = document.getElementById('btnSpeedToggle');
+    const speedLabel = document.getElementById('speedLabel');
+
+    const btnMaskToggle = document.getElementById('btnMaskToggle');
+    const maskLabel = document.getElementById('maskLabel');
+
+    const btnStarFilter = document.getElementById('btnStarFilter');
+    const starFilterLabel = document.getElementById('starFilterLabel');
+
+    const bottomPlayerBar = document.getElementById('bottomPlayerBar');
+    const nowPlayingEn = document.getElementById('nowPlayingEn');
+    const nowPlayingZh = document.getElementById('nowPlayingZh');
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const btnLoopToggle = document.getElementById('btnLoopToggle');
+    const btnClosePlayer = document.getElementById('btnClosePlayer');
+
+    // Desktop Link Auto Switch
+    if (window.location.protocol === 'file:') {
+      document.querySelectorAll('.module-tab').forEach(tab => {
+        const dh = tab.getAttribute('data-desktop-href');
+        if (dh) tab.setAttribute('href', dh);
+      });
+    }
+
+    // Initialize UI
+    function init() {
+      initTheme();
+      renderSectionPills();
+      renderCards();
+      bindEvents();
+    }
+
+    function renderSectionPills() {
+      const sections = window.CURRENT_DB.sections;
+      let html = `<button class="sec-pill ${activeSection === null ? 'active' : ''}" data-sec="all">全部 (${window.CURRENT_DB.cards.length})</button>`;
+
+      sections.forEach(s => {
+        html += `<button class="sec-pill ${activeSection === s.secIdx ? 'active' : ''}" data-sec="${s.secIdx}">${s.title} (${s.count})</button>`;
+      });
+
+      sectionPillBar.innerHTML = html;
+    }
+
+    function renderCards() {
+      const sections = window.CURRENT_DB.sections;
+      const allCards = window.CURRENT_DB.cards;
+
+      let renderedSectionCount = 0;
+      let totalRenderedCards = 0;
+      let html = '';
+
+      sections.forEach(sec => {
+        if (activeSection !== null && sec.secIdx !== activeSection) return;
+
+        const matchingCards = allCards.filter(c => {
+          if (c.secIdx !== sec.secIdx) return false;
+          if (onlyStarred && !starredIds.has(c.id)) return false;
+          if (searchQuery) {
+            const q = searchQuery;
+            const inEn = (c.en || '').toLowerCase().includes(q);
+            const inZh = (c.zh || '').toLowerCase().includes(q);
+            const inCore = (c.core || '').toLowerCase().includes(q);
+            const inUsage = (c.usage || '').toLowerCase().includes(q);
+            const inWarn = (c.warn || '').toLowerCase().includes(q);
+            const inScene = (c.scene || '').toLowerCase().includes(q);
+            const inExample = (c.example || '').toLowerCase().includes(q);
+            const inEx = (c.examples || []).some(ex => (ex.en || '').toLowerCase().includes(q) || (ex.zh || '').toLowerCase().includes(q));
+            const inChunks = (c.chunks || []).some(sc => (sc.en || '').toLowerCase().includes(q) || (sc.zh || '').toLowerCase().includes(q));
+            const inDial = (c.dialogue || []).some(d => (d.en || '').toLowerCase().includes(q) || (d.zh || '').toLowerCase().includes(q));
+            if (!inEn && !inZh && !inCore && !inUsage && !inWarn && !inScene && !inExample && !inEx && !inChunks && !inDial) return false;
+          }
+          return true;
+        });
+
+        if (matchingCards.length === 0) return;
+
+        renderedSectionCount++;
+        totalRenderedCards += matchingCards.length;
+
+        html += `
+          <section class="section-block" id="section-block-${sec.secIdx}">
+            <div class="section-header-banner">
+              <div>
+                <h2>${sec.title}</h2>
+                ${sec.intro ? `<p class="section-intro-text">${sec.intro}</p>` : ''}
+              </div>
+              <span class="section-badge-count">${matchingCards.length} 项</span>
+            </div>
+
+            <div class="cards-grid">
+              ${matchingCards.map(c => renderSingleCard(c)).join('')}
+            </div>
+          </section>
+        `;
+      });
+
+      if (totalRenderedCards === 0) {
+        html = `
+          <div style="text-align:center; padding: 60px 20px; color: #94a3b8;">
+            <div style="font-size: 3rem; margin-bottom: 12px;">🔍</div>
+            <h3 style="font-size: 1.2rem; color: #475569; margin-bottom: 6px;">没有找到符合条件的内容</h3>
+            <p style="font-size: 0.9rem;">请尝试更换搜索关键词，或者重置生词本筛选条件</p>
+          </div>
+        `;
+      }
+
+      mainContainer.innerHTML = html;
+      document.getElementById('totalCardBadge').textContent = `${totalRenderedCards} 短句`;
+    }
+
+    
+    function renderSingleCard(card) {
+      const isStarred = starredIds.has(card.id);
+
+      return `
+        <article class="chunk-card phrase-card ${isStarred ? 'is-starred' : ''}" id="card-${card.id}">
+          <div class="card-meta-bar">
+            <div class="card-meta-left">
+              <span class="card-number-badge">#${String(card.num).padStart(3, '0')}</span>
+              <span class="card-category-tag">${card.secTitle.replace(/^[一二三四五六七八九十]+[、.]/, '')}</span>
+            </div>
+            <div class="card-meta-right" style="display: flex; align-items: center; gap: 8px;">
+              ${card.scene ? `<span class="phrase-scene-badge" title="使用场景">🎯 ${card.scene.replace(/。$/, '')}</span>` : ''}
+              <button class="btn-star ${isStarred ? 'active' : ''}" onclick="toggleStar(${card.id}, event)" title="加入生词本">
+                ${isStarred ? '⭐' : '☆'}
+              </button>
+            </div>
+          </div>
+
+          <div class="phrase-speaker-box" onclick="playChunk(${card.id})" title="点击点读高频原声">
+            <div class="phrase-main-text">
+              <div class="phrase-en-row">
+                <span class="phrase-en-text">${card.en}</span>
+                <span class="phrase-spk-icon">🔊</span>
+              </div>
+              <div class="phrase-zh-text">${card.zh}</div>
+            </div>
+            <button class="phrase-action-play" onclick="playChunk(${card.id}, event)" title="点击播放原声">
+              ▶
+            </button>
+          </div>
+
+          ${card.example ? `
+            <div class="phrase-dialogue-card" onclick="playChunk(${card.id}, event)" title="点击点读短句原声">
+              <div class="dialogue-tag">💬 场景对答实战</div>
+              <div class="dialogue-content">${card.example}</div>
+            </div>
+          ` : ''}
+
+          ${card.core ? `
+            <div class="phrase-insight-card">
+              <div class="insight-tag">🧠 核心理解</div>
+              <div class="insight-content">${card.core}</div>
+            </div>
+          ` : ''}
+
+          ${card.warn ? `
+            <div class="phrase-warn-card">
+              <div class="warn-tag">⚠️ 语气与避坑提醒</div>
+              <div class="warn-content">${card.warn}</div>
+            </div>
+          ` : ''}
+        </article>
+      `;
+    }
+
+
+    // Play action
+    window.playChunk = function(cardId, event) {
+      if (event) event.stopPropagation();
+      const card = window.CURRENT_DB.cards.find(c => c.id === cardId);
+      if (!card) return;
+
+      player.clearPlayingUI();
+      const cardEl = document.getElementById(`card-${cardId}`);
+      if (cardEl) cardEl.classList.add('is-speaking');
+
+      player.playItem({
+        en: card.en,
+        zh: card.zh,
+        localAudio: card.chunkLocal || card.localAudio
+      });
+    };
+
+    window.toggleStar = function(cardId, event) {
+      if (event) event.stopPropagation();
+      if (starredIds.has(cardId)) {
+        starredIds.delete(cardId);
+      } else {
+        starredIds.add(cardId);
+      }
+
+      try {
+        localStorage.setItem(STAR_STORAGE_KEY, JSON.stringify([...starredIds]));
+      } catch(e) {}
+
+      renderCards();
+    };
+
+    function updateBottomPlayer(item) {
+      nowPlayingEn.textContent = item.en;
+      nowPlayingZh.textContent = item.zh || '';
+      bottomPlayerBar.classList.add('active');
+      btnPlayPause.textContent = '⏸ 暂停';
+    }
+
+    function bindEvents() {
+      // Theme Switcher
+      const themeBtn = document.getElementById('btnThemeToggle');
+      if (themeBtn) themeBtn.onclick = toggleTheme;
+
+      // Font Sizing
+      btnFontDec.onclick = () => {
+        if (fontScaleIdx > 0) {
+          fontScaleIdx--;
+          document.documentElement.style.setProperty('--base-size', fontScales[fontScaleIdx].size);
+          fontLabel.textContent = fontScales[fontScaleIdx].label;
+        }
+      };
+      btnFontInc.onclick = () => {
+        if (fontScaleIdx < fontScales.length - 1) {
+          fontScaleIdx++;
+          document.documentElement.style.setProperty('--base-size', fontScales[fontScaleIdx].size);
+          fontLabel.textContent = fontScales[fontScaleIdx].label;
+        }
+      };
+
+      // Speed Toggle
+      btnSpeedToggle.onclick = () => {
+        speedIdx = (speedIdx + 1) % speeds.length;
+        currentSpeed = speeds[speedIdx];
+        speedLabel.textContent = `${currentSpeed.toFixed(1)}x`;
+        player.audio.playbackRate = currentSpeed;
+      };
+
+      // Mask Mode Toggle
+      btnMaskToggle.onclick = () => {
+        maskIdx = (maskIdx + 1) % maskModes.length;
+        const mode = maskModes[maskIdx];
+        maskLabel.textContent = mode.label;
+        document.body.classList.remove('mask-en', 'mask-zh');
+        if (mode.id === 'en') document.body.classList.add('mask-en');
+        if (mode.id === 'zh') document.body.classList.add('mask-zh');
+        btnMaskToggle.classList.toggle('active', mode.id !== 'none');
+      };
+
+      // Star Filter
+      btnStarFilter.onclick = () => {
+        onlyStarred = !onlyStarred;
+        btnStarFilter.classList.toggle('active', onlyStarred);
+        starFilterLabel.textContent = onlyStarred ? `已收藏 (${starredIds.size})` : '生词本';
+        renderCards();
+      };
+
+      // Search Filter
+      searchInput.oninput = (e) => {
+        searchQuery = e.target.value.trim().toLowerCase();
+        btnClearSearch.style.display = searchQuery ? 'block' : 'none';
+        renderCards();
+      };
+      btnClearSearch.onclick = () => {
+        searchInput.value = '';
+        searchQuery = '';
+        btnClearSearch.style.display = 'none';
+        renderCards();
+      };
+
+      // Section Pill Clicks
+      sectionPillBar.onclick = (e) => {
+        const btn = e.target.closest('.sec-pill');
+        if (!btn) return;
+        const secVal = btn.dataset.sec;
+        activeSection = secVal === 'all' ? null : parseInt(secVal);
+        renderSectionPills();
+        renderCards();
+      };
+
+      // Bottom Player Controls
+      btnPlayPause.onclick = () => {
+        if (player.audio.paused) {
+          if (loopItem) {
+            player.playItem(loopItem);
+          }
+        } else {
+          player.audio.pause();
+          btnPlayPause.textContent = '▶ 播放';
+          player.clearPlayingUI();
+        }
+      };
+
+      btnLoopToggle.onclick = () => {
+        isLooping = !isLooping;
+        btnLoopToggle.classList.toggle('loop-on', isLooping);
+        btnLoopToggle.textContent = isLooping ? '🔂 正在循环' : '🔁 单曲循环';
+      };
+
+      btnClosePlayer.onclick = () => {
+        player.stop();
+        bottomPlayerBar.classList.remove('active');
+        player.clearPlayingUI();
+      };
+
+      // Card Navigation Prev / Next
+      document.getElementById('btnPrevCard').onclick = () => {
+        if (!loopItem) return;
+        const cards = window.CURRENT_DB.cards;
+        const curIdx = cards.findIndex(c => c.en === loopItem.en || (c.examples && c.examples.some(ex => ex.en === loopItem.en)));
+        if (curIdx > 0) {
+          playChunk(cards[curIdx - 1].id);
+        }
+      };
+
+      document.getElementById('btnNextCard').onclick = () => {
+        if (!loopItem) return;
+        const cards = window.CURRENT_DB.cards;
+        const curIdx = cards.findIndex(c => c.en === loopItem.en || (c.examples && c.examples.some(ex => ex.en === loopItem.en)));
+        if (curIdx >= 0 && curIdx < cards.length - 1) {
+          playChunk(cards[curIdx + 1].id);
+        }
+      };
+    }
+
+    init();
+  </script>
+</body>
+</html>

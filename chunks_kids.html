@@ -1078,11 +1078,241 @@
       font-size: 0.82rem;
     }
 
+    /* Phrase Spoken Soundboard (Phrase Page) */
+    .phrase-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .phrase-scene-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(14, 165, 233, 0.1);
+      color: #0284c7;
+      border: 1px solid rgba(14, 165, 233, 0.25);
+      max-width: 240px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+    body.theme-dark .phrase-scene-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+    .phrase-speaker-box {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .phrase-speaker-box:hover {
+      background: #faf5ff;
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+    body.theme-dark .phrase-speaker-box {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .phrase-speaker-box:hover {
+      background: rgba(99, 102, 241, 0.12);
+      border-color: #818cf8;
+    }
+    .phrase-card.is-speaking .phrase-speaker-box {
+      background: #ecfdf5;
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+    body.theme-dark .phrase-card.is-speaking .phrase-speaker-box {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+    }
+    .phrase-main-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .phrase-en-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .phrase-en-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      word-break: break-word;
+    }
+    body.theme-dark .phrase-en-text {
+      color: #f8fafc;
+    }
+    .phrase-spk-icon {
+      font-size: 1.1rem;
+      color: var(--primary);
+      opacity: 0.85;
+      flex-shrink: 0;
+      transition: transform 0.15s;
+    }
+    .phrase-speaker-box:hover .phrase-spk-icon {
+      transform: scale(1.15);
+    }
+    .phrase-zh-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 5px;
+      line-height: 1.35;
+    }
+    body.theme-dark .phrase-zh-text {
+      color: #94a3b8;
+    }
+    .phrase-action-play {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+    .phrase-action-play:hover {
+      background: var(--primary-hover);
+      transform: scale(1.1);
+    }
+    .phrase-card.is-speaking .phrase-action-play {
+      background: #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3);
+      transform: scale(1.08);
+    }
+    .phrase-dialogue-card {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 3.5px solid #10b981;
+      border-radius: 8px;
+      padding: 9px 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .phrase-dialogue-card:hover {
+      background: #dcfce7;
+      border-color: #86efac;
+    }
+    body.theme-dark .phrase-dialogue-card {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(16, 185, 129, 0.25);
+      border-left-color: #34d399;
+    }
+    body.theme-dark .phrase-dialogue-card:hover {
+      background: rgba(16, 185, 129, 0.14);
+    }
+    .dialogue-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #059669;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    body.theme-dark .dialogue-tag {
+      color: #34d399;
+    }
+    .dialogue-content {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #1e293b;
+      line-height: 1.45;
+    }
+    body.theme-dark .dialogue-content {
+      color: #e2e8f0;
+    }
+    .phrase-insight-card {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 3.5px solid #3b82f6;
+      border-radius: 8px;
+      padding: 9px 12px;
+    }
+    body.theme-dark .phrase-insight-card {
+      background: rgba(59, 130, 246, 0.08);
+      border-color: rgba(59, 130, 246, 0.25);
+      border-left-color: #60a5fa;
+    }
+    .insight-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #1d4ed8;
+      margin-bottom: 3px;
+      letter-spacing: 0.02em;
+    }
+    body.theme-dark .insight-tag {
+      color: #60a5fa;
+    }
+    .insight-content {
+      font-size: 0.86rem;
+      color: #1e3a8a;
+      line-height: 1.45;
+    }
+    body.theme-dark .insight-content {
+      color: #cbd5e1;
+    }
+    .phrase-warn-card {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 3.5px solid #f59e0b;
+      border-radius: 8px;
+      padding: 9px 12px;
+    }
+    body.theme-dark .phrase-warn-card {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: rgba(245, 158, 11, 0.3);
+      border-left-color: #fbbf24;
+    }
+    .warn-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #b45309;
+      margin-bottom: 3px;
+      letter-spacing: 0.02em;
+    }
+    body.theme-dark .warn-tag {
+      color: #fbbf24;
+    }
+    .warn-content {
+      font-size: 0.85rem;
+      color: #92400e;
+      line-height: 1.45;
+    }
+    body.theme-dark .warn-content {
+      color: #fde68a;
+    }
+
+
     /* Masking Modes */
     body.mask-en .sentence-en,
     body.mask-en .subchunk-code,
     body.mask-en .baby-say-en,
-    body.mask-en .dialogue-en {
+    body.mask-en .dialogue-en,
+    body.mask-en .phrase-en-text {
       filter: blur(6px);
       cursor: pointer;
       user-select: none;
@@ -1091,14 +1321,16 @@
     body.mask-en .sentence-en:hover,
     body.mask-en .subchunk-code:hover,
     body.mask-en .baby-say-en:hover,
-    body.mask-en .dialogue-en:hover {
+    body.mask-en .dialogue-en:hover,
+    body.mask-en .phrase-en-text:hover {
       filter: none;
     }
     body.mask-zh .sentence-zh,
     body.mask-zh .subchunk-zh,
     body.mask-zh .baby-say-zh,
     body.mask-zh .chunk-zh-meaning,
-    body.mask-zh .dialogue-zh {
+    body.mask-zh .dialogue-zh,
+    body.mask-zh .phrase-zh-text {
       filter: blur(6px);
       cursor: pointer;
       user-select: none;
@@ -1108,7 +1340,8 @@
     body.mask-zh .subchunk-zh:hover,
     body.mask-zh .baby-say-zh:hover,
     body.mask-zh .chunk-zh-meaning:hover,
-    body.mask-zh .dialogue-zh:hover {
+    body.mask-zh .dialogue-zh:hover,
+    body.mask-zh .phrase-zh-text:hover {
       filter: none;
     }
 
@@ -1260,6 +1493,10 @@
           <a href="chunks_kids.html" data-desktop-href="4.亲子生活英语_核心词块点读工作台.html" class="module-tab active">
             <span class="module-tab-title">🧸 亲子生活英语</span>
             <span class="module-tab-badge">44 亲子</span>
+          </a>
+          <a href="chunks_phrase.html" data-desktop-href="5.高频短句_扫盲篇点读工作台.html" class="module-tab">
+            <span class="module-tab-title">⚡ 高频短句 · 扫盲篇</span>
+            <span class="module-tab-badge">150 短句</span>
           </a>
         </div>
 
@@ -1540,10 +1777,12 @@
             const inCore = (c.core || '').toLowerCase().includes(q);
             const inUsage = (c.usage || '').toLowerCase().includes(q);
             const inWarn = (c.warn || '').toLowerCase().includes(q);
+            const inScene = (c.scene || '').toLowerCase().includes(q);
+            const inExample = (c.example || '').toLowerCase().includes(q);
             const inEx = (c.examples || []).some(ex => (ex.en || '').toLowerCase().includes(q) || (ex.zh || '').toLowerCase().includes(q));
             const inChunks = (c.chunks || []).some(sc => (sc.en || '').toLowerCase().includes(q) || (sc.zh || '').toLowerCase().includes(q));
             const inDial = (c.dialogue || []).some(d => (d.en || '').toLowerCase().includes(q) || (d.zh || '').toLowerCase().includes(q));
-            if (!inEn && !inZh && !inCore && !inUsage && !inWarn && !inEx && !inChunks && !inDial) return false;
+            if (!inEn && !inZh && !inCore && !inUsage && !inWarn && !inScene && !inExample && !inEx && !inChunks && !inDial) return false;
           }
           return true;
         });
@@ -1688,7 +1927,7 @@
       player.playItem({
         en: card.en,
         zh: card.zh,
-        localAudio: card.chunkLocal
+        localAudio: card.chunkLocal || card.localAudio
       });
     };
 

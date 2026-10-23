@@ -40,6 +40,223 @@
       --radius-lg: 16px;
     }
 
+    /* Night Theme (Obsidian Slate / Apple Space Black) */
+    body.theme-dark {
+      --primary: #818cf8;
+      --primary-hover: #a5b4fc;
+      --primary-light: rgba(99, 102, 241, 0.16);
+      --primary-border: rgba(99, 102, 241, 0.35);
+      --bg: #0a0d16;
+      --surface: rgba(20, 26, 42, 0.92);
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --core-bg: rgba(30, 58, 138, 0.25);
+      --core-border: rgba(96, 165, 250, 0.35);
+      --core-text: #93c5fd;
+      --usage-bg: rgba(107, 33, 168, 0.25);
+      --usage-border: rgba(192, 132, 252, 0.35);
+      --usage-text: #d8b4fe;
+      --warn-bg: rgba(146, 64, 14, 0.25);
+      --warn-border: rgba(251, 191, 36, 0.35);
+      --warn-text: #fde68a;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.65);
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0a0d16 55%, #07090f 100%);
+      background-color: #0a0d16;
+      background-attachment: fixed;
+    }
+
+    body.theme-dark .top-navbar {
+      background: rgba(13, 17, 28, 0.94);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    body.theme-dark .brand-text h1 {
+      color: #f8fafc;
+    }
+    body.theme-dark .brand-badge {
+      background: rgba(139, 92, 246, 0.22);
+      color: #c4b5fd;
+    }
+    body.theme-dark .module-tab {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+    }
+    body.theme-dark .module-tab:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+    body.theme-dark .module-tab.active {
+      background: #6366f1;
+      border-color: #6366f1;
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+    }
+    body.theme-dark .module-tab-badge {
+      background: rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+    }
+    body.theme-dark .search-input {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+    }
+    body.theme-dark .search-input:focus {
+      background: rgba(20, 26, 42, 0.95);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+    body.theme-dark .tool-btn-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+    }
+    body.theme-dark .tool-btn-pill:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+    }
+    body.theme-dark .tool-btn-pill.active {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: #818cf8;
+      color: #c7d2fe;
+    }
+    body.theme-dark .font-stepper {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    body.theme-dark .font-btn {
+      color: #cbd5e1;
+    }
+    body.theme-dark .font-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+    body.theme-dark .font-label {
+      color: #94a3b8;
+    }
+    body.theme-dark .sec-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+    }
+    body.theme-dark .sec-pill:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    body.theme-dark .sec-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+    }
+    body.theme-dark .section-header-banner {
+      border-bottom-color: rgba(99, 102, 241, 0.3);
+    }
+    body.theme-dark .section-header-banner h2 {
+      color: #f8fafc;
+    }
+    body.theme-dark .chunk-card {
+      background: var(--surface);
+      border-color: var(--surface-border);
+    }
+    body.theme-dark .chunk-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      background: rgba(26, 35, 58, 0.95);
+    }
+    body.theme-dark .card-category-tag {
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    body.theme-dark .chunk-en-title {
+      color: #f8fafc;
+    }
+    body.theme-dark .chunk-zh-meaning {
+      color: #cbd5e1;
+    }
+    body.theme-dark .sentence-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .sentence-card:hover {
+      background: rgba(99, 102, 241, 0.12);
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+    body.theme-dark .sentence-card.is-speaking {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: #10b981;
+    }
+    body.theme-dark .btn-audio-play {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--primary);
+    }
+    body.theme-dark .btn-audio-play:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    body.theme-dark .subchunk-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .subchunk-card:hover {
+      background: rgba(99, 102, 241, 0.12);
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+    body.theme-dark .subchunk-code code {
+      color: #a5b4fc;
+    }
+    body.theme-dark .subchunk-zh {
+      color: #cbd5e1;
+    }
+    body.theme-dark .dialogue-wrap {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .dialogue-header-bar {
+      color: #f8fafc;
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .dialogue-row:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+    body.theme-dark .dialogue-en {
+      color: #f8fafc;
+    }
+    body.theme-dark .dialogue-zh {
+      color: #cbd5e1;
+    }
+    body.theme-dark .tip-box {
+      background: rgba(20, 83, 45, 0.25);
+      border-color: rgba(74, 222, 128, 0.35);
+      color: #86efac;
+    }
+    body.theme-dark .baby-say-box {
+      background: rgba(30, 58, 138, 0.22);
+      border-color: rgba(96, 165, 250, 0.35);
+    }
+    body.theme-dark .baby-say-title {
+      color: #93c5fd;
+    }
+    body.theme-dark .bottom-player-bar {
+      background: rgba(13, 17, 28, 0.96);
+      border-top-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.5);
+    }
+    body.theme-dark .btn-player-action {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+    }
+    body.theme-dark .btn-player-action:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html { font-size: var(--base-size); scroll-behavior: smooth; }
     body {
@@ -921,6 +1138,12 @@
             <span>🔄</span> <span>更新刷新</span>
           </button>
 
+          <!-- Day/Night Mode Switcher -->
+          <button class="tool-btn-pill" id="btnThemeToggle" title="切换日间/夜间模式">
+            <span id="themeIcon">🌙</span> <span id="themeLabel">夜间模式</span>
+          </button>
+
+
           <!-- Font Size Controls -->
           <div class="font-stepper" title="自由调节字号大小">
             <button class="font-btn" id="btnFontDec" title="缩小字号">A-</button>
@@ -1008,6 +1231,48 @@
   <script>
     // Embedded Database
     window.CURRENT_DB = {"sections": [{"secIdx": 1, "title": "一、洗漱穿衣与如厕", "intro": "早上起来第一件事，全都能接在 I want to 后面。", "count": 7}, {"secIdx": 2, "title": "二、日常起居与生活习惯", "intro": "白天在家的日常习惯，让孩子学会主动用英语表达需求。", "count": 6}, {"secIdx": 3, "title": "三、餐桌与饮食", "intro": "喝水、吃水果、吃饭，高频生活餐桌场景。", "count": 6}, {"secIdx": 4, "title": "四、玩耍与外出", "intro": "搭积木、玩公园、找朋友，最快乐的活动互动。", "count": 6}, {"secIdx": 5, "title": "五、情绪、身体与睡前", "intro": "抱抱、困了、睡前故事，睡前温情高频表达。", "count": 7}, {"secIdx": 6, "title": "六、名词版与日常短语", "intro": "I want + 妈妈/玩具/水（不加 to），孩子要东西时直接开口。", "count": 12}], "cards": [{"id": 1, "secIdx": 1, "secTitle": "一、洗漱穿衣与如厕", "num": "01", "en": "take a bath", "zh": "去洗澡", "audioChunk": "chunk_01_take_a_bath.mp3", "chunkLocal": "audio_chunks/chunk_01_take_a_bath.mp3", "babySay": "I want to take a bath!", "babySayZh": "我想去洗澡！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to take a bath!", "zh": "我想去洗澡！", "audio": "kid_01_I_want_to_take_a_bath.mp3", "localAudio": "audio_chunks/kid_01_I_want_to_take_a_bath.mp3"}, {"role": "👩 妈妈", "en": "OK! Let’s get your rubber duck!", "zh": "好！去拿你的小鸭子！", "audio": "mom_01_OK_Let_s_get_your_rubber_duck.mp3", "localAudio": "audio_chunks/mom_01_OK_Let_s_get_your_rubber_duck.mp3"}], "tip": "洗澡玩具是最容易让孩子开口的场景，边玩边说。"}, {"id": 2, "secIdx": 1, "secTitle": "一、洗漱穿衣与如厕", "num": "02", "en": "brush my teeth", "zh": "刷牙", "audioChunk": "chunk_02_brush_my_teeth.mp3", "chunkLocal": "audio_chunks/chunk_02_brush_my_teeth.mp3", "babySay": "I want to brush my teeth!", "babySayZh": "我要刷牙！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to brush my teeth!", "zh": "我要刷牙！", "audio": "kid_02_I_want_to_brush_my_teeth.mp3", "localAudio": "audio_chunks/kid_02_I_want_to_brush_my_teeth.mp3"}, {"role": "👩 妈妈", "en": "Good job! Brush them nice and clean.", "zh": "真棒！刷得干干净净的。", "audio": "mom_02_Good_job_Brush_them_nice_and_clean.mp3", "localAudio": "audio_chunks/mom_02_Good_job_Brush_them_nice_and_clean.mp3"}], "tip": "my teeth 不用改，每个人都说自己的牙。"}, {"id": 3, "secIdx": 1, "secTitle": "一、洗漱穿衣与如厕", "num": "03", "en": "wash my hands", "zh": "洗手", "audioChunk": "chunk_03_wash_my_hands.mp3", "chunkLocal": "audio_chunks/chunk_03_wash_my_hands.mp3", "babySay": "I want to wash my hands!", "babySayZh": "我要洗手！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to wash my hands!", "zh": "我要洗手！", "audio": "kid_03_I_want_to_wash_my_hands.mp3", "localAudio": "audio_chunks/kid_03_I_want_to_wash_my_hands.mp3"}, {"role": "👩 妈妈", "en": "Sure, soap and water!", "zh": "好呀，用香皂搓一搓！", "audio": "mom_03_Sure_soap_and_water.mp3", "localAudio": "audio_chunks/mom_03_Sure_soap_and_water.mp3"}], "tip": "吃饭前、玩完沙子后，都是最好的练习时机。"}, {"id": 4, "secIdx": 1, "secTitle": "一、洗漱穿衣与如厕", "num": "04", "en": "wash my face", "zh": "洗脸", "audioChunk": "chunk_04_wash_my_face.mp3", "chunkLocal": "audio_chunks/chunk_04_wash_my_face.mp3", "babySay": "I want to wash my face!", "babySayZh": "我要洗脸！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to wash my face!", "zh": "我要洗脸！", "audio": "kid_04_I_want_to_wash_my_face.mp3", "localAudio": "audio_chunks/kid_04_I_want_to_wash_my_face.mp3"}, {"role": "👩 妈妈", "en": "Let me help you.", "zh": "我来帮你。", "audio": "mom_04_Let_me_help_you.mp3", "localAudio": "audio_chunks/mom_04_Let_me_help_you.mp3"}], "tip": "和 wash my hands 一起教，孩子记得快。"}, {"id": 5, "secIdx": 1, "secTitle": "一、洗漱穿衣与如厕", "num": "05", "en": "go potty", "zh": "上厕所", "audioChunk": "chunk_05_go_potty.mp3", "chunkLocal": "audio_chunks/chunk_05_go_potty.mp3", "babySay": "I want to go potty!", "babySayZh": "我要上厕所！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to go potty!", "zh": "我要上厕所！", "audio": "kid_05_I_want_to_go_potty.mp3", "localAudio": "audio_chunks/kid_05_I_want_to_go_potty.mp3"}, {"role": "👩 妈妈", "en": "Hurry, I’ll help you.", "zh": "快，我来帮你。", "audio": "mom_05_Hurry_I_ll_help_you.mp3", "localAudio": "audio_chunks/mom_05_Hurry_I_ll_help_you.mp3"}], "tip": "potty 是幼儿专用说法；孩子大了再换成 go to the toilet。"}, {"id": 6, "secIdx": 1, "secTitle": "一、洗漱穿衣与如厕", "num": "06", "en": "get dressed", "zh": "穿衣服", "audioChunk": "chunk_06_get_dressed.mp3", "chunkLocal": "audio_chunks/chunk_06_get_dressed.mp3", "babySay": "I want to get dressed!", "babySayZh": "我要穿衣服！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to get dressed!", "zh": "我要穿衣服！", "audio": "kid_06_I_want_to_get_dressed.mp3", "localAudio": "audio_chunks/kid_06_I_want_to_get_dressed.mp3"}, {"role": "👩 妈妈", "en": "Which shirt do you want?", "zh": "你想穿哪件？", "audio": "mom_06_Which_shirt_do_you_want.mp3", "localAudio": "audio_chunks/mom_06_Which_shirt_do_you_want.mp3"}], "tip": "get dressed 是“穿好衣服”的整体说法，不用纠结单件。"}, {"id": 7, "secIdx": 1, "secTitle": "一、洗漱穿衣与如厕", "num": "07", "en": "put on my shoes", "zh": "穿鞋", "audioChunk": "chunk_07_put_on_my_shoes.mp3", "chunkLocal": "audio_chunks/chunk_07_put_on_my_shoes.mp3", "babySay": "I want to put on my shoes!", "babySayZh": "我要穿鞋！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to put on my shoes!", "zh": "我要穿鞋！", "audio": "kid_07_I_want_to_put_on_my_shoes.mp3", "localAudio": "audio_chunks/kid_07_I_want_to_put_on_my_shoes.mp3"}, {"role": "👩 妈妈", "en": "Sit down first, please.", "zh": "先坐下来哦。", "audio": "mom_07_Sit_down_first_please.mp3", "localAudio": "audio_chunks/mom_07_Sit_down_first_please.mp3"}], "tip": "put on 强调“穿上”的动作，和 get dressed 区分。"}, {"id": 8, "secIdx": 2, "secTitle": "二、日常起居与生活习惯", "num": "08", "en": "blow my nose", "zh": "擤鼻涕", "audioChunk": "chunk_08_blow_my_nose.mp3", "chunkLocal": "audio_chunks/chunk_08_blow_my_nose.mp3", "babySay": "I want to blow my nose!", "babySayZh": "我要擤鼻涕！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to blow my nose!", "zh": "我要擤鼻涕！", "audio": "kid_08_I_want_to_blow_my_nose.mp3", "localAudio": "audio_chunks/kid_08_I_want_to_blow_my_nose.mp3"}, {"role": "👩 妈妈", "en": "One, two, blow!", "zh": "一、二、擤！", "audio": "mom_08_One_two_blow.mp3", "localAudio": "audio_chunks/mom_08_One_two_blow.mp3"}], "tip": "感冒季高频词块，配合动作教最快。"}, {"id": 9, "secIdx": 2, "secTitle": "二、日常起居与生活习惯", "num": "09", "en": "eat breakfast", "zh": "吃早饭", "audioChunk": "chunk_09_eat_breakfast.mp3", "chunkLocal": "audio_chunks/chunk_09_eat_breakfast.mp3", "babySay": "I want to eat breakfast!", "babySayZh": "我要吃早饭！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to eat breakfast!", "zh": "我要吃早饭！", "audio": "kid_09_I_want_to_eat_breakfast.mp3", "localAudio": "audio_chunks/kid_09_I_want_to_eat_breakfast.mp3"}, {"role": "👩 妈妈", "en": "Breakfast is ready!", "zh": "早饭好啦！", "audio": "mom_09_Breakfast_is_ready.mp3", "localAudio": "audio_chunks/mom_09_Breakfast_is_ready.mp3"}], "tip": "换时间就是 eat lunch / eat dinner。"}, {"id": 10, "secIdx": 2, "secTitle": "二、日常起居与生活习惯", "num": "10", "en": "drink milk", "zh": "喝牛奶", "audioChunk": "chunk_10_drink_milk.mp3", "chunkLocal": "audio_chunks/chunk_10_drink_milk.mp3", "babySay": "I want to drink milk!", "babySayZh": "我要喝牛奶！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to drink milk!", "zh": "我要喝牛奶！", "audio": "kid_10_I_want_to_drink_milk.mp3", "localAudio": "audio_chunks/kid_10_I_want_to_drink_milk.mp3"}, {"role": "👩 妈妈", "en": "Here you go.", "zh": "给你。", "audio": "mom_10_Here_you_go.mp3", "localAudio": "audio_chunks/mom_10_Here_you_go.mp3"}], "tip": "drink water / drink juice 同样套用。"}, {"id": 11, "secIdx": 2, "secTitle": "二、日常起居与生活习惯", "num": "11", "en": "drink water", "zh": "喝水", "audioChunk": "chunk_11_drink_water.mp3", "chunkLocal": "audio_chunks/chunk_11_drink_water.mp3", "babySay": "I want to drink water!", "babySayZh": "我要喝水！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to drink water!", "zh": "我要喝水！", "audio": "kid_11_I_want_to_drink_water.mp3", "localAudio": "audio_chunks/kid_11_I_want_to_drink_water.mp3"}, {"role": "👩 妈妈", "en": "Here’s your cup.", "zh": "你的杯子。", "audio": "mom_11_Here_s_your_cup.mp3", "localAudio": "audio_chunks/mom_11_Here_s_your_cup.mp3"}], "tip": "最常用、每天都说的词块，优先学会。"}, {"id": 12, "secIdx": 2, "secTitle": "二、日常起居与生活习惯", "num": "12", "en": "have a snack", "zh": "吃零食", "audioChunk": "chunk_12_have_a_snack.mp3", "chunkLocal": "audio_chunks/chunk_12_have_a_snack.mp3", "babySay": "I want to have a snack!", "babySayZh": "我想吃零食！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to have a snack!", "zh": "我想吃零食！", "audio": "kid_12_I_want_to_have_a_snack.mp3", "localAudio": "audio_chunks/kid_12_I_want_to_have_a_snack.mp3"}, {"role": "👩 妈妈", "en": "Just one cookie, OK?", "zh": "只吃一块饼干哦。", "audio": "mom_12_Just_one_cookie_OK.mp3", "localAudio": "audio_chunks/mom_12_Just_one_cookie_OK.mp3"}], "tip": "have a snack 是“吃点零食”，比 eat snacks 更地道。"}, {"id": 13, "secIdx": 2, "secTitle": "二、日常起居与生活习惯", "num": "13", "en": "eat some fruit", "zh": "吃水果", "audioChunk": "chunk_13_eat_some_fruit.mp3", "chunkLocal": "audio_chunks/chunk_13_eat_some_fruit.mp3", "babySay": "I want to eat some fruit!", "babySayZh": "我想吃水果！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to eat some fruit!", "zh": "我想吃水果！", "audio": "kid_13_I_want_to_eat_some_fruit.mp3", "localAudio": "audio_chunks/kid_13_I_want_to_eat_some_fruit.mp3"}, {"role": "👩 妈妈", "en": "Wash it first.", "zh": "先洗一洗哦。", "audio": "mom_13_Wash_it_first.mp3", "localAudio": "audio_chunks/mom_13_Wash_it_first.mp3"}], "tip": "some 表示“来点”，不限定数量。"}, {"id": 14, "secIdx": 3, "secTitle": "三、餐桌与饮食", "num": "14", "en": "wipe my mouth", "zh": "擦嘴", "audioChunk": "chunk_14_wipe_my_mouth.mp3", "chunkLocal": "audio_chunks/chunk_14_wipe_my_mouth.mp3", "babySay": "I want to wipe my mouth!", "babySayZh": "我要擦嘴！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to wipe my mouth!", "zh": "我要擦嘴！", "audio": "kid_14_I_want_to_wipe_my_mouth.mp3", "localAudio": "audio_chunks/kid_14_I_want_to_wipe_my_mouth.mp3"}, {"role": "👩 妈妈", "en": "Here’s a tissue.", "zh": "给你纸巾。", "audio": "mom_14_Here_s_a_tissue.mp3", "localAudio": "audio_chunks/mom_14_Here_s_a_tissue.mp3"}], "tip": "吃完饭的固定动作，顺便教 tissue 纸巾。"}, {"id": 15, "secIdx": 3, "secTitle": "三、餐桌与饮食", "num": "15", "en": "go out and play", "zh": "出去玩", "audioChunk": "chunk_15_go_out_and_play.mp3", "chunkLocal": "audio_chunks/chunk_15_go_out_and_play.mp3", "babySay": "I want to go out and play!", "babySayZh": "我想出去玩！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to go out and play!", "zh": "我想出去玩！", "audio": "kid_15_I_want_to_go_out_and_play.mp3", "localAudio": "audio_chunks/kid_15_I_want_to_go_out_and_play.mp3"}, {"role": "👩 妈妈", "en": "Put on your jacket first.", "zh": "先穿上外套。", "audio": "mom_15_Put_on_your_jacket_first.mp3", "localAudio": "audio_chunks/mom_15_Put_on_your_jacket_first.mp3"}], "tip": "go out and play 是固定说法，三个词是一体的。"}, {"id": 16, "secIdx": 3, "secTitle": "三、餐桌与饮食", "num": "16", "en": "play with toys", "zh": "玩玩具", "audioChunk": "chunk_16_play_with_toys.mp3", "chunkLocal": "audio_chunks/chunk_16_play_with_toys.mp3", "babySay": "I want to play with toys!", "babySayZh": "我想玩玩具！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to play with toys!", "zh": "我想玩玩具！", "audio": "kid_16_I_want_to_play_with_toys.mp3", "localAudio": "audio_chunks/kid_16_I_want_to_play_with_toys.mp3"}, {"role": "👩 妈妈", "en": "Play here, I’m watching.", "zh": "在这儿玩，我看着呢。", "audio": "mom_16_Play_here_I_m_watching.mp3", "localAudio": "audio_chunks/mom_16_Play_here_I_m_watching.mp3"}], "tip": "play with + 玩具名：play with blocks 玩积木。"}, {"id": 17, "secIdx": 3, "secTitle": "三、餐桌与饮食", "num": "17", "en": "watch cartoons", "zh": "看动画片", "audioChunk": "chunk_17_watch_cartoons.mp3", "chunkLocal": "audio_chunks/chunk_17_watch_cartoons.mp3", "babySay": "I want to watch cartoons!", "babySayZh": "我想看动画片！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to watch cartoons!", "zh": "我想看动画片！", "audio": "kid_17_I_want_to_watch_cartoons.mp3", "localAudio": "audio_chunks/kid_17_I_want_to_watch_cartoons.mp3"}, {"role": "👩 妈妈", "en": "One episode only.", "zh": "只看一集哦。", "audio": "mom_17_One_episode_only.mp3", "localAudio": "audio_chunks/mom_17_One_episode_only.mp3"}], "tip": "one episode 一集，谈判必备词。"}, {"id": 18, "secIdx": 3, "secTitle": "三、餐桌与饮食", "num": "18", "en": "read a book", "zh": "看书", "audioChunk": "chunk_18_read_a_book.mp3", "chunkLocal": "audio_chunks/chunk_18_read_a_book.mp3", "babySay": "I want to read a book!", "babySayZh": "我想看书！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to read a book!", "zh": "我想看书！", "audio": "kid_18_I_want_to_read_a_book.mp3", "localAudio": "audio_chunks/kid_18_I_want_to_read_a_book.mp3"}, {"role": "👩 妈妈", "en": "Pick any book you like.", "zh": "挑一本你喜欢的。", "audio": "mom_18_Pick_any_book_you_like.mp3", "localAudio": "audio_chunks/mom_18_Pick_any_book_you_like.mp3"}], "tip": "read a story 讲故事也常用。"}, {"id": 19, "secIdx": 3, "secTitle": "三、餐桌与饮食", "num": "19", "en": "draw a picture", "zh": "画画", "audioChunk": "chunk_19_draw_a_picture.mp3", "chunkLocal": "audio_chunks/chunk_19_draw_a_picture.mp3", "babySay": "I want to draw a picture!", "babySayZh": "我想画画！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to draw a picture!", "zh": "我想画画！", "audio": "kid_19_I_want_to_draw_a_picture.mp3", "localAudio": "audio_chunks/kid_19_I_want_to_draw_a_picture.mp3"}, {"role": "👩 妈妈", "en": "I’ll get your crayons.", "zh": "我去拿你的蜡笔。", "audio": "mom_19_I_ll_get_your_crayons.mp3", "localAudio": "audio_chunks/mom_19_I_ll_get_your_crayons.mp3"}], "tip": "crayons 蜡笔，draw 画画，两个一起记。"}, {"id": 20, "secIdx": 4, "secTitle": "四、玩耍与外出", "num": "20", "en": "play on the slide", "zh": "玩滑梯", "audioChunk": "chunk_20_play_on_the_slide.mp3", "chunkLocal": "audio_chunks/chunk_20_play_on_the_slide.mp3", "babySay": "I want to play on the slide!", "babySayZh": "我想玩滑梯！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to play on the slide!", "zh": "我想玩滑梯！", "audio": "kid_20_I_want_to_play_on_the_slide.mp3", "localAudio": "audio_chunks/kid_20_I_want_to_play_on_the_slide.mp3"}, {"role": "👩 妈妈", "en": "Hold on and be careful.", "zh": "抓稳，小心点。", "audio": "mom_20_Hold_on_and_be_careful.mp3", "localAudio": "audio_chunks/mom_20_Hold_on_and_be_careful.mp3"}], "tip": "slide 滑梯；同理 play on the swing 荡秋千。"}, {"id": 21, "secIdx": 4, "secTitle": "四、玩耍与外出", "num": "21", "en": "ride my scooter", "zh": "骑滑板车", "audioChunk": "chunk_21_ride_my_scooter.mp3", "chunkLocal": "audio_chunks/chunk_21_ride_my_scooter.mp3", "babySay": "I want to ride my scooter!", "babySayZh": "我想骑滑板车！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to ride my scooter!", "zh": "我想骑滑板车！", "audio": "kid_21_I_want_to_ride_my_scooter.mp3", "localAudio": "audio_chunks/kid_21_I_want_to_ride_my_scooter.mp3"}, {"role": "👩 妈妈", "en": "Wear your helmet!", "zh": "戴好头盔！", "audio": "mom_21_Wear_your_helmet.mp3", "localAudio": "audio_chunks/mom_21_Wear_your_helmet.mp3"}], "tip": "helmet 头盔，安全词每天用。"}, {"id": 22, "secIdx": 4, "secTitle": "四、玩耍与外出", "num": "22", "en": "ride in the car", "zh": "坐小汽车", "audioChunk": "chunk_22_ride_in_the_car.mp3", "chunkLocal": "audio_chunks/chunk_22_ride_in_the_car.mp3", "babySay": "I want to ride in the car!", "babySayZh": "我想坐小汽车！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to ride in the car!", "zh": "我想坐小汽车！", "audio": "kid_22_I_want_to_ride_in_the_car.mp3", "localAudio": "audio_chunks/kid_22_I_want_to_ride_in_the_car.mp3"}, {"role": "👩 妈妈", "en": "Buckle up!", "zh": "系好安全带！", "audio": "mom_22_Buckle_up.mp3", "localAudio": "audio_chunks/mom_22_Buckle_up.mp3"}], "tip": "buckle up 系安全带，每次上车都说。"}, {"id": 23, "secIdx": 4, "secTitle": "四、玩耍与外出", "num": "23", "en": "go to the park", "zh": "去公园", "audioChunk": "chunk_23_go_to_the_park.mp3", "chunkLocal": "audio_chunks/chunk_23_go_to_the_park.mp3", "babySay": "I want to go to the park!", "babySayZh": "我想去公园！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to go to the park!", "zh": "我想去公园！", "audio": "kid_23_I_want_to_go_to_the_park.mp3", "localAudio": "audio_chunks/kid_23_I_want_to_go_to_the_park.mp3"}, {"role": "👩 妈妈", "en": "Let’s go this weekend.", "zh": "周末我们去。", "audio": "mom_23_Let_s_go_this_weekend.mp3", "localAudio": "audio_chunks/mom_23_Let_s_go_this_weekend.mp3"}], "tip": "go to the + 地点：the park / the zoo / the store。"}, {"id": 24, "secIdx": 4, "secTitle": "四、玩耍与外出", "num": "24", "en": "go to school", "zh": "去上学", "audioChunk": "chunk_24_go_to_school.mp3", "chunkLocal": "audio_chunks/chunk_24_go_to_school.mp3", "babySay": "I want to go to school!", "babySayZh": "我要去上学！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to go to school!", "zh": "我要去上学！", "audio": "kid_24_I_want_to_go_to_school.mp3", "localAudio": "audio_chunks/kid_24_I_want_to_go_to_school.mp3"}, {"role": "👩 妈妈", "en": "Let’s put on your backpack.", "zh": "背上小书包吧。", "audio": "mom_24_Let_s_put_on_your_backpack.mp3", "localAudio": "audio_chunks/mom_24_Let_s_put_on_your_backpack.mp3"}], "tip": "backpack 书包，出门仪式感词。"}, {"id": 25, "secIdx": 4, "secTitle": "四、玩耍与外出", "num": "25", "en": "go to kindergarten", "zh": "上幼儿园", "audioChunk": "chunk_25_go_to_kindergarten.mp3", "chunkLocal": "audio_chunks/chunk_25_go_to_kindergarten.mp3", "babySay": "I want to go to kindergarten!", "babySayZh": "我要上幼儿园！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to go to kindergarten!", "zh": "我要上幼儿园！", "audio": "kid_25_I_want_to_go_to_kindergarten.mp3", "localAudio": "audio_chunks/kid_25_I_want_to_go_to_kindergarten.mp3"}, {"role": "👩 妈妈", "en": "Your teacher is waiting.", "zh": "老师在等你呢。", "audio": "mom_25_Your_teacher_is_waiting.mp3", "localAudio": "audio_chunks/mom_25_Your_teacher_is_waiting.mp3"}], "tip": "kindergarten 幼儿园，比 school 更具体。"}, {"id": 26, "secIdx": 5, "secTitle": "五、情绪、身体与睡前", "num": "26", "en": "take a nap", "zh": "睡午觉", "audioChunk": "chunk_26_take_a_nap.mp3", "chunkLocal": "audio_chunks/chunk_26_take_a_nap.mp3", "babySay": "I want to take a nap!", "babySayZh": "我想睡午觉！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to take a nap!", "zh": "我想睡午觉！", "audio": "kid_26_I_want_to_take_a_nap.mp3", "localAudio": "audio_chunks/kid_26_I_want_to_take_a_nap.mp3"}, {"role": "👩 妈妈", "en": "Nap time, sweetie.", "zh": "午睡时间到啦，宝贝。", "audio": "mom_26_Nap_time_sweetie.mp3", "localAudio": "audio_chunks/mom_26_Nap_time_sweetie.mp3"}], "tip": "nap 是小睡/午睡，和 go to bed 区分。"}, {"id": 27, "secIdx": 5, "secTitle": "五、情绪、身体与睡前", "num": "27", "en": "go to bed", "zh": "睡觉", "audioChunk": "chunk_27_go_to_bed.mp3", "chunkLocal": "audio_chunks/chunk_27_go_to_bed.mp3", "babySay": "I want to go to bed!", "babySayZh": "我要睡觉！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to go to bed!", "zh": "我要睡觉！", "audio": "kid_27_I_want_to_go_to_bed.mp3", "localAudio": "audio_chunks/kid_27_I_want_to_go_to_bed.mp3"}, {"role": "👩 妈妈", "en": "It’s bedtime. Say goodnight.", "zh": "到点啦，说晚安吧。", "audio": "mom_27_It_s_bedtime_Say_goodnight.mp3", "localAudio": "audio_chunks/mom_27_It_s_bedtime_Say_goodnight.mp3"}], "tip": "go to bed 去睡觉，sleep 强调睡着，孩子先学 go to bed。"}, {"id": 28, "secIdx": 5, "secTitle": "五、情绪、身体与睡前", "num": "28", "en": "hear a story", "zh": "听故事", "audioChunk": "chunk_28_hear_a_story.mp3", "chunkLocal": "audio_chunks/chunk_28_hear_a_story.mp3", "babySay": "I want to hear a story!", "babySayZh": "我想听故事！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to hear a story!", "zh": "我想听故事！", "audio": "kid_28_I_want_to_hear_a_story.mp3", "localAudio": "audio_chunks/kid_28_I_want_to_hear_a_story.mp3"}, {"role": "👩 妈妈", "en": "Which story do you want?", "zh": "你想听哪个故事？", "audio": "mom_28_Which_story_do_you_want.mp3", "localAudio": "audio_chunks/mom_28_Which_story_do_you_want.mp3"}], "tip": "hear a story 听故事；家长讲是 tell a story。"}, {"id": 29, "secIdx": 5, "secTitle": "五、情绪、身体与睡前", "num": "29", "en": "give you a hug", "zh": "抱抱", "audioChunk": "chunk_29_give_you_a_hug.mp3", "chunkLocal": "audio_chunks/chunk_29_give_you_a_hug.mp3", "babySay": "I want to give you a hug!", "babySayZh": "我要抱抱！", "dialogue": [{"role": "🧒 宝宝", "en": "I want to give you a hug!", "zh": "我要抱抱！", "audio": "kid_29_I_want_to_give_you_a_hug.mp3", "localAudio": "audio_chunks/kid_29_I_want_to_give_you_a_hug.mp3"}, {"role": "👩 妈妈", "en": "I love you too!", "zh": "我也爱你！", "audio": "mom_29_I_love_you_too.mp3", "localAudio": "audio_chunks/mom_29_I_love_you_too.mp3"}], "tip": "give you a hug 抱抱你，睡前最甜的一句。"}, {"id": 30, "secIdx": 5, "secTitle": "五、情绪、身体与睡前", "num": "30", "en": "I want mommy", "zh": "我要妈妈", "audioChunk": "chunk_30_I_want_mommy.mp3", "chunkLocal": "audio_chunks/chunk_30_I_want_mommy.mp3", "babySay": "I want mommy!", "babySayZh": "我要妈妈！", "dialogue": [{"role": "🧒 宝宝", "en": "I want mommy!", "zh": "我要妈妈！", "audio": "kid_30_I_want_mommy.mp3", "localAudio": "audio_chunks/kid_30_I_want_mommy.mp3"}, {"role": "👩 妈妈", "en": "Mommy is right here.", "zh": "妈妈就在这儿。", "audio": "mom_30_Mommy_is_right_here.mp3", "localAudio": "audio_chunks/mom_30_Mommy_is_right_here.mp3"}], "tip": "名词版没有 to：I want + 人/东西。"}, {"id": 31, "secIdx": 5, "secTitle": "五、情绪、身体与睡前", "num": "31", "en": "I want my teddy bear", "zh": "我要我的泰迪熊", "audioChunk": "chunk_31_I_want_my_teddy_bear.mp3", "chunkLocal": "audio_chunks/chunk_31_I_want_my_teddy_bear.mp3", "babySay": "I want my teddy bear!", "babySayZh": "我要我的泰迪熊！", "dialogue": [{"role": "🧒 宝宝", "en": "I want my teddy bear!", "zh": "我要我的泰迪熊！", "audio": "kid_31_I_want_my_teddy_bear.mp3", "localAudio": "audio_chunks/kid_31_I_want_my_teddy_bear.mp3"}, {"role": "👩 妈妈", "en": "Let’s find him together.", "zh": "我们一起找他。", "audio": "mom_31_Let_s_find_him_together.mp3", "localAudio": "audio_chunks/mom_31_Let_s_find_him_together.mp3"}], "tip": "teddy bear 泰迪熊，安抚物通用叫法。"}, {"id": 32, "secIdx": 5, "secTitle": "五、情绪、身体与睡前", "num": "32", "en": "I want more", "zh": "我还要", "audioChunk": "chunk_32_I_want_more.mp3", "chunkLocal": "audio_chunks/chunk_32_I_want_more.mp3", "babySay": "I want more!", "babySayZh": "我还要！", "dialogue": [{"role": "🧒 宝宝", "en": "I want more!", "zh": "我还要！", "audio": "kid_32_I_want_more.mp3", "localAudio": "audio_chunks/kid_32_I_want_more.mp3"}, {"role": "👩 妈妈", "en": "OK, one more scoop.", "zh": "好，再来一勺。", "audio": "mom_32_OK_one_more_scoop.mp3", "localAudio": "audio_chunks/mom_32_OK_one_more_scoop.mp3"}], "tip": "吃饭最实用：还要饭、还要水果都是 I want more!"}, {"id": 33, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "01", "en": "Make sure you...", "zh": "一定要……", "audioChunk": "gap_079.mp3", "chunkLocal": "audio_chunks/gap_079.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 34, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "02", "en": "Don't forget to...", "zh": "别忘了……", "audioChunk": "gap_080.mp3", "chunkLocal": "audio_chunks/gap_080.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 35, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "03", "en": "It's time to...", "zh": "该……了", "audioChunk": "gap_081.mp3", "chunkLocal": "audio_chunks/gap_081.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 36, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "04", "en": "Let's get you...", "zh": "我帮你……", "audioChunk": "gap_082.mp3", "chunkLocal": "audio_chunks/gap_082.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 37, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "05", "en": "Hurry up!", "zh": "快点！", "audioChunk": "gap_083.mp3", "chunkLocal": "audio_chunks/gap_083.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 38, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "06", "en": "Calm down.", "zh": "冷静一下。", "audioChunk": "gap_084.mp3", "chunkLocal": "audio_chunks/gap_084.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 39, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "07", "en": "Well done!", "zh": "做得好！", "audioChunk": "gap_085.mp3", "chunkLocal": "audio_chunks/gap_085.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 40, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "08", "en": "You can do it!", "zh": "你能行的！", "audioChunk": "gap_086.mp3", "chunkLocal": "audio_chunks/gap_086.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 41, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "09", "en": "Try again.", "zh": "再试一次。", "audioChunk": "gap_087.mp3", "chunkLocal": "audio_chunks/gap_087.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 42, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "10", "en": "Good job!", "zh": "真棒！", "audioChunk": "gap_088.mp3", "chunkLocal": "audio_chunks/gap_088.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 43, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "11", "en": "Look at me.", "zh": "看着我。", "audioChunk": "gap_089.mp3", "chunkLocal": "audio_chunks/gap_089.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}, {"id": 44, "secIdx": 6, "secTitle": "六、名词版与日常短语", "num": "12", "en": "Listen carefully.", "zh": "仔细听。", "audioChunk": "gap_090.mp3", "chunkLocal": "audio_chunks/gap_090.mp3", "babySay": "", "babySayZh": "", "dialogue": [], "tip": ""}]};
+
+    
+    // Theme Management (Light vs Dark)
+    const THEME_STORAGE_KEY = 'chunklab_theme';
+    let currentTheme = 'light';
+
+    function initTheme() {
+      try {
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light';
+        currentTheme = savedTheme;
+      } catch(e) {
+        currentTheme = 'light';
+      }
+      applyTheme();
+    }
+
+    function toggleTheme() {
+      currentTheme = (currentTheme === 'light') ? 'dark' : 'light';
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, currentTheme);
+      } catch(e) {}
+      applyTheme();
+    }
+
+    function applyTheme() {
+      const isDark = (currentTheme === 'dark');
+      document.body.classList.toggle('theme-dark', isDark);
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      const btn = document.getElementById('btnThemeToggle');
+      if (icon && label) {
+        if (isDark) {
+          icon.textContent = '☀️';
+          label.textContent = '日间模式';
+          if (btn) btn.classList.add('active');
+        } else {
+          icon.textContent = '🌙';
+          label.textContent = '夜间模式';
+          if (btn) btn.classList.remove('active');
+        }
+      }
+    }
 
     // State Variables
     let currentScale = 1.0;
@@ -1162,6 +1427,7 @@
 
     // Initialize UI
     function init() {
+      initTheme();
       renderSectionPills();
       renderCards();
       bindEvents();
@@ -1371,6 +1637,10 @@
     }
 
     function bindEvents() {
+      // Theme Switcher
+      const themeBtn = document.getElementById('btnThemeToggle');
+      if (themeBtn) themeBtn.onclick = toggleTheme;
+
       // Font Sizing
       btnFontDec.onclick = () => {
         if (fontScaleIdx > 0) {

@@ -40,6 +40,223 @@
       --radius-lg: 16px;
     }
 
+    /* Night Theme (Obsidian Slate / Apple Space Black) */
+    body.theme-dark {
+      --primary: #818cf8;
+      --primary-hover: #a5b4fc;
+      --primary-light: rgba(99, 102, 241, 0.16);
+      --primary-border: rgba(99, 102, 241, 0.35);
+      --bg: #0a0d16;
+      --surface: rgba(20, 26, 42, 0.92);
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --core-bg: rgba(30, 58, 138, 0.25);
+      --core-border: rgba(96, 165, 250, 0.35);
+      --core-text: #93c5fd;
+      --usage-bg: rgba(107, 33, 168, 0.25);
+      --usage-border: rgba(192, 132, 252, 0.35);
+      --usage-text: #d8b4fe;
+      --warn-bg: rgba(146, 64, 14, 0.25);
+      --warn-border: rgba(251, 191, 36, 0.35);
+      --warn-text: #fde68a;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.65);
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0a0d16 55%, #07090f 100%);
+      background-color: #0a0d16;
+      background-attachment: fixed;
+    }
+
+    body.theme-dark .top-navbar {
+      background: rgba(13, 17, 28, 0.94);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    body.theme-dark .brand-text h1 {
+      color: #f8fafc;
+    }
+    body.theme-dark .brand-badge {
+      background: rgba(139, 92, 246, 0.22);
+      color: #c4b5fd;
+    }
+    body.theme-dark .module-tab {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+    }
+    body.theme-dark .module-tab:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+    body.theme-dark .module-tab.active {
+      background: #6366f1;
+      border-color: #6366f1;
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+    }
+    body.theme-dark .module-tab-badge {
+      background: rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+    }
+    body.theme-dark .search-input {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+    }
+    body.theme-dark .search-input:focus {
+      background: rgba(20, 26, 42, 0.95);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+    body.theme-dark .tool-btn-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+    }
+    body.theme-dark .tool-btn-pill:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+    }
+    body.theme-dark .tool-btn-pill.active {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: #818cf8;
+      color: #c7d2fe;
+    }
+    body.theme-dark .font-stepper {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    body.theme-dark .font-btn {
+      color: #cbd5e1;
+    }
+    body.theme-dark .font-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+    body.theme-dark .font-label {
+      color: #94a3b8;
+    }
+    body.theme-dark .sec-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+    }
+    body.theme-dark .sec-pill:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    body.theme-dark .sec-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+    }
+    body.theme-dark .section-header-banner {
+      border-bottom-color: rgba(99, 102, 241, 0.3);
+    }
+    body.theme-dark .section-header-banner h2 {
+      color: #f8fafc;
+    }
+    body.theme-dark .chunk-card {
+      background: var(--surface);
+      border-color: var(--surface-border);
+    }
+    body.theme-dark .chunk-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      background: rgba(26, 35, 58, 0.95);
+    }
+    body.theme-dark .card-category-tag {
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    body.theme-dark .chunk-en-title {
+      color: #f8fafc;
+    }
+    body.theme-dark .chunk-zh-meaning {
+      color: #cbd5e1;
+    }
+    body.theme-dark .sentence-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .sentence-card:hover {
+      background: rgba(99, 102, 241, 0.12);
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+    body.theme-dark .sentence-card.is-speaking {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: #10b981;
+    }
+    body.theme-dark .btn-audio-play {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--primary);
+    }
+    body.theme-dark .btn-audio-play:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    body.theme-dark .subchunk-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .subchunk-card:hover {
+      background: rgba(99, 102, 241, 0.12);
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+    body.theme-dark .subchunk-code code {
+      color: #a5b4fc;
+    }
+    body.theme-dark .subchunk-zh {
+      color: #cbd5e1;
+    }
+    body.theme-dark .dialogue-wrap {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .dialogue-header-bar {
+      color: #f8fafc;
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+    body.theme-dark .dialogue-row:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+    body.theme-dark .dialogue-en {
+      color: #f8fafc;
+    }
+    body.theme-dark .dialogue-zh {
+      color: #cbd5e1;
+    }
+    body.theme-dark .tip-box {
+      background: rgba(20, 83, 45, 0.25);
+      border-color: rgba(74, 222, 128, 0.35);
+      color: #86efac;
+    }
+    body.theme-dark .baby-say-box {
+      background: rgba(30, 58, 138, 0.22);
+      border-color: rgba(96, 165, 250, 0.35);
+    }
+    body.theme-dark .baby-say-title {
+      color: #93c5fd;
+    }
+    body.theme-dark .bottom-player-bar {
+      background: rgba(13, 17, 28, 0.96);
+      border-top-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.5);
+    }
+    body.theme-dark .btn-player-action {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+    }
+    body.theme-dark .btn-player-action:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html { font-size: var(--base-size); scroll-behavior: smooth; }
     body {
@@ -921,6 +1138,12 @@
             <span>🔄</span> <span>更新刷新</span>
           </button>
 
+          <!-- Day/Night Mode Switcher -->
+          <button class="tool-btn-pill" id="btnThemeToggle" title="切换日间/夜间模式">
+            <span id="themeIcon">🌙</span> <span id="themeLabel">夜间模式</span>
+          </button>
+
+
           <!-- Font Size Controls -->
           <div class="font-stepper" title="自由调节字号大小">
             <button class="font-btn" id="btnFontDec" title="缩小字号">A-</button>
@@ -1008,6 +1231,48 @@
   <script>
     // Embedded Database
     window.CURRENT_DB = {"sections": [{"secIdx": 1, "title": "一、喜好与倾向", "intro": "表达“喜欢什么、厌倦什么”，be 后面的介词是灵魂。", "count": 5}, {"secIdx": 2, "title": "二、情绪与感受", "intro": "表达害怕、担心、羞愧等内心感受，介词一个都不能少。", "count": 5}, {"secIdx": 3, "title": "三、生活状态与处境", "intro": "表达忙碌、准备就绪、缺钱缺时间等日常生活状态。", "count": 5}], "cards": [{"id": 1, "secIdx": 1, "secTitle": "一、喜好与倾向", "num": "01", "en": "be crazy about", "zh": "对……着迷", "audioChunk": "st_01_chunk_be_crazy_about.mp3", "chunkLocal": "audio_chunks/st_01_chunk_be_crazy_about.mp3", "core": "非常喜欢某样东西，程度比 like 强很多，口语常用。", "warn": "介词用 about，不是 for：be crazy about + 名词/动名词。", "chunks": [{"en": "be crazy about basketball", "zh": "对篮球着迷"}, {"en": "be crazy about K-pop", "zh": "迷韩流"}], "examples": [{"en": "I’m crazy about basketball.", "zh": "我对篮球特别着迷。", "audio": "st_01_s0_I_m_crazy_about_basketball.mp3", "localAudio": "audio_chunks/st_01_s0_I_m_crazy_about_basketball.mp3"}, {"en": "She’s crazy about that singer.", "zh": "她迷死那个歌手了。", "audio": "st_01_s1_She_s_crazy_about_that_singer.mp3", "localAudio": "audio_chunks/st_01_s1_She_s_crazy_about_that_singer.mp3"}]}, {"id": 2, "secIdx": 1, "secTitle": "一、喜好与倾向", "num": "02", "en": "be fond of", "zh": "喜爱（稍正式）", "audioChunk": "st_02_chunk_be_fond_of.mp3", "chunkLocal": "audio_chunks/st_02_chunk_be_fond_of.mp3", "core": "温和地表达长期喜爱，比 like 文气一点。", "warn": "of 不能丢：fond 后面必须接 of。", "chunks": [{"en": "be fond of reading", "zh": "喜爱阅读"}, {"en": "be fond of classical music", "zh": "喜欢古典音乐"}], "examples": [{"en": "He’s fond of classical music.", "zh": "他喜欢古典音乐。", "audio": "st_02_s0_He_s_fond_of_classical_music.mp3", "localAudio": "audio_chunks/st_02_s0_He_s_fond_of_classical_music.mp3"}, {"en": "I’m fond of early morning walks.", "zh": "我喜欢清晨散步。", "audio": "st_02_s1_I_m_fond_of_early_morning_walks.mp3", "localAudio": "audio_chunks/st_02_s1_I_m_fond_of_early_morning_walks.mp3"}]}, {"id": 3, "secIdx": 1, "secTitle": "一、喜好与倾向", "num": "03", "en": "be tired of", "zh": "对……厌倦", "audioChunk": "st_03_chunk_be_tired_of.mp3", "chunkLocal": "audio_chunks/st_03_chunk_be_tired_of.mp3", "core": "受够了某件重复发生的事，带负面情绪。", "warn": "be tired of = 厌倦；be tired from = 因……而累，介词不同意思不同。", "chunks": [{"en": "be tired of waiting", "zh": "等烦了"}, {"en": "be tired of the same food", "zh": "吃同样吃腻了"}], "examples": [{"en": "I’m tired of waiting.", "zh": "我等得不耐烦了。", "audio": "st_03_s0_I_m_tired_of_waiting.mp3", "localAudio": "audio_chunks/st_03_s0_I_m_tired_of_waiting.mp3"}, {"en": "She’s tired of the same food every day.", "zh": "她厌倦了每天吃一样的。", "audio": "st_03_s1_She_s_tired_of_the_same_food_every_day.mp3", "localAudio": "audio_chunks/st_03_s1_She_s_tired_of_the_same_food_every_day.mp3"}]}, {"id": 4, "secIdx": 1, "secTitle": "一、喜好与倾向", "num": "04", "en": "be good at", "zh": "擅长", "audioChunk": "st_04_chunk_be_good_at.mp3", "chunkLocal": "audio_chunks/st_04_chunk_be_good_at.mp3", "core": "擅长做某事，at 后面接名词或动名词。", "warn": "at 后接动词要用 -ing：be good at swimming，不说 be good at swim；介词是 at 不是 in。", "chunks": [{"en": "be good at fixing things", "zh": "擅长修东西"}, {"en": "be good at math", "zh": "数学好"}], "examples": [{"en": "He’s good at fixing things.", "zh": "他很会修东西。", "audio": "st_04_s0_He_s_good_at_fixing_things.mp3", "localAudio": "audio_chunks/st_04_s0_He_s_good_at_fixing_things.mp3"}, {"en": "I’m good at math but bad at singing.", "zh": "我数学好但唱歌不行。", "audio": "st_04_s1_I_m_good_at_math_but_bad_at_singing.mp3", "localAudio": "audio_chunks/st_04_s1_I_m_good_at_math_but_bad_at_singing.mp3"}]}, {"id": 5, "secIdx": 1, "secTitle": "一、喜好与倾向", "num": "05", "en": "be bad at", "zh": "不擅长", "audioChunk": "st_05_chunk_be_bad_at.mp3", "chunkLocal": "audio_chunks/st_05_chunk_be_bad_at.mp3", "core": "good at 的反义搭档，结构完全一样。", "warn": "和 be good at 同款结构，at 别写成 in。", "chunks": [{"en": "be bad at math", "zh": "数学差"}, {"en": "be bad at lying", "zh": "不会撒谎"}], "examples": [{"en": "I’m bad at lying.", "zh": "我不会撒谎。", "audio": "st_05_s0_I_m_bad_at_lying.mp3", "localAudio": "audio_chunks/st_05_s0_I_m_bad_at_lying.mp3"}, {"en": "He’s bad at remembering names.", "zh": "他记不住人名。", "audio": "st_05_s1_He_s_bad_at_remembering_names.mp3", "localAudio": "audio_chunks/st_05_s1_He_s_bad_at_remembering_names.mp3"}]}, {"id": 6, "secIdx": 2, "secTitle": "二、情绪与感受", "num": "06", "en": "be famous for", "zh": "因……出名", "audioChunk": "st_06_chunk_be_famous_for.mp3", "chunkLocal": "audio_chunks/st_06_chunk_be_famous_for.mp3", "core": "某地/某人因某个特点或产物而出名。", "warn": "因物用 for；作为某身份出名用 as：be famous as a writer。", "chunks": [{"en": "be famous for its food", "zh": "以美食出名"}, {"en": "be famous for hot springs", "zh": "以温泉出名"}], "examples": [{"en": "The city is famous for its food.", "zh": "这座城市以美食出名。", "audio": "st_06_s0_The_city_is_famous_for_its_food.mp3", "localAudio": "audio_chunks/st_06_s0_The_city_is_famous_for_its_food.mp3"}, {"en": "Chengdu is famous for its pandas.", "zh": "成都因熊猫出名。", "audio": "st_06_s1_Chengdu_is_famous_for_its_pandas.mp3", "localAudio": "audio_chunks/st_06_s1_Chengdu_is_famous_for_its_pandas.mp3"}]}, {"id": 7, "secIdx": 2, "secTitle": "二、情绪与感受", "num": "07", "en": "be capable of", "zh": "有能力做到", "audioChunk": "st_07_chunk_be_capable_of.mp3", "chunkLocal": "audio_chunks/st_07_chunk_be_capable_of.mp3", "core": "强调“有这个能力”，常指超出预期的事。", "warn": "of 后接动名词：be capable of handling，不说 be capable to handle。", "chunks": [{"en": "be capable of handling it", "zh": "有能力处理好"}, {"en": "be capable of more", "zh": "潜力不止于此"}], "examples": [{"en": "She’s capable of handling it alone.", "zh": "她一个人就能搞定。", "audio": "st_07_s0_She_s_capable_of_handling_it_alone.mp3", "localAudio": "audio_chunks/st_07_s0_She_s_capable_of_handling_it_alone.mp3"}, {"en": "He’s capable of much more.", "zh": "他能做到的远不止这些。", "audio": "st_07_s1_He_s_capable_of_much_more.mp3", "localAudio": "audio_chunks/st_07_s1_He_s_capable_of_much_more.mp3"}]}, {"id": 8, "secIdx": 2, "secTitle": "二、情绪与感受", "num": "08", "en": "be afraid of", "zh": "害怕", "audioChunk": "st_08_chunk_be_afraid_of.mp3", "chunkLocal": "audio_chunks/st_08_chunk_be_afraid_of.mp3", "core": "害怕某物或害怕发生某事。", "warn": "of 后接名词或动名词；注意 I’m afraid so / not 是“恐怕”，和害怕无关。", "chunks": [{"en": "be afraid of spiders", "zh": "怕蜘蛛"}, {"en": "be afraid of making mistakes", "zh": "怕犯错"}], "examples": [{"en": "I’m afraid of spiders.", "zh": "我怕蜘蛛。", "audio": "st_08_s0_I_m_afraid_of_spiders.mp3", "localAudio": "audio_chunks/st_08_s0_I_m_afraid_of_spiders.mp3"}, {"en": "Don’t be afraid of making mistakes.", "zh": "别怕犯错。", "audio": "st_08_s1_Don_t_be_afraid_of_making_mistakes.mp3", "localAudio": "audio_chunks/st_08_s1_Don_t_be_afraid_of_making_mistakes.mp3"}]}, {"id": 9, "secIdx": 2, "secTitle": "二、情绪与感受", "num": "09", "en": "be worried about", "zh": "担心", "audioChunk": "st_09_chunk_be_worried_about.mp3", "chunkLocal": "audio_chunks/st_09_chunk_be_worried_about.mp3", "core": "为某人某事担心，about 固定搭配。", "warn": "介词是 about，不说 be worried of；worried 后不接 about 时意思会变。", "chunks": [{"en": "be worried about the test", "zh": "担心考试"}, {"en": "be worried about him", "zh": "担心他"}], "examples": [{"en": "Don’t be worried about the test.", "zh": "别担心考试。", "audio": "st_09_s0_Don_t_be_worried_about_the_test.mp3", "localAudio": "audio_chunks/st_09_s0_Don_t_be_worried_about_the_test.mp3"}, {"en": "I’m worried about you.", "zh": "我担心你。", "audio": "st_09_s1_I_m_worried_about_you.mp3", "localAudio": "audio_chunks/st_09_s1_I_m_worried_about_you.mp3"}]}, {"id": 10, "secIdx": 2, "secTitle": "二、情绪与感受", "num": "10", "en": "be proud of", "zh": "为……自豪", "audioChunk": "st_10_chunk_be_proud_of.mp3", "chunkLocal": "audio_chunks/st_10_chunk_be_proud_of.mp3", "core": "为某人（包括自己）的成绩感到骄傲。", "warn": "of 不能丢也不能换：be proud of sb/sth。", "chunks": [{"en": "be proud of you", "zh": "为你骄傲"}, {"en": "be proud of his progress", "zh": "为他的进步自豪"}], "examples": [{"en": "I’m proud of you.", "zh": "我为你骄傲。", "audio": "st_10_s0_I_m_proud_of_you.mp3", "localAudio": "audio_chunks/st_10_s0_I_m_proud_of_you.mp3"}, {"en": "She’s proud of her team.", "zh": "她为团队自豪。", "audio": "st_10_s1_She_s_proud_of_her_team.mp3", "localAudio": "audio_chunks/st_10_s1_She_s_proud_of_her_team.mp3"}]}, {"id": 11, "secIdx": 3, "secTitle": "三、生活状态与处境", "num": "11", "en": "be aware of", "zh": "意识到", "audioChunk": "st_11_chunk_be_aware_of.mp3", "chunkLocal": "audio_chunks/st_11_chunk_be_aware_of.mp3", "core": "知道、察觉到某情况的存在。", "warn": "of 后接名词；接句子时用 be aware that...。", "chunks": [{"en": "be aware of the risks", "zh": "意识到风险"}, {"en": "be aware of the time", "zh": "注意时间"}], "examples": [{"en": "Be aware of the risks.", "zh": "要意识到风险。", "audio": "st_11_s0_Be_aware_of_the_risks.mp3", "localAudio": "audio_chunks/st_11_s0_Be_aware_of_the_risks.mp3"}, {"en": "I wasn’t aware of that rule.", "zh": "我不知道有这条规定。", "audio": "st_11_s1_I_wasn_t_aware_of_that_rule.mp3", "localAudio": "audio_chunks/st_11_s1_I_wasn_t_aware_of_that_rule.mp3"}]}, {"id": 12, "secIdx": 3, "secTitle": "三、生活状态与处境", "num": "12", "en": "be ready for", "zh": "为……准备好", "audioChunk": "st_12_chunk_be_ready_for.mp3", "chunkLocal": "audio_chunks/st_12_chunk_be_ready_for.mp3", "core": "对即将到来的人或事做好了准备。", "warn": "for + 名词；接动词要换成 be ready to do。", "chunks": [{"en": "be ready for the interview", "zh": "为面试准备好"}, {"en": "be ready for anything", "zh": "做好万全准备"}], "examples": [{"en": "I’m ready for the interview.", "zh": "我面试准备好了。", "audio": "st_12_s0_I_m_ready_for_the_interview.mp3", "localAudio": "audio_chunks/st_12_s0_I_m_ready_for_the_interview.mp3"}, {"en": "Are you ready for winter?", "zh": "过冬的东西备齐了吗？", "audio": "st_12_s1_Are_you_ready_for_winter.mp3", "localAudio": "audio_chunks/st_12_s1_Are_you_ready_for_winter.mp3"}]}, {"id": 13, "secIdx": 3, "secTitle": "三、生活状态与处境", "num": "13", "en": "be similar to", "zh": "与……相似", "audioChunk": "st_13_chunk_be_similar_to.mp3", "chunkLocal": "audio_chunks/st_13_chunk_be_similar_to.mp3", "core": "两者有相似之处，介词固定用 to。", "warn": "用 to，不说 be similar with；说“在某方面像”用 be similar in。", "chunks": [{"en": "be similar to yours", "zh": "和你的像"}, {"en": "be similar in size", "zh": "大小相近"}], "examples": [{"en": "My taste is similar to yours.", "zh": "我的品味和你很像。", "audio": "st_13_s0_My_taste_is_similar_to_yours.mp3", "localAudio": "audio_chunks/st_13_s0_My_taste_is_similar_to_yours.mp3"}, {"en": "The two words are similar in meaning.", "zh": "这两个词意思相近。", "audio": "st_13_s1_The_two_words_are_similar_in_meaning.mp3", "localAudio": "audio_chunks/st_13_s1_The_two_words_are_similar_in_meaning.mp3"}]}, {"id": 14, "secIdx": 3, "secTitle": "三、生活状态与处境", "num": "14", "en": "be full of", "zh": "充满", "audioChunk": "st_14_chunk_be_full_of.mp3", "chunkLocal": "audio_chunks/st_14_chunk_be_full_of.mp3", "core": "里面装满了、到处都是。", "warn": "full 接 of；be filled with 是同义但介词不同，别混。", "chunks": [{"en": "be full of toys", "zh": "全是玩具"}, {"en": "be full of energy", "zh": "精力充沛"}], "examples": [{"en": "The box is full of toys.", "zh": "箱子里全是玩具。", "audio": "st_14_s0_The_box_is_full_of_toys.mp3", "localAudio": "audio_chunks/st_14_s0_The_box_is_full_of_toys.mp3"}, {"en": "Kids are full of energy.", "zh": "孩子精力无穷。", "audio": "st_14_s1_Kids_are_full_of_energy.mp3", "localAudio": "audio_chunks/st_14_s1_Kids_are_full_of_energy.mp3"}]}, {"id": 15, "secIdx": 3, "secTitle": "三、生活状态与处境", "num": "15", "en": "be short of", "zh": "缺乏", "audioChunk": "st_15_chunk_be_short_of.mp3", "chunkLocal": "audio_chunks/st_15_chunk_be_short_of.mp3", "core": "不够用、缺货、缺人。", "warn": "of 不能丢；时间紧用 be short on time 也常见。", "chunks": [{"en": "be short of milk", "zh": "牛奶不够了"}, {"en": "be short of staff", "zh": "缺人手"}], "examples": [{"en": "We’re short of milk.", "zh": "我们牛奶不够了。", "audio": "st_15_s0_We_re_short_of_milk.mp3", "localAudio": "audio_chunks/st_15_s0_We_re_short_of_milk.mp3"}, {"en": "The restaurant is short of staff today.", "zh": "餐厅今天人手不够。", "audio": "st_15_s1_The_restaurant_is_short_of_staff_today.mp3", "localAudio": "audio_chunks/st_15_s1_The_restaurant_is_short_of_staff_today.mp3"}]}]};
+
+    
+    // Theme Management (Light vs Dark)
+    const THEME_STORAGE_KEY = 'chunklab_theme';
+    let currentTheme = 'light';
+
+    function initTheme() {
+      try {
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light';
+        currentTheme = savedTheme;
+      } catch(e) {
+        currentTheme = 'light';
+      }
+      applyTheme();
+    }
+
+    function toggleTheme() {
+      currentTheme = (currentTheme === 'light') ? 'dark' : 'light';
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, currentTheme);
+      } catch(e) {}
+      applyTheme();
+    }
+
+    function applyTheme() {
+      const isDark = (currentTheme === 'dark');
+      document.body.classList.toggle('theme-dark', isDark);
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+      const btn = document.getElementById('btnThemeToggle');
+      if (icon && label) {
+        if (isDark) {
+          icon.textContent = '☀️';
+          label.textContent = '日间模式';
+          if (btn) btn.classList.add('active');
+        } else {
+          icon.textContent = '🌙';
+          label.textContent = '夜间模式';
+          if (btn) btn.classList.remove('active');
+        }
+      }
+    }
 
     // State Variables
     let currentScale = 1.0;
@@ -1162,6 +1427,7 @@
 
     // Initialize UI
     function init() {
+      initTheme();
       renderSectionPills();
       renderCards();
       bindEvents();
@@ -1376,6 +1642,10 @@
     }
 
     function bindEvents() {
+      // Theme Switcher
+      const themeBtn = document.getElementById('btnThemeToggle');
+      if (themeBtn) themeBtn.onclick = toggleTheme;
+
       // Font Sizing
       btnFontDec.onclick = () => {
         if (fontScaleIdx > 0) {

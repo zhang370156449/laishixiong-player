@@ -13,11 +13,12 @@ window.BOOKS_DATABASE = [
     "category": "vocab",
     "cover": "cover_longman_roots.png",
     "pdfUrl": "longman_roots_3000.pdf",
+    "webUrl": "longman_roots_web.html",
     "totalPages": 79,
     "fileSize": "12.4 MB",
     "publishYear": "2026 全彩版",
     "status": "ready",
-    "badge": "全新首发",
+    "badge": "⚡ 真人发音点读版",
     "tags": [
       "朗文3000词",
       "核心词根",

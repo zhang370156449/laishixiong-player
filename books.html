@@ -803,7 +803,7 @@
 
               <div class="card-actions">
                 ${isReady ? `
-                  <a href="reader.html?book=${book.id}" class="btn-read">
+                  <a href="${book.webUrl ? book.webUrl : 'reader.html?book=' + book.id}" class="btn-read" style="${book.webUrl ? 'background: linear-gradient(135deg, #6366f1, #38bdf8);' : ''}">
                     <span>📖 立即在线阅读</span>
                     <span style="font-size:12px;opacity:0.85">（精准目录）</span>
                   </a>

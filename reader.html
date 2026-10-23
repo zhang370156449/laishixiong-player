@@ -1176,6 +1176,13 @@
 
       const books = window.BOOKS_DATABASE || [];
       currentBook = books.find(b => b.id === bookId) || books[0];
+      if (currentBook && currentBook.webUrl) {
+        const topNotice = document.createElement('div');
+        topNotice.style.cssText = "position:fixed;top:60px;right:24px;z-index:9999;background:linear-gradient(135deg,#6366f1,#38bdf8);color:#fff;padding:10px 18px;border-radius:12px;font-size:14px;font-weight:700;box-shadow:0 8px 25px rgba(99,102,241,0.5);display:flex;align-items:center;gap:10px;cursor:pointer;";
+        topNotice.innerHTML = "<span>⚡ 本书已上线【交互点读工作台】（权威真人美音发音）：点击立即进入 ➔</span>";
+        topNotice.onclick = () => window.location.href = currentBook.webUrl;
+        document.body.appendChild(topNotice);
+      }
 
       if (!currentBook) {
         alert('未找到指定的教材！');

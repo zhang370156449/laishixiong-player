@@ -1290,7 +1290,9 @@
       if (isChujiLoaded) {
         const chujiCards = DATA.filter(d => isChuji(d));
         const maxL = Math.max(...chujiCards.map(d => d.l - 300), 0);
-        chujiBadge.textContent = `${chujiCards.length}句 · L01-${String(maxL).padStart(2,'0')}`;
+        chujiBadge.textContent = maxL >= 148 
+          ? `${chujiCards.length}句 · 全148课完结` 
+          : `${chujiCards.length}句 · L01-${String(maxL).padStart(2,'0')}`;
         chujiBadge.classList.remove('loading');
       } else {
         chujiBadge.textContent = '⏳ 缓冲中';
@@ -1354,7 +1356,7 @@
       list.innerHTML = `
         <div class="empty-loading-card">
           <div class="loading-spinner"></div>
-          <h3>正在后台加载 赖世雄初级美语(上) 原声音频库...</h3>
+          <h3>正在后台加载 赖世雄初级美语 (全148课完结) 原声音频库...</h3>
           <p>原声切片正在载入，预计 1 秒内就绪。</p>
         </div>
       `;
@@ -1799,6 +1801,81 @@
       }
     } catch(err) {
       console.warn('Chuji 10 background load failed', err);
+    }
+
+    // 1k. Load Lai Shixiong Chuji Xia Part 11 (Lessons 101-110)
+    try {
+      await loadScriptAsync('data_chuji_11.js');
+      if (window.CHUJI_DATA_11 && window.CHUJI_DATA_11.length) {
+        DATA.push(...window.CHUJI_DATA_11);
+        updateTabBadges();
+        fillLessons();
+        if (seriesSel.value === 'chuji' || seriesSel.value === '') {
+          render();
+        }
+      }
+    } catch(err) {
+      console.warn('Chuji 11 background load failed', err);
+    }
+
+    // 1l. Load Lai Shixiong Chuji Xia Part 12 (Lessons 111-120)
+    try {
+      await loadScriptAsync('data_chuji_12.js');
+      if (window.CHUJI_DATA_12 && window.CHUJI_DATA_12.length) {
+        DATA.push(...window.CHUJI_DATA_12);
+        updateTabBadges();
+        fillLessons();
+        if (seriesSel.value === 'chuji' || seriesSel.value === '') {
+          render();
+        }
+      }
+    } catch(err) {
+      console.warn('Chuji 12 background load failed', err);
+    }
+
+    // 1m. Load Lai Shixiong Chuji Xia Part 13 (Lessons 121-130)
+    try {
+      await loadScriptAsync('data_chuji_13.js');
+      if (window.CHUJI_DATA_13 && window.CHUJI_DATA_13.length) {
+        DATA.push(...window.CHUJI_DATA_13);
+        updateTabBadges();
+        fillLessons();
+        if (seriesSel.value === 'chuji' || seriesSel.value === '') {
+          render();
+        }
+      }
+    } catch(err) {
+      console.warn('Chuji 13 background load failed', err);
+    }
+
+    // 1n. Load Lai Shixiong Chuji Xia Part 14 (Lessons 131-140)
+    try {
+      await loadScriptAsync('data_chuji_14.js');
+      if (window.CHUJI_DATA_14 && window.CHUJI_DATA_14.length) {
+        DATA.push(...window.CHUJI_DATA_14);
+        updateTabBadges();
+        fillLessons();
+        if (seriesSel.value === 'chuji' || seriesSel.value === '') {
+          render();
+        }
+      }
+    } catch(err) {
+      console.warn('Chuji 14 background load failed', err);
+    }
+
+    // 1o. Load Lai Shixiong Chuji Xia Part 15 (Lessons 141-148, 全148课完结)
+    try {
+      await loadScriptAsync('data_chuji_15.js');
+      if (window.CHUJI_DATA_15 && window.CHUJI_DATA_15.length) {
+        DATA.push(...window.CHUJI_DATA_15);
+        updateTabBadges();
+        fillLessons();
+        if (seriesSel.value === 'chuji' || seriesSel.value === '') {
+          render();
+        }
+      }
+    } catch(err) {
+      console.warn('Chuji 15 background load failed', err);
     }
 
     // 2. Load High Frequency Phrases (5MB)

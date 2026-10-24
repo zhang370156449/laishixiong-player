@@ -1055,7 +1055,7 @@
             <span class="tab-badge" id="badge-laishi">390句 · 即开</span>
           </button>
           <button class="tab-btn" data-val="chuji" onclick="setSeries('chuji')">
-            <span>赖世雄初级美语(上)</span>
+            <span>赖世雄初级美语</span>
             <span class="tab-badge loading" id="badge-chuji">⏳ 缓冲中</span>
           </button>
           <button class="tab-btn" data-val="phrase" onclick="setSeries('phrase')">
@@ -1073,7 +1073,7 @@
         </div>
         <select id="series" style="display:none;" onchange="onSeriesChange()">
           <option value="laishi" selected>赖世雄入门篇</option>
-          <option value="chuji">赖世雄初级美语(上)</option>
+          <option value="chuji">赖世雄初级美语</option>
           <option value="phrase">高频短语</option>
           <option value="extra">Extra English</option>
           <option value="">全部来源</option>
@@ -1288,7 +1288,9 @@
     const chujiBadge = document.getElementById('badge-chuji');
     if (chujiBadge) {
       if (isChujiLoaded) {
-        chujiBadge.textContent = '75句 · L01-10';
+        const chujiCards = DATA.filter(d => isChuji(d));
+        const maxL = Math.max(...chujiCards.map(d => d.l - 300), 0);
+        chujiBadge.textContent = `${chujiCards.length}句 · L01-${String(maxL).padStart(2,'0')}`;
         chujiBadge.classList.remove('loading');
       } else {
         chujiBadge.textContent = '⏳ 缓冲中';
@@ -1767,6 +1769,36 @@
       }
     } catch(err) {
       console.warn('Chuji 8 background load failed', err);
+    }
+
+    // 1i. Load Lai Shixiong Chuji Xia Part 9 (Lessons 81-90)
+    try {
+      await loadScriptAsync('data_chuji_9.js');
+      if (window.CHUJI_DATA_9 && window.CHUJI_DATA_9.length) {
+        DATA.push(...window.CHUJI_DATA_9);
+        updateTabBadges();
+        fillLessons();
+        if (seriesSel.value === 'chuji' || seriesSel.value === '') {
+          render();
+        }
+      }
+    } catch(err) {
+      console.warn('Chuji 9 background load failed', err);
+    }
+
+    // 1j. Load Lai Shixiong Chuji Xia Part 10 (Lessons 91-100)
+    try {
+      await loadScriptAsync('data_chuji_10.js');
+      if (window.CHUJI_DATA_10 && window.CHUJI_DATA_10.length) {
+        DATA.push(...window.CHUJI_DATA_10);
+        updateTabBadges();
+        fillLessons();
+        if (seriesSel.value === 'chuji' || seriesSel.value === '') {
+          render();
+        }
+      }
+    } catch(err) {
+      console.warn('Chuji 10 background load failed', err);
     }
 
     // 2. Load High Frequency Phrases (5MB)

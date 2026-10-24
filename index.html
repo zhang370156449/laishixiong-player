@@ -1739,6 +1739,21 @@
       console.warn('Chuji 6 background load failed', err);
     }
 
+    // 1g. Load Lai Shixiong Chuji Shang Part 7 (Lessons 61-70)
+    try {
+      await loadScriptAsync('data_chuji_7.js');
+      if (window.CHUJI_DATA_7 && window.CHUJI_DATA_7.length) {
+        DATA.push(...window.CHUJI_DATA_7);
+        updateTabBadges();
+        fillLessons();
+        if (seriesSel.value === 'chuji' || seriesSel.value === '') {
+          render();
+        }
+      }
+    } catch(err) {
+      console.warn('Chuji 7 background load failed', err);
+    }
+
     // 2. Load High Frequency Phrases (5MB)
     try {
       await loadScriptAsync('data_phrase.js');

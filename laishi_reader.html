@@ -10,7 +10,7 @@
   <!-- Modern Editorial & Display Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     /* =========================================================
@@ -23,23 +23,23 @@
       --font-scale: 1;
       
       /* Light Theme (Default) */
-      --bg-canvas: #f8fafc;
+      --bg-canvas: #f1f5f9;
       --bg-surface: #ffffff;
       --bg-surface-elevated: #ffffff;
       --bg-card: #ffffff;
       --border-subtle: #e2e8f0;
-      --border-card: #e2e8f0;
+      --border-card: #cbd5e1;
       --text-main: #0f172a;
-      --text-sub: #334155;
-      --text-muted: #64748b;
-      --text-faint: #94a3b8;
+      --text-sub: #1e293b;
+      --text-muted: #475569;
+      --text-faint: #64748b;
       
       --primary: #4f46e5;
       --primary-hover: #4338ca;
       --primary-light: #eef2ff;
       --primary-border: #c7d2fe;
       
-      --accent-bubble-a: #eff6ff;
+      --accent-bubble-a: #f0f7ff;
       --accent-bubble-a-border: #bfdbfe;
       --accent-bubble-b: #f0fdf4;
       --accent-bubble-b-border: #bbf7d0;
@@ -65,33 +65,33 @@
     }
 
     [data-theme="sepia"] {
-      --bg-canvas: #f6f1e7;
-      --bg-surface: #fbf7ee;
-      --bg-surface-elevated: #fffdf9;
+      --bg-canvas: #f4ecdf;
+      --bg-surface: #faf6ee;
+      --bg-surface-elevated: #fffdfa;
       --bg-card: #fdfbf7;
-      --border-subtle: #e6dcce;
-      --border-card: #e3d7c5;
-      --text-main: #2b261f;
-      --text-sub: #4a443a;
-      --text-muted: #736c5f;
-      --text-faint: #9c9485;
+      --border-subtle: #e4d7c5;
+      --border-card: #dcceb8;
+      --text-main: #241e17;
+      --text-sub: #3d352a;
+      --text-muted: #5e5446;
+      --text-faint: #7a7061;
       
       --primary: #92400e;
       --primary-hover: #78350f;
       --primary-light: #fef3c7;
       --primary-border: #fde68a;
       
-      --accent-bubble-a: #f4ecdf;
-      --accent-bubble-a-border: #e3d2be;
-      --accent-bubble-b: #eef2e6;
-      --accent-bubble-b-border: #d4dec4;
+      --accent-bubble-a: #efe7d8;
+      --accent-bubble-a-border: #dfd0bb;
+      --accent-bubble-b: #eaefe2;
+      --accent-bubble-b-border: #cfdac0;
       
       --tag-n-bg: #e2e8e9; --tag-n-text: #2c5257;
       --tag-v-bg: #fae8d2; --tag-v-text: #8c4714;
       --tag-adj-bg: #eddfe7; --tag-adj-text: #6e2f56;
       --tag-adv-bg: #e3ecdb; --tag-adv-text: #346123;
       
-      --callout-bg: #f4eee2;
+      --callout-bg: #f5ede0;
       --callout-border: #b45309;
       --correct-bg: #edf3e7;
       --correct-border: #52803b;
@@ -105,7 +105,7 @@
       --bg-surface-elevated: #151e34;
       --bg-card: #131c31;
       --border-subtle: #1e293b;
-      --border-card: #243048;
+      --border-card: #283652;
       --text-main: #f8fafc;
       --text-sub: #cbd5e1;
       --text-muted: #94a3b8;
@@ -113,24 +113,24 @@
       
       --primary: #818cf8;
       --primary-hover: #6366f1;
-      --primary-light: rgba(99, 102, 241, 0.15);
-      --primary-border: rgba(99, 102, 241, 0.35);
+      --primary-light: rgba(99, 102, 241, 0.18);
+      --primary-border: rgba(99, 102, 241, 0.4);
       
       --accent-bubble-a: #162444;
       --accent-bubble-a-border: #23386b;
       --accent-bubble-b: #132b26;
       --accent-bubble-b-border: #1d4b41;
       
-      --tag-n-bg: rgba(3, 105, 161, 0.25); --tag-n-text: #38bdf8;
-      --tag-v-bg: rgba(180, 83, 9, 0.25); --tag-v-text: #fbbf24;
-      --tag-adj-bg: rgba(126, 34, 206, 0.25); --tag-adj-text: #c084fc;
-      --tag-adv-bg: rgba(21, 128, 61, 0.25); --tag-adv-text: #4ade80;
+      --tag-n-bg: rgba(3, 105, 161, 0.3); --tag-n-text: #38bdf8;
+      --tag-v-bg: rgba(180, 83, 9, 0.3); --tag-v-text: #fbbf24;
+      --tag-adj-bg: rgba(126, 34, 206, 0.3); --tag-adj-text: #c084fc;
+      --tag-adv-bg: rgba(21, 128, 61, 0.3); --tag-adv-text: #4ade80;
       
       --callout-bg: #151d33;
       --callout-border: #818cf8;
-      --correct-bg: rgba(34, 197, 94, 0.12);
+      --correct-bg: rgba(34, 197, 94, 0.15);
       --correct-border: #22c55e;
-      --wrong-bg: rgba(239, 68, 68, 0.12);
+      --wrong-bg: rgba(239, 68, 68, 0.15);
       --wrong-border: #ef4444;
       
       --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
@@ -144,8 +144,8 @@
       font-family: var(--font-sans);
       background-color: var(--bg-canvas);
       color: var(--text-main);
-      font-size: calc(16px * var(--font-scale));
-      line-height: 1.7;
+      font-size: calc(18px * var(--font-scale)); /* BUMPED DEFAULT SIZE FROM 16px to 18px */
+      line-height: 1.75;
       transition: background-color 0.2s ease, color 0.2s ease;
       overflow-x: hidden;
     }
@@ -170,9 +170,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 0 24px;
       backdrop-filter: blur(12px);
       transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
     }
 
     .brand-section {
@@ -193,14 +194,14 @@
     }
 
     .brand-logo {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
       object-fit: cover;
     }
 
     .brand-title {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 800;
       color: var(--text-main);
       letter-spacing: -0.3px;
@@ -210,7 +211,7 @@
     }
 
     .brand-badge {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       padding: 2px 8px;
       border-radius: 6px;
@@ -233,9 +234,9 @@
     .vol-tab-btn {
       background: none;
       border: none;
-      padding: 6px 14px;
+      padding: 7px 16px;
       border-radius: 7px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text-muted);
       cursor: pointer;
@@ -266,8 +267,8 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      padding: 6px 12px;
-      font-size: 13px;
+      padding: 7px 12px;
+      font-size: 13.5px;
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -287,8 +288,8 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 13px;
+      padding: 7px 12px;
+      font-size: 13.5px;
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -328,7 +329,7 @@
       border: 1px solid var(--border-subtle);
       background: var(--bg-canvas);
       color: var(--text-main);
-      font-size: 13.5px;
+      font-size: 14px;
       outline: none;
       transition: border-color 0.2s;
     }
@@ -340,7 +341,7 @@
 
     .sidebar-stats-bar {
       padding: 8px 16px;
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 600;
       color: var(--text-muted);
       display: flex;
@@ -361,7 +362,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 12px;
+      padding: 11px 12px;
       border-radius: 8px;
       margin-bottom: 4px;
       cursor: pointer;
@@ -383,9 +384,9 @@
     }
 
     .toc-badge {
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
-      padding: 2px 6px;
+      padding: 2px 7px;
       border-radius: 5px;
       background: rgba(0, 0, 0, 0.05);
       min-width: 32px;
@@ -403,7 +404,7 @@
     }
 
     .toc-title-en {
-      font-size: 13.5px;
+      font-size: 14.5px;
       font-weight: 600;
       white-space: nowrap;
       overflow: hidden;
@@ -411,7 +412,7 @@
     }
 
     .toc-title-zh {
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--text-muted);
       white-space: nowrap;
       overflow: hidden;
@@ -419,33 +420,110 @@
     }
 
     .toc-type-tag {
-      font-size: 11px;
+      font-size: 11.5px;
       color: var(--text-muted);
     }
 
-    /* READING CONTENT CONTAINER */
+    /* =========================================================
+       WORKSPACE GRID (UTILIZING THE FULL WIDE-SCREEN REAL ESTATE)
+       ========================================================= */
     .content-viewport {
       flex: 1;
       min-width: 0;
-      padding: 30px 40px 100px;
+      padding: 24px 32px 100px;
       display: flex;
       justify-content: center;
     }
 
-    .lesson-article {
+    /* EXPANDED GRID: MAX-WIDTH 1640px UTILIZING LEFT & RIGHT FLANKS */
+    .workspace-grid {
       width: 100%;
-      max-width: 880px;
+      max-width: 1640px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(380px, 1fr);
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    body.single-column .workspace-grid {
+      grid-template-columns: 1fr;
+      max-width: 980px;
+    }
+
+    /* PRIMARY READING PANE (LEFT) */
+    .primary-reading-pane {
       background: var(--bg-surface);
       border: 1px solid var(--border-card);
-      border-radius: 16px;
-      padding: 40px 48px;
+      border-radius: 18px;
+      padding: 38px 44px;
       box-shadow: var(--shadow-sm);
+    }
+
+    /* STICKY STUDY COMPANION PANE (RIGHT) */
+    .study-companion-pane {
+      position: sticky;
+      top: calc(var(--header-height) + 20px);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: 18px;
+      padding: 24px 28px;
+      box-shadow: var(--shadow-sm);
+      max-height: calc(100vh - var(--header-height) - 100px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.single-column .study-companion-pane {
+      display: none;
+    }
+
+    .companion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--primary-border);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .companion-tabs-nav {
+      display: flex;
+      gap: 8px;
+    }
+
+    .comp-tab-btn {
+      background: none;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .comp-tab-btn:hover {
+      color: var(--text-main);
+      background: var(--bg-canvas);
+    }
+
+    .comp-tab-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
+      color: var(--primary);
+    }
+
+    .companion-scrollable-body {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 6px;
     }
 
     /* HERO HEADER */
     .lesson-hero {
       margin-bottom: 32px;
-      padding-bottom: 24px;
+      padding-bottom: 22px;
       border-bottom: 2px solid var(--border-subtle);
     }
 
@@ -461,12 +539,12 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 12px;
+      padding: 4px 14px;
       background: var(--primary-light);
       color: var(--primary);
       border: 1px solid var(--primary-border);
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.5px;
     }
@@ -474,15 +552,15 @@
     .lesson-actions-top {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .btn-action-hero {
       background: var(--bg-canvas);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      padding: 6px 12px;
-      font-size: 13px;
+      padding: 7px 14px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -512,16 +590,16 @@
 
     .lesson-main-title {
       font-family: var(--font-sans);
-      font-size: 32px;
+      font-size: 38px; /* BUMPED TO 38px */
       font-weight: 800;
       line-height: 1.25;
       color: var(--text-main);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       letter-spacing: -0.5px;
     }
 
     .lesson-sub-title {
-      font-size: 18px;
+      font-size: 20px; /* BUMPED TO 20px */
       font-weight: 500;
       color: var(--text-muted);
     }
@@ -535,10 +613,10 @@
     }
 
     .inpage-nav-pill {
-      font-size: 12.5px;
+      font-size: 13.5px;
       font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
       background: var(--bg-canvas);
       color: var(--text-sub);
       text-decoration: none;
@@ -567,7 +645,7 @@
     }
 
     .section-heading {
-      font-size: 20px;
+      font-size: 22px; /* BUMPED TO 22px */
       font-weight: 800;
       color: var(--text-main);
       display: flex;
@@ -575,29 +653,29 @@
       gap: 10px;
     }
 
-    /* MODERN CONVERSATION DIALOGUE (CHAT STYLE) */
+    /* MODERN CONVERSATION DIALOGUE (NATURAL SCRIPT FLOW) */
     .dialogue-thread {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
       margin: 20px 0;
     }
 
     .dialogue-sub-banner {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--primary);
       background: var(--primary-light);
-      padding: 6px 14px;
+      padding: 7px 16px;
       border-radius: 8px;
-      margin: 16px 0 8px;
+      margin: 18px 0 10px;
       display: inline-block;
       width: fit-content;
     }
 
     .chat-row {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       align-items: flex-start;
     }
 
@@ -606,15 +684,16 @@
     }
 
     .chat-avatar {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 14px;
+      font-weight: 800;
+      font-size: 16px;
       flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
     }
 
     .chat-row:not(.speaker-b) .chat-avatar {
@@ -628,11 +707,11 @@
     }
 
     .chat-bubble-card {
-      max-width: 82%;
+      max-width: 90%;
       background: var(--accent-bubble-a);
       border: 1px solid var(--accent-bubble-a-border);
-      border-radius: 14px;
-      padding: 12px 18px;
+      border-radius: 16px;
+      padding: 16px 22px;
       position: relative;
       cursor: pointer;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -654,35 +733,36 @@
     }
 
     .chat-name-line {
-      font-size: 11.5px;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--text-muted);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      gap: 10px;
     }
 
     .chat-en-text {
       font-family: var(--font-sans);
-      font-size: 17px;
-      font-weight: 600;
+      font-size: 21px; /* BUMPED TO 21px FOR CRYSTAL CLEAR READABILITY */
+      font-weight: 700;
       line-height: 1.5;
       color: var(--text-main);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .chat-zh-text {
-      font-size: 13.5px;
+      font-size: 16px; /* BUMPED TO 16px */
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.55;
       transition: opacity 0.2s;
     }
 
     body.english-only .chat-zh-text,
     body.english-only .reading-zh-line,
-    body.english-only .ex-zh-line {
+    body.english-only .ex-zh-line,
+    body.english-only .sub-row-zh {
       display: none;
     }
 
@@ -690,9 +770,9 @@
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 15px;
       color: var(--primary);
-      opacity: 0.7;
+      opacity: 0.75;
       transition: opacity 0.2s, transform 0.15s;
       padding: 2px 4px;
     }
@@ -706,15 +786,15 @@
     .reading-passage-card {
       background: var(--bg-canvas);
       border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 24px 28px;
-      margin: 18px 0;
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin: 20px 0;
       line-height: 1.85;
     }
 
     .reading-sentence-item {
-      margin-bottom: 14px;
-      padding: 6px 10px;
+      margin-bottom: 16px;
+      padding: 8px 12px;
       border-radius: 8px;
       transition: background 0.15s;
       cursor: pointer;
@@ -725,63 +805,69 @@
     }
 
     .reading-sentence-item.active-speaking {
-      background: rgba(99, 102, 241, 0.15);
-      border-left: 3px solid var(--primary);
+      background: rgba(99, 102, 241, 0.18);
+      border-left: 4px solid var(--primary);
     }
 
     .reading-en-line {
       font-family: var(--font-serif);
-      font-size: 19px;
+      font-size: 23px; /* BUMPED TO 23px */
       font-weight: 500;
       color: var(--text-main);
-      margin-bottom: 3px;
+      margin-bottom: 4px;
       letter-spacing: -0.1px;
     }
 
     .reading-zh-line {
-      font-size: 14px;
+      font-size: 16.5px; /* BUMPED TO 16.5px */
       color: var(--text-muted);
     }
 
     /* MODERN PEDAGOGICAL TIPS CALLOUT */
     .pedagogical-tip-card {
       background: var(--callout-bg);
-      border-left: 4px solid var(--callout-border);
-      border-radius: 8px;
-      padding: 16px 20px;
-      margin: 24px 0;
+      border-left: 5px solid var(--callout-border);
+      border-radius: 10px;
+      padding: 18px 24px;
+      margin: 26px 0;
       box-shadow: var(--shadow-sm);
     }
 
     .tip-title {
-      font-size: 14px;
+      font-size: 15.5px;
       font-weight: 700;
       color: var(--primary);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .tip-body {
-      font-size: 14px;
+      font-size: 15.5px;
       color: var(--text-sub);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    /* VOCABULARY CARDS GRID */
+    /* VOCABULARY CARDS (BOTH FULL INLINE & COMPANION PANE) */
     .vocab-grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
       margin: 20px 0;
+    }
+
+    .companion-vocab-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .modern-vocab-card {
       background: var(--bg-canvas);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      padding: 16px 18px;
+      padding: 18px 20px;
       transition: all 0.2s ease;
       display: flex;
       flex-direction: column;
@@ -803,8 +889,8 @@
     }
 
     .vocab-word-term {
-      font-size: 18px;
-      font-weight: 700;
+      font-size: 21px; /* BUMPED TO 21px */
+      font-weight: 800;
       color: var(--text-main);
       cursor: pointer;
     }
@@ -815,18 +901,18 @@
 
     .vocab-phonetic-badge {
       font-family: var(--font-serif);
-      font-size: 13.5px;
+      font-size: 15px; /* BUMPED TO 15px */
       color: var(--primary);
       background: var(--primary-light);
-      padding: 1px 7px;
-      border-radius: 4px;
-      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-weight: 600;
     }
 
     .vocab-pos-pill {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
-      padding: 2px 6px;
+      padding: 2px 7px;
       border-radius: 4px;
     }
 
@@ -836,24 +922,24 @@
     .pos-adv { background: var(--tag-adv-bg); color: var(--tag-adv-text); }
 
     .vocab-meaning-line {
-      font-size: 14px;
+      font-size: 16px; /* BUMPED TO 16px */
       color: var(--text-sub);
-      font-weight: 500;
-      margin-bottom: 10px;
+      font-weight: 600;
+      margin-bottom: 12px;
     }
 
     .vocab-example-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 13px;
+      padding: 12px 14px;
+      font-size: 14.5px;
     }
 
     .ex-en-line {
       font-weight: 600;
       color: var(--text-main);
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       cursor: pointer;
     }
 
@@ -862,7 +948,7 @@
     }
 
     .ex-zh-line {
-      font-size: 12px;
+      font-size: 13.5px;
       color: var(--text-muted);
     }
 
@@ -877,27 +963,27 @@
     .modern-grammar-card {
       background: var(--bg-canvas);
       border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 22px 24px;
+      border-radius: 14px;
+      padding: 22px 26px;
     }
 
     .grammar-card-title {
-      font-size: 17px;
+      font-size: 20px; /* BUMPED TO 20px */
       font-weight: 700;
       color: var(--text-main);
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
     .grammar-num-badge {
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: var(--primary);
       color: #ffffff;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -911,27 +997,27 @@
       color: var(--primary);
       font-family: var(--font-sans);
       font-weight: 700;
-      font-size: 14.5px;
-      padding: 10px 16px;
+      font-size: 16px; /* BUMPED TO 16px */
+      padding: 12px 18px;
       border-radius: 8px;
       margin: 12px 0 16px;
       letter-spacing: 0.3px;
     }
 
     .grammar-desc-p {
-      font-size: 14.5px;
+      font-size: 16px; /* BUMPED TO 16px */
       color: var(--text-sub);
-      line-height: 1.7;
-      margin-bottom: 10px;
+      line-height: 1.75;
+      margin-bottom: 12px;
     }
 
     .grammar-example-pill {
       background: var(--bg-surface);
-      border-left: 3px solid var(--primary);
-      padding: 8px 14px;
-      border-radius: 0 6px 6px 0;
-      margin: 8px 0;
-      font-size: 14px;
+      border-left: 4px solid var(--primary);
+      padding: 10px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0;
+      font-size: 15.5px;
       color: var(--text-main);
     }
 
@@ -939,18 +1025,18 @@
     .sub-cards-grid {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin: 18px 0;
+      gap: 14px;
+      margin: 20px 0;
     }
 
     .sub-card-row {
       background: var(--bg-canvas);
       border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 14px 18px;
+      border-radius: 12px;
+      padding: 16px 20px;
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       transition: all 0.15s ease;
     }
 
@@ -960,10 +1046,10 @@
     }
 
     .sub-row-num {
-      font-weight: 700;
+      font-weight: 800;
       color: var(--primary);
-      font-size: 14px;
-      min-width: 22px;
+      font-size: 16px;
+      min-width: 24px;
     }
 
     .sub-row-content {
@@ -971,8 +1057,8 @@
     }
 
     .sub-row-en {
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 19px; /* BUMPED TO 19px */
+      font-weight: 700;
       color: var(--text-main);
       margin-bottom: 4px;
     }
@@ -980,13 +1066,13 @@
     .sub-chip-token {
       color: var(--primary);
       background: var(--primary-light);
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-weight: 800;
     }
 
     .sub-row-zh {
-      font-size: 13.5px;
+      font-size: 15.5px; /* BUMPED TO 15.5px */
       color: var(--text-muted);
     }
 
@@ -994,24 +1080,24 @@
     .exercise-box-card {
       background: var(--bg-canvas);
       border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 24px;
+      border-radius: 14px;
+      padding: 26px;
       margin: 20px 0;
     }
 
     .ex-q-row {
-      margin-bottom: 14px;
-      font-size: 14.5px;
+      margin-bottom: 16px;
+      font-size: 16px;
       color: var(--text-main);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .btn-reveal-answer {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 13px;
+      padding: 9px 18px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--primary);
       cursor: pointer;
@@ -1027,24 +1113,19 @@
     }
 
     .answer-details-panel {
-      margin-top: 14px;
-      padding: 14px 18px;
+      margin-top: 16px;
+      padding: 16px 20px;
       background: var(--bg-surface);
       border-radius: 8px;
       border-left: 4px solid #10b981;
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.65;
       display: none;
     }
 
     .answer-details-panel.show {
       display: block;
       animation: fadeIn 0.25s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-4px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     /* FLOATING BOTTOM FOOTER BAR */
@@ -1056,7 +1137,7 @@
       z-index: 90;
       background: var(--bg-surface);
       border-top: 1px solid var(--border-subtle);
-      padding: 10px 24px;
+      padding: 12px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1067,15 +1148,15 @@
     .bottom-nav-btns {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .btn-bottom-nav {
       background: var(--bg-canvas);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      padding: 8px 18px;
-      font-size: 13.5px;
+      padding: 9px 20px;
+      font-size: 14.5px;
       font-weight: 700;
       color: var(--text-main);
       cursor: pointer;
@@ -1097,6 +1178,27 @@
     }
 
     /* RESPONSIVE DESIGN */
+    @media (max-width: 1140px) {
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+      .study-companion-pane {
+        display: none;
+      }
+      .content-viewport {
+        padding: 18px 16px 100px;
+      }
+      .primary-reading-pane {
+        padding: 24px 20px;
+      }
+      .lesson-main-title {
+        font-size: 28px;
+      }
+      .chat-en-text {
+        font-size: 19px;
+      }
+    }
+
     @media (max-width: 900px) {
       .sidebar {
         position: fixed;
@@ -1114,15 +1216,6 @@
       }
       .volume-nav-tabs {
         display: none;
-      }
-      .content-viewport {
-        padding: 16px 14px 90px;
-      }
-      .lesson-article {
-        padding: 24px 18px;
-      }
-      .lesson-main-title {
-        font-size: 24px;
       }
     }
   </style>
@@ -1150,6 +1243,11 @@
 
       <!-- TOOLBAR CONTROLS -->
       <div class="header-controls">
+        <button class="icon-ctrl-btn" id="layoutToggleBtn" title="切换双栏研读/单栏聚焦模式">
+          <span id="layoutIcon">📖</span>
+          <span id="layoutName">双栏研读台</span>
+        </button>
+
         <select class="lang-mode-select" id="langModeSelect" title="中英显示模式切换">
           <option value="bilingual">🌐 中英双语对照</option>
           <option value="english-only">🔤 纯英文沉浸</option>
@@ -1185,13 +1283,30 @@
         </ul>
       </aside>
 
-      <!-- CONTENT VIEWPORT -->
+      <!-- CONTENT VIEWPORT WITH PANORAMIC TWO-COLUMN GRID -->
       <main class="content-viewport">
-        <article class="lesson-article" id="lessonArticle">
-          <div style="text-align:center; padding: 60px 20px; color: var(--text-muted);">
-            <h3>⏳ 正在载入研读数据...</h3>
+        <div class="workspace-grid" id="workspaceGrid">
+          <!-- PRIMARY READING PANE (LEFT) -->
+          <div class="primary-reading-pane" id="primaryReadingPane">
+            <div style="text-align:center; padding: 60px 20px; color: var(--text-muted);">
+              <h3>⏳ 正在载入研读数据...</h3>
+            </div>
           </div>
-        </article>
+
+          <!-- STICKY STUDY COMPANION PANE (RIGHT) -->
+          <aside class="study-companion-pane" id="studyCompanionPane">
+            <div class="companion-header">
+              <div class="companion-tabs-nav">
+                <button class="comp-tab-btn active" id="tabBtnVocab" onclick="window.switchCompanionTab('vocab')">📖 核心词汇 (<span id="compVocabCount">0</span>)</button>
+                <button class="comp-tab-btn" id="tabBtnGrammar" onclick="window.switchCompanionTab('grammar')">🧠 语法重点</button>
+              </div>
+              <span style="font-size:12px; color:var(--text-muted);">点击单词即可发音</span>
+            </div>
+            <div class="companion-scrollable-body" id="companionBody">
+              <!-- Rendered dynamically -->
+            </div>
+          </aside>
+        </div>
       </main>
     </div>
 
@@ -1199,7 +1314,7 @@
     <footer class="sticky-bottom-bar">
       <div class="bottom-nav-btns">
         <button class="btn-bottom-nav" id="prevLessonBtn">⬅ 上一课</button>
-        <span id="bottomLessonCounter" style="font-size:13px; font-weight:700; color:var(--text-muted);">第 1 / 30 课</span>
+        <span id="bottomLessonCounter" style="font-size:14px; font-weight:700; color:var(--text-muted);">第 1 / 30 课</span>
         <button class="btn-bottom-nav" id="nextLessonBtn">下一课 ➡</button>
       </div>
       <div>
@@ -1225,13 +1340,23 @@
         theme: localStorage.getItem('laishi_theme') || 'light',
         fontScale: parseFloat(localStorage.getItem('laishi_font_scale') || '1.0'),
         langMode: localStorage.getItem('laishi_lang_mode') || 'bilingual',
+        layoutMode: localStorage.getItem('laishi_layout_mode') || 'dual', // 'dual' or 'single'
+        companionTab: 'vocab',
         isPlayingAll: false,
         speechQueue: []
       };
 
       // DOM ELEMENTS
       const htmlEl = document.documentElement;
-      const lessonArticle = document.getElementById('lessonArticle');
+      const primaryReadingPane = document.getElementById('primaryReadingPane');
+      const studyCompanionPane = document.getElementById('studyCompanionPane');
+      const companionBody = document.getElementById('companionBody');
+      const compVocabCount = document.getElementById('compVocabCount');
+      const tabBtnVocab = document.getElementById('tabBtnVocab');
+      const tabBtnGrammar = document.getElementById('tabBtnGrammar');
+      const layoutToggleBtn = document.getElementById('layoutToggleBtn');
+      const layoutIcon = document.getElementById('layoutIcon');
+      const layoutName = document.getElementById('layoutName');
       const lessonTocList = document.getElementById('lessonTocList');
       const tocSearchInput = document.getElementById('tocSearchInput');
       const sidebarStatsCount = document.getElementById('sidebarStatsCount');
@@ -1369,6 +1494,28 @@
         localStorage.setItem('laishi_lang_mode', mode);
       }
 
+      // LAYOUT MODE (DUAL VS SINGLE COLUMN)
+      function applyLayoutMode(mode) {
+        state.layoutMode = mode;
+        if (mode === 'single') {
+          document.body.classList.add('single-column');
+          layoutIcon.textContent = '📄';
+          layoutName.textContent = '单栏聚焦';
+        } else {
+          document.body.classList.remove('single-column');
+          layoutIcon.textContent = '📖';
+          layoutName.textContent = '双栏研读台';
+        }
+        localStorage.setItem('laishi_layout_mode', mode);
+      }
+
+      window.switchCompanionTab = function(tab) {
+        state.companionTab = tab;
+        tabBtnVocab.classList.toggle('active', tab === 'vocab');
+        tabBtnGrammar.classList.toggle('active', tab === 'grammar');
+        renderCompanionPane();
+      };
+
       // RENDER SIDEBAR TOC
       function renderSidebar() {
         const data = getActiveDataset();
@@ -1454,9 +1601,107 @@
         sidebarStatsCount.textContent = `共 ${visibleCount} 项`;
       }
 
+      // RENDER RIGHT-HAND STICKY COMPANION PANE
+      function renderCompanionPane() {
+        const data = getActiveDataset();
+        let item = null;
+        if (typeof state.lessonNum === 'string' && state.lessonNum.startsWith('song_')) {
+          item = data.find(d => d.id === state.lessonNum);
+        } else {
+          item = data.find(d => d.num === state.lessonNum);
+        }
+        if (!item || item.type === 'song') {
+          studyCompanionPane.style.display = 'none';
+          return;
+        } else {
+          if (state.layoutMode === 'dual') {
+            studyCompanionPane.style.display = 'flex';
+          }
+        }
+
+        const vocabList = item.vocab || [];
+        compVocabCount.textContent = vocabList.length;
+
+        if (state.companionTab === 'vocab') {
+          if (!vocabList.length) {
+            companionBody.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text-muted);">本课无单独生词卡</div>';
+            return;
+          }
+          let vHtml = '<div class="companion-vocab-list">';
+          vocabList.forEach(v => {
+            const posClass = 'pos-' + (v.pos ? v.pos.replace('.', '').toLowerCase() : 'n');
+            vHtml += `
+              <div class="modern-vocab-card" style="margin-bottom:0;">
+                <div>
+                  <div class="vocab-card-header">
+                    <span class="vocab-word-term" onclick="window.speakWord('${escapeQuotes(v.word)}')">${v.word} 🔊</span>
+                    ${v.phonetic ? `<span class="vocab-phonetic-badge">${v.phonetic}</span>` : ''}
+                    ${v.pos ? `<span class="vocab-pos-pill ${posClass}">${v.pos}</span>` : ''}
+                  </div>
+                  <div class="vocab-meaning-line">${v.meaning}</div>
+                </div>
+                ${v.example ? `
+                  <div class="vocab-example-card">
+                    <div class="ex-en-line" onclick="window.speakWord('${escapeQuotes(v.example.en)}')">${v.example.en} 🔊</div>
+                    <div class="ex-zh-line">${v.example.zh}</div>
+                  </div>
+                ` : (v.examples && v.examples.length ? `
+                  <div class="vocab-example-card">
+                    <div class="ex-en-line" onclick="window.speakWord('${escapeQuotes(v.examples[0].en)}')">${v.examples[0].en} 🔊</div>
+                    <div class="ex-zh-line">${v.examples[0].zh}</div>
+                  </div>
+                ` : '')}
+              </div>
+            `;
+          });
+          vHtml += '</div>';
+          companionBody.innerHTML = vHtml;
+        } else {
+          // Grammar tab
+          const gData = item.grammar;
+          if (!gData) {
+            companionBody.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text-muted);">本课无专项语法精析</div>';
+            return;
+          }
+          const gItems = gData.items || (Array.isArray(gData) ? gData : []);
+          let gHtml = '<div class="grammar-cards-stack" style="margin:0;">';
+          if (gData.intro) {
+            gHtml += `<div class="pedagogical-tip-card" style="margin:0 0 12px;"><div class="tip-body">${gData.intro}</div></div>`;
+          }
+          gItems.forEach(g => {
+            gHtml += `
+              <div class="modern-grammar-card">
+                <div class="grammar-card-title">
+                  <span class="grammar-num-badge">${g.num}</span>
+                  <span>${g.title}</span>
+                </div>
+            `;
+            if (g.formulas && g.formulas.length) {
+              g.formulas.forEach(f => {
+                gHtml += `<div class="grammar-formula-bar">📌 公式：${f}</div>`;
+              });
+            }
+            const paras = g.desc || g.body || [];
+            paras.forEach(p => {
+              gHtml += `<p class="grammar-desc-p">${p}</p>`;
+            });
+            if (g.examples && g.examples.length) {
+              g.examples.forEach(ex => {
+                gHtml += `<div class="grammar-example-pill">例：${ex}</div>`;
+              });
+            }
+            gHtml += `</div>`;
+          });
+          gHtml += '</div>';
+          companionBody.innerHTML = gHtml;
+        }
+      }
+
       // RENDER PHONETICS VIEW
       function renderPhoneticsView() {
         const data = window.DATA_READER_PHONETICS || [];
+        studyCompanionPane.style.display = 'none';
+
         let html = `
           <div class="lesson-hero">
             <div class="lesson-meta-top">
@@ -1484,7 +1729,7 @@
         });
 
         html += `</div>`;
-        lessonArticle.innerHTML = html;
+        primaryReadingPane.innerHTML = html;
         bottomLessonCounter.textContent = '音标全表';
         prevLessonBtn.disabled = true;
         nextLessonBtn.disabled = true;
@@ -1500,7 +1745,8 @@
 
         const data = getActiveDataset();
         if (!data || !data.length) {
-          lessonArticle.innerHTML = '<div style="text-align:center; padding:50px;">暂无课文数据</div>';
+          primaryReadingPane.innerHTML = '<div style="text-align:center; padding:50px;">暂无课文数据</div>';
+          studyCompanionPane.style.display = 'none';
           return;
         }
 
@@ -1529,7 +1775,10 @@
           nextLessonBtn.disabled = (num >= totalLessons);
         }
 
-        // BUILD HTML
+        // Render Right Companion Pane
+        renderCompanionPane();
+
+        // BUILD HTML FOR LEFT READING PANE
         let html = '';
 
         // HERO HEADER
@@ -1565,7 +1814,7 @@
               <div class="section-heading">
                 <span>💬 课文与情境原声</span>
               </div>
-              <span style="font-size:12px; color:var(--text-muted);">点击任意句子即可发音点读</span>
+              <span style="font-size:13px; color:var(--text-muted);">点击任意句子即可发音点读</span>
             </div>
           `;
 
@@ -1655,7 +1904,7 @@
           html += `</section>`;
         }
 
-        // 2. VOCABULARY SECTION
+        // 2. VOCABULARY SECTION (INLINE DISPLAY FOR FULL ACCESS)
         if (item.vocab && item.vocab.length) {
           html += `
             <section class="reading-section" id="sec-vocab">
@@ -1663,7 +1912,7 @@
                 <div class="section-heading">
                   <span>📖 核心词汇短语精解 (${item.vocab.length}词)</span>
                 </div>
-                <span style="font-size:12px; color:var(--text-muted);">规范现代国际音标 [IPA]</span>
+                <span style="font-size:13px; color:var(--text-muted);">规范现代国际音标 [IPA]</span>
               </div>
               <div class="vocab-grid-container">
           `;
@@ -1757,7 +2006,7 @@
                 <div class="section-heading">
                   <span>🔄 句型替换与变通训练</span>
                 </div>
-                <span style="font-size:12px; color:var(--text-muted);">举一反三 · 熟能生巧</span>
+                <span style="font-size:13px; color:var(--text-muted);">举一反三 · 熟能生巧</span>
               </div>
               <div class="sub-cards-grid">
           `;
@@ -1821,16 +2070,16 @@
         if (isSong) {
           html += `
             <div class="reading-passage-card" style="text-align:center; padding:40px 20px;">
-              <h2 style="font-family:var(--font-serif); font-size:26px; margin-bottom:16px;">${item.title_en}</h2>
-              <p style="color:var(--text-muted); margin-bottom:24px;">${item.title_zh}</p>
-              <div style="max-width:540px; margin:0 auto; line-height:2.2; font-size:17px;">
-                ${item.lyrics ? item.lyrics.map(l => `<div style="margin-bottom:8px;">${l}</div>`).join('') : '经典英文金曲'}
+              <h2 style="font-family:var(--font-serif); font-size:28px; margin-bottom:16px;">${item.title_en}</h2>
+              <p style="color:var(--text-muted); font-size:18px; margin-bottom:24px;">${item.title_zh}</p>
+              <div style="max-width:600px; margin:0 auto; line-height:2.4; font-size:19px;">
+                ${item.lyrics ? item.lyrics.map(l => `<div style="margin-bottom:10px;">${l}</div>`).join('') : '经典英文金曲'}
               </div>
             </div>
           `;
         }
 
-        lessonArticle.innerHTML = html;
+        primaryReadingPane.innerHTML = html;
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
@@ -1930,6 +2179,12 @@
         };
       });
 
+      // Layout mode toggle button
+      layoutToggleBtn.onclick = () => {
+        const nextMode = state.layoutMode === 'dual' ? 'single' : 'dual';
+        applyLayoutMode(nextMode);
+      };
+
       // Prev/Next buttons
       prevLessonBtn.onclick = () => {
         if (state.lessonNum > 1) {
@@ -2005,6 +2260,7 @@
       applyTheme(state.theme);
       applyFontScale(state.fontScale);
       applyLangMode(state.langMode);
+      applyLayoutMode(state.layoutMode);
       langModeSelect.value = state.langMode;
 
       // Select active volume tab in header

@@ -39,6 +39,11 @@
       --primary-light: #eef2ff;
       --primary-border: #c7d2fe;
       
+      --accent: #d97706;
+      --accent-hover: #b45309;
+      --accent-light: #fef3c7;
+      --accent-border: #fde68a;
+      
       --accent-bubble-a: #f0f7ff;
       --accent-bubble-a-border: #bfdbfe;
       --accent-bubble-b: #f0fdf4;
@@ -81,6 +86,11 @@
       --primary-light: #fef3c7;
       --primary-border: #fde68a;
       
+      --accent: #b45309;
+      --accent-hover: #92400e;
+      --accent-light: #fef3c7;
+      --accent-border: #fde68a;
+      
       --accent-bubble-a: #efe7d8;
       --accent-bubble-a-border: #dfd0bb;
       --accent-bubble-b: #eaefe2;
@@ -115,6 +125,11 @@
       --primary-hover: #6366f1;
       --primary-light: rgba(99, 102, 241, 0.18);
       --primary-border: rgba(99, 102, 241, 0.4);
+      
+      --accent: #f59e0b;
+      --accent-hover: #fbbf24;
+      --accent-light: rgba(245, 158, 11, 0.2);
+      --accent-border: rgba(245, 158, 11, 0.45);
       
       --accent-bubble-a: #162444;
       --accent-bubble-a-border: #23386b;
@@ -461,9 +476,9 @@
     .modern-speech-card {
       background: var(--bg-canvas);
       border: 1px solid var(--border-subtle);
-      border-left: 4px solid var(--accent);
-      border-radius: 12px;
-      padding: 16px 22px;
+      border-left: 5px solid var(--accent);
+      border-radius: 14px;
+      padding: 18px 24px;
       transition: all 0.2s ease;
     }
 
@@ -475,30 +490,33 @@
     .speech-card-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
+      gap: 12px;
+      margin-bottom: 10px;
     }
 
     .speech-badge-num {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       background: var(--accent);
       color: #ffffff;
-      font-size: 12px;
-      font-weight: 800;
+      font-size: 15px;
+      font-weight: 900;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(217, 119, 6, 0.35);
+      letter-spacing: -0.2px;
     }
 
     .speech-type-badge {
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--accent);
-      background: rgba(245, 158, 11, 0.12);
-      padding: 3px 10px;
+      background: var(--accent-light);
+      border: 1px solid var(--accent-border);
+      padding: 4px 12px;
       border-radius: 6px;
     }
 
@@ -961,17 +979,19 @@
     }
 
     .grammar-num-badge {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       background: var(--primary);
       color: #ffffff;
-      font-size: 14px;
-      font-weight: 700;
-      display: flex;
+      font-size: 15px;
+      font-weight: 900;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(79, 70, 229, 0.3);
+      letter-spacing: -0.2px;
     }
 
     .grammar-formula-bar {

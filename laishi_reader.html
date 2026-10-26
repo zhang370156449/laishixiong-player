@@ -425,99 +425,88 @@
     }
 
     /* =========================================================
-       WORKSPACE GRID (UTILIZING THE FULL WIDE-SCREEN REAL ESTATE)
+       WORKSPACE SINGLE-COLUMN FOCUSED READER
        ========================================================= */
     .content-viewport {
       flex: 1;
       min-width: 0;
-      padding: 24px 32px 100px;
+      padding: 32px 28px 120px;
       display: flex;
       justify-content: center;
     }
 
-    /* EXPANDED GRID: MAX-WIDTH 1640px UTILIZING LEFT & RIGHT FLANKS */
     .workspace-grid {
       width: 100%;
-      max-width: 1640px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(380px, 1fr);
-      gap: 28px;
-      align-items: flex-start;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
-    body.single-column .workspace-grid {
-      grid-template-columns: 1fr;
-      max-width: 980px;
-    }
-
-    /* PRIMARY READING PANE (LEFT) */
+    /* PRIMARY READING PANE */
     .primary-reading-pane {
       background: var(--bg-surface);
       border: 1px solid var(--border-card);
-      border-radius: 18px;
-      padding: 38px 44px;
+      border-radius: 20px;
+      padding: 42px 48px;
       box-shadow: var(--shadow-sm);
     }
 
-    /* STICKY STUDY COMPANION PANE (RIGHT) */
-    .study-companion-pane {
-      position: sticky;
-      top: calc(var(--header-height) + 20px);
-      background: var(--bg-surface);
-      border: 1px solid var(--border-card);
-      border-radius: 18px;
-      padding: 24px 28px;
-      box-shadow: var(--shadow-sm);
-      max-height: calc(100vh - var(--header-height) - 100px);
+    /* CONNECTED SPEECH DECODING CARDS */
+    .speech-cards-stack {
       display: flex;
       flex-direction: column;
+      gap: 14px;
+      margin: 20px 0;
     }
 
-    body.single-column .study-companion-pane {
-      display: none;
+    .modern-speech-card {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 16px 22px;
+      transition: all 0.2s ease;
     }
 
-    .companion-header {
+    .modern-speech-card:hover {
+      box-shadow: var(--shadow-sm);
+      border-color: var(--accent);
+    }
+
+    .speech-card-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      border-bottom: 2px solid var(--primary-border);
-      padding-bottom: 12px;
-      margin-bottom: 16px;
+      gap: 10px;
+      margin-bottom: 8px;
     }
 
-    .companion-tabs-nav {
-      display: flex;
-      gap: 8px;
+    .speech-badge-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
-    .comp-tab-btn {
-      background: none;
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 6px 14px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.15s;
+    .speech-type-badge {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--accent);
+      background: rgba(245, 158, 11, 0.12);
+      padding: 3px 10px;
+      border-radius: 6px;
     }
 
-    .comp-tab-btn:hover {
+    .speech-desc-text {
+      font-size: 16px;
+      line-height: 1.7;
       color: var(--text-main);
-      background: var(--bg-canvas);
-    }
-
-    .comp-tab-btn.active {
-      background: var(--primary-light);
-      border-color: var(--primary-border);
-      color: var(--primary);
-    }
-
-    .companion-scrollable-body {
-      flex: 1;
-      overflow-y: auto;
-      padding-right: 6px;
+      font-weight: 500;
     }
 
     /* HERO HEADER */
@@ -849,18 +838,12 @@
       line-height: 1.65;
     }
 
-    /* VOCABULARY CARDS (BOTH FULL INLINE & COMPANION PANE) */
+    /* VOCABULARY CARDS (RESPONSIVE GRID) */
     .vocab-grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
       gap: 16px;
       margin: 20px 0;
-    }
-
-    .companion-vocab-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
     }
 
     .modern-vocab-card {
@@ -1218,21 +1201,28 @@
     }
 
     /* RESPONSIVE DESIGN */
-    @media (max-width: 1140px) {
-      .workspace-grid {
-        grid-template-columns: 1fr;
-      }
-      .study-companion-pane {
-        display: none;
-      }
+    @media (max-width: 1040px) {
       .content-viewport {
-        padding: 18px 16px 100px;
+        padding: 24px 20px 100px;
       }
       .primary-reading-pane {
-        padding: 24px 20px;
+        padding: 32px 28px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .content-viewport {
+        padding: 16px 12px 100px;
+      }
+      .primary-reading-pane {
+        padding: 24px 18px;
+        border-radius: 14px;
+      }
+      .vocab-grid-container {
+        grid-template-columns: 1fr;
       }
       .lesson-main-title {
-        font-size: 28px;
+        font-size: 26px;
       }
       .chat-en-text {
         font-size: 19px;
@@ -1283,11 +1273,6 @@
 
       <!-- TOOLBAR CONTROLS -->
       <div class="header-controls">
-        <button class="icon-ctrl-btn" id="layoutToggleBtn" title="切换双栏研读/单栏聚焦模式">
-          <span id="layoutIcon">📖</span>
-          <span id="layoutName">双栏研读台</span>
-        </button>
-
         <select class="lang-mode-select" id="langModeSelect" title="中英显示模式切换">
           <option value="bilingual">🌐 中英双语对照</option>
           <option value="english-only">🔤 纯英文沉浸</option>
@@ -1323,30 +1308,15 @@
         </ul>
       </aside>
 
-      <!-- CONTENT VIEWPORT WITH PANORAMIC TWO-COLUMN GRID -->
+      <!-- CONTENT VIEWPORT (FOCUSED SINGLE-COLUMN READER) -->
       <main class="content-viewport">
         <div class="workspace-grid" id="workspaceGrid">
-          <!-- PRIMARY READING PANE (LEFT) -->
+          <!-- PRIMARY READING PANE -->
           <div class="primary-reading-pane" id="primaryReadingPane">
             <div style="text-align:center; padding: 60px 20px; color: var(--text-muted);">
               <h3>⏳ 正在载入研读数据...</h3>
             </div>
           </div>
-
-          <!-- STICKY STUDY COMPANION PANE (RIGHT) -->
-          <aside class="study-companion-pane" id="studyCompanionPane">
-            <div class="companion-header">
-              <div class="companion-tabs-nav">
-                <button class="comp-tab-btn active" id="tabBtnVocab" onclick="window.switchCompanionTab('vocab')">💡 核心词块 (<span id="compVocabCount">0</span>)</button>
-                <button class="comp-tab-btn" id="tabBtnGrammar" onclick="window.switchCompanionTab('grammar')">🧠 语法与思维</button>
-                <button class="comp-tab-btn" id="tabBtnSpeech" onclick="window.switchCompanionTab('speech')">🎧 连读解密</button>
-              </div>
-              <span style="font-size:12px; color:var(--text-muted);">点击单词即可发音</span>
-            </div>
-            <div class="companion-scrollable-body" id="companionBody">
-              <!-- Rendered dynamically -->
-            </div>
-          </aside>
         </div>
       </main>
     </div>
@@ -1381,8 +1351,6 @@
         theme: localStorage.getItem('laishi_theme') || 'light',
         fontScale: parseFloat(localStorage.getItem('laishi_font_scale') || '1.0'),
         langMode: localStorage.getItem('laishi_lang_mode') || 'bilingual',
-        layoutMode: localStorage.getItem('laishi_layout_mode') || 'dual', // 'dual' or 'single'
-        companionTab: 'vocab',
         isPlayingAll: false,
         speechQueue: []
       };
@@ -1390,15 +1358,6 @@
       // DOM ELEMENTS
       const htmlEl = document.documentElement;
       const primaryReadingPane = document.getElementById('primaryReadingPane');
-      const studyCompanionPane = document.getElementById('studyCompanionPane');
-      const companionBody = document.getElementById('companionBody');
-      const compVocabCount = document.getElementById('compVocabCount');
-      const tabBtnVocab = document.getElementById('tabBtnVocab');
-      const tabBtnGrammar = document.getElementById('tabBtnGrammar');
-      const tabBtnSpeech = document.getElementById('tabBtnSpeech');
-      const layoutToggleBtn = document.getElementById('layoutToggleBtn');
-      const layoutIcon = document.getElementById('layoutIcon');
-      const layoutName = document.getElementById('layoutName');
       const lessonTocList = document.getElementById('lessonTocList');
       const tocSearchInput = document.getElementById('tocSearchInput');
       const sidebarStatsCount = document.getElementById('sidebarStatsCount');
@@ -1538,29 +1497,6 @@
         localStorage.setItem('laishi_lang_mode', mode);
       }
 
-      // LAYOUT MODE (DUAL VS SINGLE COLUMN)
-      function applyLayoutMode(mode) {
-        state.layoutMode = mode;
-        if (mode === 'single') {
-          document.body.classList.add('single-column');
-          layoutIcon.textContent = '📄';
-          layoutName.textContent = '单栏聚焦';
-        } else {
-          document.body.classList.remove('single-column');
-          layoutIcon.textContent = '📖';
-          layoutName.textContent = '双栏研读台';
-        }
-        localStorage.setItem('laishi_layout_mode', mode);
-      }
-
-      window.switchCompanionTab = function(tab) {
-        state.companionTab = tab;
-        tabBtnVocab.classList.toggle('active', tab === 'vocab');
-        tabBtnGrammar.classList.toggle('active', tab === 'grammar');
-        if (tabBtnSpeech) tabBtnSpeech.classList.toggle('active', tab === 'speech');
-        renderCompanionPane();
-      };
-
       // RENDER SIDEBAR TOC
       function renderSidebar() {
         const data = getActiveDataset();
@@ -1646,138 +1582,9 @@
         sidebarStatsCount.textContent = `共 ${visibleCount} 项`;
       }
 
-      // RENDER RIGHT-HAND STICKY COMPANION PANE
-      function renderCompanionPane() {
-        const data = getActiveDataset();
-        let item = null;
-        if (typeof state.lessonNum === 'string' && state.lessonNum.startsWith('song_')) {
-          item = data.find(d => d.id === state.lessonNum);
-        } else {
-          item = data.find(d => d.num === state.lessonNum);
-        }
-        if (!item || item.type === 'song') {
-          studyCompanionPane.style.display = 'none';
-          return;
-        } else {
-          if (state.layoutMode === 'dual') {
-            studyCompanionPane.style.display = 'flex';
-          }
-        }
-
-        const vocabList = item.vocab || [];
-        compVocabCount.textContent = vocabList.length;
-
-        if (state.companionTab === 'vocab') {
-          if (!vocabList.length) {
-            companionBody.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text-muted);">本课无单独生词卡</div>';
-            return;
-          }
-          let vHtml = '<div class="companion-vocab-list">';
-          vocabList.forEach(v => {
-            const posClass = 'pos-' + (v.pos ? v.pos.replace('.', '').toLowerCase() : 'n');
-            vHtml += `
-              <div class="modern-vocab-card" style="margin-bottom:0;">
-                <div>
-                  <div class="vocab-card-header">
-                    <span class="vocab-word-term" onclick="window.speakWord('${escapeQuotes(v.word)}')">${v.word} 🔊</span>
-                    ${v.phonetic ? `<span class="vocab-phonetic-badge">${v.phonetic}</span>` : ''}
-                    ${v.pos ? `<span class="vocab-pos-pill ${posClass}">${v.pos}</span>` : ''}
-                  </div>
-                  <div class="vocab-meaning-line">${v.meaning}</div>
-                  ${v.modern_tip ? `
-                    <div style="font-size:12px; color:var(--primary); background:var(--primary-light); padding:5px 8px; border-radius:6px; margin:6px 0; font-weight:600; line-height:1.4;">
-                      💡 <strong>母语者技巧：</strong>${v.modern_tip}
-                    </div>
-                  ` : ''}
-                </div>
-                ${v.example ? `
-                  <div class="vocab-example-card">
-                    <div class="ex-en-line" onclick="window.speakWord('${escapeQuotes(v.example.en)}')">${v.example.en} 🔊</div>
-                    <div class="ex-zh-line">${v.example.zh}</div>
-                  </div>
-                ` : (v.examples && v.examples.length ? `
-                  <div class="vocab-example-card">
-                    <div class="ex-en-line" onclick="window.speakWord('${escapeQuotes(v.examples[0].en)}')">${v.examples[0].en} 🔊</div>
-                    <div class="ex-zh-line">${v.examples[0].zh}</div>
-                  </div>
-                ` : '')}
-              </div>
-            `;
-          });
-          vHtml += '</div>';
-          companionBody.innerHTML = vHtml;
-        } else if (state.companionTab === 'speech') {
-          // Connected speech tab
-          const speechList = item.connected_speech || [];
-          if (!speechList.length) {
-            companionBody.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text-muted);">本课无单独连读解密要点</div>';
-            return;
-          }
-          let sHtml = '<div class="grammar-cards-stack" style="margin:0;">';
-          sHtml += `
-            <div class="pedagogical-tip-card" style="margin:0 0 12px; border-left:4px solid var(--accent);">
-              <div class="tip-title">🎧 录音棚原声听力解码</div>
-              <div class="tip-body">赖世雄老师与 Bruce 外教在真实朗读中自然流露的连读、弱读与闪音细节，听原声时重点锁定这些声音信号！</div>
-            </div>
-          `;
-          speechList.forEach((sp, sIdx) => {
-            sHtml += `
-              <div class="modern-grammar-card" style="border-left: 3px solid var(--primary); padding:14px 16px;">
-                <div class="grammar-card-title" style="margin-bottom:8px;">
-                  <span class="grammar-num-badge">${String(sIdx+1).padStart(2, '0')}</span>
-                  <span style="font-size:15px; font-weight:700;">发音与听力密码</span>
-                </div>
-                <p class="grammar-desc-p" style="font-size:14px; line-height:1.6; color:var(--text-main); font-weight:500; margin:0;">${sp}</p>
-              </div>
-            `;
-          });
-          sHtml += '</div>';
-          companionBody.innerHTML = sHtml;
-        } else {
-          // Grammar tab
-          const gData = item.grammar;
-          if (!gData) {
-            companionBody.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text-muted);">本课无专项语法精析</div>';
-            return;
-          }
-          const gItems = gData.items || (Array.isArray(gData) ? gData : []);
-          let gHtml = '<div class="grammar-cards-stack" style="margin:0;">';
-          if (gData.intro) {
-            gHtml += `<div class="pedagogical-tip-card" style="margin:0 0 12px;"><div class="tip-body">${gData.intro}</div></div>`;
-          }
-          gItems.forEach(g => {
-            gHtml += `
-              <div class="modern-grammar-card">
-                <div class="grammar-card-title">
-                  <span class="grammar-num-badge">${g.num}</span>
-                  <span>${g.title}</span>
-                </div>
-            `;
-            if (g.formulas && g.formulas.length) {
-              g.formulas.forEach(f => {
-                gHtml += `<div class="grammar-formula-bar">📌 公式：${f}</div>`;
-              });
-            }
-            const paras = g.desc || g.body || [];
-            paras.forEach(p => {
-              gHtml += `<p class="grammar-desc-p">${p}</p>`;
-            });
-            if (g.examples && g.examples.length) {
-              g.examples.forEach(ex => {
-                gHtml += `<div class="grammar-example-pill">例：${ex}</div>`;
-              });
-            }
-            gHtml += `</div>`;
-          });
-          gHtml += '</div>';
-          companionBody.innerHTML = gHtml;
-        }
-      }
-
       // RENDER PHONETICS VIEW
       function renderPhoneticsView() {
         const data = window.DATA_READER_PHONETICS || [];
-        studyCompanionPane.style.display = 'none';
 
         let html = `
           <div class="lesson-hero">
@@ -1823,7 +1630,6 @@
         const data = getActiveDataset();
         if (!data || !data.length) {
           primaryReadingPane.innerHTML = '<div style="text-align:center; padding:50px;">暂无课文数据</div>';
-          studyCompanionPane.style.display = 'none';
           return;
         }
 
@@ -1852,10 +1658,7 @@
           nextLessonBtn.disabled = (num >= totalLessons);
         }
 
-        // Render Right Companion Pane
-        renderCompanionPane();
-
-        // BUILD HTML FOR LEFT READING PANE
+        // BUILD HTML FOR FOCUSED SINGLE COLUMN READING PANE
         let html = '';
 
         // HERO HEADER
@@ -1874,9 +1677,10 @@
             <p class="lesson-sub-title">${item.title_zh}</p>
             
             <div class="inpage-nav">
-              ${(item.dialog || item.dialogs || item.reading) ? '<a href="#sec-text" class="inpage-nav-pill">💬 课文对话</a>' : ''}
-              ${(item.vocab && item.vocab.length) ? '<a href="#sec-vocab" class="inpage-nav-pill">📖 重点词汇</a>' : ''}
-              ${(item.grammar && (item.grammar.items || item.grammar.length)) ? '<a href="#sec-grammar" class="inpage-nav-pill">🧠 语法重点</a>' : ''}
+              ${(item.dialog || item.dialogs || item.reading) ? '<a href="#sec-text" class="inpage-nav-pill">💬 课文原声</a>' : ''}
+              ${(item.connected_speech && item.connected_speech.length) ? '<a href="#sec-speech" class="inpage-nav-pill">🎧 连读解码</a>' : ''}
+              ${(item.vocab && item.vocab.length) ? '<a href="#sec-vocab" class="inpage-nav-pill">💡 核心词块</a>' : ''}
+              ${(item.grammar && (item.grammar.items || item.grammar.length)) ? '<a href="#sec-grammar" class="inpage-nav-pill">🧠 语法精析</a>' : ''}
               ${(item.substitution && item.substitution.length) ? '<a href="#sec-sub" class="inpage-nav-pill">🔄 句型替换</a>' : ''}
               ${(item.exercises && (item.exercises.questions || item.exercises.length)) ? '<a href="#sec-ex" class="inpage-nav-pill">✍️ 随堂实战</a>' : ''}
             </div>
@@ -1995,15 +1799,55 @@
           html += `</section>`;
         }
 
-        // 2. VOCABULARY SECTION (INLINE DISPLAY FOR FULL ACCESS)
+        // 2. CONNECTED SPEECH DECODING SECTION
+        if (item.connected_speech && item.connected_speech.length) {
+          html += `
+            <section class="reading-section" id="sec-speech">
+              <div class="section-header-row">
+                <div class="section-heading">
+                  <span>🎧 原声连读与听力解码 (${item.connected_speech.length}条核心法则)</span>
+                </div>
+                <span style="font-size:13px; color:var(--text-muted);">攻克听力盲区 · 掌握母语真实语流</span>
+              </div>
+              <div class="speech-cards-stack">
+          `;
+
+          item.connected_speech.forEach((sp, sIdx) => {
+            let tag = '连读秘籍';
+            let desc = sp;
+            if (sp.includes('：')) {
+              const parts = sp.split('：');
+              tag = parts[0];
+              desc = parts.slice(1).join('：');
+            } else if (sp.includes(':')) {
+              const parts = sp.split(':');
+              tag = parts[0];
+              desc = parts.slice(1).join(':');
+            }
+
+            html += `
+              <div class="modern-speech-card">
+                <div class="speech-card-header">
+                  <span class="speech-badge-num">${String(sIdx + 1).padStart(2, '0')}</span>
+                  <span class="speech-type-badge">${tag}</span>
+                </div>
+                <div class="speech-desc-text">${desc}</div>
+              </div>
+            `;
+          });
+
+          html += `</div></section>`;
+        }
+
+        // 3. VOCABULARY SECTION (CORE CHUNKS & COLLOCATIONS)
         if (item.vocab && item.vocab.length) {
           html += `
             <section class="reading-section" id="sec-vocab">
               <div class="section-header-row">
                 <div class="section-heading">
-                  <span>📖 核心词汇短语精解 (${item.vocab.length}词)</span>
+                  <span>💡 核心高频词块与搭配 (${item.vocab.length}组)</span>
                 </div>
-                <span style="font-size:13px; color:var(--text-muted);">规范现代国际音标 [IPA]</span>
+                <span style="font-size:13px; color:var(--text-muted);">规范现代国际音标 [IPA] · 母语真实搭配</span>
               </div>
               <div class="vocab-grid-container">
           `;
@@ -2043,7 +1887,7 @@
           html += `</div></section>`;
         }
 
-        // 3. GRAMMAR SECTION
+        // 4. GRAMMAR SECTION (INTUITIVE COGNITIVE GRAMMAR)
         if (item.grammar) {
           const gItems = item.grammar.items || (Array.isArray(item.grammar) ? item.grammar : []);
           if (gItems.length || item.grammar.intro) {
@@ -2051,8 +1895,9 @@
               <section class="reading-section" id="sec-grammar">
                 <div class="section-header-row">
                   <div class="section-heading">
-                    <span>🧠 核心语法与句型结构精析</span>
+                    <span>🧠 语法与母语思维突破</span>
                   </div>
+                  <span style="font-size:13px; color:var(--text-muted);">句型骨架公式 · 真实语境代入</span>
                 </div>
                 ${item.grammar.intro ? `<div class="pedagogical-tip-card" style="margin-top:0;"><div class="tip-body">${item.grammar.intro}</div></div>` : ''}
                 <div class="grammar-cards-stack">
@@ -2310,12 +2155,6 @@
         };
       });
 
-      // Layout mode toggle button
-      layoutToggleBtn.onclick = () => {
-        const nextMode = state.layoutMode === 'dual' ? 'single' : 'dual';
-        applyLayoutMode(nextMode);
-      };
-
       // Prev/Next buttons
       prevLessonBtn.onclick = () => {
         if (state.lessonNum > 1) {
@@ -2391,7 +2230,6 @@
       applyTheme(state.theme);
       applyFontScale(state.fontScale);
       applyLangMode(state.langMode);
-      applyLayoutMode(state.layoutMode);
       langModeSelect.value = state.langMode;
 
       // Select active volume tab in header

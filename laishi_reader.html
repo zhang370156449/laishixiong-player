@@ -1456,29 +1456,31 @@
       }
 
       // Play original studio cut if present, else fallback to Web Speech
-      function playSentence(filename, text, highlightEl) {
+      function playSentence(filename, text, highlightEl, onEnd) {
         stopAllAudio();
         if (highlightEl) highlightEl.classList.add('active-speaking');
+
+        function finish() {
+          if (highlightEl) highlightEl.classList.remove('active-speaking');
+          activeAudio = null;
+          if (onEnd) onEnd();
+        }
 
         if (filename) {
           const audioPath = 'audio_chunks/' + filename;
           const a = new Audio(audioPath);
           activeAudio = a;
-          a.play().then(() => {
-            a.onended = () => {
-              if (highlightEl) highlightEl.classList.remove('active-speaking');
-              activeAudio = null;
-            };
-          }).catch(err => {
-            // fallback to synth
-            speakText(text, () => {
-              if (highlightEl) highlightEl.classList.remove('active-speaking');
-            });
+          a.onended = finish;
+          a.onerror = () => {
+            console.warn("Audio file playback error (" + filename + "), falling back to TTS");
+            speakText(text, finish);
+          };
+          a.play().catch(err => {
+            console.warn("Audio play() rejected (" + filename + "), falling back to TTS:", err);
+            speakText(text, finish);
           });
         } else {
-          speakText(text, () => {
-            if (highlightEl) highlightEl.classList.remove('active-speaking');
-          });
+          speakText(text, finish);
         }
       }
 
@@ -1865,10 +1867,11 @@
               html += `<div class="dialogue-thread">`;
               dlg.turns.forEach(t => {
                 const isB = (t.speaker === 'B' || t.speaker === '乙' || t.speaker.toLowerCase().includes('may'));
+                const audioFile = t.audio || '';
                 html += `
                   <div class="chat-row ${isB ? 'speaker-b' : ''}">
                     <div class="chat-avatar">${t.speaker.slice(0, 1)}</div>
-                    <div class="chat-bubble-card" onclick="window.playTurn(this, '${escapeQuotes(t.en)}')">
+                    <div class="chat-bubble-card" data-audio="${audioFile}" onclick="window.playSentenceChunk(this, '${audioFile}', '${escapeQuotes(t.en)}')">
                       <div class="chat-name-line">
                         <span>${t.speaker}</span>
                         <button class="btn-audio-pill" title="朗读">🔊</button>
@@ -1888,11 +1891,11 @@
             html += `<div class="dialogue-thread">`;
             item.dialog.turns.forEach((t, idx) => {
               const isB = (idx % 2 === 1);
-              const audioFile = `chuji_l${num}_${String(idx+1).padStart(2,'0')}.mp3`;
+              const audioFile = t.audio || `chuji_l${num}_${String(idx+1).padStart(2,'0')}.mp3`;
               html += `
                 <div class="chat-row ${isB ? 'speaker-b' : ''}">
                   <div class="chat-avatar">${t.speaker_en ? t.speaker_en.slice(0, 1) : (isB ? 'B' : 'A')}</div>
-                  <div class="chat-bubble-card" onclick="window.playSentenceChunk(this, '${audioFile}', '${escapeQuotes(t.en)}')">
+                  <div class="chat-bubble-card" data-audio="${audioFile}" onclick="window.playSentenceChunk(this, '${audioFile}', '${escapeQuotes(t.en)}')">
                     <div class="chat-name-line">
                       <span>${t.speaker_en || (isB ? 'Speaker B' : 'Speaker A')} (${t.speaker_zh || ''})</span>
                       <button class="btn-audio-pill" title="朗读">🔊</button>
@@ -1913,9 +1916,9 @@
             // Prefer pre-aligned sentences
             if (item.reading.sentences && item.reading.sentences.length) {
               item.reading.sentences.forEach((sent, sIdx) => {
-                const audioFile = `chuji_l${num}_${String(sIdx+1).padStart(2,'0')}.mp3`;
+                const audioFile = sent.audio || `chuji_l${num}_${String(sIdx+1).padStart(2,'0')}.mp3`;
                 html += `
-                  <div class="reading-sentence-item" onclick="window.playSentenceChunk(this, '${audioFile}', '${escapeQuotes(sent.en)}')">
+                  <div class="reading-sentence-item" data-audio="${audioFile}" onclick="window.playSentenceChunk(this, '${audioFile}', '${escapeQuotes(sent.en)}')">
                     <div class="reading-en-line">${sent.en} <button class="btn-audio-pill">🔊</button></div>
                     <div class="reading-zh-line">${sent.zh}</div>
                   </div>
@@ -1933,7 +1936,7 @@
                   const sZh = sentencesZh[sIdx] || '';
                   const audioFile = `chuji_l${num}_${String(sIdx+1).padStart(2,'0')}.mp3`;
                   html += `
-                    <div class="reading-sentence-item" onclick="window.playSentenceChunk(this, '${audioFile}', '${escapeQuotes(sEn.trim())}')">
+                    <div class="reading-sentence-item" data-audio="${audioFile}" onclick="window.playSentenceChunk(this, '${audioFile}', '${escapeQuotes(sEn.trim())}')">
                       <div class="reading-en-line">${sEn.trim()} <button class="btn-audio-pill">🔊</button></div>
                       <div class="reading-zh-line">${sZh.trim()}</div>
                     </div>
@@ -2186,7 +2189,8 @@
       };
 
       window.playTurn = function(bubbleEl, text) {
-        playSentence(null, text, bubbleEl);
+        const audio = bubbleEl ? (bubbleEl.dataset.audio || '') : '';
+        playSentence(audio, text, bubbleEl);
       };
 
       window.playSentenceChunk = function(el, filename, text) {
@@ -2208,12 +2212,13 @@
         }
 
         const itemsToPlay = [];
-        // collect chat bubbles or reading sentences
+        // collect chat bubbles or reading sentences with their original audio file
         document.querySelectorAll('.chat-bubble-card, .reading-sentence-item').forEach(el => {
           const textEl = el.querySelector('.chat-en-text') || el.querySelector('.reading-en-line');
           if (textEl) {
             itemsToPlay.push({
               el: el,
+              audio: el.dataset.audio || '',
               text: textEl.innerText.replace('🔊', '').trim()
             });
           }
@@ -2241,10 +2246,9 @@
           cur.el.classList.add('active-speaking');
           cur.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-          speakText(cur.text, () => {
-            cur.el.classList.remove('active-speaking');
+          playSentence(cur.audio, cur.text, cur.el, () => {
             curIdx++;
-            setTimeout(playNext, 400);
+            setTimeout(playNext, 350);
           });
         }
 

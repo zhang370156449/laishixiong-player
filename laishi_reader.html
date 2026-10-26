@@ -1337,8 +1337,9 @@
           <aside class="study-companion-pane" id="studyCompanionPane">
             <div class="companion-header">
               <div class="companion-tabs-nav">
-                <button class="comp-tab-btn active" id="tabBtnVocab" onclick="window.switchCompanionTab('vocab')">📖 核心词汇 (<span id="compVocabCount">0</span>)</button>
-                <button class="comp-tab-btn" id="tabBtnGrammar" onclick="window.switchCompanionTab('grammar')">🧠 语法重点</button>
+                <button class="comp-tab-btn active" id="tabBtnVocab" onclick="window.switchCompanionTab('vocab')">💡 核心词块 (<span id="compVocabCount">0</span>)</button>
+                <button class="comp-tab-btn" id="tabBtnGrammar" onclick="window.switchCompanionTab('grammar')">🧠 语法与思维</button>
+                <button class="comp-tab-btn" id="tabBtnSpeech" onclick="window.switchCompanionTab('speech')">🎧 连读解密</button>
               </div>
               <span style="font-size:12px; color:var(--text-muted);">点击单词即可发音</span>
             </div>
@@ -1394,6 +1395,7 @@
       const compVocabCount = document.getElementById('compVocabCount');
       const tabBtnVocab = document.getElementById('tabBtnVocab');
       const tabBtnGrammar = document.getElementById('tabBtnGrammar');
+      const tabBtnSpeech = document.getElementById('tabBtnSpeech');
       const layoutToggleBtn = document.getElementById('layoutToggleBtn');
       const layoutIcon = document.getElementById('layoutIcon');
       const layoutName = document.getElementById('layoutName');
@@ -1555,6 +1557,7 @@
         state.companionTab = tab;
         tabBtnVocab.classList.toggle('active', tab === 'vocab');
         tabBtnGrammar.classList.toggle('active', tab === 'grammar');
+        if (tabBtnSpeech) tabBtnSpeech.classList.toggle('active', tab === 'speech');
         renderCompanionPane();
       };
 
@@ -1681,6 +1684,11 @@
                     ${v.pos ? `<span class="vocab-pos-pill ${posClass}">${v.pos}</span>` : ''}
                   </div>
                   <div class="vocab-meaning-line">${v.meaning}</div>
+                  ${v.modern_tip ? `
+                    <div style="font-size:12px; color:var(--primary); background:var(--primary-light); padding:5px 8px; border-radius:6px; margin:6px 0; font-weight:600; line-height:1.4;">
+                      💡 <strong>母语者技巧：</strong>${v.modern_tip}
+                    </div>
+                  ` : ''}
                 </div>
                 ${v.example ? `
                   <div class="vocab-example-card">
@@ -1698,6 +1706,33 @@
           });
           vHtml += '</div>';
           companionBody.innerHTML = vHtml;
+        } else if (state.companionTab === 'speech') {
+          // Connected speech tab
+          const speechList = item.connected_speech || [];
+          if (!speechList.length) {
+            companionBody.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text-muted);">本课无单独连读解密要点</div>';
+            return;
+          }
+          let sHtml = '<div class="grammar-cards-stack" style="margin:0;">';
+          sHtml += `
+            <div class="pedagogical-tip-card" style="margin:0 0 12px; border-left:4px solid var(--accent);">
+              <div class="tip-title">🎧 录音棚原声听力解码</div>
+              <div class="tip-body">赖世雄老师与 Bruce 外教在真实朗读中自然流露的连读、弱读与闪音细节，听原声时重点锁定这些声音信号！</div>
+            </div>
+          `;
+          speechList.forEach((sp, sIdx) => {
+            sHtml += `
+              <div class="modern-grammar-card" style="border-left: 3px solid var(--primary); padding:14px 16px;">
+                <div class="grammar-card-title" style="margin-bottom:8px;">
+                  <span class="grammar-num-badge">${String(sIdx+1).padStart(2, '0')}</span>
+                  <span style="font-size:15px; font-weight:700;">发音与听力密码</span>
+                </div>
+                <p class="grammar-desc-p" style="font-size:14px; line-height:1.6; color:var(--text-main); font-weight:500; margin:0;">${sp}</p>
+              </div>
+            `;
+          });
+          sHtml += '</div>';
+          companionBody.innerHTML = sHtml;
         } else {
           // Grammar tab
           const gData = item.grammar;
@@ -1984,6 +2019,11 @@
                     ${v.pos ? `<span class="vocab-pos-pill ${posClass}">${v.pos}</span>` : ''}
                   </div>
                   <div class="vocab-meaning-line">${v.meaning}</div>
+                  ${v.modern_tip ? `
+                    <div style="font-size:12px; color:var(--primary); background:var(--primary-light); padding:5px 8px; border-radius:6px; margin:6px 0; font-weight:600; line-height:1.4;">
+                      💡 <strong>母语者技巧：</strong>${v.modern_tip}
+                    </div>
+                  ` : ''}
                 </div>
                 ${v.example ? `
                   <div class="vocab-example-card">

@@ -1907,27 +1907,40 @@
           }
 
           // C. Reading Prose (初级上下册奇数课)
-          if (item.reading && item.reading.en && item.reading.en.length) {
+          if (item.reading) {
             html += `<div class="reading-passage-card">`;
-            const r_en = item.reading.en;
-            const r_zh = item.reading.zh || [];
             
-            // If single paragraph, split into sentences for granular point-and-read
-            r_en.forEach((para, pIdx) => {
-              const sentencesEn = para.match(/[^.!?]+[.!?]+/g) || [para];
-              const sentencesZh = (r_zh[pIdx] || '').match(/[^。！？]+[。！？]+/g) || [r_zh[pIdx] || ''];
-              
-              sentencesEn.forEach((sEn, sIdx) => {
-                const sZh = sentencesZh[sIdx] || '';
+            // Prefer pre-aligned sentences
+            if (item.reading.sentences && item.reading.sentences.length) {
+              item.reading.sentences.forEach((sent, sIdx) => {
                 const audioFile = `chuji_l${num}_${String(sIdx+1).padStart(2,'0')}.mp3`;
                 html += `
-                  <div class="reading-sentence-item" onclick="window.playSentenceChunk(this, '${audioFile}', '${escapeQuotes(sEn.trim())}')">
-                    <div class="reading-en-line">${sEn.trim()} <button class="btn-audio-pill">🔊</button></div>
-                    <div class="reading-zh-line">${sZh.trim()}</div>
+                  <div class="reading-sentence-item" onclick="window.playSentenceChunk(this, '${audioFile}', '${escapeQuotes(sent.en)}')">
+                    <div class="reading-en-line">${sent.en} <button class="btn-audio-pill">🔊</button></div>
+                    <div class="reading-zh-line">${sent.zh}</div>
                   </div>
                 `;
               });
-            });
+            } else if (item.reading.en && item.reading.en.length) {
+              const r_en = item.reading.en;
+              const r_zh = item.reading.zh || [];
+              
+              r_en.forEach((para, pIdx) => {
+                const sentencesEn = para.match(/[^.!?]+[.!?]+/g) || [para];
+                const sentencesZh = (r_zh[pIdx] || '').match(/[^。！？]+[。！？]+/g) || [r_zh[pIdx] || ''];
+                
+                sentencesEn.forEach((sEn, sIdx) => {
+                  const sZh = sentencesZh[sIdx] || '';
+                  const audioFile = `chuji_l${num}_${String(sIdx+1).padStart(2,'0')}.mp3`;
+                  html += `
+                    <div class="reading-sentence-item" onclick="window.playSentenceChunk(this, '${audioFile}', '${escapeQuotes(sEn.trim())}')">
+                      <div class="reading-en-line">${sEn.trim()} <button class="btn-audio-pill">🔊</button></div>
+                      <div class="reading-zh-line">${sZh.trim()}</div>
+                    </div>
+                  `;
+                });
+              });
+            }
             html += `</div>`;
           }
 

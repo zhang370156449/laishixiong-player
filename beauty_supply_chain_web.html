@@ -200,7 +200,7 @@
       color: #0f172a;
     }
 
-    /* Main Container (Spacious Max Width) */
+    /* Main Container */
     .container {
       max-width: 1440px;
       margin: 0 auto;
@@ -481,7 +481,7 @@
       }
     }
 
-    /* Item Card: Spacious, Deluxe Padding */
+    /* Item Card */
     .item-card {
       background: var(--bg-card);
       backdrop-filter: blur(10px);
@@ -533,6 +533,31 @@
     }
     [data-theme="light"] .term-title {
       color: #0f172a;
+    }
+
+    /* Country Sub Row with Separate ISO Badge */
+    .country-sub-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .country-iso-pill {
+      font-family: var(--font-code);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      letter-spacing: 0.5px;
+    }
+    [data-theme="light"] .country-iso-pill {
+      background: #e0f2fe;
+      border-color: #bae6fd;
+      color: #0284c7;
     }
 
     .term-phonetic {
@@ -891,7 +916,7 @@
     <div class="search-filter-bar">
       <div class="search-input-wrap">
         <span class="search-icon-left">🔍</span>
-        <input type="text" id="searchInput" class="search-input" placeholder="输入英文词组、中文释义、国名或业务场景实时检索（如：清关、shelf life、控价、法国）..." autocomplete="off">
+        <input type="text" id="searchInput" class="search-input" placeholder="输入英文词组、中文释义、国名代码或业务场景实时检索（如：清关、CH、shelf life、控价、瑞士）..." autocomplete="off">
         <button id="searchClear" class="search-clear-btn">✕</button>
       </div>
 
@@ -953,8 +978,8 @@
         {
           "id": "c0_01",
           "name": "France",
+          "code": "FR",
           "adj": "French",
-          "flag": "🇫🇷",
           "phonetic": "/fræns/ · /frentʃ/",
           "role": "格拉斯香水之都 / 巴黎高定美妆策源地",
           "meaning": "法国 · 法国的 / 法语 / 法国人",
@@ -967,8 +992,8 @@
         {
           "id": "c0_02",
           "name": "Italy",
+          "code": "IT",
           "adj": "Italian",
-          "flag": "🇮🇹",
           "phonetic": "/ˈɪtəli/ · /ɪˈtæliən/",
           "role": "奢华香水 / 顶级玻璃瓶身包材工艺中心",
           "meaning": "意大利 · 意大利的 / 意大利人",
@@ -981,8 +1006,8 @@
         {
           "id": "c0_03",
           "name": "Switzerland",
+          "code": "CH",
           "adj": "Swiss",
-          "flag": "🇨🇭",
           "phonetic": "/ˈswɪtsələnd/ · /swɪs/",
           "role": "抗衰科技细胞级护肤 / Swiss Made 权威认证",
           "meaning": "瑞士 · 瑞士的 / 瑞士人",
@@ -995,8 +1020,8 @@
         {
           "id": "c0_04",
           "name": "United Kingdom",
+          "code": "GB",
           "adj": "British",
-          "flag": "🇬🇧",
           "phonetic": "/juːˌnaɪtɪd ˈkɪŋdəm/ · /ˈbrɪtɪʃ/",
           "role": "英伦沙龙香 / 皇室御用古典香氛殿堂",
           "meaning": "英国 · 英国的 / 英国人",
@@ -1009,8 +1034,8 @@
         {
           "id": "c0_05",
           "name": "Germany",
+          "code": "DE",
           "adj": "German",
-          "flag": "🇩🇪",
           "phonetic": "/ˈdʒɜːməni/ · /ˈdʒɜːmən/",
           "role": "医美药妆科研 / 严苛包装机械与精密喷头",
           "meaning": "德国 · 德国的 / 德国人",
@@ -1023,8 +1048,8 @@
         {
           "id": "c0_06",
           "name": "Spain",
+          "code": "ES",
           "adj": "Spanish",
-          "flag": "🇪🇸",
           "phonetic": "/speɪn/ · /ˈspænɪʃ/",
           "role": "欧洲香精香料代工核心大国 / 时尚美妆分销中心",
           "meaning": "西班牙 · 西班牙的 / 西班牙人",
@@ -1037,8 +1062,8 @@
         {
           "id": "c0_07",
           "name": "South Korea",
+          "code": "KR",
           "adj": "Korean / K-Beauty",
-          "flag": "🇰🇷",
           "phonetic": "/saʊθ kəˈriːə/ · /kəˈriːən/",
           "role": "K-Beauty 亚洲潮流彩妆 / 创新护肤爆款策源地",
           "meaning": "韩国 · 韩国的 / 韩国人",
@@ -1051,8 +1076,8 @@
         {
           "id": "c0_08",
           "name": "Japan",
+          "code": "JP",
           "adj": "Japanese / J-Beauty",
-          "flag": "🇯🇵",
           "phonetic": "/dʒəˈpæn/ · /ˌdʒæpəˈniːz/",
           "role": "J-Beauty 严苛配方质检 / 顶级防晒与渗透黑科技",
           "meaning": "日本 · 日本的 / 日本人",
@@ -1065,8 +1090,8 @@
         {
           "id": "c0_09",
           "name": "Singapore",
+          "code": "SG",
           "adj": "Singaporean",
-          "flag": "🇸🇬",
           "phonetic": "/ˌsɪŋəˈpɔːr/ · /ˌsɪŋəˈpɔːriən/",
           "role": "跨国美妆亚太总部 / 区域保税物流转口枢纽",
           "meaning": "新加坡 · 新加坡的 / 新加坡人",
@@ -1079,8 +1104,8 @@
         {
           "id": "c0_10",
           "name": "Thailand",
+          "code": "TH",
           "adj": "Thai",
-          "flag": "🇹🇭",
           "phonetic": "/ˈtaɪlænd/ · /taɪ/",
           "role": "东南亚热带防水防汗彩妆 / 芳香 SPA 精油胜地",
           "meaning": "泰国 · 泰国的 / 泰国人",
@@ -1092,9 +1117,9 @@
         },
         {
           "id": "c0_11",
-          "name": "United Arab Emirates (UAE)",
+          "name": "United Arab Emirates",
+          "code": "AE",
           "adj": "Emirati",
-          "flag": "🇦🇪",
           "phonetic": "/juː eɪ ˈiː/ · /ˌɛmɪˈrɑːti/",
           "role": "迪拜免税集散中心 / 中东浓香沉香(Oud)重度消费市场",
           "meaning": "阿联酋（迪拜）· 阿联酋的 / 阿联酋人",
@@ -1107,8 +1132,8 @@
         {
           "id": "c0_12",
           "name": "Saudi Arabia",
+          "code": "SA",
           "adj": "Saudi",
-          "flag": "🇸🇦",
           "phonetic": "/ˌsaʊdi əˈreɪbiə/ · /ˈsaʊdi/",
           "role": "海湾最大美妆零售市场 / 奢华沙龙香高客单消费巨头",
           "meaning": "沙特阿拉伯 · 沙特的 / 沙特阿拉伯人",
@@ -1120,9 +1145,9 @@
         },
         {
           "id": "c0_13",
-          "name": "United States (USA)",
+          "name": "United States",
+          "code": "US",
           "adj": "American",
-          "flag": "🇺🇸",
           "phonetic": "/juːˌnaɪtɪd ˈsteɪts/ · /əˈmerɪkən/",
           "role": "跨境电商出海主战场 / 新锐 DTC 美妆品牌策源地",
           "meaning": "美国 · 美国的 / 美国人",
@@ -1135,8 +1160,8 @@
         {
           "id": "c0_14",
           "name": "Australia",
+          "code": "AU",
           "adj": "Australian",
-          "flag": "🇦🇺",
           "phonetic": "/ɒˈstreɪliə/ · /ɒˈstreɪliən/",
           "role": "天然有机植萃 / 纯净美妆 (Clean Beauty) 标杆",
           "meaning": "澳大利亚 · 澳大利亚的 / 澳大利亚人",
@@ -1149,8 +1174,8 @@
         {
           "id": "c0_15",
           "name": "Canada",
+          "code": "CA",
           "adj": "Canadian",
-          "flag": "🇨🇦",
           "phonetic": "/ˈkænədə/ · /kəˈneɪdiən/",
           "role": "极简原料桶功效护肤 / 严寒保湿修护配方",
           "meaning": "加拿大 · 加拿大的 / 加拿大人",
@@ -1163,8 +1188,8 @@
         {
           "id": "c0_16",
           "name": "China",
+          "code": "CN",
           "adj": "Chinese / C-Beauty",
-          "flag": "🇨🇳",
           "phonetic": "/ˈtʃaɪnə/ · /ˌtʃaɪˈniːz/",
           "role": "全球高性价比包材模具制造基地 / 跨境出海供应链主力",
           "meaning": "中国 · 中国的 / 中文 / 中国人",
@@ -4122,6 +4147,7 @@
           if (!q) return true;
           if (chap.type === 'country') {
             return (item.name && item.name.toLowerCase().includes(q)) ||
+                   (item.code && item.code.toLowerCase().includes(q)) ||
                    (item.adj && item.adj.toLowerCase().includes(q)) ||
                    (item.meaning && item.meaning.toLowerCase().includes(q)) ||
                    (item.role && item.role.toLowerCase().includes(q)) ||
@@ -4156,13 +4182,16 @@
 
         matchedItems.forEach(item => {
           if (chap.type === 'country') {
-            // Render Country Card
+            // Render Clean Country Card without crowded prefix
             html += `
               <div class="item-card country-card" id="${item.id}">
                 <div class="card-head">
                   <div class="term-title-wrap">
-                    <div class="term-title">${item.flag} ${item.name}</div>
-                    <div class="term-phonetic">${item.phonetic}</div>
+                    <div class="term-title">${item.name}</div>
+                    <div class="country-sub-row">
+                      <div class="term-phonetic">${item.phonetic}</div>
+                      <span class="country-iso-pill">国别代码: ${item.code}</span>
+                    </div>
                   </div>
                   <button class="btn-speak" onclick="playSpeech('${item.name}, ${item.adj}')" title="点击朗读国名与形容词">🔊</button>
                 </div>
@@ -4205,7 +4234,7 @@
                 </div>
 
                 <div class="card-footer">
-                  <span class="item-id-badge">ORIGIN · ${item.id.toUpperCase()}</span>
+                  <span class="item-id-badge">ORIGIN · ${item.code} · ${item.name.toUpperCase()}</span>
                   <span class="category-badge">美妆核心产地</span>
                 </div>
               </div>

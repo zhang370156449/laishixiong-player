@@ -611,6 +611,7 @@
     </div>
     <div class="category-pills" id="categoryPills">
       <div class="pill active" data-cat="all">全部教材</div>
+      <div class="pill" data-cat="industry">💎 行业实战说明书</div>
       <div class="pill" data-cat="vocab">⚡ 朗文3000词根速记</div>
       <div class="pill" data-cat="laishi">赖世雄美语</div>
       <div class="pill" data-cat="cambridge">剑桥 EVOLVE 全套</div>
@@ -766,7 +767,7 @@
               .join('');
 
             quickJumpHtml = `
-              <select class="quick-jump-select" onchange="if(this.value) window.location.href='reader.html?book=${book.id}&page=' + this.value">
+              <select class="quick-jump-select" onchange="if(this.value) { if(book.webUrl) { window.location.href = book.webUrl + '#' + this.value; } else { window.location.href = 'reader.html?book=' + book.id + '&page=' + this.value; } }">
                 <option value="">⚡ 直达指定章节/课次...</option>
                 ${options}
               </select>
@@ -809,9 +810,15 @@
                   </a>
                   <div class="action-sub-row">
                     ${quickJumpHtml}
-                    <a href="${book.pdfUrl}" download class="btn-sub" title="直接下载本教材原始 PDF 文件">
-                      <span>⬇️ 下载</span>
-                    </a>
+                    ${book.pdfUrl ? `
+                      <a href="${book.pdfUrl}" download class="btn-sub" title="直接下载本教材原始 PDF 文件">
+                        <span>⬇️ 下载</span>
+                      </a>
+                    ` : `
+                      <a href="${book.webUrl}" class="btn-sub" title="进入全功能交互式说明书工作台">
+                        <span>🌐 交互工作台</span>
+                      </a>
+                    `}
                   </div>
                 ` : `
                   <button class="btn-read disabled" disabled>

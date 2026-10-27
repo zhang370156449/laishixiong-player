@@ -1,0 +1,4146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>美妆跨境与供应链 · 实战行业说明书 ｜ TomeLab 大卷研读所</title>
+  <link rel="icon" type="image/png" href="favicon_tomelab.png">
+  <link rel="apple-touch-icon" href="tomelab_logo.png">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Variables */
+    :root {
+      --bg-body: #080c16;
+      --bg-surface: #0f172a;
+      --bg-surface-elevated: #162238;
+      --bg-card: rgba(22, 34, 56, 0.75);
+      --bg-card-hover: rgba(28, 43, 72, 0.95);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-card: rgba(255, 255, 255, 0.12);
+      --border-accent: rgba(99, 102, 241, 0.4);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-accent: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-indigo-hover: #4f46e5;
+      --accent-sky: #0ea5e9;
+      --accent-gold: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.35);
+      --shadow-glow: 0 0 24px rgba(56, 189, 248, 0.2);
+      --font-code: "JetBrains Mono", monospace;
+    }
+
+    [data-theme="light"] {
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f1f5f9;
+      --bg-card: rgba(255, 255, 255, 0.92);
+      --bg-card-hover: #ffffff;
+      --border-subtle: #e2e8f0;
+      --border-card: #cbd5e1;
+      --border-accent: rgba(99, 102, 241, 0.4);
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --text-accent: #0284c7;
+      --accent-indigo: #4f46e5;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 10px 25px -4px rgba(15, 23, 42, 0.08);
+      --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-body);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+    }
+
+    /* Global Navbar */
+    .top-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    [data-theme="light"] .top-navbar {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-back-shelf {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-back-shelf:hover {
+      background: var(--accent-indigo);
+      color: #fff;
+      transform: translateX(-2px);
+    }
+
+    .brand-title-badge {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-main {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .brand-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+    .btn-icon:hover {
+      background: var(--accent-indigo);
+      color: #fff;
+      border-color: var(--accent-indigo);
+    }
+
+    .speed-select {
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(30, 27, 75, 0.7) 0%, rgba(15, 23, 42, 0.95) 50%, rgba(14, 165, 233, 0.15) 100%);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    [data-theme="light"] .hero-banner {
+      background: linear-gradient(135deg, #eef2ff 0%, #ffffff 50%, #e0f2fe 100%);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #a5b4fc;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    [data-theme="light"] .hero-badge {
+      background: #e0e7ff;
+      color: #4338ca;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 8px;
+      background: linear-gradient(to right, #ffffff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    [data-theme="light"] .hero-title {
+      background: linear-gradient(to right, #0f172a, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 860px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Global Search & Filter Bar */
+    .search-filter-bar {
+      position: sticky;
+      top: 61px;
+      z-index: 90;
+      background: rgba(8, 12, 22, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 14px 0;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    [data-theme="light"] .search-filter-bar {
+      background: rgba(248, 250, 252, 0.95);
+    }
+
+    .search-input-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .search-input {
+      width: 100%;
+      padding: 13px 44px 13px 46px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-card);
+      color: var(--text-primary);
+      font-size: 15px;
+      font-weight: 500;
+      outline: none;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .search-input:focus {
+      border-color: var(--text-accent);
+      box-shadow: var(--shadow-glow);
+    }
+    .search-icon-left {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    .search-clear-btn {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 18px;
+      cursor: pointer;
+      display: none;
+    }
+
+    /* Tabs Bar */
+    .tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .tabs-bar::-webkit-scrollbar { display: none; }
+
+    .tab-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .tab-pill:hover {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: var(--accent-indigo);
+      color: var(--text-primary);
+    }
+    .tab-pill.active {
+      background: linear-gradient(135deg, var(--accent-indigo), #38bdf8);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    }
+    .tab-badge {
+      padding: 1px 7px;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 0, 0, 0.25);
+      font-size: 11px;
+      font-family: var(--font-code);
+      font-weight: 700;
+    }
+
+    /* Section Headers */
+    .section-header {
+      margin: 32px 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--border-subtle);
+      padding-bottom: 12px;
+    }
+    .section-title-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .section-count-badge {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-accent);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    /* Grid Layout */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    /* Item Card */
+    .item-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .item-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Card Header */
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .term-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .term-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.3;
+      letter-spacing: -0.2px;
+    }
+    [data-theme="light"] .term-title {
+      color: #0f172a;
+    }
+
+    .term-phonetic {
+      font-family: var(--font-code);
+      font-size: 12.5px;
+      color: #38bdf8;
+      font-weight: 500;
+    }
+    [data-theme="light"] .term-phonetic {
+      color: #0284c7;
+    }
+
+    /* Speaker Button */
+    .btn-speak {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #818cf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 17px;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+    .btn-speak:hover {
+      background: var(--accent-indigo);
+      color: #ffffff;
+      transform: scale(1.08);
+      box-shadow: 0 0 16px rgba(99, 102, 241, 0.5);
+    }
+    .btn-speak.speaking {
+      animation: pulseGlow 1s infinite alternate;
+      background: #0ea5e9;
+      color: #fff;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 4px #0ea5e9; transform: scale(1); }
+      100% { box-shadow: 0 0 20px #38bdf8; transform: scale(1.1); }
+    }
+
+    /* Card Meaning */
+    .card-meaning {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--accent-sky);
+    }
+    [data-theme="light"] .card-meaning {
+      color: #1e293b;
+      background: #f1f5f9;
+    }
+
+    /* Country Specific Details */
+    .country-role-box {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-gold);
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px dashed rgba(245, 158, 11, 0.3);
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .country-adj-box {
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .country-adj-badge {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      color: #38bdf8;
+      font-family: var(--font-code);
+    }
+
+    /* Example Box */
+    .example-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+    [data-theme="light"] .example-box {
+      background: #f8fafc;
+      border-color: #e2e8f0;
+    }
+
+    .example-en {
+      font-size: 13.5px;
+      color: #f8fafc;
+      line-height: 1.5;
+      font-weight: 500;
+      padding-right: 28px;
+    }
+    [data-theme="light"] .example-en {
+      color: #0f172a;
+    }
+
+    .example-zh {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .btn-copy-ex {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 14px;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      transition: all 0.15s;
+    }
+    .btn-copy-ex:hover {
+      color: var(--text-accent);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-play-ex {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      align-self: flex-start;
+      margin-top: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-accent);
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-play-ex:hover {
+      background: var(--text-accent);
+      color: #fff;
+    }
+
+    /* Tip Box */
+    .tip-box {
+      font-size: 12px;
+      color: #94a3b8;
+      background: rgba(99, 102, 241, 0.06);
+      border-left: 2px solid #818cf8;
+      padding: 8px 12px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      line-height: 1.5;
+    }
+    [data-theme="light"] .tip-box {
+      color: #475569;
+      background: #f1f5f9;
+      border-left-color: #6366f1;
+    }
+
+    /* Card Footer Info */
+    .card-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .item-id-badge {
+      font-family: var(--font-code);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .category-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-secondary);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--accent-sky);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Empty Search State */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-muted);
+      display: none;
+    }
+    .empty-state.show {
+      display: block;
+    }
+    .empty-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .top-navbar { padding: 10px 14px; }
+      .container { padding: 16px 14px 60px; }
+      .hero-banner { padding: 22px 18px; }
+      .hero-title { font-size: 24px; }
+      .cards-grid { grid-template-columns: 1fr; gap: 14px; }
+      .search-filter-bar { top: 57px; }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- Top Navbar -->
+  <header class="top-navbar">
+    <div class="nav-brand-group">
+      <a href="books.html" class="btn-back-shelf" title="返回 TomeLab 书架中心">
+        <span>◀</span>
+        <span>返回书架</span>
+      </a>
+      <div class="brand-title-badge">
+        <span class="brand-main">💎 TomeLab · 实战行业说明书</span>
+        <span class="brand-sub">美妆跨境分销 · 品牌管理 · 供应链履约</span>
+      </div>
+    </div>
+    
+    <div class="nav-controls">
+      <select class="speed-select" id="speechSpeed" title="调整点读发音语速">
+        <option value="0.85">语速 0.85x</option>
+        <option value="1.0" selected>语速 1.0x (原速)</option>
+        <option value="1.15">语速 1.15x</option>
+      </select>
+      <button class="btn-icon" id="themeToggle" title="切换深色/浅色模式">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-badge">⚡ 280 核心业务词块 + 16 大贸易产地国 · 全场景沉浸点读</div>
+      <h1 class="hero-title">美妆跨境与供应链 · 实战行业说明书</h1>
+      <p class="hero-subtitle">
+        专为美妆出海、海外品牌运营、跨境分销与供应链操盘手打造的终身实操指南。
+        摒弃孤立机械背单词，直击调香配方、保税清关、品牌控价(MAP)与平台黄金购物车(Buy Box)的核心业务全链路。
+      </p>
+      <div class="hero-tags">
+        <span class="hero-pill">🌍 16国美妆血统溯源</span>
+        <span class="hero-pill">🚢 70组物流清关词块</span>
+        <span class="hero-pill">🧪 70组品类质检词块</span>
+        <span class="hero-pill">🛡️ 70组品牌控价词块</span>
+        <span class="hero-pill">📊 70组跨境电商词块</span>
+        <span class="hero-pill">🔊 原生真人逐词逐句发音</span>
+      </div>
+    </section>
+
+    <!-- Search & Tabs Sticky Bar -->
+    <div class="search-filter-bar">
+      <div class="search-input-wrap">
+        <span class="search-icon-left">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="输入英文词组、中文释义、国名或业务场景实时检索（如：清关、shelf life、控价、法国）..." autocomplete="off">
+        <button id="searchClear" class="search-clear-btn">✕</button>
+      </div>
+
+      <div class="tabs-bar" id="tabsBar">
+        <div class="tab-pill active" data-chapter="all">
+          <span>全部收录</span>
+          <span class="tab-badge" id="badgeAll">296</span>
+        </div>
+        <div class="tab-pill" data-chapter="chap0">
+          <span>🌍 序章 · 贸易国度</span>
+          <span class="tab-badge">16</span>
+        </div>
+        <div class="tab-pill" data-chapter="chap1">
+          <span>🚢 第1章 · 物流清关</span>
+          <span class="tab-badge">70</span>
+        </div>
+        <div class="tab-pill" data-chapter="chap2">
+          <span>🧪 第2章 · 美妆质检</span>
+          <span class="tab-badge">70</span>
+        </div>
+        <div class="tab-pill" data-chapter="chap3">
+          <span>🛡️ 第3章 · 品牌控价</span>
+          <span class="tab-badge">70</span>
+        </div>
+        <div class="tab-pill" data-chapter="chap4">
+          <span>📊 第4章 · 跨境平台</span>
+          <span class="tab-badge">70</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty Search State -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🔍</div>
+      <h3>未找到匹配的词组或国家</h3>
+      <p>请尝试搜索其他英文术语、简写缩写或中文业务关键词。</p>
+    </div>
+
+    <!-- Content Sections -->
+    <div id="contentSections"></div>
+
+  </main>
+
+  <div class="toast" id="toastMessage">已复制例句到剪贴板！</div>
+
+  <script>
+    // Embedded Complete Database
+    window.DOSSIER_DATA = {
+  "chapters": [
+    {
+      "id": "chap0",
+      "name": "序章 · 全球美妆贸易国度与产地溯源",
+      "enName": "Global Origins & Trade Hubs",
+      "icon": "🌍",
+      "count": 16,
+      "desc": "掌握全球香水美妆核心产地血统、官方产地标注、商务接待破冰句与各国外贸角色。",
+      "type": "country",
+      "items": [
+        {
+          "id": "c0_01",
+          "name": "France",
+          "adj": "French",
+          "flag": "🇫🇷",
+          "phonetic": "/fræns/ · /frentʃ/",
+          "role": "格拉斯香水之都 / 巴黎高定美妆策源地",
+          "meaning": "法国 · 法国的 / 法语 / 法国人",
+          "example": "All our niche perfume collections are formulated and bottled in France.",
+          "exampleZh": "我们所有的沙龙香氛系列均在法国完成配方调制与灌装。",
+          "reception": "Welcome to our booth! Did you fly in directly from Paris?",
+          "receptionZh": "欢迎莅临我们展位！您是直接从巴黎飞过来的吗？",
+          "tip": "美妆香水最高溢价产地标注。“Made in France”是高端沙龙香核心心智背书。"
+        },
+        {
+          "id": "c0_02",
+          "name": "Italy",
+          "adj": "Italian",
+          "flag": "🇮🇹",
+          "phonetic": "/ˈɪtəli/ · /ɪˈtæliən/",
+          "role": "奢华香水 / 顶级玻璃瓶身包材工艺中心",
+          "meaning": "意大利 · 意大利的 / 意大利人",
+          "example": "The perfume flacons are custom-crafted by a renowned Italian glassmaker.",
+          "exampleZh": "香水玻璃瓶身是由意大利知名玻璃工坊专属定制开模的。",
+          "reception": "How was your flight from Milan? It is such a pleasure to meet you in person.",
+          "receptionZh": "从米兰过来的航班还顺利吗？非常荣幸能与您当面交流。",
+          "tip": "意大利在香水异形玻璃瓶、高透喷涂与电镀磁吸盖工艺上处于全球顶级统治地位。"
+        },
+        {
+          "id": "c0_03",
+          "name": "Switzerland",
+          "adj": "Swiss",
+          "flag": "🇨🇭",
+          "phonetic": "/ˈswɪtsələnd/ · /swɪs/",
+          "role": "抗衰科技细胞级护肤 / Swiss Made 权威认证",
+          "meaning": "瑞士 · 瑞士的 / 瑞士人",
+          "example": "This anti-aging serum complies with the rigorous Swiss Made quality standards.",
+          "exampleZh": "该款抗衰精华严格符合严苛的“瑞士制造（Swiss Made）”品质标准。",
+          "reception": "We have always admired Swiss cellular skincare technology and precision testing.",
+          "receptionZh": "我们一直非常推崇瑞士在细胞级护肤科技与精密质检方面的卓越造诣。",
+          "tip": "“Swiss Made”受瑞士联邦法律严格保护，配方研发与核心灌装成本必须达标方可标注。"
+        },
+        {
+          "id": "c0_04",
+          "name": "United Kingdom",
+          "adj": "British",
+          "flag": "🇬🇧",
+          "phonetic": "/juːˌnaɪtɪd ˈkɪŋdəm/ · /ˈbrɪtɪʃ/",
+          "role": "英伦沙龙香 / 皇室御用古典香氛殿堂",
+          "meaning": "英国 · 英国的 / 英国人",
+          "example": "British perfumery is celebrated for its distinctive heritage and literary elegance.",
+          "exampleZh": "英伦香氛以其独特的历史底蕴和典雅书卷气息闻名于世。",
+          "reception": "Is this your first time visiting our regional office from London?",
+          "receptionZh": "这是您第一次从伦敦来到我们亚太区域办公室吗？",
+          "tip": "英国是祖玛珑、潘海利根等经典沙龙香摇篮，在调香叙事和自然花果调上独树一帜。"
+        },
+        {
+          "id": "c0_05",
+          "name": "Germany",
+          "adj": "German",
+          "flag": "🇩🇪",
+          "phonetic": "/ˈdʒɜːməni/ · /ˈdʒɜːmən/",
+          "role": "医美药妆科研 / 严苛包装机械与精密喷头",
+          "meaning": "德国 · 德国的 / 德国人",
+          "example": "German skincare brands emphasize clinical safety and dermatologist-tested efficacy.",
+          "exampleZh": "德国护肤品牌极其强调临床安全性与皮肤科专研实证功效。",
+          "reception": "German engineering and precision have always set the benchmark in our supply chain.",
+          "receptionZh": "德国工程工艺与严密品控在我们的供应链体系中始终是对标基准。",
+          "tip": "德国在无菌灌装设备、高精度雾化喷嘴与成分稳定性评测上是行业硬通货。"
+        },
+        {
+          "id": "c0_06",
+          "name": "Spain",
+          "adj": "Spanish",
+          "flag": "🇪🇸",
+          "phonetic": "/speɪn/ · /ˈspænɪʃ/",
+          "role": "欧洲香精香料代工核心大国 / 时尚美妆分销中心",
+          "meaning": "西班牙 · 西班牙的 / 西班牙人",
+          "example": "Spain houses some of the world's leading fragrance and cosmetic OEM groups.",
+          "exampleZh": "西班牙聚集了数家全球顶尖的香水与化妆品代工综合集团（如Puig）。",
+          "reception": "Barcelona is such a dynamic hub for contemporary fragrance design and creative packaging.",
+          "receptionZh": "巴塞罗那在现代香氛设计与创意包装方面真是一座活力四射的枢纽。",
+          "tip": "西班牙不仅诞生了Puig等香水巨头，在地中海柑橘调精油原料供应链上也是核心产区。"
+        },
+        {
+          "id": "c0_07",
+          "name": "South Korea",
+          "adj": "Korean / K-Beauty",
+          "flag": "🇰🇷",
+          "phonetic": "/saʊθ kəˈriːə/ · /kəˈriːən/",
+          "role": "K-Beauty 亚洲潮流彩妆 / 创新护肤爆款策源地",
+          "meaning": "韩国 · 韩国的 / 韩国人",
+          "example": "K-Beauty is recognized worldwide for rapid product iteration and innovative textures.",
+          "exampleZh": "韩系美妆因其超快的产品推新迭代速度与创新肤感质地闻名全球。",
+          "reception": "How are consumer trends shifting in Seoul for clean beauty and cushion foundations?",
+          "receptionZh": "首尔当前在纯净护肤和气垫底妆上的消费趋势有什么最新变化吗？",
+          "tip": "韩国在气垫包装、冻干粉、积雪草修护等新颖包材与配方概念上迭代极快。"
+        },
+        {
+          "id": "c0_08",
+          "name": "Japan",
+          "adj": "Japanese / J-Beauty",
+          "flag": "🇯🇵",
+          "phonetic": "/dʒəˈpæn/ · /ˌdʒæpəˈniːz/",
+          "role": "J-Beauty 严苛配方质检 / 顶级防晒与渗透黑科技",
+          "meaning": "日本 · 日本的 / 日本人",
+          "example": "Japanese beauty formulations are renowned for delicate sensory feel and meticulous quality control.",
+          "exampleZh": "日系美妆配方以其细腻高级的肤感体验和严苛细致的品控著称。",
+          "reception": "We have seen tremendous demand for Japanese sunscreens and sensitive-skin formulations.",
+          "receptionZh": "我们看到市场对日本防晒技术和敏感肌专用配方有着极其强劲的需求。",
+          "tip": "日本药妆（Quasi-drugs）合规门槛极高，乳化均质技术与水感防晒膜处于全球领头羊地位。"
+        },
+        {
+          "id": "c0_09",
+          "name": "Singapore",
+          "adj": "Singaporean",
+          "flag": "🇸🇬",
+          "phonetic": "/ˌsɪŋəˈpɔːr/ · /ˌsɪŋəˈpɔːriən/",
+          "role": "跨国美妆亚太总部 / 区域保税物流转口枢纽",
+          "meaning": "新加坡 · 新加坡的 / 新加坡人",
+          "example": "Our Asia-Pacific regional distribution agreement is managed via Singapore.",
+          "exampleZh": "我们的亚太区域总分销授权协议由新加坡区域总部统筹管理。",
+          "reception": "Singapore serves as the ideal hub for managing our Southeast Asian cross-border distribution.",
+          "receptionZh": "新加坡是我们统筹管理东南亚跨国分销与仓配物流的最理想中枢。",
+          "tip": "大量欧美沙龙香进入亚洲时，均选择新加坡作为法务签约、保税中转和跨境结算中心。"
+        },
+        {
+          "id": "c0_10",
+          "name": "Thailand",
+          "adj": "Thai",
+          "flag": "🇹🇭",
+          "phonetic": "/ˈtaɪlænd/ · /taɪ/",
+          "role": "东南亚热带防水防汗彩妆 / 芳香 SPA 精油胜地",
+          "meaning": "泰国 · 泰国的 / 泰国人",
+          "example": "Thai cosmetics excel in high-humidity endurance and long-wearing waterproof formulations.",
+          "exampleZh": "泰国美妆在高湿度耐受性与超长持妆防水配方上极具竞争优势。",
+          "reception": "The growth of Southeast Asian e-commerce on TikTok Shop has been truly impressive in Bangkok.",
+          "receptionZh": "以曼谷为代表的东南亚 TikTok 电商美妆出海爆发势头令人瞩目。",
+          "tip": "泰国是东南亚彩妆消费第一大国，在精油香薰SPA及防晕染定妆品类上具有极高性价比。"
+        },
+        {
+          "id": "c0_11",
+          "name": "United Arab Emirates (UAE)",
+          "adj": "Emirati",
+          "flag": "🇦🇪",
+          "phonetic": "/juː eɪ ˈiː/ · /ˌɛmɪˈrɑːti/",
+          "role": "迪拜免税集散中心 / 中东浓香沉香(Oud)重度消费市场",
+          "meaning": "阿联酋（迪拜）· 阿联酋的 / 阿联酋人",
+          "example": "Dubai is the premier commercial gateway for luxury niche fragrances across the Middle East.",
+          "exampleZh": "迪拜是高端沙龙香水辐射整个中东海湾国家最重要的商业门户。",
+          "reception": "Welcome! Middle Eastern consumers have such refined tastes and passion for intense, oriental notes.",
+          "receptionZh": "欢迎！中东消费者对高留香浓度与东方木质调（如沉香Oud）拥有极其挑剔高雅的品味。",
+          "tip": "阿联酋人均香水消费位列全球榜首，客单价极高，是高端浓香（Parfum/Extrait）兵家必争之地。"
+        },
+        {
+          "id": "c0_12",
+          "name": "Saudi Arabia",
+          "adj": "Saudi",
+          "flag": "🇸🇦",
+          "phonetic": "/ˌsaʊdi əˈreɪbiə/ · /ˈsaʊdi/",
+          "role": "海湾最大美妆零售市场 / 奢华沙龙香高客单消费巨头",
+          "meaning": "沙特阿拉伯 · 沙特的 / 沙特阿拉伯人",
+          "example": "Saudi Arabia represents our fastest-growing cross-border market for prestige perfumes.",
+          "exampleZh": "沙特阿拉伯是我们奢华高档香水品类增长最迅猛的跨境主力市场。",
+          "reception": "The expansion of Riyadh's retail landscape for luxury perfumery is truly remarkable.",
+          "receptionZh": "利雅得在奢华香氛零售版图上的迅猛扩张令人叹为观止。",
+          "tip": "进入沙特必须通过 SASO / SFDA 严格化学品检测与穆斯林清真合规备案认证。"
+        },
+        {
+          "id": "c0_13",
+          "name": "United States (USA)",
+          "adj": "American",
+          "flag": "🇺🇸",
+          "phonetic": "/juːˌnaɪtɪd ˈsteɪts/ · /əˈmerɪkən/",
+          "role": "跨境电商出海主战场 / 新锐 DTC 美妆品牌策源地",
+          "meaning": "美国 · 美国的 / 美国人",
+          "example": "We operate fulfillment centers in both the East and West coasts of the United States.",
+          "exampleZh": "我们在美国东西海岸均设有跨境官方代发履约仓配中心。",
+          "reception": "How are the Amazon US and TikTok Shop conversion rates performing this quarter?",
+          "receptionZh": "本季度美区亚马逊与 TikTok Shop 的店铺转化率表现如何？",
+          "tip": "全球最大单一美妆消费市场，FDA/MoCRA 化妆品现代监管法案对成分合规审查趋严。"
+        },
+        {
+          "id": "c0_14",
+          "name": "Australia",
+          "adj": "Australian",
+          "flag": "🇦🇺",
+          "phonetic": "/ɒˈstreɪliə/ · /ɒˈstreɪliən/",
+          "role": "天然有机植萃 / 纯净美妆 (Clean Beauty) 标杆",
+          "meaning": "澳大利亚 · 澳大利亚的 / 澳大利亚人",
+          "example": "Australian skincare is synonymous with clean botanical ingredients and sustainable packaging.",
+          "exampleZh": "澳洲护肤品是纯净天然植物萃取成分与环保可持续包材的代名词。",
+          "reception": "Australian consumers are exceptionally conscious of eco-friendly packaging and ethical sourcing.",
+          "receptionZh": "澳大利亚消费者对环保包材与原材料伦理溯源有着极高的敏感度和关注度。",
+          "tip": "澳洲在防晒霜TGA医用级监管极其严格，主打茶树、尤加利等本土特色天然植萃。"
+        },
+        {
+          "id": "c0_15",
+          "name": "Canada",
+          "adj": "Canadian",
+          "flag": "🇨🇦",
+          "phonetic": "/ˈkænədə/ · /kəˈneɪdiən/",
+          "role": "极简原料桶功效护肤 / 严寒保湿修护配方",
+          "meaning": "加拿大 · 加拿大的 / 加拿大人",
+          "example": "Canadian formulations are celebrated for clinical transparency and minimalist active ingredients.",
+          "exampleZh": "加拿大配方（如The Ordinary）因成分透明与高浓度极简原料配方享誉全球。",
+          "reception": "Health Canada has some of the clearest and most rigorous standards for cosmetic ingredient safety.",
+          "receptionZh": "加拿大卫生部在化妆品成分安全方面拥有全球最清晰严谨的准入标准之一。",
+          "tip": "加拿大是北美跨境电商第二大主力国，仓储物流需重点防范冬季极寒导致的液体冻裂。"
+        },
+        {
+          "id": "c0_16",
+          "name": "China",
+          "adj": "Chinese / C-Beauty",
+          "flag": "🇨🇳",
+          "phonetic": "/ˈtʃaɪnə/ · /ˌtʃaɪˈniːz/",
+          "role": "全球高性价比包材模具制造基地 / 跨境出海供应链主力",
+          "meaning": "中国 · 中国的 / 中文 / 中国人",
+          "example": "China provides the world's most agile and integrated supply chain for cosmetic packaging and tooling.",
+          "exampleZh": "中国为全球化妆品行业提供了响应最敏捷、配套最完善的包材模具制造供应链。",
+          "reception": "Our automated manufacturing facilities in China guarantee fast turnaround and flexible MOQs.",
+          "receptionZh": "我们位于中国的高度自动化智造工厂能确保快速交期与灵活的起订量配套。",
+          "tip": "全球超70%的口红管、喷雾泵头和纸盒包材均由中国长三角与珠三角产业带供应。"
+        }
+      ]
+    },
+    {
+      "id": "chap1",
+      "name": "第一章 · 国际物流、报关与仓储履约",
+      "enName": "Logistics, Customs & Warehousing",
+      "icon": "🚢",
+      "count": 70,
+      "desc": "打通海运空运、保税仓配、海关查验、库存周转、货损索赔全流程实战沟通与邮件句块。",
+      "type": "term",
+      "items": [
+        {
+          "id": "c1_01",
+          "index": 1,
+          "term": "customs clearance",
+          "phonetic": "/ˈkʌstəmz ˈklɪərəns/",
+          "meaning": "海关清关 / 结关出关",
+          "example": "Please provide the endorsed commercial invoice and packing list for expedited customs clearance.",
+          "exampleZh": "请提供背书盖章的商业发票与装箱单，以便加快办理海关清关手续。",
+          "tip": "跨境保税或一般贸易核心节点。若单证申报品名或金额不符会导致扣柜产生巨额滞箱费。"
+        },
+        {
+          "id": "c1_02",
+          "index": 2,
+          "term": "customs declaration",
+          "phonetic": "/ˈkʌstəmz ˌdekləˈreɪʃn/",
+          "meaning": "进出口报关申报单 / 报关操作",
+          "example": "Our customs broker has submitted the formal customs declaration for the imported fragrance batch.",
+          "exampleZh": "我们的报关行已为该批进口香氛大货提交正式报关单。",
+          "tip": "涉及HS海关编码分类，香水含有酒精属于危险化学品品类，报关需附带安全评估技术报告。"
+        },
+        {
+          "id": "c1_03",
+          "index": 3,
+          "term": "freight forwarder",
+          "phonetic": "/freɪt ˈfɔːwədə(r)/",
+          "meaning": "国际货运代理公司 / 货代",
+          "example": "We have instructed our freight forwarder to book temperature-controlled air freight space.",
+          "exampleZh": "我们已指示货代公司预订全程温控恒温的航空货舱舱位。",
+          "tip": "专业美妆货代具备危险品（DG）运输资质与保税区内仓配联动能力。"
+        },
+        {
+          "id": "c1_04",
+          "index": 4,
+          "term": "ocean freight",
+          "phonetic": "/ˈəʊʃn freɪt/",
+          "meaning": "海运航运 / 海运费",
+          "example": "Ocean freight rates for 40-foot high-cube containers have stabilized this quarter.",
+          "exampleZh": "本季度40尺高柜集装箱的海运费率已逐步趋于平稳。",
+          "tip": "大批量美妆包材、玻璃瓶及大货通常走海运整柜以摊薄单件国际干线物流成本。"
+        },
+        {
+          "id": "c1_05",
+          "index": 5,
+          "term": "air freight",
+          "phonetic": "/eə freɪt/",
+          "meaning": "空运空运费 / 航空货运",
+          "example": "Due to urgent holiday replenishment, we opted for air freight to beat the deadline.",
+          "exampleZh": "由于节日旺季紧急补货，我们选择空运发货以确保赶上平台大促节点。",
+          "tip": "香水由于含酒精溶剂，空运必须提供具有资质的第三方 MSDS 与危包证（UN箱）。"
+        },
+        {
+          "id": "c1_06",
+          "index": 6,
+          "term": "shipping carrier",
+          "phonetic": "/ˈʃɪpɪŋ ˈkæriə(r)/",
+          "meaning": "承运人 / 国际船务公司 / 货运航司",
+          "example": "The shipping carrier confirmed that our vessel is scheduled to berth at the terminal tomorrow.",
+          "exampleZh": "承运船司确认货轮预计将于明日正式靠泊枢纽码头。",
+          "tip": "承运人签发的提单是法定的物权凭证，也是买卖双方交割货权的法律依据。"
+        },
+        {
+          "id": "c1_07",
+          "index": 7,
+          "term": "consignee",
+          "phonetic": "/ˌkɒnsaɪˈniː/",
+          "meaning": "提单收货人",
+          "example": "The bill of lading designates our Hong Kong bonded trading entity as the ultimate consignee.",
+          "exampleZh": "提单上明确指定我们香港保税贸易主体公司为最终法定收货人。",
+          "tip": "若做信用证或离岸结算，Consignee 抬头常填写 'To Order'，背书转让控制货权。"
+        },
+        {
+          "id": "c1_08",
+          "index": 8,
+          "term": "consignor",
+          "phonetic": "/kənˈsaɪnə(r)/",
+          "meaning": "发货人 / 托运人",
+          "example": "The consignor is legally obligated to pack all dangerous cosmetic goods in UN-certified cartons.",
+          "exampleZh": "发货人依法有义务使用获UN联合国认证的特制纸箱包装危险级美妆货品。",
+          "tip": "发货人必须与商业发票、原产地证书上的出口主体完全一致，避免清关单单不符。"
+        },
+        {
+          "id": "c1_09",
+          "index": 9,
+          "term": "consignment",
+          "phonetic": "/kənˈsaɪnmənt/",
+          "meaning": "寄售 / 委托代销模式",
+          "example": "We agreed to deliver the beauty products on consignment with monthly sell-through settlement.",
+          "exampleZh": "我们同意采取委托寄售模式供货，按月根据实际终端动销数据进行结算对账。",
+          "tip": "寄售模式下货权仍在供货方，有效降低分销商资金占用，但需密切监控周转率。"
+        },
+        {
+          "id": "c1_10",
+          "index": 10,
+          "term": "cargo manifest",
+          "phonetic": "/ˈkɑːɡəʊ ˈmænɪfest/",
+          "meaning": "载货清单 / 货运舱单",
+          "example": "Customs is auditing the cargo manifest against the physical carton barcodes.",
+          "exampleZh": "海关监管人员正在对照货物舱单核对到港外箱的实物条码明细。",
+          "tip": "舱单数据提前通过EDI向海关传输，品名件数毛重必须与大货严格吻合。"
+        },
+        {
+          "id": "c1_11",
+          "index": 11,
+          "term": "bill of lading (B/L)",
+          "phonetic": "/bɪl əv ˈleɪdɪŋ/",
+          "meaning": "海运提单（物权凭证）",
+          "example": "Original bills of lading will be released upon receipt of the final wire balance payment.",
+          "exampleZh": "收到尾款电汇水单确认入账后，我方将立刻电放或寄出正本海运提单。",
+          "tip": "外贸核心单据。正本提单代表货权，未结清尾款前不可轻易电放（Telex Release）。"
+        },
+        {
+          "id": "c1_12",
+          "index": 12,
+          "term": "airway bill (AWB)",
+          "phonetic": "/ˈeəweɪ bɪl/",
+          "meaning": "空运提单 / 航空运单",
+          "example": "The Master Airway Bill (MAWB) tracking shows the flight has departed Frankfurt airport.",
+          "exampleZh": "航空总运单追踪记录显示货运航班已顺利从法兰克福机场起飞起运。",
+          "tip": "空运提单仅为运输契约与收据，不同于海运提单，其本身不具备物权凭证属性。"
+        },
+        {
+          "id": "c1_13",
+          "index": 13,
+          "term": "in transit",
+          "phonetic": "/ɪn ˈtrænzɪt/",
+          "meaning": "在途运输中 / 货物运输途中",
+          "example": "Three container loads of skincare sets are currently in transit across the Pacific.",
+          "exampleZh": "目前有三个货柜的护肤套盒正处于太平洋跨洋海上运输在途状态。",
+          "tip": "供应链系统需严密监控在途天数与实时船期动态，避免因断货造成线上店铺降权。"
+        },
+        {
+          "id": "c1_14",
+          "index": 14,
+          "term": "transit time",
+          "phonetic": "/ˈtrænzɪt taɪm/",
+          "meaning": "运输在途耗时 / 物流时效",
+          "example": "The estimated transit time from Le Havre to Ningbo port is roughly 28 days.",
+          "exampleZh": "从法国勒阿弗尔港到中国宁波港的预计海上运输在途时间约为28天。",
+          "tip": "美妆供应链排期必须将海运在途耗时、港口掏箱与商检查验周期完整计入安全交期。"
+        },
+        {
+          "id": "c1_15",
+          "index": 15,
+          "term": "bonded warehouse",
+          "phonetic": "/ˈbɒndɪd ˈweəhaʊs/",
+          "meaning": "保税仓（跨境电商与转口集散地）",
+          "example": "Imported cosmetic goods will be stored in the Ningbo Free Trade Zone bonded warehouse.",
+          "exampleZh": "进口化妆品大货将直接入驻宁波综合保税区保税仓进行分拨与暂存。",
+          "tip": "保税仓享受“境内关外、暂缓交税”红利，跨境电商保税备货模式（1210）核心依托。"
+        },
+        {
+          "id": "c1_16",
+          "index": 16,
+          "term": "bonded logistics",
+          "phonetic": "/ˈbɒndɪd ləˈdʒɪstɪks/",
+          "meaning": "保税物流 / 转口分拨",
+          "example": "Bonded logistics allows cross-border consolidation without immediate tariff liabilities.",
+          "exampleZh": "保税物流允许跨国多品牌拼箱集散与转口贸易，无需立即垫付大额进口关税。",
+          "tip": "利用保税区保税展示、保税分拣、一件代发功能，实现资金占用最小化。"
+        },
+        {
+          "id": "c1_17",
+          "index": 17,
+          "term": "inbound shipment",
+          "phonetic": "/ˈɪnbaʊnd ˈʃɪpmənt/",
+          "meaning": "入库货物 / 进港到货批次",
+          "example": "The warehouse team is inspecting the inbound shipment for any seal damages.",
+          "exampleZh": "仓储质检团队正在对今日入库的到货批次进行封条完整度与破损抽查。",
+          "tip": "入库环节是货权交接分水岭，如发现外箱变形漏液必须第一时间拍照留证签署异常单。"
+        },
+        {
+          "id": "c1_18",
+          "index": 18,
+          "term": "outbound logistics",
+          "phonetic": "/ˈaʊtbaʊnd ləˈdʒɪstɪks/",
+          "meaning": "出库物流 / 发货分拣派送流程",
+          "example": "Our automated outbound logistics system dispatches over 10,000 beauty parcels daily.",
+          "exampleZh": "我们的全自动出库物流系统每日可平稳分拣派发超过一万件跨境美妆包裹。",
+          "tip": "跨境电商大促（双11/黑五）出库时效直接影响店铺DSR物流评分与平台流量倾斜。"
+        },
+        {
+          "id": "c1_19",
+          "index": 19,
+          "term": "dispatch date",
+          "phonetic": "/dɪˈspætʃ deɪt/",
+          "meaning": "调度发运日期 / 实际出库日",
+          "example": "The confirmed dispatch date from the factory warehouse is set for next Monday.",
+          "exampleZh": "工厂出厂仓库确认的实际发货调度日期已锁定为下周一。",
+          "tip": "与外商确定交期时，需分清是指出厂发运日（Dispatch date）还是到港交付日（Delivery date）。"
+        },
+        {
+          "id": "c1_20",
+          "index": 20,
+          "term": "real-time inventory",
+          "phonetic": "/ˌriːəl ˈtaɪm ˈɪnvəntri/",
+          "meaning": "动态实时库存数据",
+          "example": "Our ERP synchronizes real-time inventory across five regional distribution hubs.",
+          "exampleZh": "我们的ERP系统实时打通并同步五大区域分销中心与前置仓的动态库存。",
+          "tip": "多渠道全域分销必须做到实时库存联动，避免多平台超卖导致的严厉罚款与缺货。"
+        },
+        {
+          "id": "c1_21",
+          "index": 21,
+          "term": "inventory turnover",
+          "phonetic": "/ˈɪnvəntri ˈtɜːnəʊvə(r)/",
+          "meaning": "库存周转率（衡量资产流动速度）",
+          "example": "High inventory turnover is critical in cosmetics due to strict expiration date thresholds.",
+          "exampleZh": "由于美妆护肤品有着刚性保质期门槛，保持极高的库存周转率至关重要。",
+          "tip": "快周转等于高现金流。美妆行业周转天数超过90天通常被视为库存预警信号。"
+        },
+        {
+          "id": "c1_22",
+          "index": 22,
+          "term": "stock replenishment",
+          "phonetic": "/stɒk rɪˈplenɪʃmənt/",
+          "meaning": "库存补货作业 / 补仓调拨",
+          "example": "We initiated an emergency stock replenishment to support the upcoming live stream campaign.",
+          "exampleZh": "我们已启动紧急补仓补货作业，全力支撑即将到来的头部主播大促直播带货。",
+          "tip": "结合安全库存公式与采购前置期（Lead time），设定科学的自动化补货触发点。"
+        },
+        {
+          "id": "c1_23",
+          "index": 23,
+          "term": "restock alert",
+          "phonetic": "/ˌriːˈstɒk əˈlɜːt/",
+          "meaning": "低库存预警提示",
+          "example": "A restock alert was triggered after weekend sales depleted 70% of the fragrance SKU.",
+          "exampleZh": "周末大卖消耗了该香水SKU超七成库存后，系统自动触发了紧急补货预警。",
+          "tip": "预警线通常设为：日均销量 × 采购交付周期 + 缓冲安全库存。"
+        },
+        {
+          "id": "c1_24",
+          "index": 24,
+          "term": "strategic procurement",
+          "phonetic": "/strəˈtiːdʒɪk prəˈkjʊəmənt/",
+          "meaning": "供应链战略采购寻源",
+          "example": "Strategic procurement enables us to secure bulk raw ingredient discounts ahead of peak seasons.",
+          "exampleZh": "战略采购寻源使我们得以在美妆消费旺季到来前提前锁定核心原料的梯队大宗折扣。",
+          "tip": "不仅是买货比价，更包含对原产地工厂产能排期与核心包材模具的长期战略绑定。"
+        },
+        {
+          "id": "c1_25",
+          "index": 25,
+          "term": "stock allocation",
+          "phonetic": "/stɒk ˌæləˈkeɪʃn/",
+          "meaning": "库存调配 / 配货分仓",
+          "example": "The supply chain manager revised stock allocation between wholesale and direct e-commerce.",
+          "exampleZh": "供应链总监根据实时销情重新调整了大宗分销渠道与跨境电商直营端之间的配货比例。",
+          "tip": "在爆款断货抢货期，需依据渠道利润率与战略优先级进行加权库存配给。"
+        },
+        {
+          "id": "c1_26",
+          "index": 26,
+          "term": "out of stock / stockout",
+          "phonetic": "/aʊt əv stɒk/ · /ˈstɒkaʊt/",
+          "meaning": "缺货 / 售罄断货",
+          "example": "Allowing top-selling perfume items to run out of stock severely impairs search rankings.",
+          "exampleZh": "核心主推爆款香水一旦发生断货缺货，将极其严重地损害平台自然搜索排名的权重。",
+          "tip": "电商平台算法对断货惩罚极重，断货数天甚至会导致前期数万元推广费用彻底归零。"
+        },
+        {
+          "id": "c1_27",
+          "index": 27,
+          "term": "backorder",
+          "phonetic": "/ˈbækɔːdə(r)/",
+          "meaning": "缺货延期发货订单 / 待补订单",
+          "example": "We accepted 2,000 backorders for the limited-edition holiday beauty advent calendar.",
+          "exampleZh": "针对该款节日限定倒数日历美妆礼盒，我们提前预售并接受了2000单缺货延期订单。",
+          "tip": "需明确告知买家预计发货窗口，避免因延期违约引发平台超时扣罚或批量取消投诉。"
+        },
+        {
+          "id": "c1_28",
+          "index": 28,
+          "term": "overstock",
+          "phonetic": "/ˌəʊvəˈstɒk/",
+          "meaning": "库存积压 / 滞销过剩",
+          "example": "Seasonal overstock will be cleared through bundled promotional gift sets.",
+          "exampleZh": "换季滞销过剩的口红旧色号将通过捆绑组合礼盒大促进行折价快速清出。",
+          "tip": "化妆品一旦过季积压，随着效期衰减其资产价值呈断崖式下跌，应果断割肉变现。"
+        },
+        {
+          "id": "c1_29",
+          "index": 29,
+          "term": "dead stock",
+          "phonetic": "/ded stɒk/",
+          "meaning": "呆滞死库存（无法流动的死货）",
+          "example": "Dead stock ties up capital and incurs recurring bonded warehousing storage fees.",
+          "exampleZh": "呆滞死库存不仅大量占用宝贵现金流，而且会持续产生高额保税仓超期仓储费。",
+          "tip": "超过180天无动销的临期批次应尽早作为附赠试用小样或转入尾货特卖清盘。"
+        },
+        {
+          "id": "c1_30",
+          "index": 30,
+          "term": "inventory shrinkage",
+          "phonetic": "/ˈɪnvəntri ˈʃrɪŋkɪdʒ/",
+          "meaning": "仓储货损盘亏 / 不明损耗",
+          "example": "Annual inventory shrinkage was kept strictly below 0.3% due to RFID tracking.",
+          "exampleZh": "得益于全流程RFID条码识别技术，全年的仓库盘亏损耗率被严密控制在0.3%以内。",
+          "tip": "包含了偷盗、破损渗漏未报备、拣货错发等造成的实际账实差异。"
+        },
+        {
+          "id": "c1_31",
+          "index": 31,
+          "term": "shipment shortage",
+          "phonetic": "/ˈʃɪpmənt ˈʃɔːtɪdʒ/",
+          "meaning": "货物短装 / 到货少件",
+          "example": "The tally report confirmed a shipment shortage of 45 perfume testers upon unpacking.",
+          "exampleZh": "开箱理货报告正式证实：专柜简装测试装（Tester）到货实物发生了45支短少短装。",
+          "tip": "收货当天必须由承运司机或仓储代表在送货单（Proof of Delivery）上签字确认少件。"
+        },
+        {
+          "id": "c1_32",
+          "index": 32,
+          "term": "quantity discrepancy",
+          "phonetic": "/ˈkwɒntəti dɪˈskrepənsi/",
+          "meaning": "数量差异 / 账实不符",
+          "example": "We filed a notice of quantity discrepancy between the invoice and the warehouse receipt.",
+          "exampleZh": "针对商业发票所列数量与实际入库收据之间的数量差异，我方已向外商发函提请异议。",
+          "tip": "是外贸索赔与补发的第一手证据，需附带电子称重明细与未拆箱装箱照片。"
+        },
+        {
+          "id": "c1_33",
+          "index": 33,
+          "term": "physical inventory count",
+          "phonetic": "/ˈfɪzɪkl ˈɪnvəntri kaʊnt/",
+          "meaning": "仓库实物大盘点",
+          "example": "The annual physical inventory count will take place over the weekend under dual audits.",
+          "exampleZh": "全仓年度实物大盘点将于本周末在内外部双重审计监盘下正式开展封闭核验。",
+          "tip": "比对系统ERP账面数与货架物理实物，核实效期批号分布，为年终财务报表定盘。"
+        },
+        {
+          "id": "c1_34",
+          "index": 34,
+          "term": "warehouse audit",
+          "phonetic": "/ˈweəhaʊs ˈɔːdɪt/",
+          "meaning": "仓储体系审计与账目稽核",
+          "example": "The brand owner conducted a surprise warehouse audit to verify temperature logs.",
+          "exampleZh": "海外品牌方对我们的中心仓实施了突击审计，重点核查恒温恒湿温湿度温控记录。",
+          "tip": "欧美高端美妆品牌对第三方合作仓储有极其严苛的合规温控、防尘防潮及安防审查标准。"
+        },
+        {
+          "id": "c1_35",
+          "index": 35,
+          "term": "standard pallet",
+          "phonetic": "/ˈstændəd ˈpælət/",
+          "meaning": "国际标准托盘",
+          "example": "Shipments destined for European retail must conform to standard Euro pallet dimensions.",
+          "exampleZh": "发往欧洲零售分销体系的大货必须严格符合标准欧标托盘（1200×800mm）规格要求。",
+          "tip": "托盘规格不符合受载仓储自动化立库接口标准，可能遭遇拒收或被加收人工倒托费。"
+        },
+        {
+          "id": "c1_36",
+          "index": 36,
+          "term": "palletize",
+          "phonetic": "/ˈpælətaɪz/",
+          "meaning": "打托盘装运（打托缠膜）",
+          "example": "Fragile perfume bottles must be firmly palletized and shrink-wrapped with corner protectors.",
+          "exampleZh": "易碎香水玻璃制品必须整齐打托盘并用强力拉伸缠绕膜严密包裹，四角加固防撞纸护角。",
+          "tip": "打托装运不仅装卸效率提升十倍，更能极大减少运输途中的翻箱摔落与散件丢件概率。"
+        },
+        {
+          "id": "c1_37",
+          "index": 37,
+          "term": "forklift handling",
+          "phonetic": "/ˈfɔːklɪft ˈhændlɪŋ/",
+          "meaning": "叉车装卸堆垛作业",
+          "example": "Improper forklift handling was identified as the primary cause of carton punctures.",
+          "exampleZh": "经查，叉车叉臂违规装卸作业被判定为导致外箱穿刺破损的直接主因。",
+          "tip": "贵重香水整托外侧必须醒目张贴“禁止侧翻”、“禁止双层堆叠（Do Not Double Stack）”警示。"
+        },
+        {
+          "id": "c1_38",
+          "index": 38,
+          "term": "outer carton",
+          "phonetic": "/ˈaʊtə(r) ˈkɑːtn/",
+          "meaning": "五层瓦楞外包装大箱",
+          "example": "Ensure the outer carton carries water-resistant shipping marks and orientation arrows.",
+          "exampleZh": "请确保外包装纸箱印刷有清晰的防水箱唛标线与向上正立指向箭头。",
+          "tip": "外箱抗压强度（ECT）需达标，防止远洋集装箱底层纸箱受压变形压塌内盒。"
+        },
+        {
+          "id": "c1_39",
+          "index": 39,
+          "term": "wooden crate",
+          "phonetic": "/ˈwʊdn kreɪt/",
+          "meaning": "防震熏蒸木箱包装",
+          "example": "Bulk perfume essential oils are packed in heavy-duty wooden crates with ISPM-15 certification.",
+          "exampleZh": "大桶大宗香水精油原料采用具备ISPM-15国际热处理熏蒸标识的重型防震木箱封装。",
+          "tip": "未经检疫熏蒸认证的木箱木托盘入境会被海关强制退运或实施现场昂贵销毁。"
+        },
+        {
+          "id": "c1_40",
+          "index": 40,
+          "term": "full container load (FCL)",
+          "phonetic": "/fʊl kənˈteɪnə ləʊd/",
+          "meaning": "整柜装运（整箱直装）",
+          "example": "Booking an FCL ensures faster transit and minimal handling risks compared to consolidation.",
+          "exampleZh": "相比散货拼箱，订立整柜直装（FCL）能确保更快的直航时效并最大程度降低装卸抛损风险。",
+          "tip": "货量达到15立方米以上时，核算综合港杂费后走20GP整柜通常比拼箱更划算更安全。"
+        },
+        {
+          "id": "c1_41",
+          "index": 41,
+          "term": "less than container (LCL)",
+          "phonetic": "/les ðən kənˈteɪnə/",
+          "meaning": "拼箱散货运输",
+          "example": "LCL cargo requires extra transit time for deconsolidation at the destination CFS terminal.",
+          "exampleZh": "拼箱（LCL）货物在目的港集装箱货运站拆箱分拨需要耗费额外的清关分拣时间。",
+          "tip": "拼箱与其他杂乱货物混装，必须重点防范受潮、异味串味及重货挤压风险。"
+        },
+        {
+          "id": "c1_42",
+          "index": 42,
+          "term": "drayage fee",
+          "phonetic": "/ˈdreɪɪdʒ fiː/",
+          "meaning": "码头到保税仓短途拖车费",
+          "example": "The logistics invoice reflects an additional drayage fee for moving the container to the bonded park.",
+          "exampleZh": "物流账单中反映了将海运集装箱从卸船码头转运至保税园区的短途内陆拖车费。",
+          "tip": "属于到岸成本（Landed cost）明细之一，港口高峰期集卡拖车运力紧张会导致短途运费上浮。"
+        },
+        {
+          "id": "c1_43",
+          "index": 43,
+          "term": "haulage",
+          "phonetic": "/ˈhɔːlɪdʒ/",
+          "meaning": "公路集装箱长途干线拖运",
+          "example": "Long-distance cross-border road haulage connects our European factory to distribution points.",
+          "exampleZh": "长途跨境卡班拖车干线物流高效连接着我们的欧洲工厂与沿途各分拨中心。",
+          "tip": "中欧卡航等新型公路陆运模式时效约为海运的一半，运费仅为空运的三分之一。"
+        },
+        {
+          "id": "c1_44",
+          "index": 44,
+          "term": "demurrage charge",
+          "phonetic": "/dɪˈmʌrɪdʒ tʃɑːdʒ/",
+          "meaning": "滞港费 / 滞箱费（码头超期用箱）",
+          "example": "Delays in submitting import health certificates incurred five days of demurrage charges.",
+          "exampleZh": "因进口卫生检疫证书提交延误，导致在码头堆场产生了整整五天的超期滞箱滞港费。",
+          "tip": "船司通常只给予7~14天免堆期（Free demurrage），单证准备需走在货船靠泊之前。"
+        },
+        {
+          "id": "c1_45",
+          "index": 45,
+          "term": "detention fee",
+          "phonetic": "/dɪˈtenʃn fiː/",
+          "meaning": "滞期费 / 逾期未还集装箱箱使费",
+          "example": "To avoid heavy detention fees, the empty container was returned to the port depot within 48 hours.",
+          "exampleZh": "为避免高昂的逾期未还箱滞期费，集装箱掏空拆箱后已在48小时内紧急返还码头堆场。",
+          "tip": "集装箱拖出码头后超出船司免用箱期限（Free detention）即按天阶梯计收惩罚性费用。"
+        },
+        {
+          "id": "c1_46",
+          "index": 46,
+          "term": "customs tariff",
+          "phonetic": "/ˈkʌstəmz ˈtærɪf/",
+          "meaning": "海关进出口关税税则代码",
+          "example": "Cosmetic products fall under Chapter 33 of the international Harmonized Customs Tariff.",
+          "exampleZh": "所有化妆品及芳香制品均严格归类于国际海关商品编码协调税则（HS Code）第33章项下。",
+          "tip": "唇妆、眼妆、香水归类税率各异，合规申报HS编码是防范逃税稽查风险的生命线。"
+        },
+        {
+          "id": "c1_47",
+          "index": 47,
+          "term": "import duty",
+          "phonetic": "/ˈɪmpɔːt ˈdjuːti/",
+          "meaning": "进口关税税费",
+          "example": "The overall landed cost must factor in both import duty and local consumption tax.",
+          "exampleZh": "核算产品综合到岸落地成本时，必须同时计入进口关税税费与本国高档化妆品消费税。",
+          "tip": "跨境电商零售进口（1210模式）享受关税暂设为0%、增值税与消费税按70%法定优惠计征。"
+        },
+        {
+          "id": "c1_48",
+          "index": 48,
+          "term": "tax exemption",
+          "phonetic": "/tæks ɪɡˈzempʃn/",
+          "meaning": "免税待遇 / 关税豁免政策",
+          "example": "Enterprises operating inside the comprehensive bonded zone enjoy specific tax exemption policies.",
+          "exampleZh": "在综合保税区内开展保税加工与仓储周转的企业依法享有特定的关税暂免与退税政策。",
+          "tip": "出海加工贸易料件进出境享受保税政策，成品销往境外免征关税及增值税。"
+        },
+        {
+          "id": "c1_49",
+          "index": 49,
+          "term": "customs inspection",
+          "phonetic": "/ˈkʌstəmz ɪnˈspekʃn/",
+          "meaning": "海关机检查验 / 开箱掏柜查验",
+          "example": "The container was flagged by customs risk algorithms for physical unpack customs inspection.",
+          "exampleZh": "该集装箱被海关风控大数据模型命中，被指令要求进行现场人工开箱掏柜实物查验。",
+          "tip": "查验通常需核对品名、数量规格、中文标签批号与有无夹带未申报物品，耗时1-3个工作日。"
+        },
+        {
+          "id": "c1_50",
+          "index": 50,
+          "term": "quarantine inspection",
+          "phonetic": "/ˈkwɒrəntiːn ɪnˈspekʃn/",
+          "meaning": "口岸商检动植物检疫与卫生检验",
+          "example": "Cosmetics containing animal-derived raw ingredients face strict quarantine inspection procedures.",
+          "exampleZh": "含有动物来源提取原料成分的护肤品面临着极度严苛的口岸出入境动植物检疫程序。",
+          "tip": "羊毛脂、蜂胶、蜗牛原液等原料需提供产地无疫病官方证明方可获准入境。"
+        },
+        {
+          "id": "c1_51",
+          "index": 51,
+          "term": "regulatory compliance",
+          "phonetic": "/ˌreɡjələˈtɔːri kəmˈplaɪəns/",
+          "meaning": "进出口监管与法律法规遵从",
+          "example": "Our regulatory compliance department guarantees that all cosmetic claims are legally substantiated.",
+          "exampleZh": "我们的法规合规事务部确保所有护肤品宣称功效均具有法定的功效人体实证评估背书。",
+          "tip": "涉及海外市场 MoCRA（美国）、EU Cosmetics Regulation 1223/2009（欧盟）等强制法规。"
+        },
+        {
+          "id": "c1_52",
+          "index": 52,
+          "term": "customs release",
+          "phonetic": "/ˈkʌstəmz rɪˈliːs/",
+          "meaning": "海关放行单 / 货物解押放行通知",
+          "example": "Following the settlement of tariffs, customs release was electronically granted this morning.",
+          "exampleZh": "随着关税缴库完成，海关放行电子回执已于今日上午正式下发，准予提离监管区。",
+          "tip": "取得正式放行电子或纸质凭条后，车队方可凭提货单进港提箱出闸。"
+        },
+        {
+          "id": "c1_53",
+          "index": 53,
+          "term": "customs seizure",
+          "phonetic": "/ˈkʌstəmz ˈsiːʒə(r)/",
+          "meaning": "海关行政扣押 / 查封扣留",
+          "example": "Unregistered trademark infringement resulted in immediate customs seizure at the border.",
+          "exampleZh": "由于涉嫌未经授权侵犯他人注册商标专用权，该批仿冒香水在口岸被海关依法直接查扣扣押。",
+          "tip": "海关知识产权保护备案系统（IPR）能自动拦截未授权进出口行为，构成侵权将立案没收。"
+        },
+        {
+          "id": "c1_54",
+          "index": 54,
+          "term": "port congestion",
+          "phonetic": "/pɔːt kənˈdʒestʃən/",
+          "meaning": "国际枢纽港口拥堵积压",
+          "example": "Severe winter storms caused significant port congestion and delayed vessel berthing schedules.",
+          "exampleZh": "严重的冬季暴风雪天气导致枢纽港口出现严重集装箱拥堵，大幅推迟了货轮靠泊作业排期。",
+          "tip": "港口拥堵不仅拉长供应链周转期，还会引发船司加征港口拥堵附加费（PCS）。"
+        },
+        {
+          "id": "c1_55",
+          "index": 55,
+          "term": "vessel delay",
+          "phonetic": "/ˈvesl dɪˈleɪ/",
+          "meaning": "货轮船期脱班 / 班期延误",
+          "example": "A 48-hour vessel delay means our shipments will miss the initial weekend warehouse receiving slot.",
+          "exampleZh": "整整48小时的货轮船期延误意味着我们的货物将彻底错过预订好的周末仓库入库预约窗口。",
+          "tip": "必须第一时间与保税仓协商重新锁定入库预约排号，并通知前台运营调整活动节奏。"
+        },
+        {
+          "id": "c1_56",
+          "index": 56,
+          "term": "shipping route",
+          "phonetic": "/ˈʃɪpɪŋ ruːt/",
+          "meaning": "远洋国际航线 / 运输干线路径",
+          "example": "Geopolitical instability forced our carrier to reroute the primary shipping route around the Cape.",
+          "exampleZh": "地缘政治局势动荡迫使承运船司调整主要远洋航线，绕道好望角以规避通航风险。",
+          "tip": "航线变更将增加10-14天额外海运天数并推高综合燃油附加费（BAF）。"
+        },
+        {
+          "id": "c1_57",
+          "index": 57,
+          "term": "container terminal",
+          "phonetic": "/kənˈteɪnə ˈtɜːmɪnl/",
+          "meaning": "国际集装箱枢纽码头",
+          "example": "Empty container equipment must be deposited back at the designated container terminal gate.",
+          "exampleZh": "拆箱完毕的集装箱空箱设备必须在规定期限内运返指定集装箱码头闸口进行交接。",
+          "tip": "码头是岸吊、龙门吊与堆场集中运作区域，进出闸口需提前通过EDI进行预约提箱。"
+        },
+        {
+          "id": "c1_58",
+          "index": 58,
+          "term": "terminal handling (THC)",
+          "phonetic": "/ˈtɜːmɪnl ˈhændlɪŋ/",
+          "meaning": "码头装卸作业操作费",
+          "example": "Terminal handling charges (THC) cover crane hoisting and container transfer operations.",
+          "exampleZh": "码头操作费（THC）涵盖了岸边桥吊装卸、集装箱堆场移位与水平驳运等全部码头作业成本。",
+          "tip": "在国际贸易条款（如FOB vs CIF）谈判时需明确界定起运港与目的港THC由买卖哪一方承担。"
+        },
+        {
+          "id": "c1_59",
+          "index": 59,
+          "term": "cargo damage",
+          "phonetic": "/ˈkɑːɡəʊ ˈdæmɪdʒ/",
+          "meaning": "货物途中破损 / 外包装受损",
+          "example": "We filed an official claim against the carrier for extensive cargo damage caused by rough transit.",
+          "exampleZh": "针对因恶劣海况与野蛮装卸造成的严重货物包装挤压破损，我方已向承运人发起正式理赔。",
+          "tip": "到货第一现场拍照录像、在运单签署“外箱破损异常受损”批注是成功索赔的法定理赔前提。"
+        },
+        {
+          "id": "c1_60",
+          "index": 60,
+          "term": "product spoilage",
+          "phonetic": "/ˈprɒdʌkt ˈspɔɪlɪdʒ/",
+          "meaning": "美妆护肤品高温受潮变质变味",
+          "example": "Exposure to unventilated tropical cargo holds caused severe product spoilage and emulsion separation.",
+          "exampleZh": "因长期暴露于未经通风的闷热热带货舱，导致该批护肤乳液严重变质并发生水油乳化分层。",
+          "tip": "纯天然无防腐剂护肤品或沙龙香水跨境干线运输必须严密监控温湿度，避免高温破坏香分子。"
+        },
+        {
+          "id": "c1_61",
+          "index": 61,
+          "term": "liquid leakage",
+          "phonetic": "/ˈlɪkwɪd ˈliːkɪdʒ/",
+          "meaning": "液体香水渗漏 / 漏液质检不良",
+          "example": "Inspection revealed that poor crimping of the spray pump resulted in 3% liquid leakage.",
+          "exampleZh": "开箱质检发现：香水喷雾泵头轧盖密封不良导致大货产生了高达3%的液体渗漏漏液缺陷。",
+          "tip": "漏液不仅导致单瓶报废，高浓度酒精渗出还会溶解腐蚀周边精美外盒包装引发连带货损。"
+        },
+        {
+          "id": "c1_62",
+          "index": 62,
+          "term": "glass breakage",
+          "phonetic": "/ɡlɑːs ˈbreɪkɪdʒ/",
+          "meaning": "香水玻璃瓶身跌落摔碎破损",
+          "example": "Drop tests were conducted to ensure internal packaging protects against glass breakage during transit.",
+          "exampleZh": "团队进行了严格的跌落防震测试，确保内部防震EVA与瓦楞结构足以抵御长途运输中的玻璃破碎。",
+          "tip": "按照国际ISTA测试标准，大箱需经受从1米高度六面三棱一角的苛刻跌落试验。"
+        },
+        {
+          "id": "c1_63",
+          "index": 63,
+          "term": "marine cargo insurance",
+          "phonetic": "/məˈriːn ˈkɑːɡəʊ ɪnˈʃʊərəns/",
+          "meaning": "国际货运一切险（海洋/航空货运保险）",
+          "example": "We never ship high-value perfume orders without comprehensive marine cargo insurance.",
+          "exampleZh": "对于高货值沙龙香水大单，我方在任何情况下均必须投保全额国际货运一切险保障权益。",
+          "tip": "一般按发票货值加成10%或20%（即CIF货值的110%）投保平安险、水渍险及一切险。"
+        },
+        {
+          "id": "c1_64",
+          "index": 64,
+          "term": "insurance claim",
+          "phonetic": "/ɪnˈʃʊərəns kleɪm/",
+          "meaning": "保险索赔立案申请",
+          "example": "All survey inspection reports and commercial invoices were submitted to process the insurance claim.",
+          "exampleZh": "所有公证行定损检验报告、商业发票及海运提单均已完备提交，用于跟进保险理赔程序。",
+          "tip": "发生货损应在法定保单规定天数内（通常为卸货后3~7天）向保险公司发出正式出险报案通知。"
+        },
+        {
+          "id": "c1_65",
+          "index": 65,
+          "term": "insurance coverage",
+          "phonetic": "/ɪnˈʃʊərəns ˈkʌvərɪdʒ/",
+          "meaning": "保险承保责任范围与免赔条款",
+          "example": "Verify whether the insurance coverage extends to temperature variation and pirate hijack risks.",
+          "exampleZh": "请务必仔细核实保单承保范围是否明确涵盖温控异常变质与海盗劫持等特殊附加险责任。",
+          "tip": "不同保单条款免赔额（Deductible）差异极大，高货值贵重品应争取零免赔条款。"
+        },
+        {
+          "id": "c1_66",
+          "index": 66,
+          "term": "liability limit",
+          "phonetic": "/ˌlaɪəˈbɪləti ˈlɪmɪt/",
+          "meaning": "承运人法定理赔责任限额",
+          "example": "Standard maritime law imposes a low carrier liability limit per shipping package unless declared.",
+          "exampleZh": "除非事先声明货值并支付附加费，否则海商法海牙规则对承运人每件货物的法定理赔限额极低。",
+          "tip": "通常按每件500美元或每公斤2SDR计算，无法弥补高价值美妆实际损失，故必须自购货运险。"
+        },
+        {
+          "id": "c1_67",
+          "index": 67,
+          "term": "shipment tracking",
+          "phonetic": "/ˈʃɪpmənt ˈtrækɪŋ/",
+          "meaning": "全程多式联运轨迹实时追踪",
+          "example": "Real-time shipment tracking allows buyers to monitor vessel coordinates and estimated milestones.",
+          "exampleZh": "基于卫星定位的全程货运轨迹追踪使买家能够实时查看货轮当前经纬度坐标与预计到港节点。",
+          "tip": "API打通货代、港口与海关系统，异常停留预警自动推送到供应链控制台。"
+        },
+        {
+          "id": "c1_68",
+          "index": 68,
+          "term": "delivery window",
+          "phonetic": "/dɪˈlɪvəri ˈwɪndəʊ/",
+          "meaning": "合同约定的最晚交付时间窗口",
+          "example": "Missing the retail partner's designated delivery window incurs hefty late-arrival chargebacks.",
+          "exampleZh": "一旦错过商超零售巨头约定的指定送货交仓时间窗口，将招致严厉的高额延期扣款违约金。",
+          "tip": "欧美线下大型连锁（如丝芙兰/Ulta）有严格预约送货窗口（Appointment slot），早送晚送均拒收。"
+        },
+        {
+          "id": "c1_69",
+          "index": 69,
+          "term": "estimated arrival (ETA)",
+          "phonetic": "/ˈestɪmeɪtɪd əˈraɪvl/",
+          "meaning": "预计货物到港时间（ETA）",
+          "example": "The latest automated notification updated the vessel's ETA to Friday, 3:00 PM.",
+          "exampleZh": "系统最新自动派发船期动态更新：货轮预计到港时间（ETA）已调整为本周五下午三点整。",
+          "tip": "业务日常口语高频词。外贸沟通中常说：“What is the updated ETA for container #2?”。"
+        },
+        {
+          "id": "c1_70",
+          "index": 70,
+          "term": "estimated departure (ETD)",
+          "phonetic": "/ˈestɪmeɪtɪd dɪˈpɑːtʃə(r)/",
+          "meaning": "预计起运港离港时间（ETD）",
+          "example": "Our production plan is backward-scheduled from the confirmed vessel ETD of October 20th.",
+          "exampleZh": "我们的整个灌装排产生产计划正是以10月20日货船锁定的离港起运日（ETD）为基准倒排的。",
+          "tip": "与 ETA 呼应，ETD 代表货轮从始发港正式扬帆起航的时间节点，关箱与截关时间需提前于ETD。"
+        }
+      ]
+    },
+    {
+      "id": "chap2",
+      "name": "第二章 · 香水美妆品类、配方与质检包材",
+      "enName": "Fragrance, Cosmetics & Quality Control",
+      "icon": "🧪",
+      "count": 70,
+      "desc": "深入调香结构、挥发扩散、包材部件、防伪封签、NMPA备案、效期计算与质检验收。",
+      "type": "term",
+      "items": [
+        {
+          "id": "c2_01",
+          "index": 1,
+          "term": "fine fragrance",
+          "phonetic": "/faɪn ˈfreɪɡrəns/",
+          "meaning": "高端沙龙香 / 精致高档香氛",
+          "example": "Our distributor agreement focuses exclusively on European fine fragrance brands.",
+          "exampleZh": "我们的总分销合作协议专门聚焦于欧洲高端沙龙香水品牌的在华独家运营。",
+          "tip": "不同于大众商业香，Fine fragrance 通常采用更高浓度的天然珍稀香料与艺术调香理念。"
+        },
+        {
+          "id": "c2_02",
+          "index": 2,
+          "term": "Eau de Parfum (EDP)",
+          "phonetic": "/ˌəʊ də pɑːˈfɜːm/",
+          "meaning": "浓香水 / 淡香精（15-20%香精浓度）",
+          "example": "The client requested a quotation for 5,000 units of the Eau de Parfum variant.",
+          "exampleZh": "客户针对该款 Eau de Parfum（EDP 浓香水）规格请求了一份5000支大货的正式采购报价单。",
+          "tip": "EDP是美妆分销最核心的主销浓度，留香时间通常在6-8小时之间，客单价与毛利空间均衡。"
+        },
+        {
+          "id": "c2_03",
+          "index": 3,
+          "term": "Eau de Toilette (EDT)",
+          "phonetic": "/ˌəʊ də twɑːˈlet/",
+          "meaning": "淡香水（8-15%日常高频浓度）",
+          "example": "Eau de Toilette remains the highest-volume category for casual spring and summer wear.",
+          "exampleZh": "淡香水（EDT）因清爽宜人，依然是春夏季日常高频喷洒走量最大的香水大类。",
+          "tip": "香精浓度稍低，挥发前调更明快，适合大众渠道与日常通勤高复购场景。"
+        },
+        {
+          "id": "c2_04",
+          "index": 4,
+          "term": "Eau de Cologne (EDC)",
+          "phonetic": "/ˌəʊ də kəˈləʊn/",
+          "meaning": "古龙水（3-5%清淡柑橘香）",
+          "example": "Traditional Eau de Cologne emphasizes invigorating citrus accords with a brief drydown.",
+          "exampleZh": "传统古龙水（EDC）着重展现令人提神清爽的柑橘调香，留香时间通常在1-2小时左右。",
+          "tip": "古龙水经常作为男士须后水或夏日运动后清爽喷雾，价格相对亲民。"
+        },
+        {
+          "id": "c2_05",
+          "index": 5,
+          "term": "top notes",
+          "phonetic": "/tɒp nəʊts/",
+          "meaning": "前调 / 初香（喷洒后前15分钟挥发香）",
+          "example": "The sparkling bergamot top notes evaporate quickly to reveal the floral heart.",
+          "exampleZh": "清新明亮的佛手柑前调迅速挥发，随即缓缓显露出优雅丰盈的花香中调。",
+          "tip": "前调是消费者在专柜试香或开箱试喷的第一印象，直接决定前30秒购买冲动（开门香）。"
+        },
+        {
+          "id": "c2_06",
+          "index": 6,
+          "term": "middle / heart notes",
+          "phonetic": "/ˈmɪdl nəʊts/ · /hɑːt nəʊts/",
+          "meaning": "中调 / 核心香（香水的主体灵魂）",
+          "example": "Turkish rose and jasmine form the velvety heart notes of this signature blend.",
+          "exampleZh": "土耳其玫瑰与大花茉莉构成了该款标志性招牌香水丝绒般柔润优雅的核心中调。",
+          "tip": "中调通常在喷洒后20分钟到1小时开始绽放，代表了调香师赋予这瓶香水的核心叙事主题。"
+        },
+        {
+          "id": "c2_07",
+          "index": 7,
+          "term": "base notes",
+          "phonetic": "/beɪs nəʊts/",
+          "meaning": "后调 / 尾调（木质琥珀基底沉淀香）",
+          "example": "Sandalwood and bourbon vanilla anchor the warm, long-lasting base notes on skin.",
+          "exampleZh": "檀木与波旁香草在肌肤上沉淀出温暖悠长、持久贴肤的木质香脂尾调。",
+          "tip": "后调分子量大、挥发极慢，常常作为定香剂（Fixative），支撑整瓶香水的留香骨架。"
+        },
+        {
+          "id": "c2_08",
+          "index": 8,
+          "term": "fragrance accord",
+          "phonetic": "/ˈfreɪɡrəns əˈkɔːd/",
+          "meaning": "香调调和 / 复合调和香",
+          "example": "The perfumer composed a bespoke leather accord with smoky birch tar and saffron.",
+          "exampleZh": "调香大师巧妙利用烟熏桦木焦油与藏红花，精心调配出一款专属的定制皮革调复合调和香。",
+          "tip": "就像音乐中的和弦（Chord），香水中的 Accord 指多个单一香料原料融合诞生的全新复合气味。"
+        },
+        {
+          "id": "c2_09",
+          "index": 9,
+          "term": "olfactory family",
+          "phonetic": "/ɒlˈfæktəri ˈfæməli/",
+          "meaning": "嗅觉香调家族（花香/木质/东方/水生）",
+          "example": "Retail buyers organize their fragrance assortment by major olfactory family tiers.",
+          "exampleZh": "零售渠道采购买手通常按照主流嗅觉香调家族（花香、木质、东方、柑橘等）组织货架选品。",
+          "tip": "掌握香调家族分类能极大提升与海外品牌方选品沟通和线上Listing标签分类效率。"
+        },
+        {
+          "id": "c2_10",
+          "index": 10,
+          "term": "fragrance sillage",
+          "phonetic": "/ˈfreɪɡrəns siːˈjɑːʒ/",
+          "meaning": "留香拖尾 / 走动时的香气扩散度",
+          "example": "Customers praised this formulation for moderate office-friendly sillage without overwhelming.",
+          "exampleZh": "买家好评称赞该配方具有非常适合职场通勤的适度扩香拖尾，清新宜人且绝不呛鼻刺鼻。",
+          "tip": "Sillage 源自法语，形容一个人走过之后在空气中留下的香气轨迹，是香评界专业术语。"
+        },
+        {
+          "id": "c2_11",
+          "index": 11,
+          "term": "fragrance longevity",
+          "phonetic": "/ˈfreɪɡrəns lɒnˈdʒevəti/",
+          "meaning": "持香持久度（皮上/织物留香时长）",
+          "example": "Laboratory tests confirmed that the fragrance longevity exceeds twelve hours on cotton fabric.",
+          "exampleZh": "实验室耐候测试证实：该香水在纯棉织物上的持香持久度整整超过十二个小时。",
+          "tip": "留香时长是终端买家评价中最常被提及的硬性指标，是复购与口碑好评的关键驱动力。"
+        },
+        {
+          "id": "c2_12",
+          "index": 12,
+          "term": "drydown period",
+          "phonetic": "/ˈdraɪdaʊn ˈpɪəriəd/",
+          "meaning": "后调干透沉淀期（挥发完全后的余香）",
+          "example": "During the drydown period, the ambergris notes become remarkably intimate and musky.",
+          "exampleZh": "在完全干透挥发的沉淀期，龙涎香基底逐渐蜕变出极具贴肤感与伪体香的麝香亲昵余韵。",
+          "tip": "专柜试香纸放置两小时后闻到的余味就是 Drydown，专业香水买手评测必测此阶段。"
+        },
+        {
+          "id": "c2_13",
+          "index": 13,
+          "term": "fragrance concentrate",
+          "phonetic": "/ˈfreɪɡrəns ˈkɒnsntreɪt/",
+          "meaning": "高纯度未稀释香精原油/原液",
+          "example": "Imported drums of fragrance concentrate must be stored in cool, dark explosion-proof vaults.",
+          "exampleZh": "原装进口的大桶未稀释香精原液必须存放在阴凉、避光且完全防爆的专业恒温库房内。",
+          "tip": "香水工厂的灌装核心原料，尚未加入脱臭酒精与去离子水，属于极度浓缩的高价值原料。"
+        },
+        {
+          "id": "c2_14",
+          "index": 14,
+          "term": "dilution ratio",
+          "phonetic": "/daɪˈluːʃn ˈreɪʃiəʊ/",
+          "meaning": "酒精与纯香精稀释配比",
+          "example": "A precise dilution ratio of 18% essence to 82% perfumer's alcohol was approved for batch A.",
+          "exampleZh": "经批准备案，A批次大货灌装正式确立了18%纯香精对应82%香水级变性乙醇的精准稀释配比。",
+          "tip": "稀释比例直接决定产品标识为 Extrait、EDP 还是 EDT，需与备案配方完全一致。"
+        },
+        {
+          "id": "c2_15",
+          "index": 15,
+          "term": "denatured alcohol",
+          "phonetic": "/ˌdiːˈneɪtʃəd ˈælkəhɒl/",
+          "meaning": "香水专用变性乙醇 / 去味溶剂",
+          "example": "We exclusively procure cosmetic-grade denatured alcohol to eliminate harsh alcoholic odor.",
+          "exampleZh": "我们专门采购化妆品级精馏脱臭变性乙醇，以彻底消除开瓶时刺鼻粗糙的廉价酒精生味。",
+          "tip": "香水必须使用变性酒精（加入微量苦味剂防食用），并提供海关危化品检验申报证明。"
+        },
+        {
+          "id": "c2_16",
+          "index": 16,
+          "term": "synthetic aroma",
+          "phonetic": "/sɪnˈθetɪk əˈrəʊmə/",
+          "meaning": "人工合成香料分子 / 合成单体",
+          "example": "Modern perfumery relies on synthetic aroma molecules to replicate rare botanical musk scents.",
+          "exampleZh": "现代高级调香艺术高度依赖人工合成香料单体，以完美复刻并替代珍稀天然动植物麝香。",
+          "tip": "合成香料不仅稳定性远胜天然原料，而且受国际香精协会（IFRA）安全标准严格监管。"
+        },
+        {
+          "id": "c2_17",
+          "index": 17,
+          "term": "natural botanicals",
+          "phonetic": "/ˈnætʃrəl bəˈtænɪklz/",
+          "meaning": "纯天然植物提取原料",
+          "example": "The marketing campaign highlights sustainably wild-harvested natural botanicals from Provence.",
+          "exampleZh": "该品牌全套宣发物料重点突出其原料源自法国普罗旺斯可持续采摘的纯天然珍稀植物原液。",
+          "tip": "天然植萃主打 Clean Beauty 与纯净护肤概念，但需进行严格的批次间色泽与香气均质化控制。"
+        },
+        {
+          "id": "c2_18",
+          "index": 18,
+          "term": "essential oil",
+          "phonetic": "/ɪˈsenʃl ɔɪl/",
+          "meaning": "天然植物芳香精油",
+          "example": "Cold-pressed Italian bergamot essential oil provides uplifting opening brightness.",
+          "exampleZh": "意大利冷榨佛手柑纯植物精油赋予了前调极具穿透力、令人心旷神怡的清新明亮感。",
+          "tip": "精油富含有机活性分子，属于光敏成分需严格控制安全添加上限，防止日光灼伤皮炎。"
+        },
+        {
+          "id": "c2_19",
+          "index": 19,
+          "term": "fine mist atomizer",
+          "phonetic": "/faɪn mɪst ˈætəmaɪzə(r)/",
+          "meaning": "极细微纳米雾化喷头",
+          "example": "Upgrading to a fine mist atomizer eliminated large liquid droplets and enhanced customer satisfaction.",
+          "exampleZh": "将喷头升级为极细微纳米雾化喷头后，彻底消除了喷洒时产生大水珠的痛点，买家满意度大幅攀升。",
+          "tip": "高档沙龙香水对喷雾的细腻度、开角幅度（Angle）与按压回弹手感有着极高的审美要求。"
+        },
+        {
+          "id": "c2_20",
+          "index": 20,
+          "term": "pump sprayer",
+          "phonetic": "/pʌmp ˈspreɪə(r)/",
+          "meaning": "乳液定量按压泵 / 喷雾器部件",
+          "example": "The pump sprayer mechanism undergoes 5,000 continuous compression cycles for endurance verification.",
+          "exampleZh": "乳液喷雾泵头核心弹簧活塞机构必须通过连续5000次无卡顿压缩循环耐久疲劳质检验证。",
+          "tip": "包材常见异常：泵头吸管过长顶死底盖、弹簧生锈、回弹迟缓或按压漏液。"
+        },
+        {
+          "id": "c2_21",
+          "index": 21,
+          "term": "spray nozzle",
+          "phonetic": "/spreɪ ˈnɒzl/",
+          "meaning": "喷嘴出液孔 / 喷珠内胆",
+          "example": "Laser-drilled spray nozzle orifices ensure uniform droplet dispersion across each spritz.",
+          "exampleZh": "采用高精度激光打孔的喷嘴出液微孔，确保每一次按压喷洒都能实现极其均匀的雾化微滴分布。",
+          "tip": "喷孔如果产生毛刺或公差超标，会导致喷雾偏斜呈线状射流（Jetting），属于严重外观瑕疵。"
+        },
+        {
+          "id": "c2_22",
+          "index": 22,
+          "term": "glass flacon",
+          "phonetic": "/ɡlɑːs ˈfleɪkɒn/",
+          "meaning": "奢华高档玻璃香水瓶",
+          "example": "The heavy-base glass flacon imparts a substantial, weighted luxury feel in the hand.",
+          "exampleZh": "加厚水晶玻璃底座的奢华香水瓶赋予了整件产品在掌心中极其沉稳、极具分量感的高级奢华质感。",
+          "tip": "香水瓶玻璃工艺看三个指标：玻璃白度透光率、合模合缝线平整度、瓶底玻璃厚度分布均匀度。"
+        },
+        {
+          "id": "c2_23",
+          "index": 23,
+          "term": "sample vial",
+          "phonetic": "/ˈsɑːmpl ˈvaɪəl/",
+          "meaning": "针管小样 / 试管香水（1-2ml卡片装）",
+          "example": "We shipped 10,000 promotional sample vials on blister cards to drive online sampling conversion.",
+          "exampleZh": "我们调配发货了一万份吸塑卡片装针管小样（1.5ml），用于驱动线上大促前置派样尝鲜转化。",
+          "tip": "派样小样是跨境电商拉新成本最低、转化最高的利器，在海外被广泛用于小样买赠（GWP）。"
+        },
+        {
+          "id": "c2_24",
+          "index": 24,
+          "term": "perfume decant",
+          "phonetic": "/ˈpɜːfjuːm ˈdiːkænt/",
+          "meaning": "香水分装便携瓶 / 随身分装",
+          "example": "Travel-friendly 10ml perfume decants have become a viral bestseller on social platforms.",
+          "exampleZh": "便于差旅随身携带的10毫升便携香水分装瓶在海外社媒平台上已成为现象级的出海爆款品类。",
+          "tip": "正规品牌推分装需取得官方品牌授权，非官方私自分装转卖可能触犯假冒或侵权法务红线。"
+        },
+        {
+          "id": "c2_25",
+          "index": 25,
+          "term": "retail tester",
+          "phonetic": "/ˈriːteɪl ˈtestə(r)/",
+          "meaning": "专柜简装测试品（白盒无盖Tester）",
+          "example": "Testers are labeled 'Not for Resale' and supplied in plain white protective outer boxes.",
+          "exampleZh": "专柜试用装大货外盒标有‘非卖品’字样，并采用极简白色瓦楞保护纸盒进行简装出厂配套。",
+          "tip": "二级分销市场对白盒Tester有庞大批发需求（性价比高），但品牌方通常对Tester流出严加监管。"
+        },
+        {
+          "id": "c2_26",
+          "index": 26,
+          "term": "miniature edition",
+          "phonetic": "/ˈmɪnətʃə(r) ɪˈdɪʃn/",
+          "meaning": "Q版迷你珍藏香水（5-7.5ml带盖带盒）",
+          "example": "The miniature edition box set serves as the perfect holiday gift item for impulse purchase.",
+          "exampleZh": "包含五款经典香型的Q版迷你珍藏礼盒是节日旺季刺激冲动消费转化的绝佳礼物套盒。",
+          "tip": "完全复刻正装大瓶工艺的微缩版，瓶盖精美开模，是香水收藏爱好者极为热衷的品类。"
+        },
+        {
+          "id": "c2_27",
+          "index": 27,
+          "term": "color cosmetics",
+          "phonetic": "/ˈkʌlə(r) kɒzˈmetɪks/",
+          "meaning": "彩妆品类（底妆/口红/眼影）",
+          "example": "Import tariffs and consumption taxes differ markedly between skincare and color cosmetics.",
+          "exampleZh": "在进出口海关监管与税务核算中，普通护肤品与彩妆类化妆品的税率与质检标准存在显著差异。",
+          "tip": "彩妆产品生命周期短、流行色号更迭迅速，需密切关注重金属安全限量检测。"
+        },
+        {
+          "id": "c2_28",
+          "index": 28,
+          "term": "skincare regime",
+          "phonetic": "/ˈskɪnkeə(r) reɪˈʒiːm/",
+          "meaning": "功效型护肤品日常护理套组",
+          "example": "Our cross-border portfolio features a three-step brightening skincare regime formulated for Asian skin.",
+          "exampleZh": "我们的跨境产品矩阵主打一套专为亚洲敏感肌肤定制开发的三步焕亮进阶功效护肤套组。",
+          "tip": "套组销售客单价高，能有效摊薄单次国际物流直邮运费成本，提升整体毛利水平。"
+        },
+        {
+          "id": "c2_29",
+          "index": 29,
+          "term": "dermatological test",
+          "phonetic": "/ˌdɜːmətəˈlɒdʒɪkl test/",
+          "meaning": "皮肤科临床安全性过敏斑贴测试",
+          "example": "Each formula passed a 48-hour human repeat insult patch dermatological test without irritation.",
+          "exampleZh": "每一款升级新配方均以零刺激反应顺利通过了严格的48小时人体重复性斑贴皮肤科临床测试。",
+          "tip": "功效宣称的黄金护城河，是进入海外高端连锁药房与药妆渠道准入的强制性技术门槛。"
+        },
+        {
+          "id": "c2_30",
+          "index": 30,
+          "term": "hypoallergenic formula",
+          "phonetic": "/ˌhaɪpəʊˌæləˈdʒenɪk ˈfɔːmjələ/",
+          "meaning": "低致敏性温和安全配方",
+          "example": "Formulated without synthetic fragrances, this hypoallergenic formula targets compromised barriers.",
+          "exampleZh": "该低敏温和配方坚决剔除人工合成香精与刺激性防腐剂，专门面向屏障受损脆弱敏感肌修护。",
+          "tip": "欧美Clean Beauty的核心卖点，包装上标注 Hypoallergenic 需备齐严密的非致敏临床数据报告。"
+        },
+        {
+          "id": "c2_31",
+          "index": 31,
+          "term": "formula composition",
+          "phonetic": "/ˈfɔːmjələ ˌkɒmpəˈzɪʃn/",
+          "meaning": "配方全成分配比清单（INCI表）",
+          "example": "The complete formula composition list must be submitted in full INCI nomenclature for NMPA filing.",
+          "exampleZh": "在国家药监局在华申报备案时，必须递交完全符合国际INCI标准命名的全成分配比组成清单。",
+          "tip": "商业机密与法规透明度的博弈。需向品牌方索取原厂盖章的百分百定性定量全成分表。"
+        },
+        {
+          "id": "c2_32",
+          "index": 32,
+          "term": "active ingredient",
+          "phonetic": "/ˈæktɪv ɪnˈɡriːdiənt/",
+          "meaning": "活性功效成分（如视黄醇/玻色因）",
+          "example": "We emphasize the clinically proven active ingredient concentration on the product packaging.",
+          "exampleZh": "我们在外包装盒核心版面上醒目标注了经临床实证的有效活性功效成分的纯度与添加浓度比例。",
+          "tip": "成分党买家做消费决策的核心锚点，宣传添加量必须真实有据可查，严防虚假概念添加虚假宣称。"
+        },
+        {
+          "id": "c2_33",
+          "index": 33,
+          "term": "pigment dispersion",
+          "phonetic": "/ˈpɪɡmənt dɪˈspɜːʃn/",
+          "meaning": "彩妆色粉研磨分散度（防沉淀结块）",
+          "example": "Micro-milled pigment dispersion guarantees seamless blending and true-to-pan color payoff on lips.",
+          "exampleZh": "超微纳米气流研磨色粉分散工艺，确保了唇膏料体涂抹极度丝滑顺畅且实现所见即所得的浓郁显色度。",
+          "tip": "彩妆生产质检指标：分散不良会导致粉底泛白析出或口红膏体产生细小色点瑕疵。"
+        },
+        {
+          "id": "c2_34",
+          "index": 34,
+          "term": "emulsion stability",
+          "phonetic": "/ɪˈmʌlʃn stəˈbɪləti/",
+          "meaning": "水油乳化体抗分层稳定性",
+          "example": "Centrifuge tests at 4,000 RPM confirmed zero phase separation and robust emulsion stability.",
+          "exampleZh": "在4000转离心机高速离心破坏性测试下，料体未发生任何相分层，证实了卓越的水油乳化稳定性。",
+          "tip": "跨洋海运集装箱内剧烈颠簸与温差交替极易破坏乳化体系，导致水油分离变质报废。"
+        },
+        {
+          "id": "c2_35",
+          "index": 35,
+          "term": "liquid viscosity",
+          "phonetic": "/ˈlɪkwɪd vɪˈskɒsəti/",
+          "meaning": "料体流动粘度 / 粘稠稠度参数",
+          "example": "The liquid viscosity of the foundation was adjusted to 15,000 cPs to optimize pump delivery.",
+          "exampleZh": "该款持妆粉底液的流动粘度被精细调节锁定在15000厘泊（cPs），以确保按压泵顺畅出液不卡泵。",
+          "tip": "粘度过高会导致泵头按压吃力、无法吸上料体；粘度过低则会导致流淌挂壁质感稀散。"
+        },
+        {
+          "id": "c2_36",
+          "index": 36,
+          "term": "stability test",
+          "phonetic": "/stəˈbɪləti test/",
+          "meaning": "高低温加速耐候稳定性试验",
+          "example": "Three-month accelerated stability tests at 45°C confirmed no color shift or fragrance alteration.",
+          "exampleZh": "在45℃高温与-10℃严寒三轮加速耐候破坏性实验下，样品未发生任何颜色漂移或香气变味变质。",
+          "tip": "美妆出海必须进行的实验室合规准入检测，模拟长达24~36个月真实货架期内料体衰减规律。"
+        },
+        {
+          "id": "c2_37",
+          "index": 37,
+          "term": "chemical preservative",
+          "phonetic": "/ˈkemɪkl prɪˈzɜːvətɪv/",
+          "meaning": "合规化学抑菌防腐剂系统",
+          "example": "The brand transitioned away from traditional parabens to a gentle, compliant preservative system.",
+          "exampleZh": "该品牌已彻底淘汰传统尼泊金酯类争议原料，全面升级为更加温和、全球合规的新型抑菌防腐体系。",
+          "tip": "防腐不达标会在几周内滋生霉菌细菌超标，但添加过量又会引发过敏皮炎，需取得微妙平衡。"
+        },
+        {
+          "id": "c2_38",
+          "index": 38,
+          "term": "organic certification",
+          "phonetic": "/ɔːˈɡænɪk ˌsɜːtɪfɪˈkeɪʃn/",
+          "meaning": "欧盟ECOCERT等有机护肤认证资质",
+          "example": "Securing recognized organic certification enabled the brand to enter European sustainable concept stores.",
+          "exampleZh": "成功斩获国际公认的ECOCERT欧盟有机护肤认证，助力品牌顺利入驻欧洲各大高端绿色概念百货。",
+          "tip": "从原料有机种植、提取无化学残留到包材可降解，整个供应链全生命周期均受第三方每年严审。"
+        },
+        {
+          "id": "c2_39",
+          "index": 39,
+          "term": "vegan & cruelty-free",
+          "phonetic": "/ˈviːɡən ənd ˈkruːəlti friː/",
+          "meaning": "纯素且零残忍无动物实验认证",
+          "example": "The Leaping Bunny vegan and cruelty-free logo builds immense trust with Gen-Z conscious shoppers.",
+          "exampleZh": "包装印制的跃兔跳跃纯素零残忍认证专属徽标，在海外年轻一代具有环保意识的Z世代买家中建立起极强信任感。",
+          "tip": "欧美主流跨境美妆核心加分门槛，产品绝不含动物源副产物且全球范围内终身承诺杜绝动物实验。"
+        },
+        {
+          "id": "c2_40",
+          "index": 40,
+          "term": "facial serum",
+          "phonetic": "/ˈfeɪʃl ˈsɪərəm/",
+          "meaning": "高浓度活性面部精华液",
+          "example": "Our hydrating facial serum generated the highest gross merchandise value during the pre-order launch.",
+          "exampleZh": "我们的高保湿玻尿酸面部精华液在跨境预售首发活动中斩获了全店最高的成交总额（GMV）。",
+          "tip": "美妆品类中客单价与毛利率最高的战略大单品，消费者粘性强、周期性复购率极高。"
+        },
+        {
+          "id": "c2_41",
+          "index": 41,
+          "term": "cleansing balm",
+          "phonetic": "/ˈklenzɪŋ bɑːm/",
+          "meaning": "温和深层卸妆膏 / 凝脂洁颜膏",
+          "example": "The melting cleansing balm transforms from solid sherbet to silky cleansing milk upon water contact.",
+          "exampleZh": "该款雪融卸妆膏遇水瞬间即刻从固态冰淇淋膏体乳化转化为丝绒般轻盈的净澈洁颜乳液。",
+          "tip": "夏季高温长途运输时膏体容易软化融化漏油，配方凝固点测试与瓶口密封垫片必须万无一失。"
+        },
+        {
+          "id": "c2_42",
+          "index": 42,
+          "term": "soothing toner",
+          "phonetic": "/ˈsuːðɪŋ ˈtəʊnə(r)/",
+          "meaning": "舒缓补水柔肤水 / 爽肤水",
+          "example": "Infused with centella asiatica, this soothing toner reduces post-sun redness and restores pH balance.",
+          "exampleZh": "富含积雪草萃取原液的舒缓爽肤水能强效褪除晒后泛红并快速调节皮脂膜水油酸碱pH平衡。",
+          "tip": "水类产品体积重、液体运费单价高，做跨境直邮时需严格把控包材轻量化与防漏液设计。"
+        },
+        {
+          "id": "c2_43",
+          "index": 43,
+          "term": "chemical exfoliant",
+          "phonetic": "/ˈkemɪkl eksˈfəʊliənt/",
+          "meaning": "水杨酸/果酸化学角质剥脱成分",
+          "example": "Clear warnings are mandatory on packaging for cosmetics containing active chemical exfoliants.",
+          "exampleZh": "含有活性果酸（AHA）与水杨酸（BHA）化学角质剥脱成分的护肤品外盒依法必须印刷日光敏感警示。",
+          "tip": "酸类浓度与pH值受监管严密限制（如游离水杨酸通常上限2%），超标入境会被海关抽样判罚没收。"
+        },
+        {
+          "id": "c2_44",
+          "index": 44,
+          "term": "secondary packaging",
+          "phonetic": "/ˈsekəndri ˈpækɪdʒɪŋ/",
+          "meaning": "外彩盒包装 / 独立礼盒纸盒套盒",
+          "example": "Secondary packaging was finished with soft-touch lamination, gold foil embossing, and anti-scuff varnish.",
+          "exampleZh": "产品外彩盒包装采用了触感极其细腻的触感哑膜、立体烫金工艺以及高耐磨哑光防划伤保护光油。",
+          "tip": "消费者开箱的第一触觉仪式感。长途跨境直邮外盒抗跌落硬度与内衬卡扣严丝合缝度决定货品档次。"
+        },
+        {
+          "id": "c2_45",
+          "index": 45,
+          "term": "primary container",
+          "phonetic": "/ˈpraɪməri kənˈteɪnə(r)/",
+          "meaning": "直接接触料体的内胆瓶体（主包材）",
+          "example": "Compatibility tests verify that the fragrance formulation does not corrode the primary container.",
+          "exampleZh": "相容性破坏测试旨在严格证实香水料体在长时间接触下绝不会腐蚀溶胀内胆塑料或脱胶掉渣。",
+          "tip": "主包材直接关乎化妆品货品安全性，需取得塑料材质溶出物测试报告及食品级安全材质检测。"
+        },
+        {
+          "id": "c2_46",
+          "index": 46,
+          "term": "magnetic bottle cap",
+          "phonetic": "/mæɡˈnetɪk ˈbɒtl kæp/",
+          "meaning": "高端磁吸式香水瓶盖",
+          "example": "The satisfying audible click of the magnetic bottle cap signifies luxury craftsmanship.",
+          "exampleZh": "磁吸瓶盖合盖时那一声清脆悦耳的磁吸闭合声，成为高端沙龙香水奢华开模工艺的标志性特征。",
+          "tip": "磁铁磁极方向严禁装反；磁吸拉力需严格校准在适度范围（400~600g），太紧难拔、太松易脱落。"
+        },
+        {
+          "id": "c2_47",
+          "index": 47,
+          "term": "tamper-evident seal",
+          "phonetic": "/ˈtæmpər ˈevɪdənt siːl/",
+          "meaning": "防拆封易碎封签 / 撕毁留字封口贴",
+          "example": "Every individual retail box must carry an intact tamper-evident seal across the opening flap.",
+          "exampleZh": "每一只终端零售外彩盒纸盒的开口插舌处，均必须牢固贴有完好无损的防伪防拆易碎封口签贴。",
+          "tip": "跨境美妆质检与海外退货的核心责任分水岭：封签一旦破损，海关或平台直接判定为已开封二手数。"
+        },
+        {
+          "id": "c2_48",
+          "index": 48,
+          "term": "heat shrinkwrap",
+          "phonetic": "/hiːt ˈʃrɪŋkræp/",
+          "meaning": "高透明热缩塑封膜（全包裹防尘防潮）",
+          "example": "Automated heat shrinkwrap tunnels apply a tight POF transparent film over each fragrance carton.",
+          "exampleZh": "全自动热收缩塑封流水线为每只香水外盒紧密包裹上一层高透光率、防尘防潮的POF环保热缩薄膜。",
+          "tip": "塑封边角需平整无焦痕气泡；塑封膜既能防调包防潮，又是国际主流专柜正装出厂的标准形态。"
+        },
+        {
+          "id": "c2_49",
+          "index": 49,
+          "term": "inner bottle liner",
+          "phonetic": "/ˈɪnə(r) ˈbɒtl ˈlaɪnə(r)/",
+          "meaning": "瓶盖内部防漏密封弹性垫片",
+          "example": "Upgrading the inner bottle liner to fluorinated PE foam eliminated micro-leakage during air shipping.",
+          "exampleZh": "将瓶盖内衬密封垫片升级为耐耐腐蚀氟化PE发泡垫片后，彻底杜绝了高空航运低气压下的微渗漏液隐患。",
+          "tip": "高空货机货舱负压状态下，微弱的密封不严都会被气压差挤出液体，垫片的压缩回弹率是防漏生命线。"
+        },
+        {
+          "id": "c2_50",
+          "index": 50,
+          "term": "unauthorized tampering",
+          "phonetic": "/ʌnˈɔːθəraɪzd ˈtæmpərɪŋ/",
+          "meaning": "人为拆封破坏 / 掉包调换假料体迹象",
+          "example": "Returns exhibiting signs of unauthorized tampering or broken seals are rejected for warehouse restocking.",
+          "exampleZh": "任何带有明显人为私自拆封破坏或封签撕毁撕裂痕迹的退货商品，仓库一律严禁重新上架再次销售。",
+          "tip": "海外跨境电商常见恶意退款陷阱：买家买正品后抽走真香水灌入自来水退回，质检团队需重点核查喷口残留。"
+        },
+        {
+          "id": "c2_51",
+          "index": 51,
+          "term": "counterfeit product",
+          "phonetic": "/ˈkaʊntəfɪt ˈprɒdʌkt/",
+          "meaning": "假冒伪劣仿制品 / 假洋牌山寨货",
+          "example": "Selling counterfeit product results in immediate account deactivation and criminal liability.",
+          "exampleZh": "在跨境电商任何平台蓄意贩卖假冒伪劣仿品，将直接面临店铺秒封停、资金全额冻结甚至刑事追责。",
+          "tip": "知名美妆是制假重灾区。正规分销商必须建立起端到端的品牌全链路采购发票与正品溯源证据链。"
+        },
+        {
+          "id": "c2_52",
+          "index": 52,
+          "term": "authentic merchandise",
+          "phonetic": "/ɔːˈθentɪk ˈmɜːtʃəndaɪs/",
+          "meaning": "原装正品行货商品",
+          "example": "We provide blockchain-enabled anti-fake tags guaranteeing 100% authentic merchandise.",
+          "exampleZh": "我们为所经销的每一件商品配备一物一码区块链防伪追溯标签，全天候承诺百分百原厂正品行货。",
+          "tip": "跨境美妆分销立足的立身之本，向平台与大客户出具原厂商业采购合同是建立信任的第一步。"
+        },
+        {
+          "id": "c2_53",
+          "index": 53,
+          "term": "certificate of authenticity",
+          "phonetic": "/səˈtɪfɪkət əv ˌɔːθenˈtɪsəti/",
+          "meaning": "原厂正品防伪溯源凭证（COA）",
+          "example": "Wholesale buyers require an authorized certificate of authenticity accompanying each bulk order.",
+          "exampleZh": "大宗批量批发的海外大买手要求每一批大货提货时必须随附原厂盖章出具的正品真伪公证溯源凭证。",
+          "tip": "不仅证实正品身份，还常与批次出厂检验报告单（Certificate of Analysis）一并提供以验明货号。"
+        },
+        {
+          "id": "c2_54",
+          "index": 54,
+          "term": "genuine origin",
+          "phonetic": "/ˈdʒenjuɪn ˈɒrɪdʒɪn/",
+          "meaning": "纯正原产国正规溯源渠道",
+          "example": "Our perfume stock originates from verified European brand owners with verifiable genuine origin.",
+          "exampleZh": "我们所有的香水现货库存均直采自欧洲官方注册品牌权利人，拥有无懈可击、可追溯的正品溯源源头。",
+          "tip": "避免采购任何链路不明的‘倒手现货’，渠道源头越长，混入水货或高仿A货的商业法律风险越高。"
+        },
+        {
+          "id": "c2_55",
+          "index": 55,
+          "term": "knockoff / replica",
+          "phonetic": "/ˈnɒkɒf/ · /ˈreplɪkə/",
+          "meaning": "山寨仿冒 A 货复刻品",
+          "example": "Customs agents intercepted a shipment of knockoff cosmetic brush sets infringing patented handles.",
+          "exampleZh": "海关口岸稽查人员在监管通道精准查扣了一批侵犯了知名品牌专利手柄设计的外观山寨盗版化妆刷套件。",
+          "tip": "哪怕不打原牌LOGO，只要外观瓶型、雕刻纹理高度近似构成视觉混淆，依然被判定为构成侵权被没收。"
+        },
+        {
+          "id": "c2_56",
+          "index": 56,
+          "term": "manufacturing defect",
+          "phonetic": "/ˌmænjuˈfæktʃərɪŋ ˈdiːfekt/",
+          "meaning": "出厂注塑/灌装工艺缺陷瑕疵",
+          "example": "A manufacturing defect in the aluminum collar caused spray head detachment during usage.",
+          "exampleZh": "铝制中圈在自动化模具冲压装配中存在的出厂工艺缺陷，导致消费者在日常按压使用中喷头松动脱落。",
+          "tip": "需及时向代工厂索赔模具治具返修损失，并在出厂检验AQL标准中将喷头牢固度列入致命缺陷（Critical defect）。"
+        },
+        {
+          "id": "c2_57",
+          "index": 57,
+          "term": "defective rate",
+          "phonetic": "/dɪˈfektɪv reɪt/",
+          "meaning": "大货抽检次品率 / 不良率参数",
+          "example": "Our quality agreement caps the allowable defective rate at 0.5% for all cosmetic components.",
+          "exampleZh": "我们在与包材模具供应商签署的质量技术保证协议中，将全部包材部件的允许不良次品率死死卡在0.5%以内。",
+          "tip": "若验货发现次品率突破AQL阈值，采购方有权全单拒收并勒令工厂全数全检返工并承担延期责任。"
+        },
+        {
+          "id": "c2_58",
+          "index": 58,
+          "term": "surface blemish",
+          "phonetic": "/ˈsɜːfɪs ˈblemɪʃ/",
+          "meaning": "瓶身表面电镀掉漆 / 划痕瑕疵",
+          "example": "Bottles exhibiting paint peeling or visible surface blemishes were rejected during line inspection.",
+          "exampleZh": "凡在质检线上发现任何局部烤漆电镀脱落或瓶身肉眼可见明显划痕擦伤的瓶体，一律判定为不合格予以剔除。",
+          "tip": "高端香水瓶身透光度要求极高，注塑划伤气泡、真空镀膜颗粒感会严重摧毁产品的奢侈品高级属性。"
+        },
+        {
+          "id": "c2_59",
+          "index": 59,
+          "term": "color discoloration",
+          "phonetic": "/ˈkʌlə(r) dɪsˌkʌləˈreɪʃn/",
+          "meaning": "料体被光照氧化发黄变色异常",
+          "example": "Direct UV light exposure caused noticeable color discoloration in the transparent perfume sample.",
+          "exampleZh": "因长期直面强紫外线照射，导致摆放在橱窗展台内的无色透明香水样品发生了显而易见的发黄变色衰变。",
+          "tip": "清透型香水通常添加微量紫外线吸收剂抗光变；长期存放与展示需避免射灯直射，建议做避光瓶。"
+        },
+        {
+          "id": "c2_60",
+          "index": 60,
+          "term": "crystal sediment",
+          "phonetic": "/ˈkrɪstl ˈsedɪmənt/",
+          "meaning": "瓶底香精析出结晶沉淀微粒",
+          "example": "Cold storage stability tests proved that no crystal sediment precipitated under low temperatures.",
+          "exampleZh": "严寒低温冷藏稳定性测试充分证实：该款香水配方在零下超低温环境下绝不会在瓶底析出任何结晶沉淀微粒。",
+          "tip": "某些高浓度天然橡木苔或香兰素原料在低温下易结晶析出，需在配方中精细添加助溶剂稳定液相平衡。"
+        },
+        {
+          "id": "c2_61",
+          "index": 61,
+          "term": "solution turbidity",
+          "phonetic": "/səˈluːʃn tɜːˈbɪdəti/",
+          "meaning": "液体悬浮物导致浑浊不透光",
+          "example": "Excess water content resulted in solution turbidity and ruined the clarity of the fragrance.",
+          "exampleZh": "由于脱臭酒精中水分超标，导致油相香精析出并发生液体泛白浑浊，严重摧毁了香水本应具有的晶莹剔透感。",
+          "tip": "香水灌装前必须经过-5℃冰点急冷冷冻与超细硅藻土高压板框压滤机深度物理过滤，确保永久澄澈透亮。"
+        },
+        {
+          "id": "c2_62",
+          "index": 62,
+          "term": "batch production code",
+          "phonetic": "/bætʃ prəˈdækʃn kəʊd/",
+          "meaning": "瓶底出厂生产批次喷码",
+          "example": "Consumers frequently use online cosmetic checkers to read the batch production code and expiry.",
+          "exampleZh": "资深海淘消费者极度习惯使用美妆查询APP输入瓶底出厂生产批次喷码，核实生产年份与剩余到期效期。",
+          "tip": "瓶底或盒身底部的4~6位钢印喷码（如 3N01），喷码磨损掉码或与外盒不一致常被买家质疑为假货。"
+        },
+        {
+          "id": "c2_63",
+          "index": 63,
+          "term": "lot number",
+          "phonetic": "/lɒt ˈnʌmbə(r)/",
+          "meaning": "原料与大货追踪批号（溯源Lot）",
+          "example": "In the event of a product recall, every affected SKU can be tracked through its internal lot number.",
+          "exampleZh": "一旦不幸发生全球召回紧急事件，所有受波及的单品均能通过其唯一的内部生产批号实现秒级精准批次锁定。",
+          "tip": "从原料入库称量批次到包装成品，全程ERP工单实现批号关联绑码，是现代GMP良好生产规范核心要素。"
+        },
+        {
+          "id": "c2_64",
+          "index": 64,
+          "term": "expiry date",
+          "phonetic": "/ɪkˈspaɪəri deɪt/",
+          "meaning": "官方标定产品保质到期日",
+          "example": "Products within six months of their expiry date are ineligible for cross-border e-commerce warehousing.",
+          "exampleZh": "距离官方标定到期日已不足半年的临期货品，各大跨境电商官方保税仓均有权严格拒收、禁止入库上架。",
+          "tip": "未开封保质期（通常为3年/5年）与开盖保质期（PAO图标，如 12M 代表开盖后12个月内用尽）需严格区分。"
+        },
+        {
+          "id": "c2_65",
+          "index": 65,
+          "term": "remaining shelf life",
+          "phonetic": "/rɪˈmeɪnɪŋ ʃelf laɪf/",
+          "meaning": "剩余保质期（商超/电商准入门槛）",
+          "example": "Major beauty retailers mandate a minimum of 70% remaining shelf life upon warehouse arrival.",
+          "exampleZh": "海外主流大型美妆零售商要求大货到仓验收入库时，其剩余保质期绝不能低于总保质期时长的70%。",
+          "tip": "外贸采购交单与跨境电商采买最容易被忽视的隐形雷区。剩余效期过低会被直接拒付、要求折价或直接退货。"
+        },
+        {
+          "id": "c2_66",
+          "index": 66,
+          "term": "technical specification",
+          "phonetic": "/ˈteknɪkl ˌspesɪfɪˈkeɪʃn/",
+          "meaning": "采购技术规格要求说明书（Spec）",
+          "example": "The purchase order includes a detailed technical specification detailing bottle neck tolerances.",
+          "exampleZh": "正式采购订单（PO）中随附有一份极度详尽的技术规格说明书，精确锁定了玻璃瓶口螺口螺纹的允许公差。",
+          "tip": "明确约定外观瑕疵、理化指标、装配扭力扭矩（Torque）测试标准，是验货判据的法定义据。"
+        },
+        {
+          "id": "c2_67",
+          "index": 67,
+          "term": "quality tolerance",
+          "phonetic": "/ˈkwɒləti ˈtɒlərəns/",
+          "meaning": "质检验收公差允许偏差区间",
+          "example": "A filling volume quality tolerance of plus or minus 1.5% was mutually agreed upon in writing.",
+          "exampleZh": "双方在生产代工协议中以书面形式明确确立了单瓶实际灌装容量允许上下正负1.5%的质检公差区间。",
+          "tip": "包材瓶壁厚度、瓶盖旋转开合力矩等均有公差范围，超出公差上限或下限均会导致自动化流水线卡壳停线。"
+        },
+        {
+          "id": "c2_68",
+          "index": 68,
+          "term": "safety assessment",
+          "phonetic": "/ˈseɪfti əˈsesmənt/",
+          "meaning": "化妆品全成分安全评估报告",
+          "example": "Qualified toxicologists finalized the cosmetic safety assessment report required for EU compliance.",
+          "exampleZh": "具有欧洲法定毒理学家资质的独立专家正式签字完成了欧盟化妆品法规合规准入所强制要求的安全评估报告。",
+          "tip": "分析每一项原料在终产品中的系统暴露量（SED）与安全边际（MoS），是防范过敏与健康风险的最高技术文件。"
+        },
+        {
+          "id": "c2_69",
+          "index": 69,
+          "term": "NMPA registration",
+          "phonetic": "/ˌen em piː ˈeɪ ˌredʒɪˈstreɪʃn/",
+          "meaning": "中国国家药监局进口化妆品在华申报备案",
+          "example": "Securing the official NMPA registration certificate takes four to six months for non-special cosmetics.",
+          "exampleZh": "进口普通非特殊用途化妆品办理并获取国家药监局在华官方准入备案凭证，通常需要耗时四至六个月整。",
+          "tip": "一般贸易进入中国大陆的绝对法定准入门槛；未完成在华申报备案的进口美妆严禁在实体专柜上架流通。"
+        },
+        {
+          "id": "c2_70",
+          "index": 70,
+          "term": "safety data sheet (MSDS)",
+          "phonetic": "/ˈseɪfti ˈdeɪtə ʃiːt/",
+          "meaning": "化学品安全技术说明书（空运海运必备）",
+          "example": "A 16-section safety data sheet (MSDS) is mandatory for airline carrier booking of perfume cargo.",
+          "exampleZh": "订立香水大货国际航空货运舱位时，必须向货代航司如实递交完备规范的16项化学品安全技术说明书。",
+          "tip": "详列产品闪点（Flash Point）、联合国危包编号（UN 1266）、包装类别（PG III）与应急处置方案。"
+        }
+      ]
+    },
+    {
+      "id": "chap3",
+      "name": "第三章 · 品牌管理、授权协议与渠道治理",
+      "enName": "Brand Management & Channel Governance",
+      "icon": "🛡️",
+      "count": 70,
+      "desc": "熟练运用独家总代资质、品牌授权书(LOA)、MAP控价巡检、防串货打假与数字营销资产。",
+      "type": "term",
+      "items": [
+        {
+          "id": "c3_01",
+          "index": 1,
+          "term": "exclusive distributor",
+          "phonetic": "/ɪkˈskluːsɪv dɪˈstrɪbjətə(r)/",
+          "meaning": "独家全国总代分销商",
+          "example": "Our company was officially appointed as the exclusive distributor for Greater China.",
+          "exampleZh": "我们公司已正式获准被海外品牌方全权指定为大中华区独家全渠道总代理分销商。",
+          "tip": "享有特定区域的独占排他经销权，品牌方在此区域内严禁另行向任何其他第三方主体授权或供货。"
+        },
+        {
+          "id": "c3_02",
+          "index": 2,
+          "term": "master distributor",
+          "phonetic": "/ˈmɑːstə(r) dɪˈstrɪbjətə(r)/",
+          "meaning": "大区总代理（统管多个下级渠道）",
+          "example": "The master distributor manages regional wholesale pricing and oversees provincial sub-dealers.",
+          "exampleZh": "大区总代理负责统筹区域整体批发价格体系，并对各省及各垂直渠道的下级经销商实施日常运营监督。",
+          "tip": "作为品牌方与终端分散渠道之间的缓冲层，承担巨额首单提货压资能力并承担渠道回款风险。"
+        },
+        {
+          "id": "c3_03",
+          "index": 3,
+          "term": "authorized wholesaler",
+          "phonetic": "/ˈɔːθəraɪzd ˈhəʊlseɪlə(r)/",
+          "meaning": "官方认证批发渠道商",
+          "example": "Products procured from authorized wholesalers include official brand chain of custody invoices.",
+          "exampleZh": "通过品牌官方认证批发渠道商采买的货品，均随附具有官方背书效力的完整链路采购发票与质保凭证。",
+          "tip": "跨境采买分销的核心正品证明链，避免在无发票的二级灰色市场提货引发后续平台真伪审查扣款。"
+        },
+        {
+          "id": "c3_04",
+          "index": 4,
+          "term": "authorized retailer",
+          "phonetic": "/ˈɔːθəraɪzd ˈriːteɪlə(r)/",
+          "meaning": "官方特许授权零售终端",
+          "example": "Prestige brands restrict their allocations strictly to accredited authorized retailers.",
+          "exampleZh": "高档奢华美妆沙龙香严格将其紧俏货源配额优先仅限配发给通过官方严审的特许授权零售专柜与线上专卖店。",
+          "tip": "零售终端往往需承诺遵循品牌的VI视觉陈列、会员积分互通规范及不得私自打折破价。"
+        },
+        {
+          "id": "c3_05",
+          "index": 5,
+          "term": "unauthorized reseller",
+          "phonetic": "/ʌnˈɔːθəraɪzd ˌriːˈselə(r)/",
+          "meaning": "非授权第三方小卖家 / 倒爷",
+          "example": "We initiated takedown notices against unauthorized resellers undercutting our pricing online.",
+          "exampleZh": "针对在线上平台肆意压价、破坏价格大盘的非授权第三方跟卖小卖家，我们正式启动了法务侵权下架投诉。",
+          "tip": "品牌治理核心痛点。这些卖家常利用退税水货、临期现货低价倾销，极大破坏品牌正品形象。"
+        },
+        {
+          "id": "c3_06",
+          "index": 6,
+          "term": "dealership agreement",
+          "phonetic": "/ˈdiːləʃɪp əˈɡriːmənt/",
+          "meaning": "特许经销与分销正式法律合同",
+          "example": "The dealership agreement stipulates strict minimum annual purchase quotas and marketing investments.",
+          "exampleZh": "分销经销合同对被授权方的年度最低刚性提货指标以及在当地市场需承担的营销宣发预算做出了强制性约束。",
+          "tip": "核心商业契约。包含授权范围、账期授信、商标使用规范、违约罚金与协议解除条款。"
+        },
+        {
+          "id": "c3_07",
+          "index": 7,
+          "term": "brand authorization",
+          "phonetic": "/brænd ˌɔːθəraɪˈzeɪʃn/",
+          "meaning": "品牌官方正式商业授权资质",
+          "example": "Without verified brand authorization, the e-commerce platform will reject your flagship store application.",
+          "exampleZh": "若无法提供经公证验真的品牌官方正式商业授权资质链路，主流电商平台将断然驳回你的旗舰店入驻申请。",
+          "tip": "不仅是做生意的通行证，更代表品牌方在供货配额、营销素材资产与打假维权上的全力资源倾斜。"
+        },
+        {
+          "id": "c3_08",
+          "index": 8,
+          "term": "Letter of Authorization (LOA)",
+          "phonetic": "/ˈletə(r) əv ˌɔːθəraɪˈzeɪʃn/",
+          "meaning": "官方品牌授权书（招商/平台必备）",
+          "example": "The platform rejected the LOA due to the absence of the brand owner's corporate seal and notary stamp.",
+          "exampleZh": "由于授权书（LOA）缺失了品牌方权利人盖章或涉外海牙附加证明书公证，被电商平台直接打回判定无效。",
+          "tip": "跨境美妆开店的硬通货。授权书需写明授权起止时间、授权经营品类、独占/非独占属性及是否具备转授权权限。"
+        },
+        {
+          "id": "c3_09",
+          "index": 9,
+          "term": "territorial restriction",
+          "phonetic": "/ˌterəˈtɔːriəl rɪˈstrɪkʃn/",
+          "meaning": "授权销售国别 / 跨区禁售限制",
+          "example": "The contract imposes a strict territorial restriction prohibiting exports beyond the designated region.",
+          "exampleZh": "合作经销合同中明确设立了严厉的销售区域属地限制，严禁分销商跨出国境或跨出约定省份跨区私自转售。",
+          "tip": "防止区域之间串货内耗的核心防火墙。跨区串货一旦查实通常面临全额扣减履约保证金并被直接吊销授权。"
+        },
+        {
+          "id": "c3_10",
+          "index": 10,
+          "term": "exclusive jurisdiction",
+          "phonetic": "/ɪkˈskluːsɪv ˌdʒʊərɪsˈdɪkʃn/",
+          "meaning": "合同争议排他性司法管辖权",
+          "example": "Any dispute arising from this contract shall be submitted to the exclusive jurisdiction of Geneva courts.",
+          "exampleZh": "因履行本合同所产生的任何商业争议，均应不可撤销地提交至瑞士日内瓦具有排他性管辖权的当地法院管辖审理。",
+          "tip": "涉外商事合同的核心条款。争取将仲裁地设在香港国际仲裁中心（HKIAC）或中立地，降低海外诉讼成本。"
+        },
+        {
+          "id": "c3_11",
+          "index": 11,
+          "term": "distribution tier",
+          "phonetic": "/ˌdɪstrɪˈbjuːʃn tɪə(r)/",
+          "meaning": "一级/二级/KA分销商层级体系",
+          "example": "Each distribution tier enjoys wholesale margins proportionate to their annual volume commitments.",
+          "exampleZh": "分销商体系内的每一个分销梯度层级，均享有与其承诺的年度提货采购总规模相匹配的批发毛利梯队折扣。",
+          "tip": "清晰的分销层级保护各级代理的利润空间，防止下级渠道越级采购造成价格倒挂与体系坍塌。"
+        },
+        {
+          "id": "c3_12",
+          "index": 12,
+          "term": "market segmentation",
+          "phonetic": "/ˈmɑːkɪt ˌseɡmenˈteɪʃn/",
+          "meaning": "细分市场分层客群精准定位",
+          "example": "Our market segmentation categorizes the brand as a premium gift item for affluent urban professionals.",
+          "exampleZh": "我们的细分市场定位策略将该品牌精准划定为面向高净值都市白领精英客群的轻奢高档节日送礼首选。",
+          "tip": "不同细分市场匹配不同的定价与渠道（如高端买手店 vs 屈臣氏大众流通渠道），切忌全渠道盲目乱铺。"
+        },
+        {
+          "id": "c3_13",
+          "index": 13,
+          "term": "annual purchase quota",
+          "phonetic": "/ˈænjuəl ˈpɜːtʃəs ˈkwəʊtə/",
+          "meaning": "年度最低刚性提货采购指标",
+          "example": "Failure to meet 80% of the annual purchase quota forfeits our right to renew the exclusive distribution.",
+          "exampleZh": "若年度实际提货提单金额未能达成最低采购配额指标的80%，我方将自动丧失该品牌独家代理权的优先续约资格。",
+          "tip": "品牌方考核总代理最核心的KPI紧箍咒。谈判时需量力而行，防止盲目做大指标导致年底被迫大量压库。"
+        },
+        {
+          "id": "c3_14",
+          "index": 14,
+          "term": "inventory allotment",
+          "phonetic": "/ˈɪnvəntri əˈlɒtmənt/",
+          "meaning": "紧俏断货爆款的货源配给额度",
+          "example": "Factory production caps mean our monthly inventory allotment for the flagship perfume is restricted.",
+          "exampleZh": "受制于原厂产能天花板，我们针对核心旗舰香水单品的每月大货配货配给额度遭到了严格的限额分配。",
+          "tip": "在爆款断货抢货期，品牌方通常将货源优先配给回款最快、配合度最高且价格管控最坚决的核心分销商。"
+        },
+        {
+          "id": "c3_15",
+          "index": 15,
+          "term": "distribution channel",
+          "phonetic": "/ˌdɪstrɪˈbjuːʃn ˈtʃænl/",
+          "meaning": "线上线下立体分销渠道网络",
+          "example": "We expanded our distribution channel from department store counters into premium duty-free outlets.",
+          "exampleZh": "我们将品牌全盘分销网络稳步从传统高端百货专柜横向拓展至大型国际旅游零售免税店渠道体系。",
+          "tip": "现代美妆渠道涵盖：直营电商、社交电商分销、高端美妆集合店（如话梅/丝芙兰）、机场免税及企业礼品团购。"
+        },
+        {
+          "id": "c3_16",
+          "index": 16,
+          "term": "omnichannel strategy",
+          "phonetic": "/ˈɒmnitʃænl ˈstrætədʒi/",
+          "meaning": "线上电商与线下专柜全渠道融合",
+          "example": "An integrated omnichannel strategy allows customers to sample fragrances offline and purchase online.",
+          "exampleZh": "一体化的全渠道深度融合战略让潜在消费者在线下实体门店从容试香体验，并无缝引导至线上品牌店下单。",
+          "tip": "解决线上卖香水看不见闻不到的天然痛点，打造“线下重体验、线上促转化与高复购”的闭环飞轮。"
+        },
+        {
+          "id": "c3_17",
+          "index": 17,
+          "term": "channel governance",
+          "phonetic": "/ˈtʃænl ˈɡʌvənəns/",
+          "meaning": "渠道大盘秩序治理与控盘机制",
+          "example": "Effective channel governance protects brand positioning and eliminates margin-destroying price wars.",
+          "exampleZh": "强有力的渠道秩序综合治理与长效管控机制，能坚决捍卫品牌高端调性并彻底肃清侵蚀渠道利润的恶性价格战。",
+          "tip": "定期清理违规串货店铺、巡查未授权低价链接、打击假货仿冒，是维持品牌商业生命力的日常硬仗。"
+        },
+        {
+          "id": "c3_18",
+          "index": 18,
+          "term": "Min Advertised Price (MAP)",
+          "phonetic": "/ˈmɪnɪməm ˈædvətaɪzd praɪs/",
+          "meaning": "最低广告限价政策（MAP）",
+          "example": "We strictly enforce our MAP policy; retailers advertising below this threshold face supply cutoffs.",
+          "exampleZh": "我们坚决刚性推行最低广告限价（MAP）政策；任何敢于擅自在此限价线以下公开打折挂牌的卖家将面临即刻断货制裁。",
+          "tip": "欧美品牌控盘最通用工具。允许私下议价，但严禁在公开Listing、广告图、详情页标注低于MAP红线的价格。"
+        },
+        {
+          "id": "c3_19",
+          "index": 19,
+          "term": "price enforcement",
+          "phonetic": "/praɪs ɪnˈfɔːsmənt/",
+          "meaning": "控价政策的日常巡检与刚性执行",
+          "example": "Our automated crawler tools conduct round-the-clock price enforcement across all major marketplaces.",
+          "exampleZh": "我们自研部署的自动化全网爬虫比价监控系统，对各大电商平台上的主推单品展开全天候无死角的控价刚性巡查。",
+          "tip": "一旦发现违规低价破价，系统自动截图存证并自动派发违规限期整改通知函，超时未改直接启动平台投诉。"
+        },
+        {
+          "id": "c3_20",
+          "index": 20,
+          "term": "pricing architecture",
+          "phonetic": "/ˈpraɪsɪŋ ˈɑːkɪtektʃə(r)/",
+          "meaning": "品牌价格阶梯与控盘体系",
+          "example": "A coherent pricing architecture must maintain healthy margin buffers from FOB factory cost to MSRP.",
+          "exampleZh": "一套科学严密的品牌价格体系必须在原厂FOB出厂价、批发供货价到终端建议零售价（MSRP）之间维持健康充沛的毛利空间。",
+          "tip": "通常出厂成本应占建议零售价的15%~20%，留足60%~70%空间用于支撑多级渠道毛利、物流关税及营销宣发。"
+        },
+        {
+          "id": "c3_21",
+          "index": 21,
+          "term": "price dumping",
+          "phonetic": "/praɪs ˈdʌmpɪŋ/",
+          "meaning": "恶意破价甩货 / 低价倾销内卷",
+          "example": "Rogue distributors engaged in price dumping to liquidate slow-moving seasonal stock before year-end.",
+          "exampleZh": "个别违规不良分销商为赶在年底前回笼资金，竟在公开平台恶意破价大幅倾销过季滞销货，严重冲击大盘。",
+          "tip": "破价如同多米诺骨牌，会瞬间引发全体分销商恐慌跟跌，导致正规代理利润归零，甚至摧毁品牌高端心智。"
+        },
+        {
+          "id": "c3_22",
+          "index": 22,
+          "term": "contractual breach",
+          "phonetic": "/kənˈtræktʃuəl briːtʃ/",
+          "meaning": "违反商业合作合同重大违约行为",
+          "example": "Selling authorized inventory outside the permitted territory constitutes an incurable contractual breach.",
+          "exampleZh": "擅自将官方授权大货私自跨区倒卖至约定销售区域之外，在法律上构成了不可挽回的不可抗辩之重大合同违约。",
+          "tip": "在协议中应明确界定哪些行为属于实质性违约（Material breach），违约方需承担高额固定惩罚赔偿。"
+        },
+        {
+          "id": "c3_23",
+          "index": 23,
+          "term": "IP infringement",
+          "phonetic": "/ˌɪntəˈlektʃuəl ˈprɒpəti ɪnˈfrɪndʒmənt/",
+          "meaning": "侵犯知识产权（侵权投诉）",
+          "example": "Our brand protection attorneys filed formal complaints for intellectual property infringement against copiers.",
+          "exampleZh": "我们的全球品牌知识产权维权律师团已对恶意抄袭山寨我司异形外观设计的侵权者发起了正式的侵权诉讼维权。",
+          "tip": "涵盖商标（Trademark）、外观专利（Design Patent）与版权宣传素材（Copyright）三位一体防护网。"
+        },
+        {
+          "id": "c3_24",
+          "index": 24,
+          "term": "trademark registration",
+          "phonetic": "/ˈtreɪdmɑːk ˌredʒɪˈstreɪʃn/",
+          "meaning": "注册商标专用权（品牌R标）",
+          "example": "Before launching into new cross-border regions, complete local trademark registration to prevent squatting.",
+          "exampleZh": "在挥师进军任何新的跨境出海目标国别前，首要法务动作必须是全面抢先完成当地商标注册，防范被恶意抢注。",
+          "tip": "美妆品牌出海最惨痛教训就是未提早注册商标，导致货到海关因“商标侵权”被扣押或被当地流氓抢注者敲诈巨资。"
+        },
+        {
+          "id": "c3_25",
+          "index": 25,
+          "term": "copyright protection",
+          "phonetic": "/ˈkɒpiraɪt prəˈtekʃn/",
+          "meaning": "官方商用宣传图与海报版权保护",
+          "example": "We retain copyright protection over all high-resolution product photography, model videos, and ad copy.",
+          "exampleZh": "我们对品牌旗下全部超高清产品商业静物大片、外籍模特宣发视频及文案资产拥有无可争议的完全版权保护所有权。",
+          "tip": "对付第三方跟卖狗最快的核武器手段：利用具有知识产权的官方版权图片在电商平台发起版权DMCA投诉下架链接。"
+        },
+        {
+          "id": "c3_26",
+          "index": 26,
+          "term": "design patent",
+          "phonetic": "/dɪˈzaɪn ˈpætnt/",
+          "meaning": "独特异形香水瓶身外观设计专利",
+          "example": "The asymmetric silhouette of our bespoke glass flacon is safeguarded under international design patents.",
+          "exampleZh": "我们定制开模的非对称性流线艺术玻璃香水瓶身轮廓，已全额置于国际外观设计专利严密法律保护之下。",
+          "tip": "高端沙龙香核心视觉资产。专利瓶型受法律保护达15~25年，任何山寨厂商开模仿冒均将面临巨额法定索赔。"
+        },
+        {
+          "id": "c3_27",
+          "index": 27,
+          "term": "brand licensing",
+          "phonetic": "/brænd ˈlaɪsnsɪŋ/",
+          "meaning": "知名品牌跨界 IP 衍生授权合作",
+          "example": "Brand licensing arrangements allow fashion houses to extend their brand prestige into the fragrance realm.",
+          "exampleZh": "品牌特许IP授权合作模式使得传统高定时装奢华大牌得以将其品牌声誉与高端心智顺畅跨界延展至高端美妆香氛领域。",
+          "tip": "全球超半数知名商业香水（如Gucci、Prada香水）均采用IP授权代工运作模式（由科蒂、欧莱雅等巨头运营）。"
+        },
+        {
+          "id": "c3_28",
+          "index": 28,
+          "term": "licensing royalty",
+          "phonetic": "/ˈlaɪsnsɪŋ ˈrɔɪəlti/",
+          "meaning": "品牌授权特许使用费 / 提成版税",
+          "example": "The beauty conglomerate pays an annual licensing royalty equal to 8% of wholesale net sales to the designer.",
+          "exampleZh": "该国际美妆产业巨头每年按其香水分销批发净销售总额的8%固定比例向时装设计师品牌方如期全额划拨版税提成。",
+          "tip": "版税计算基数需在合同中精准厘清：究竟是指零售总流水、开票批发金额还是扣减退货折扣后的实际到账净额。"
+        },
+        {
+          "id": "c3_29",
+          "index": 29,
+          "term": "price arbitrage",
+          "phonetic": "/praɪs ˈɑːbɪtrɑːʒ/",
+          "meaning": "跨国/跨区利用汇率差串货套利",
+          "example": "Currency fluctuations in Europe created fertile conditions for cross-border price arbitrage.",
+          "exampleZh": "欧洲本地汇率大幅震荡走低与区域定价落差，为投机分子从事跨国无风险跨区价格套利提供了天然肥沃土壤。",
+          "tip": "串货形成的经济学根源：同一款香水在欧洲专柜退税后价格显著低于国内专柜建议售价，驱使倒爷跨洋倒货。"
+        },
+        {
+          "id": "c3_30",
+          "index": 30,
+          "term": "product diversion",
+          "phonetic": "/ˈprɒdʌkt daɪˈvɜːʃn/",
+          "meaning": "授权正规货源被私下倒卖跨区串货",
+          "example": "Hidden serial micro-codes allowed investigators to trace product diversion back to an Italian wholesaler.",
+          "exampleZh": "包装隐秘内置的防伪微型溯源码协助打假稽查人员成功逆向追踪并将这批违规串货货源锁定至一家意大利批发代理。",
+          "tip": "严重侵蚀正规授权代理商的积极性。必须通过在外箱和瓶底植入暗码，精准查处到底是谁在私下向水货市场放货。"
+        },
+        {
+          "id": "c3_31",
+          "index": 31,
+          "term": "gray market goods",
+          "phonetic": "/ɡreɪ ˈmɑːkɪt ɡʊdz/",
+          "meaning": "水货市场流通品 / 串货流窜品",
+          "example": "Gray market goods are authentic products sold outside the manufacturer's authorized distribution pipeline.",
+          "exampleZh": "所谓灰色市场流通品（水货），本质上属于正品真货，但其流转与售卖完全脱离了品牌方官方授权的正规分销管网。",
+          "tip": "水货无法享受品牌官方售后质保；品牌方有权要求电商平台以‘未经授权进出口平行正品’为由屏蔽其购买链接。"
+        },
+        {
+          "id": "c3_32",
+          "index": 32,
+          "term": "parallel import",
+          "phonetic": "/ˈpærəlel ˈɪmpɔːt/",
+          "meaning": "平行进口（未经本土独家总代许可的海外货）",
+          "example": "Courts balance trademark exhaustion doctrine against the trademark owner's right to curb parallel import.",
+          "exampleZh": "司法判例在考量商标权利权利用尽原则的同时，也在严密评估商标权利人依法遏制平行进口损害品牌形象的合法权利。",
+          "tip": "不同国家法律对平行进口态度迥异。部分地区视为合法自由贸易，而部分地区则认定损害独家授权合同权益。"
+        },
+        {
+          "id": "c3_33",
+          "index": 33,
+          "term": "anti-counterfeiting",
+          "phonetic": "/ˌænti ˈkaʊntəfɪtɪŋ/",
+          "meaning": "品牌综合打假防伪与维权机制",
+          "example": "Deploying tamper-proof NFC smart chips elevated our anti-counterfeiting operations to industry benchmarks.",
+          "exampleZh": "全线导入防撕毁加密NFC智能物联网芯片，将我们品牌的综合打假防伪与溯源防假能力直接推升至行业全新标杆高度。",
+          "tip": "综合反制手段包括：微缩防伪文字、隐形荧光油墨、手机贴合NFC一秒验真，彻底打消终端买家对假货的信任顾虑。"
+        },
+        {
+          "id": "c3_34",
+          "index": 34,
+          "term": "vendor blacklist",
+          "phonetic": "/ˈvendə(r) ˈblæklɪst/",
+          "meaning": "违规串货低价卖家官方惩戒黑名单",
+          "example": "Serial offenders of our pricing rules are permanently placed on our global vendor blacklist.",
+          "exampleZh": "凡屡次恶意挑战并违反我们价格红线的违约渠道商，一律被永久列入品牌全球合作供应商除名惩戒黑名单。",
+          "tip": "一旦上榜，该主体及其关联公司在全球范围内将永久被剥夺直接采购提货资格，并被通报给各大电商平台风控部门。"
+        },
+        {
+          "id": "c3_35",
+          "index": 35,
+          "term": "contract clause",
+          "phonetic": "/ˈkɒntrækt klɔːz/",
+          "meaning": "分销合作合同具体法定细则条款",
+          "example": "Legal counsel drafted a watertight contract clause outlining the exact mechanics of inventory buybacks.",
+          "exampleZh": "公司首席法务合规顾问起草了一份逻辑无懈可击的合同细则条款，极其精准地界定了协议终止时库存回购的具体执行机制。",
+          "tip": "分销协议必须逐字推敲：不可抗力、付款违约滞纳金、账期起算点、知识产权归属等关键条款严禁模糊表述。"
+        },
+        {
+          "id": "c3_36",
+          "index": 36,
+          "term": "mandatory stipulation",
+          "phonetic": "/ˈmændətəri ˌstɪpjuˈleɪʃn/",
+          "meaning": "合作协议中的强制性刚性约定细则",
+          "example": "The distributor agreed to the mandatory stipulation requiring a minimum of three dedicated brand ambassadors.",
+          "exampleZh": "被授权分销商以签字盖章形式完全承诺接受强制性约定细则：在核心商圈门店内必须常驻配置不少于三名专属品牌美妆顾问。",
+          "tip": "代表没有丝毫妥协余地的硬性底线要求，一旦违反即构成对合同核心主旨的重大背离。"
+        },
+        {
+          "id": "c3_37",
+          "index": 37,
+          "term": "contract termination",
+          "phonetic": "/ˈkɒntrækt ˌtɜːmɪˈneɪʃn/",
+          "meaning": "提前单方面依法解除/终止合作协议",
+          "example": "Material breaches of non-compete clauses triggered immediate unilateral contract termination.",
+          "exampleZh": "对方严重违反协议所约定的竞业禁止条款，直接依法触发了我方单方面无条件即刻提前解除终止合作协议的权利。",
+          "tip": "解除合同需按约定送达正式书面催告函（Notice of Default），给予合理宽限期未予纠正后正式下发解约决定。"
+        },
+        {
+          "id": "c3_38",
+          "index": 38,
+          "term": "revocation of license",
+          "phonetic": "/ˌrevəˈkeɪʃn əv ˈlaɪsns/",
+          "meaning": "官方正式吊销收回品牌授权资质",
+          "example": "Revocation of license was officially served, stripping the partner of all marketing rights immediately.",
+          "exampleZh": "官方正式吊销收回品牌授权决议书已依法正式送达，即刻起彻底剥夺该合作伙伴在全球范围内从事品牌营销宣发的全部权利。",
+          "tip": "吊销后需监督其在30天内全面撤除门头招牌、下架全部网络线上链接、封存剩余库存，严防继续以代理自居。"
+        },
+        {
+          "id": "c3_39",
+          "index": 39,
+          "term": "penalty clause",
+          "phonetic": "/ˈpenəlti klɔːz/",
+          "meaning": "破价与违约惩罚性罚金条款",
+          "example": "The penalty clause mandates a forfeiture of $50,000 for each verified instance of price undercutting.",
+          "exampleZh": "破价违约罚金条款严厉规定：分销商凡被证实存在任何一例擅自低价破价出单行为，必须无条件一次性支付五万美元惩罚性违约金。",
+          "tip": "设立高额违约金条款才能形成实质威慑，否则违规者串货破价牟取的暴利远超违法成本。"
+        },
+        {
+          "id": "c3_40",
+          "index": 40,
+          "term": "performance deposit",
+          "phonetic": "/pəˈfɔːməns dɪˈpɒzɪt/",
+          "meaning": "渠道履约保证金 / 防窜货押金",
+          "example": "The initial sign-on fee includes a $100,000 refundable performance deposit held in corporate escrow.",
+          "exampleZh": "分销签约首期款项中明确包含一笔十万美元、由指定第三方银行进行账户托管的可退还式正规履约保证金。",
+          "tip": "防止渠道商私下违规串货或拖欠货款的最强抓手。合同期满无违约全额退还，发生恶劣破价直接扣减没收充抵罚款。"
+        },
+        {
+          "id": "c3_41",
+          "index": 41,
+          "term": "volume rebate",
+          "phonetic": "/ˈvɒljuːm ˈriːbeɪt/",
+          "meaning": "达到阶梯采购量后的年终返利",
+          "example": "Exceeding our annual shipment target by 15% unlocked a tier-three volume rebate of 4.5%.",
+          "exampleZh": "在我们超额15%圆满达成年度总提货出货指标后，成功顺利解锁了高达4.5%返点比例的第三梯度年度阶梯大宗返利。",
+          "tip": "激励核心代理主动做大盘子的利益纽带。返利通常以货款抵用券（Credit Note）形式用于下年度大货订货抵扣。"
+        },
+        {
+          "id": "c3_42",
+          "index": 42,
+          "term": "sales incentive",
+          "phonetic": "/seɪlz ɪnˈsentɪv/",
+          "meaning": "季度订货返点与销售激励政策",
+          "example": "To accelerate new skincare launches, we introduced a 5% instant cash sales incentive on initial purchase.",
+          "exampleZh": "为加速全新功效护肤系列的终端快速铺市，我们专门重磅出台了首批采购提货即时享受5%现款立减的销售激励政策。",
+          "tip": "针对销售团队或核心门店柜姐设计的专项奖励，激发一线人员主推本品牌的积极性。"
+        },
+        {
+          "id": "c3_43",
+          "index": 43,
+          "term": "distributor margin",
+          "phonetic": "/dɪˈstrɪbjətə(r) ˈmɑːdʒɪn/",
+          "meaning": "分销代理商毛利操作空间",
+          "example": "Maintaining a distributor margin above 35% is essential to support regional brand building and promotions.",
+          "exampleZh": "将分销代理商的毛利操作空间坚决维持在35%的安全线之上，对于支撑其在属地市场持续开展品牌建设与促销至关重要。",
+          "tip": "如果毛利空间被严重压缩到不足20%，代理商将失去在当地做广告、进百货、办品鉴会的资金动能，沦为纯搬砖。"
+        },
+        {
+          "id": "c3_44",
+          "index": 44,
+          "term": "retail markup",
+          "phonetic": "/ˈriːteɪl ˈmɑːkʌp/",
+          "meaning": "终端零售环节在进价上的加价幅度",
+          "example": "Department store channels typically operate on a standard 100% to 150% retail markup over wholesale cost.",
+          "exampleZh": "高端百货与大型免税零售专柜渠道，通常在其批发进货成本价的基础上加价100%至150%以确立最终建议零售价。",
+          "tip": "终端高加价率用于覆盖昂贵的商场扣点租金、专柜柜装折旧、柜姐薪资提成与试香纸小样等巨额线下固定损耗。"
+        },
+        {
+          "id": "c3_45",
+          "index": 45,
+          "term": "brand equity",
+          "phonetic": "/brænd ˈekwəti/",
+          "meaning": "品牌无形商业资产与知名度价值",
+          "example": "Consistent packaging design, prestige pricing, and selective distribution bolster long-term brand equity.",
+          "exampleZh": "高度统一的高级包装审美、坚守高端定价底线以及审慎克制的渠道筛选，共同夯实了品牌颠扑不破的长期品牌无形资产。",
+          "tip": "美妆品牌最宝贵的护城河。拥有强Brand equity的品牌，即便面对行业周期性低迷，依然享有终端极高的溢价接受度。"
+        },
+        {
+          "id": "c3_46",
+          "index": 46,
+          "term": "brand positioning",
+          "phonetic": "/brænd pəˈzɪʃnɪŋ/",
+          "meaning": "品牌的高端定位与客群心智占领",
+          "example": "Diluting the brand positioning through indiscriminate mass-market distribution was vetoed by the board.",
+          "exampleZh": "任何企图通过不加甄别地全方位下沉大众流通走量渠道来稀释破坏品牌高贵奢华定位的短视方案，均被董事会断然否决。",
+          "tip": "定位决定生与死。高端沙龙香、大众流行香、平价学生香各安其道，最忌讳的是既想维持高调性又想廉价疯狂放水。"
+        },
+        {
+          "id": "c3_47",
+          "index": 47,
+          "term": "prestige beauty",
+          "phonetic": "/preˈstiːʒ ˈbjuːti/",
+          "meaning": "顶级奢华专柜高端美妆赛道",
+          "example": "The prestige beauty segment demonstrated double-digit growth driven by bespoke artisanal perfumery.",
+          "exampleZh": "由个性化手工高级沙龙调香所强力驱动的全球顶级奢华高端美妆细大赛道，逆势展现出了稳健强劲的双位数复合增长。",
+          "tip": "区别于大众开架美妆（Mass beauty），Prestige 赛道单瓶定价通常在150美元以上，讲究调香故事、原料纯正度与仪式感。"
+        },
+        {
+          "id": "c3_48",
+          "index": 48,
+          "term": "masstige brand",
+          "phonetic": "/ˈmæstiːʒ brænd/",
+          "meaning": "平价轻奢大众流行美妆品牌（大众奢华）",
+          "example": "Masstige brands capture the sweet spot between mass-market affordability and prestige sensory experience.",
+          "exampleZh": "平价轻奢品牌（Masstige，即Mass与Prestige的结合体）精准卡位并牢牢占据了大众亲民价格与奢华高级质感体验的黄金平衡点。",
+          "tip": "客单价在200~500元人民币之间，包装精良、配方扎实、社交声量巨大，是追求性价比年轻消费者的主流复购阵地。"
+        },
+        {
+          "id": "c3_49",
+          "index": 49,
+          "term": "niche perfumery",
+          "phonetic": "/niːʃ pəˈfjuːməri/",
+          "meaning": "小众独立沙龙调香师品牌",
+          "example": "Discerning consumers are increasingly migrating away from commercial blockbusters to niche perfumery.",
+          "exampleZh": "具有独立审美情趣的成熟消费者正以前所未有的速度加速逃离千人一面的商业街香，全面投入独立小众沙龙香怀抱。",
+          "tip": "由独立调香大师自由挥洒灵感创立的品牌，不受大众商业市场测试框架束缚，极具强烈个性与小众艺术圈层忠诚度。"
+        },
+        {
+          "id": "c3_50",
+          "index": 50,
+          "term": "brand reputation",
+          "phonetic": "/brænd ˌrepjuˈteɪʃn/",
+          "meaning": "品牌长期积累的行业声誉口碑",
+          "example": "A single viral product safety scandal can inflict catastrophic, irreversible damage on brand reputation.",
+          "exampleZh": "哪怕仅仅发生一起全网舆论发酵的成分安全性翻车丑闻，都可能对品牌数十年积累的良好行业声誉口碑造成毁灭性不可逆重创。",
+          "tip": "口碑是美妆行业最好的护肤品。严抓品控、严选原料、合规宣称，是守护品牌美誉度的重中之重。"
+        },
+        {
+          "id": "c3_51",
+          "index": 51,
+          "term": "premium pricing",
+          "phonetic": "/ˈpriːmiəm ˈpraɪsɪŋ/",
+          "meaning": "维持高调性溢价的高位定价策略",
+          "example": "Adopting a premium pricing structure signals uncompromising quality and elevates exclusivity.",
+          "exampleZh": "坚决采取高位定价结构不仅直接向消费心智传递出原料品质绝不妥协的强烈信号，更全方位筑牢了其专属性的奢华尊贵感。",
+          "tip": "价格本身就是最好的营销过滤器。低价换不来奢华感，高端美妆宁可赠送试用装与周边，也绝不轻易在标价上打折破价。"
+        },
+        {
+          "id": "c3_52",
+          "index": 52,
+          "term": "marketing collateral",
+          "phonetic": "/ˈmɑːkɪtɪŋ kəˈlætərəl/",
+          "meaning": "品牌全套营销宣发宣传物料手册",
+          "example": "The brand package provides multilingual marketing collateral including lookbooks, tech sheets, and counter displays.",
+          "exampleZh": "品牌官方支持包全套配备了多语种专业营销宣传物料，涵盖高清视觉画册、核心成分技术说明书及专柜陈列陈列架设计规范。",
+          "tip": "分销商开业与上架必备军火库。包括统一的高清海报PSD工程源文件、柜台陈列手册（VMD）、展会易拉宝及宣发折页。"
+        },
+        {
+          "id": "c3_53",
+          "index": 53,
+          "term": "brand digital assets",
+          "phonetic": "/brænd ˈdɪdʒɪtl ˈæsets/",
+          "meaning": "官方高清主视觉KV与短视频数字资产",
+          "example": "All digital assets are stored in a cloud repository for authorized distributor access and localized adaptation.",
+          "exampleZh": "所有官方数字资产统一集中存储于云端中央媒体库，供全球获授权分销商随时调阅、下载并合规开展本土化多渠道适配二创。",
+          "tip": "短视频带货与电商图文时代的核心弹药：高清白底图、场景静物图、外籍模特视频切片、未压缩音轨及3D瓶身渲染模型。"
+        },
+        {
+          "id": "c3_54",
+          "index": 54,
+          "term": "visual identity (VI)",
+          "phonetic": "/ˈvɪʒuəl aɪˈdentəti/",
+          "meaning": "品牌视觉识别系统统一设计规范",
+          "example": "Distributors must adhere strictly to the brand's visual identity guidelines regarding logo clear space and fonts.",
+          "exampleZh": "获授权分销商在线上线下开展任何宣传时，必须极其严谨地死磕品牌的视觉识别系统规范（VI），严格规范Logo留白与专用标准字体。",
+          "tip": "杜绝分销商自创土味排版或随意拉伸变形Logo，统一的高级视觉是建立国际化大牌心智的核心资产。"
+        },
+        {
+          "id": "c3_55",
+          "index": 55,
+          "term": "launch campaign",
+          "phonetic": "/lɔːntʃ kæmˈpeɪn/",
+          "meaning": "重磅新香上市全球整合宣发战役",
+          "example": "Our multi-channel launch campaign generated over 50 million impressions across social and outdoor media.",
+          "exampleZh": "我们全渠道统筹协同的重磅新香全球上市首发整合营销战役，在主流社交媒体与核心城市户外大屏斩获了超五千万级现象级全网曝光。",
+          "tip": "新品引爆的关键窗口期：前置种草预热、头部博主齐发声、线下快闪店互动试香、平台大促首发爆发，一气呵成。"
+        },
+        {
+          "id": "c3_56",
+          "index": 56,
+          "term": "celebrity endorsement",
+          "phonetic": "/səˈlebrəti ɪnˈdɔːsmənt/",
+          "meaning": "知名一线明星商业代言官方背书",
+          "example": "Securing a global celebrity endorsement accelerated consumer recognition in the competitive fragrance arena.",
+          "exampleZh": "成功重磅签下一线国际知名巨星的全球品牌商业代言背书，极大加速了品牌在竞争白热化的香氛红海市场中的全民心智破圈。",
+          "tip": "代言人形象需与调香灵魂高度契合，需在合同中锁定代言肖像权的使用期限、授权渠道及涉税与道德声誉保证条款。"
+        },
+        {
+          "id": "c3_57",
+          "index": 57,
+          "term": "key opinion leader (KOL)",
+          "phonetic": "/kiː əˈpɪnjən ˈliːdə(r)/",
+          "meaning": "海外核心美妆带货达人博主（KOL）",
+          "example": "Seeding curated PR boxes to tier-one fragrance KOLs drove massive organic search volume on launch day.",
+          "exampleZh": "向头部核心香水分领域垂直KOL博主精准派送定制限量版PR高级品鉴礼盒，在上市首发当日掀起了惊人的自发自然搜索狂潮。",
+          "tip": "美妆出海最重要的冷启动手段：结合微型博主（KOC）真实测评与大头部KOL调性背书，形成立体金字塔矩阵种草网络。"
+        },
+        {
+          "id": "c3_58",
+          "index": 58,
+          "term": "brand advocate",
+          "phonetic": "/brænd ˈædvəkət/",
+          "meaning": "具备极高黏性的忠实复购核心铁粉",
+          "example": "Engaged brand advocates actively defend our fragrance formulations in online comment sections.",
+          "exampleZh": "高度深度沉淀的高黏性品牌忠实核心铁粉买家，经常在各大社交评论区自发主动维护我们品牌的调香配方理念并正面辩护击碎谣言。",
+          "tip": "私域运营与社群运营的终极成果。品牌不仅是产品，更演化为用户自我审美取向与精神认同的社交货币。"
+        },
+        {
+          "id": "c3_59",
+          "index": 59,
+          "term": "brand ambassador",
+          "phonetic": "/brænd æmˈbæsədə(r)/",
+          "meaning": "长期深度绑定的品牌官方形象大使",
+          "example": "The Oscar-winning actress signed a three-year contract as the global brand ambassador for the new perfume line.",
+          "exampleZh": "这位奥斯卡影后正式落笔签署为期三年的长期代言合约，重磅出任该全新奢华沙龙香水系列唯一的全球品牌官方形象大使。",
+          "tip": "区别于短期商业带货，品牌形象大使更具沉淀性与艺术调性共鸣，深度参与品牌全球公益倡议与高级定制大片拍摄。"
+        },
+        {
+          "id": "c3_60",
+          "index": 60,
+          "term": "event sponsorship",
+          "phonetic": "/ɪˈvent ˈspɒnsəʃɪp/",
+          "meaning": "时尚盛典与国际时装周大型品牌赞助",
+          "example": "Exclusive fragrance event sponsorship of Milan Fashion Week positioned our brand alongside haute couture.",
+          "exampleZh": "拿下米兰国际时装周官方唯一指定官方香氛合作伙伴的顶级赞助商席位，将我们品牌一举与全球顶级高级定制时装并肩齐驱。",
+          "tip": "跨界高端圈层营销的高维打法，在国际顶级名流、超模与时尚媒体云集的秀场派对中完成品牌调性的高空赋能。"
+        },
+        {
+          "id": "c3_61",
+          "index": 61,
+          "term": "distributor audit",
+          "phonetic": "/dɪˈstrɪbjətə(r) ˈɔːdɪt/",
+          "meaning": "候选代理商资信实力与渠道准入审查",
+          "example": "Before finalizing the contract, our compliance team completed an exhaustive distributor audit on financial health.",
+          "exampleZh": "在正式签字画押最终确定合作合同之前，我们的法务合规审计风控团队对候选分销代理商的资金流动性与资信状况实施了严密审查。",
+          "tip": "审查维度涵盖：企业工商背景、历史诉讼风险、已代理同类品牌竞业情况、仓储温控软硬件能力及核心分销下沉网点数量。"
+        },
+        {
+          "id": "c3_62",
+          "index": 62,
+          "term": "protocol agreement",
+          "phonetic": "/ˈprəʊtəkɒl əˈɡriːmənt/",
+          "meaning": "商业战略合作执行细节补充备忘协议",
+          "example": "Both parties signed a protocol agreement specifying the phased timeline for marketing fund matching.",
+          "exampleZh": "双方在框架合同基础上追加签署了一份极具实操指导意义的补充备忘协议，精确锁定了市场推广配套基金分阶段注资的时间表。",
+          "tip": "对主合同中未尽事宜（如突发退货处理流程、特殊汇率补偿机制）做出的具有法律约束力的执行细则补充。"
+        },
+        {
+          "id": "c3_63",
+          "index": 63,
+          "term": "non-disclosure (NDA)",
+          "phonetic": "/ˌnɒn dɪsˈkləʊʒə(r)/",
+          "meaning": "商业机密与配方严格保密协议",
+          "example": "Suppliers and agency partners must execute our comprehensive non-disclosure agreement before formula sharing.",
+          "exampleZh": "任何上游代工供应链厂商或下游营销服务商在触及未公开香水成分配方或新品规划前，必须一律先行签署严格的全面保密协议（NDA）。",
+          "tip": "违约金极高，明确约定保密信息范围、核心知情人名单及保密义务在商业合作终止后继续存续3~5年的法定义务。"
+        },
+        {
+          "id": "c3_64",
+          "index": 64,
+          "term": "letter of intent (LOI)",
+          "phonetic": "/ˈletə(r) əv ɪnˈtent/",
+          "meaning": "框架性商业合作签约意向书",
+          "example": "The signed letter of intent (LOI) demonstrates mutual commitment while contract terms are finalized by lawyers.",
+          "exampleZh": "双方正式签署的书面商业合作意向书（LOI）充分证实了彼此坚定的合作诚意，同时为双方律师团敲定最终正式合同留出了缓冲期。",
+          "tip": "通常不具备强制买卖履约效力，但其中的排他性谈判期条款（Exclusivity）与保密条款通常具有不可撤销的法律强制约束力。"
+        },
+        {
+          "id": "c3_65",
+          "index": 65,
+          "term": "certificate validity",
+          "phonetic": "/səˈtɪfɪkət vəˈlɪdəti/",
+          "meaning": "授权书印章与生效失效有效期",
+          "example": "The e-commerce platform rejected our submission because the certificate validity had expired last month.",
+          "exampleZh": "电商平台资质审核部门断然驳回了我们的店铺入驻申请，经查是因为附随提交的品牌授权书印章效期已在上个月底正式届满失效。",
+          "tip": "必须建立授权资质到期前60天自动化预警机制，提前向外商索取经最新签字盖章的续展授权书，严防因资质断档导致店铺被关停。"
+        },
+        {
+          "id": "c3_66",
+          "index": 66,
+          "term": "contract renewal",
+          "phonetic": "/ˈkɒntrækt rɪˈnjuːəl/",
+          "meaning": "经销协议届满考核考核续签谈判",
+          "example": "Contract renewal negotiations commenced three months prior to the expiration of the three-year agreement.",
+          "exampleZh": "针对为期三年的首期分销大单经销合作协议的届满续签商业谈判，已在协议正式到期前整整三个月全面启动拉开帷幕。",
+          "tip": "续签谈判博弈焦点：下阶段年度提货指标增幅要求、独家排他权限是否延续、进货折扣优惠调整以及滞销SKU的置换返退政策。"
+        },
+        {
+          "id": "c3_67",
+          "index": 67,
+          "term": "exclusive rights",
+          "phonetic": "/ɪkˈskluːsɪv raɪts/",
+          "meaning": "特定渠道或国别境内的专有独占权利",
+          "example": "Securing exclusive rights to the travel retail sector provided a steady, high-margin revenue stream.",
+          "exampleZh": "成功斩获该奢华品牌在亚太地区全部机场与免税旅游零售专线渠道的专有独占经营权，为公司带来了一条源源不断的高毛利现金流大动脉。",
+          "tip": "独占权利越纯粹，渠道定价权越牢固；必须在协议中杜绝出现‘非独占’或‘保留品牌方直营不受限制’等削弱独家性的灰暗漏洞。"
+        },
+        {
+          "id": "c3_68",
+          "index": 68,
+          "term": "monopoly distribution",
+          "phonetic": "/məˈnɒpəli ˌdɪstrɪˈbjuːʃn/",
+          "meaning": "区域闭环独家垄断分销运作",
+          "example": "Monopoly distribution requires aggressive brand investment but eliminates inter-channel margin friction.",
+          "exampleZh": "采取全区域闭环的独家垄断分销运作模式，虽要求前期必须承担极度重资产的品牌垫资与宣发投入，但彻底根除了渠道内耗摩擦。",
+          "tip": "统一供货价、统一定价、统一售后标准，将整个大区的商业动能捏成一股绳，是打造现象级跨境出海品牌的终极形态。"
+        },
+        {
+          "id": "c3_69",
+          "index": 69,
+          "term": "co-branding partnership",
+          "phonetic": "/kəʊ ˈbrændɪŋ ˈpɑːtnəʃɪp/",
+          "meaning": "两大跨界知名品牌跨界联名合作",
+          "example": "A co-branding partnership between our luxury fragrance and a modern jewelry label generated viral traction.",
+          "exampleZh": "我们旗下顶级奢华沙龙香与国际知名设计师珠宝大牌联手推出的现象级跨界联名限定系列，引爆了席卷全网的病毒式破圈轰动效应。",
+          "tip": "用联名打破品牌原有客群天花板：互相导入高净值客群流量池，打造极具稀缺性与溢价收藏价值的限量版联名艺术礼盒。"
+        },
+        {
+          "id": "c3_70",
+          "index": 70,
+          "term": "brand dilution",
+          "phonetic": "/brænd daɪˈluːʃn/",
+          "meaning": "泛滥授权或低价倾销导致的调性稀释",
+          "example": "Excessive discounting and ubiquitous distribution inevitably lead to irreversible brand dilution.",
+          "exampleZh": "无休无止的疯狂低价促销打折以及不加节制的大众开架泛滥铺货，终将无可挽回地不可逆导致品牌调性与高端价值的严重稀释衰败。",
+          "tip": "奢侈品行业警钟。过度追求短期冲量走量，虽然短期GMV看似亮眼，但一旦品牌沦为廉价走量货，高端高净值客户将彻底抛弃离开。"
+        }
+      ]
+    },
+    {
+      "id": "chap4",
+      "name": "第四章 · 跨境电商运营、平台指标与财务结算",
+      "enName": "Cross-Border E-Commerce & Financials",
+      "icon": "📊",
+      "count": 70,
+      "desc": "掌握Listing优化、Buy Box竞争、平台履约代发、广告投产比(ROAS)、客诉争议与财税结算。",
+      "type": "term",
+      "items": [
+        {
+          "id": "c4_01",
+          "index": 1,
+          "term": "e-commerce marketplace",
+          "phonetic": "/ˈiː kɒmɜːs ˈmɑːkɪtpleɪs/",
+          "meaning": "第三方国际跨境电商平台（Amazon/TikTok等）",
+          "example": "Cross-border brand expansion begins with selecting the appropriate e-commerce marketplace partner.",
+          "exampleZh": "美妆品牌跨国出海战略的破局首要步，在于审慎甄选最适配自身客群调性的第三方国际跨境电商平台阵地。",
+          "tip": "亚马逊成熟稳定客单价高、TikTok Shop算法内容裂变速度极快、Shopee/Lazada占据东南亚本土流量制高点。"
+        },
+        {
+          "id": "c4_02",
+          "index": 2,
+          "term": "product listing",
+          "phonetic": "/ˈprɒdʌkt ˈlɪstɪŋ/",
+          "meaning": "商品前台详情页 / 链接上架详情详情页",
+          "example": "Optimizing the product listing with localized keywords, A+ content, and high-res video boosts conversions.",
+          "exampleZh": "通过深度植入本土化高频搜索热词、精修品牌A+图文详情以及嵌入超清视频，能极大倍增该商品链接的购买转化率。",
+          "tip": "Listing是你在海外全天候营业的线上数字门面。标题、五点描述（Bullet Points）、主图及后台Search Terms直接决定权重。"
+        },
+        {
+          "id": "c4_03",
+          "index": 3,
+          "term": "master catalog",
+          "phonetic": "/ˈmɑːstə(r) ˈkætəlɒɡ/",
+          "meaning": "品牌全线产品SKU中央数据库目录",
+          "example": "The brand owner delivered the master catalog specifying barcode standards and multilingual descriptions.",
+          "exampleZh": "海外品牌方正式交割下发了品牌全线产品的中央总目录数据库，详细规范了国际EAN/UPC条码标准与多语种商品描述。",
+          "tip": "跨境运营铺货的基石底座，确保各销售站点与ERP系统的商品主数据（Master Data）高度统一，避免因数据混乱导致发错货。"
+        },
+        {
+          "id": "c4_04",
+          "index": 4,
+          "term": "stock keeping unit (SKU)",
+          "phonetic": "/stɒk ˈkiːpɪŋ ˈjuːnɪt/",
+          "meaning": "最小单品库存与变体计价单位（SKU）",
+          "example": "Each fragrance size and shade variant must be assigned a unique stock keeping unit (SKU) identifier.",
+          "exampleZh": "香水的每一个不同毫升容量规格（30ml/50ml/100ml）及彩妆色号变体，均必须严格分配赋予一个唯一的独立SKU编码标识。",
+          "tip": "库存管理、财务核算与仓储拣货的最小细胞单元。变体命名需规范，防止因SKU映射错误导致海外仓发错货遭买家差评。"
+        },
+        {
+          "id": "c4_05",
+          "index": 5,
+          "term": "digital merchandising",
+          "phonetic": "/ˈdɪdʒɪtl ˈmɜːtʃəndaɪzɪŋ/",
+          "meaning": "线上商品货架陈列排布与选品逻辑",
+          "example": "Strategic digital merchandising curates seasonal hero SKUs at the top of our virtual storefront.",
+          "exampleZh": "具有战略眼光的线上数字化货架选品与陈列规划，巧妙将换季最具爆发潜力的核心英雄爆款SKU稳稳置顶于品牌店铺首页。",
+          "tip": "就像线下专柜橱窗陈列，通过大数据分析用户加购浏览动线，合理布局引流款、利润款与形象款的商品矩阵搭配。"
+        },
+        {
+          "id": "c4_06",
+          "index": 6,
+          "term": "platform fulfillment",
+          "phonetic": "/ˈplætfɔːm fʊlˈfɪlmənt/",
+          "meaning": "电商平台官方仓配代履约（如FBA）",
+          "example": "Enrolling in platform fulfillment guarantees prime shipping badges and access to next-day delivery networks.",
+          "exampleZh": "正式加入并切换至电商平台官方仓配一体化代履约服务体系（如亚马逊FBA），能确保商品获得尊贵Prime标与次日妥投极致时效。",
+          "tip": "官方履约享受高权重流量倾斜，且因物流原因招致的差评通常可由平台官方直接出面划掉移除，极大保护店铺评分。"
+        },
+        {
+          "id": "c4_07",
+          "index": 7,
+          "term": "category gating",
+          "phonetic": "/ˈkætəɡəri ˈɡeɪtɪŋ/",
+          "meaning": "平台香水美妆特殊类目准入限制审核",
+          "example": "Fragrance sellers must overcome rigorous category gating by proving safety compliance and supplier invoices.",
+          "exampleZh": "香水品类跨境卖家必须通过平台极其严苛的受限类目准入大门审核（Category Gating），严格出具安全合规MSDS与全套采购真实发票。",
+          "tip": "由于属于液体危化品及易仿冒高危类目，未解封（Ungated）前普通新注册卖家账号严禁私自在前台挂牌售卖。"
+        },
+        {
+          "id": "c4_08",
+          "index": 8,
+          "term": "brand gating",
+          "phonetic": "/brænd ˈɡeɪtɪŋ/",
+          "meaning": "品牌白名单保护限制（防跟卖跟抢机制）",
+          "example": "Brand gating prevents unauthorized third-party sellers from hopping onto our exclusive ASIN listings.",
+          "exampleZh": "成功开启品牌白名单准入保护限制（Brand Gating），能坚决彻底阻断任何未经官方授权的第三方跟卖恶性篡改抢夺我们的核心独家链接。",
+          "tip": "防跟卖的最强法务盾牌。其他卖家企图跟卖该ASIN时，系统将弹出强制弹窗要求出具品牌方盖章授权书及至少三张大宗真实采购发票。"
+        },
+        {
+          "id": "c4_09",
+          "index": 9,
+          "term": "search suppression",
+          "phonetic": "/sɜːtʃ səˈpreʃn/",
+          "meaning": "商品链接被平台算法隐形降权屏蔽搜索",
+          "example": "Missing main image zoom requirements triggered immediate search suppression across European marketplaces.",
+          "exampleZh": "因主图未达到像素放大合规标准或关键属性缺失，导致该热销单品在欧洲全站点瞬间惨遭平台搜索引擎全网隐形降权屏蔽展现。",
+          "tip": "无声的灭顶之灾：后台Listing看似正常可售，但买家在前台关键词搜索中根本搜不到你的产品，流量瞬间腰斩归零。"
+        },
+        {
+          "id": "c4_10",
+          "index": 10,
+          "term": "account suspension",
+          "phonetic": "/əˈkaʊnt səˈspenʃn/",
+          "meaning": "卖家店铺账号被官方风控冻结封停",
+          "example": "Multiple IP infringement complaints led to catastrophic account suspension right before the Black Friday sale.",
+          "exampleZh": "接二连三遭受的多起知识产权维权恶意投诉，最终在黑五大促前夕致命地引发了整个海外卖家店铺主账号惨遭官方风控永久冻结封停。",
+          "tip": "出海运营最高级别地震。店铺一旦被封，不仅前台全部Listing集体下线变狗，更会遭遇长达90天甚至永久的资金冻结封锁。"
+        },
+        {
+          "id": "c4_11",
+          "index": 11,
+          "term": "account reinstatement",
+          "phonetic": "/əˈkaʊnt ˌriːɪnˈsteɪtmənt/",
+          "meaning": "封号官方申诉与账号重新激活解封",
+          "example": "Our legal consultants submitted a comprehensive Plan of Action (POA) that achieved full account reinstatement.",
+          "exampleZh": "我们的海外合规法务专家组起草并提交了一份逻辑无懈可击的根本原因行动纠正方案（POA），最终成功换取了账号的官方彻底解封复活。",
+          "tip": "申诉核心三段论：深刻承认违规根源原因（Root Cause）、展示已即刻采取的止血救济措施、列明未来杜绝重犯的体系化防范流程。"
+        },
+        {
+          "id": "c4_12",
+          "index": 12,
+          "term": "Buy Box ownership",
+          "phonetic": "/baɪ bɒks ˈəʊnəʃɪp/",
+          "meaning": "黄金购物车结账位抢占与独占率",
+          "example": "Automated price adjustments ensure our flagship product maintains 98% Buy Box ownership.",
+          "exampleZh": "依托毫秒级智能算法动态调价，确保我们的核心王牌单品在全天候竞争中稳稳保持高达98%的黄金购物车（Buy Box）绝对独占率。",
+          "tip": "跨境电商成交生命线。超过85%的平台买家直接点击页面右侧的‘Add to Cart’结账，丢失购物车意味着直接将订单拱手相让。"
+        },
+        {
+          "id": "c4_13",
+          "index": 13,
+          "term": "shopping cart",
+          "phonetic": "/ˈʃɒpɪŋ kɑːt/",
+          "meaning": "线上买家购物车系统",
+          "example": "Over 40% of users who add items to their shopping cart abandon before checkout due to high shipping fees.",
+          "exampleZh": "由于页面显示的跨境头程运费过高，导致将心仪美妆加入线上虚拟购物车的用户中，有超过40%在最终结账付款前流失弃购。",
+          "tip": "运营需通过购物车挽回邮件营销（Abandon Cart Email）、限时赠券或凑单包邮门槛，极力拉高购物车的最终买单转化率。"
+        },
+        {
+          "id": "c4_14",
+          "index": 14,
+          "term": "checkout funnel",
+          "phonetic": "/ˈtʃekaʊt ˈfʌnl/",
+          "meaning": "提交订单到最终付款转化的漏斗各环节",
+          "example": "Streamlining the checkout funnel by integrating one-click Apple Pay reduced mobile drop-off rates.",
+          "exampleZh": "通过在最终结算支付漏斗中深度接入一键快捷免密支付（如Apple Pay），大幅削减了手机移动端在繁琐支付环节的买家跳失率。",
+          "tip": "优化漏斗节点：购物车确认 $\rightarrow$ 填写送货地址 $\rightarrow$ 选择物流时效 $\rightarrow$ 输入信用卡支付 $\rightarrow$ 妥投确认页，每少一步多赚10%。"
+        },
+        {
+          "id": "c4_15",
+          "index": 15,
+          "term": "automated repricing",
+          "phonetic": "/ˈɔːtəmeɪtɪd ˌriːˈpraɪsɪŋ/",
+          "meaning": "算法驱动的智能毫秒级自动调价跟价",
+          "example": "Deploying automated repricing software safeguards profit margins while continuously competing for the Buy Box.",
+          "exampleZh": "部署全自动算法智能调价跟价系统，在全天候贴身竞逐争夺黄金购物车的激烈拼杀中，死守底线毛利利润不被击穿。",
+          "tip": "可精细设定调价规则：比最低价跟卖者始终低0.01美元，但一旦触碰最低保本毛利底线即刻自动止跌，防范恶意恶性价格陷阱。"
+        },
+        {
+          "id": "c4_16",
+          "index": 16,
+          "term": "search algorithm",
+          "phonetic": "/sɜːtʃ ˈælɡərɪðəm/",
+          "meaning": "平台搜索推荐与流量分发核心算法",
+          "example": "The marketplace search algorithm favors listings demonstrating superior sales velocity and stellar reviews.",
+          "exampleZh": "电商平台核心搜索推荐分发算法，天然极度偏好那些展现出惊人历史出单动销爆发力与全五星好评如潮的高权重优质Listing。",
+          "tip": "摸透算法潜规则（如亚马逊A10算法）：销量与点击转化率是权重的王中王，高转化率会像滚雪球一样带来更多免费自然精准搜索流量。"
+        },
+        {
+          "id": "c4_17",
+          "index": 17,
+          "term": "organic search ranking",
+          "phonetic": "/ɔːˈɡænɪk sɜːtʃ ˈræŋkɪŋ/",
+          "meaning": "关键词不花钱的自然搜索展现排名",
+          "example": "Securing top-three organic search ranking for 'rose water toner' drastically lowered our PPC advertising costs.",
+          "exampleZh": "成功抢占并稳固并垄断了‘玫瑰舒缓爽肤水’这一大热核心大词排名前三的自然免费搜索位，让我们直通车广告投放获客成本断崖式大降。",
+          "tip": "出海终极目标。花钱打付费广告砸排名的根本目的，正是为了撬动并沉淀出永续盈利、无需再付费点击的头部自然搜索排名。"
+        },
+        {
+          "id": "c4_18",
+          "index": 18,
+          "term": "keyword indexing",
+          "phonetic": "/ˈkiːwɜːd ˈɪndeksɪŋ/",
+          "meaning": "产品Listing被平台搜索引擎成功索引收录",
+          "example": "Always verify keyword indexing after editing your title to ensure the algorithm recognizes new search queries.",
+          "exampleZh": "在修改完商品标题与五点后台属性后，务必第一时间查验关键词收录索引状态，确保搜索引擎核心算法已完整抓取收录新的查询词根。",
+          "tip": "如果输入‘ASIN + 关键词’在平台搜不到你的商品，说明该词压根未被系统收录索引，再怎么烧广告也无法展现，需重新埋词。"
+        },
+        {
+          "id": "c4_19",
+          "index": 19,
+          "term": "storefront traffic",
+          "phonetic": "/ˈstɔːfrʌnt ˈtræfɪk/",
+          "meaning": "品牌全店访客总流量（公域与私域总流）",
+          "example": "Influencer promotional campaigns channeled millions of qualified storefront traffic directly to our brand page.",
+          "exampleZh": "海外头部美妆博主轰炸式的全网宣发矩阵，将数以百万计具有极强购买意向的精准优质店铺公域流量，全速汇聚灌入我们的品牌独立旗舰店。",
+          "tip": "流量是出海电商的氧气。涵盖站内付费广告流量（PPC）、站内自然搜索流量、以及站外TikTok/Instagram社媒外链导流。"
+        },
+        {
+          "id": "c4_20",
+          "index": 20,
+          "term": "ad impression",
+          "phonetic": "/æd ɪmˈpreʃn/",
+          "meaning": "PPC 广告真实曝光展示展现次数",
+          "example": "Our aggressive bidding strategy yielded a 200% surge in ad impressions during the weekend flash sale.",
+          "exampleZh": "我们在周末限时闪购大促期间采取的激进竞价出价掠夺策略，让全店付费搜索广告真实展示曝光次数呈现出超200%的井喷爆发。",
+          "tip": "漏斗的最顶端。曝光量大但点击量低，通常意味着主图吸引力不足、标价缺乏竞争力、或主推色号外观平庸，需紧急测图换图。"
+        },
+        {
+          "id": "c4_21",
+          "index": 21,
+          "term": "click-through (CTR)",
+          "phonetic": "/klɪk θruː/",
+          "meaning": "广告点击率（点击数除以曝光量，CTR）",
+          "example": "A click-through rate exceeding 0.8% indicates that our main product hero image resonates with buyers.",
+          "exampleZh": "全店平均广告点击率（CTR）稳稳突破0.8%的大关，极其清晰地印证了我们精心渲染的主推商品首图精准击中了海外买家的审美心智。",
+          "tip": "主图决定CTR，详情页决定CVR。在密密麻麻的搜索瀑布流中，质感出众、附带赠品标识或高档外盒的主图能让CTR暴涨数倍。"
+        },
+        {
+          "id": "c4_22",
+          "index": 22,
+          "term": "conversion rate (CVR)",
+          "phonetic": "/kənˈvɜːʃn reɪt/",
+          "meaning": "进店访客最终付款下单购买转化率",
+          "example": "Adding verified customer video testimonials pushed our product conversion rate from 9% to an impressive 14%.",
+          "exampleZh": "在详情页显要位置植入经真实购买认证的海外买家开箱视频好评证言后，硬生生将全店下单转化率从9%强力拉升至惊人的14%。",
+          "tip": "直接决定投产比命脉。转化率低的原因通常包括：差评排在首页、缺乏品牌信任度背书、交期过长、或未明确标明成分配方。"
+        },
+        {
+          "id": "c4_23",
+          "index": 23,
+          "term": "bounce rate",
+          "phonetic": "/baʊns reɪt/",
+          "meaning": "商品详情页即刻关闭离开的页面跳失率",
+          "example": "Slow mobile page load times inevitably trigger elevated bounce rates and lost checkout opportunities.",
+          "exampleZh": "移动端详情页极其缓慢龟速的图片加载渲染延迟，不可避免地瞬间触发了极度高企的页面秒关跳失率并痛失大量成交流水机会。",
+          "tip": "买家进入详情页后不到5秒未做任何滑动交互即直接关闭离开，算法会判定该页面质量极度低劣而迅速削减后续流量配给。"
+        },
+        {
+          "id": "c4_24",
+          "index": 24,
+          "term": "repeat purchase rate",
+          "phonetic": "/rɪˈpiːt ˈpɜːtʃəs reɪt/",
+          "meaning": "周期性老客户复购留存率（复购率）",
+          "example": "Cosmetic brands depend on a high repeat purchase rate to amortize steep customer acquisition costs.",
+          "exampleZh": "美妆护肤品类必须全凭极其出色的老客周期性复购留存率，方能从容摊薄并消化掉前期日益昂贵陡峭的公域新客获客成本。",
+          "tip": "护肤水乳与消耗性香水具有天然的周期复购属性（通常60~90天见底），通过订阅制（Subscribe & Save）能牢牢锁住高复购。"
+        },
+        {
+          "id": "c4_25",
+          "index": 25,
+          "term": "customer churn rate",
+          "phonetic": "/ˈkʌstəmə(r) tʃɜːn reɪt/",
+          "meaning": "平台老客户永久流失率",
+          "example": "Formulation changes made without prior customer notice sparked consumer backlash and inflated our churn rate.",
+          "exampleZh": "在未事先向忠实客群透明告知的情况下擅自大幅微调香水经典配方，招致了海外铁粉的强烈反弹抵触并导致老客流失率直线飙升。",
+          "tip": "流失一个老客户的代价是获取一个新客户成本的5倍。美妆护肤切忌随意改动核心香气与肤感，否则会遭遇毁灭性弃坑。"
+        },
+        {
+          "id": "c4_26",
+          "index": 26,
+          "term": "Return on Ad (ROAS)",
+          "phonetic": "/rɪˈtɜːn ɒn æd/",
+          "meaning": "广告支出直接产生的销售额投产比（ROAS）",
+          "example": "Our target blended ROAS was dialed in at 4.2 to guarantee healthy net profitability after all fees.",
+          "exampleZh": "我们将全店综合投产比（Blended ROAS）死死锚定在4.2这一严苛红线上，以确保扣除货本物流与平台全部抽成后录得健康正向净利。",
+          "tip": "ROAS = 广告带来的总销售额 / 广告直接花费。低于保本ROAS（Break-even ROAS）意味着做一单亏一单，是运营必须每日复盘的指标。"
+        },
+        {
+          "id": "c4_27",
+          "index": 27,
+          "term": "customer cost (CAC)",
+          "phonetic": "/ˈkʌstəmə(r) kɒst/",
+          "meaning": "获得单个首单付费用户的获客成本（CAC）",
+          "example": "Skyrocketing digital ad bidding drove up our customer acquisition cost (CAC) by 35% across key markets.",
+          "exampleZh": "全网各大数字媒体买量竞价日趋白热化内卷，导致我们在欧美各大主流核心出海市场的平均单客新客获客成本（CAC）猛增了整整35%。",
+          "tip": "健康的商业模式必须保证：用户生命周期总价值（LTV）至少是单客获客成本（CAC）的3倍以上（即 LTV:CAC $\\ge$ 3:1）。"
+        },
+        {
+          "id": "c4_28",
+          "index": 28,
+          "term": "conversion funnel",
+          "phonetic": "/kənˈvɜːʃn ˈfʌnl/",
+          "meaning": "展现-点击-加购-成单全链路漏斗各节点",
+          "example": "Funnel analysis revealed the primary drop-off occurs between product view and add-to-cart actions.",
+          "exampleZh": "深度全链路转化漏斗归因分析清晰揭示：全店最致命的买家流失断崖节点，正是发生在浏览商品详情页与点击加入购物车动作之间。",
+          "tip": "抽丝剥茧排查瓶颈：曝光量 $\rightarrow$ 点击进入详情页 $\rightarrow$ 停留交互 $\rightarrow$ 点击加购 $\rightarrow$ 发起结账 $\rightarrow$ 最终付款成功。"
+        },
+        {
+          "id": "c4_29",
+          "index": 29,
+          "term": "performance benchmark",
+          "phonetic": "/pəˈfɔːməns ˈbentʃmɑːk/",
+          "meaning": "所在美妆细分类目 Top 卖家基准线",
+          "example": "Our logistics on-time delivery rate consistently exceeds the competitive category performance benchmark.",
+          "exampleZh": "我们全链路国际物流订单的准时妥投履约率，长期稳健超越同类美妆垂直赛道头部Top竞争对手的官方综合基准线。",
+          "tip": "平台后台（如亚马逊品牌分析ABA）提供的行业平均数据底线，运营需时刻对标，各项指标落后均会被算法逐步边缘化。"
+        },
+        {
+          "id": "c4_30",
+          "index": 30,
+          "term": "customer refund",
+          "phonetic": "/ˈkʌstəmə(r) ˈriːfʌnd/",
+          "meaning": "售后发生的原路退回全额/部分退款",
+          "example": "All unsealed cosmetic items returned by customers must be destroyed, resulting in an unrecoverable customer refund loss.",
+          "exampleZh": "所有被海外买家退回且封条已撕毁开封的退货美妆必须依法就地强制销毁，由此产生了彻底无法二次上架的净退款损失死账。",
+          "tip": "高昂的隐形杀手。美妆由于卫生法规严禁二次销售，平台秒退款政策下，买家退款意味着货品成本与往返国际运费全数沉没。"
+        },
+        {
+          "id": "c4_31",
+          "index": 31,
+          "term": "buyer return",
+          "phonetic": "/ˈbaɪə(r) rɪˈtɜːn/",
+          "meaning": "海外买家无理由退货入海外退货仓",
+          "example": "Excessive buyer returns during the holiday rush overloaded third-party reverse logistics processing facilities.",
+          "exampleZh": "节日大促狂欢后汹涌而来的海外买家天量无理由退货，瞬间挤爆瘫痪了第三方逆向退货物流中心的海外仓质检分拣流水线。",
+          "tip": "服装退货率高达30%，但美妆退货率通常应死守在3%~5%以内，一旦突破8%通常意味着色差严重、暴力碎瓶或宣称功效货不对板。"
+        },
+        {
+          "id": "c4_32",
+          "index": 32,
+          "term": "credit card chargeback",
+          "phonetic": "/ˈkredɪt kɑːd ˈtʃɑːdʒbæk/",
+          "meaning": "海外买家向发卡行发起信用卡恶意拒付撤资",
+          "example": "We submitted delivery tracking signatures to successfully overturn a fraudulent credit card chargeback dispute.",
+          "exampleZh": "我方向国际发卡行及时递交了带有买家真实签收笔迹的末端妥投派送运单凭据，成功强势逆转击碎了一起虚假恶意信用卡拒付欺诈。",
+          "tip": "俗称‘零元购白嫖’：买家收到贵重香水后故意向银行谎称未收到货或信用卡被盗刷强行撤资。防范需强制要求附带签收签字证明。"
+        },
+        {
+          "id": "c4_33",
+          "index": 33,
+          "term": "transaction dispute",
+          "phonetic": "/trænˈzækʃn dɪˈspjuːt/",
+          "meaning": "平台官方售后交易订单争议仲裁抗辩",
+          "example": "The seller operations team handled the transaction dispute by providing warehouse video of parcel packing.",
+          "exampleZh": "卖家跨境运营风控团队通过向平台官方仲裁介入组调取并递交出库打包流水线超清监控录像，成功赢得了该起交易争议判定。",
+          "tip": "买卖双方各执一词时的平台介入流程。证据准备越充分、格式越规范，平台倾向于直接动用官方储备资金垫付赔偿买家。"
+        },
+        {
+          "id": "c4_34",
+          "index": 34,
+          "term": "lost inventory reimbursement",
+          "phonetic": "/lɒst ˈɪnvəntri ˌriːɪmˈbɜːsmənt/",
+          "meaning": "平台官方丢件损坏现金赔偿补偿",
+          "example": "Automated reconciliation software reconciled warehouse discrepancies to claim $18,000 in lost inventory reimbursement.",
+          "exampleZh": "全自动对账索赔软件精准抓取并对平了平台官方在库盘点长达半年的账实不符，成功向平台讨回索赔了高达一万八千美元丢件赔付金。",
+          "tip": "官方履约仓（如FBA）在日常移库中经常发生丢件、叉车压碎压破未报备，专业运营必须定期主动向平台发起自动化对账索赔。"
+        },
+        {
+          "id": "c4_35",
+          "index": 35,
+          "term": "guarantee claim",
+          "phonetic": "/ˌɡærənˈtiː kleɪm/",
+          "meaning": "买家发起的平台介入交易保障终极客诉索赔",
+          "example": "Receiving an A-to-Z guarantee claim directly damages the seller's Order Defect Rate (ODR).",
+          "exampleZh": "店铺一旦被买家正式立案发起了亚马逊A-to-Z交易保障终极客诉索赔，将直接且不可撤销地重创卖家最核心的订单缺陷率（ODR）。",
+          "tip": "跨境运营头顶的悬顶达摩克利斯之剑：ODR一旦突破1%的法定红线，平台风控系统将自动触发对该店铺实施关停封店审核。"
+        },
+        {
+          "id": "c4_36",
+          "index": 36,
+          "term": "verified review",
+          "phonetic": "/ˈverɪfaɪd rɪˈvjuː/",
+          "meaning": "带真实下单购买认证标志的买家好评",
+          "example": "Acquiring initial verified reviews through legitimate sampling programs establishes critical early social proof.",
+          "exampleZh": "通过平台官方合规早期买家试用派样通道稳步积累首批带有官方认证标记的真实买家好评，是建立早期信任背书的关键转折点。",
+          "tip": "不带Verified标记的直评权重已被算法大幅调降；严禁私下返现刷单（Incentivized review），否则直接判定为操纵评论封号。"
+        },
+        {
+          "id": "c4_37",
+          "index": 37,
+          "term": "star rating",
+          "phonetic": "/stɑː(r) ˈreɪtɪŋ/",
+          "meaning": "商品链接前台综合平均星级评分（1-5星）",
+          "example": "A drop in star rating from 4.6 to 4.2 slashed organic search conversions by half within forty-eight hours.",
+          "exampleZh": "综合平均星级评分哪怕仅仅从4.6星微跌至4.2星，在短短四十八小时之内就足以将该爆款的自然搜索出单转化率直接硬生生腰斩。",
+          "tip": "分水岭效应极其显著：海外买家对4.5星以上产品天然不设防，而一旦掉落到4.0星以下，买家往往直接滑走彻底失去购买信心。"
+        },
+        {
+          "id": "c4_38",
+          "index": 38,
+          "term": "seller feedback",
+          "phonetic": "/ˈselə(r) ˈfiːdbæk/",
+          "meaning": "卖家综合服务态度与物流时效店铺评价",
+          "example": "Maintaining 99% positive seller feedback is a mandatory prerequisite for Buy Box rotation priority.",
+          "exampleZh": "将店铺全盘买家正面好评率（Positive Seller Feedback）长年死守在99%以上，是抢占黄金购物车轮巡倾斜的绝对刚性准入门槛。",
+          "tip": "区别于针对单品的Product Review，Seller Feedback专门考核卖家的发货准时率、包装专业度与在线售后客服回复时效。"
+        },
+        {
+          "id": "c4_39",
+          "index": 39,
+          "term": "review moderation",
+          "phonetic": "/rɪˈvjuː ˌmɒdəˈreɪʃn/",
+          "meaning": "平台防刷单防操纵评论合规机审风控",
+          "example": "Suspicious surges in unverified ratings triggered automated review moderation and listing throttling.",
+          "exampleZh": "短期内短时间内异常激增的集中五星好评，瞬间触发了平台风控算法的强力机器审核介入与Listing限流审查惩戒。",
+          "tip": "各大平台AI机审能深度识别买家账号关联度、留评留存时间及浏览动线，违规机刷会被批量无情强力剥离删除（Review wipe）。"
+        },
+        {
+          "id": "c4_40",
+          "index": 40,
+          "term": "violation flag",
+          "phonetic": "/ˌvaɪəˈleɪʃn flæɡ/",
+          "meaning": "被平台系统风控打上违规警告小红旗标签",
+          "example": "Our account dashboard showed a policy violation flag for restricted pesticide claims in the toner copy.",
+          "exampleZh": "卖家后台控制台被系统风控刺眼地亮起了政策违规警告小红旗，经查系因爽肤水文案中无意误触发了敏感的抑菌杀虫敏感违规字眼。",
+          "tip": "美妆Listing严禁用词雷区：FDA严禁宣称‘治疗湿疹、消炎抗菌、消除痤疮疤痕’等医疗药理功效，误用会被系统秒扣分甚至下架。"
+        },
+        {
+          "id": "c4_41",
+          "index": 41,
+          "term": "shipping label",
+          "phonetic": "/ˈʃɪpɪŋ ˈleɪbl/",
+          "meaning": "热敏打包快递电子面单（带条形码）",
+          "example": "High-speed thermal printers generate standardized shipping labels embedded with carrier routing barcodes.",
+          "exampleZh": "工业级超高速热敏打印机飞速生成内置有国际主流承运物流商末端分拣航线分拨条码的标准化快递电子面单。",
+          "tip": "面单严禁折叠、褶皱或条码打印断线；面单上的重量、运费等级与体积重量必须与实际包裹完全一致，防范高额补扣运费。"
+        },
+        {
+          "id": "c4_42",
+          "index": 42,
+          "term": "order packing slip",
+          "phonetic": "/ˈɔːdə(r) ˈpækɪŋ slɪp/",
+          "meaning": "仓储拣货出库随箱装箱货物明细单",
+          "example": "The automated warehouse packing station inserts an individualized order packing slip into each beauty parcel.",
+          "exampleZh": "全自动化仓储拣选打包工位将打印有明细SKU与礼品专属赠言的随箱装箱货物明细单，极其精准地逐一塞入每个美妆出库包裹内部。",
+          "tip": "不仅作为买家拆箱核对货品的凭证，更是植入品牌感谢信、私域引流复购优惠券码（Insert Card）的最佳触达载体。"
+        },
+        {
+          "id": "c4_43",
+          "index": 43,
+          "term": "pickup manifest",
+          "phonetic": "/ˈpɪkʌp ˈmænɪfest/",
+          "meaning": "国际快递承运商大宗批量揽收交接清单",
+          "example": "The evening driver signed the carrier pickup manifest confirming transfer of 450 parcel consignments.",
+          "exampleZh": "晚班交接的国际货运快递承运司机郑重签字确认了批量揽收交接清单，正式证实了整整450件包裹货品的物权交接与揽收扫描。",
+          "tip": "发货抗辩第一手硬证据。司机签字确认的大宗清单代表承运人已正式受载接管货物，后续一旦在途中丢包，承运人负全责。"
+        },
+        {
+          "id": "c4_44",
+          "index": 44,
+          "term": "cross-border courier",
+          "phonetic": "/krɒs ˈbɔːdə(r) ˈkʊriə(r)/",
+          "meaning": "国际商业快递派送网络（DHL/FedEx等）",
+          "example": "VIP customers can select expedited cross-border courier delivery for guaranteed three-day arrival.",
+          "exampleZh": "针对高端VIP定制高客单买家，结算时可自费勾选尊享特快国际航空商业快递直邮网络，享受三天必达极速妥投时效承诺。",
+          "tip": "门到门直邮空运网络，清关效率极高、全程轨迹秒级回传，非常适合小批量紧急补样、高价值沙龙香水及紧急公关样品寄送。"
+        },
+        {
+          "id": "c4_45",
+          "index": 45,
+          "term": "tracking number",
+          "phonetic": "/ˈtrækɪŋ ˈnʌmbə(r)/",
+          "meaning": "包裹运单轨迹追踪查询号",
+          "example": "Automated API webhooks push the tracking number to the customer the moment the carton scans out.",
+          "exampleZh": "一旦出库扫描枪完成扫码出闸，系统底层自动化API接口即刻在微秒级将真实运单轨迹查询号推送至海外买家手机通知。",
+          "tip": "平台强制考核有效追踪率（VTR，通常要求 $\\ge$ 95%）。上传虚假单号或未在承诺时限内录入单号将遭遇直接下架警告。"
+        },
+        {
+          "id": "c4_46",
+          "index": 46,
+          "term": "successful delivery",
+          "phonetic": "/səkˈsesfl dɪˈlɪvəri/",
+          "meaning": "末端妥投派送成功买家签收状态",
+          "example": "Funds are unlocked for escrow release once the carrier API signals successful delivery at the doorstep.",
+          "exampleZh": "一旦承运商底层轨迹数据API正式向平台回传了在买家门前‘妥投派送成功’的信号，被临时冻结的在途资金即刻被解锁进入结算放款流。",
+          "tip": "绝大多数平台将妥投成功节点作为交易订单完成的法律标志，售后保修期与买家可发起争议抗辩的时效倒计时亦由此正式起算。"
+        },
+        {
+          "id": "c4_47",
+          "index": 47,
+          "term": "delivery exception",
+          "phonetic": "/dɪˈlɪvəri ɪkˈsepʃn/",
+          "meaning": "地址不详/拒收/关税争议等派送异常状态",
+          "example": "Our proactive customer care team intercepts delivery exception alerts to prevent parcel return-to-sender.",
+          "exampleZh": "我们训练有素的跨境在线专属客服团队第一时间敏锐拦截派送异常预警提示，竭尽全力协助买家化解因地址不详被强制退件的惨剧。",
+          "tip": "包含：买家搬家查无此人、公寓防盗门无密码无法入内、买家拒绝支付当地进口关税等，需在24小时内紧急联络买家化解危机。"
+        },
+        {
+          "id": "c4_48",
+          "index": 48,
+          "term": "payout settlement",
+          "phonetic": "/ˈpeɪaʊt ˈsetlmənt/",
+          "meaning": "平台每半月/每月周期性账期打款结算账单",
+          "example": "The bi-weekly payout settlement deducts referral commissions, FBA fees, and promotional coupon subsidies.",
+          "exampleZh": "平台每隔两周定期下发打款的周期性结算账单中，极其详尽地层层扣除了交易抽成佣金、官方仓配履约代发费与买家优惠券补贴差额。",
+          "tip": "财务做账核算基石。需精准核对每一笔订单的毛入账、退款扣减、运费调整与广告费扣划，绝不能仅仅只看最终到账一笔总额。"
+        },
+        {
+          "id": "c4_49",
+          "index": 49,
+          "term": "wire remittance",
+          "phonetic": "/ˈwaɪə(r) rɪˈmɪtns/",
+          "meaning": "国际商业银行跨境美元/欧元国际电汇收款",
+          "example": "Overseas wholesale distributors settle bulk orders via SWIFT international wire remittance.",
+          "exampleZh": "海外大宗大客户分销渠道商均通过SWIFT国际银行系统，以美元或欧元大额跨境电汇转账方式进行大货尾款的全额交割与清算。",
+          "tip": "大额外贸首选。需向外商提供准确无误的收款银行英文抬头、SWIFT代码、IBAN国际银行账号及清算中转行Routing Number。"
+        },
+        {
+          "id": "c4_50",
+          "index": 50,
+          "term": "payment disbursement",
+          "phonetic": "/ˈpeɪmənt dɪsˈbɜːsmənt/",
+          "meaning": "平台第三方托管资金向绑卡银行下发",
+          "example": "Payment disbursement failed due to an unexpected update in the company's beneficiary bank details.",
+          "exampleZh": "由于公司在后台临时变更并更新了企业外币收款账户受益人信息，不幸触发了平台风控机制导致本期打款下发流程被暂时卡死搁浅。",
+          "tip": "修改银行账户属于高危敏感操作，平台通常会启动为期3天的资金临时安全冻结观察期，务必避开大促结算提现关键节点变更。"
+        },
+        {
+          "id": "c4_51",
+          "index": 51,
+          "term": "payment escrow",
+          "phonetic": "/ˈpeɪmənt ˈeskrəʊ/",
+          "meaning": "第三方担保交易资金法定托管结算机制",
+          "example": "Funds remain protected inside the platform's payment escrow until the buyer's 14-day inspection window closes.",
+          "exampleZh": "货款在海外买家法定的14天拆箱检验无理由退货窗口期未正式关闭之前，将一律稳稳置于平台官方第三方独立资金账户内进行安全托管。",
+          "tip": "解决跨国陌生交易信任鸿沟的核心机制，既保障买家不被虚假发货欺诈，又确保卖家只要合规履约妥投即必然能顺利拿到回款。"
+        },
+        {
+          "id": "c4_52",
+          "index": 52,
+          "term": "platform commission",
+          "phonetic": "/ˈplætfɔːm kəˈmɪʃn/",
+          "meaning": "电商平台按订单成交额固定比例抽取的佣金",
+          "example": "Cosmetic categories carry an average platform commission ranging from 8% to 15% per transacted unit.",
+          "exampleZh": "国际跨境电商平台在化妆品美妆类目项下，通常按照单笔订单实际成交开票总额固定按单抽取介于8%至15%不等的平台佣金抽成。",
+          "tip": "产品核价时最不可忽略的刚性抽成成本，客单价越高、平台佣金绝对值越大，需在全盘毛利模型中提前打入该项沉没支出。"
+        },
+        {
+          "id": "c4_53",
+          "index": 53,
+          "term": "operating overhead",
+          "phonetic": "/ˈɒpəreɪtɪŋ ˈəʊvəhed/",
+          "meaning": "跨境日常运营固定摊销沉没成本",
+          "example": "Scaling our catalog helped dilute recurring operating overhead, including software subscriptions and office rent.",
+          "exampleZh": "通过战略性扩充全盘在线动销产品SKU品类矩阵，有力地摊薄并稀释了包括跨境ERP软件订购年费、仓租及固定人力等日常固定摊销成本。",
+          "tip": "出海运营核算盈亏平衡点（BEP）的核心考量：即使今天一单不出，房租、水电、ERP接口费与核心团队底薪等固定成本依然在持续消耗。"
+        },
+        {
+          "id": "c4_54",
+          "index": 54,
+          "term": "gross revenue",
+          "phonetic": "/ɡrəʊs ˈrevənjuː/",
+          "meaning": "平台总商品交易额（GMV / 销售毛总额）",
+          "example": "Our cross-border storefronts achieved a milestone of $10 million in gross revenue this fiscal year.",
+          "exampleZh": "我们在各大海外跨境电商平台上的直营旗舰店铺阵列，在本财年胜利达成了总销售商品交易总额突破一千万美元的重大里程碑。",
+          "tip": "代表业务规模大盘。但千万不可被GMV虚假繁荣遮蔽双眼，必须紧盯退款率、扣点率以及扣减全部货本运费后的真实净利润。"
+        },
+        {
+          "id": "c4_55",
+          "index": 55,
+          "term": "net profit",
+          "phonetic": "/net ˈprɒfɪt/",
+          "meaning": "扣除所有货本、物流、税费后的纯净利润",
+          "example": "After accounting for heavy holiday PPC spending, the net profit margin stabilized at a healthy 18%.",
+          "exampleZh": "在巨额消化并扣除了节日旺季天量付费直通车广告买量投放大手笔支出后，全店净利润率稳稳维持在极其健康优异的18%高位水平。",
+          "tip": "生意的真正底裤。不管做多少流水，落入企业口袋里实打实的税后真金白银现金留存才是支撑供应链持续运转与抗风险的唯一终极真理。"
+        },
+        {
+          "id": "c4_56",
+          "index": 56,
+          "term": "gross margin",
+          "phonetic": "/ɡrəʊs ˈmɑːdʒɪn/",
+          "meaning": "剔除直接生产与货本采购后的综合进销毛利率",
+          "example": "Fragrance formulas deliver an enviable gross margin of nearly 75%, allowing substantial marketing budget leeway.",
+          "exampleZh": "高端沙龙香精配方赋予了该品类令整个消费品行业极其艳羡的近75%超高毛利率空间，为后期大手笔投放种草提供了雄厚的预算底气。",
+          "tip": "高毛利是出海营销狂轰滥炸的前提。毛利率如果低于40%，稍微遭遇平台涨佣金、海运费暴涨或退款率微升，整个商业模型就会瞬间转亏。"
+        },
+        {
+          "id": "c4_57",
+          "index": 57,
+          "term": "sales turnover",
+          "phonetic": "/seɪlz ˈtɜːnəʊvə(r)/",
+          "meaning": "货品与资金的年化综合销售营业额周转速度",
+          "example": "Rapid sales turnover in our best-selling lip tints prevented inventory aging and optimized operating cash flow.",
+          "exampleZh": "王牌爆款持妆唇釉极度迅猛敏捷的年化销售出单周转流速，彻底防范了货品临期老化的致命隐患并极大盘活优化了经营性现金流。",
+          "tip": "高周转胜过高利润。毛利30%但一年能周转6次的产品，其资本回报率远远超越毛利60%但一年只能卖掉周转1次的高冷沉睡库存。"
+        },
+        {
+          "id": "c4_58",
+          "index": 58,
+          "term": "fiscal deficit",
+          "phonetic": "/ˈfɪskl ˈdefɪsɪt/",
+          "meaning": "财年跨境运营核算账面亏损赤字",
+          "example": "Heavy front-loaded investments in European clinical registrations created a planned first-year fiscal deficit.",
+          "exampleZh": "前期在全欧洲严苛人体临床功效备案准入与法务合规体系上的巨额集中前置砸钱下注，导致首年运营账面呈现出计划内的战略性财务赤字。",
+          "tip": "战略性亏损与经营性失血需严密分清。只要单客LTV处于良性增长通道且获客成本边际递减，早期亏损是构建行业壁垒的必然学费。"
+        },
+        {
+          "id": "c4_59",
+          "index": 59,
+          "term": "operational surplus",
+          "phonetic": "/ˌɒpəˈreɪʃənl ˈsɜːpləs/",
+          "meaning": "周期性运营收支平衡后的盈利结余资金",
+          "example": "Our operational surplus from Q3 was directly reinvested into opening brick-and-mortar pop-up experiences.",
+          "exampleZh": "我们在第三季度稳健经营收支平衡后所沉淀斩获的充沛经营性盈利结余资金，已全部全额反哺追加投资于启动线下实体快闪试香体验馆。",
+          "tip": "代表业务具备自我造血机能，无需再依赖外部股东输血，企业可以用内生净结余从容进行跨周期扩张与技术自研迭代。"
+        },
+        {
+          "id": "c4_60",
+          "index": 60,
+          "term": "cashflow turnaround",
+          "phonetic": "/ˈkæʃfləʊ ˈtɜːnəʊvə(r)/",
+          "meaning": "采购付款到销售回款的现金流周转周期",
+          "example": "Negotiating a 60-day credit term with our bottle manufacturer dramatically accelerated our cashflow turnaround.",
+          "exampleZh": "成功与核心玻璃香水瓶身开模代工厂艰难拿下长达60天的商业账期信贷授信，大幅极速缩短并优化了我们整体经营现金流的周转周期。",
+          "tip": "很多跨境企业死于‘盈利性破产’：账面大赚但货款全压在海外仓或平台账期未到，手头现金流断裂无法支付空运费，现金周转是命根子。"
+        },
+        {
+          "id": "c4_61",
+          "index": 61,
+          "term": "commercial invoice",
+          "phonetic": "/kəˈmɜːʃl ˈɪnvɔɪs/",
+          "meaning": "正式跨境通关商业发票（CI）",
+          "example": "The commercial invoice must explicitly state the unit value, currency, Incoterms, and country of origin.",
+          "exampleZh": "出具用于正式进出口海关结关的商业发票（CI）上，必须极其精确地逐项载明每款单价、结算币种、国际贸易术语及真实原产国标识。",
+          "tip": "外贸单据之王。海关核定关税、外汇局核销结汇、银行放款、保险定损索赔均以此商业发票为最根本的法定基准原件凭证。"
+        },
+        {
+          "id": "c4_62",
+          "index": 62,
+          "term": "billing statement",
+          "phonetic": "/ˈbɪlɪŋ ˈsteɪtmənt/",
+          "meaning": "平台各明细扣划月度对账结算明细账单",
+          "example": "Cross-examine the monthly billing statement to audit against erroneous long-term storage fee overcharges.",
+          "exampleZh": "必须安排专人逐项抽丝剥茧严密对撞审核平台官方按月下发的月度对账结算明细账单，谨防系统被误扣误收莫须有的长期超期仓储费。",
+          "tip": "大型平台结算系统极其复杂，经常发生尺寸测量错误（Cubiscan）导致多收每月体积仓储费，查出异常可凭证据单全额追回索赔。"
+        },
+        {
+          "id": "c4_63",
+          "index": 63,
+          "term": "gift voucher",
+          "phonetic": "/ɡɪft ˈvaʊtʃə(r)/",
+          "meaning": "品牌官方专属无门槛电子购物礼券",
+          "example": "Issuing a $20 gift voucher to dissatisfied buyers successfully mitigated negative review threats.",
+          "exampleZh": "向遭遇物流微小延误而心生不满的海外买家主动出具一张二十美元无门槛全店通用专属购物消费礼券，成功化解了一场致命差评危机。",
+          "tip": "危机公关与老客关怀的柔性缓冲器。相比直接退款，发放高价值礼券既能锁住买家二次进店复购，又向买家展现出无与伦比的大牌服务姿态。"
+        },
+        {
+          "id": "c4_64",
+          "index": 64,
+          "term": "promotional coupon",
+          "phonetic": "/prəˈməʊʃənl ˈkuːpɒn/",
+          "meaning": "限时满减打折优惠代码（Coupon）",
+          "example": "Clipping the 15% green promotional coupon badge on the search results page boosts listing click-throughs.",
+          "exampleZh": "在商品搜索瀑布流前台醒目挂载带有15%折扣亮眼的绿色限时打折促销专属Coupon优惠券标签，能让主图点击转化率呈现几何级倍增。",
+          "tip": "海外买家对亮眼的打折标签（Orange/Green Coupon Badge）有天然极强的点击成瘾心理，是推新打榜期最常用的撬动点击率杠杆。"
+        },
+        {
+          "id": "c4_65",
+          "index": 65,
+          "term": "volume discount",
+          "phonetic": "/ˈvɒljuːm ˈdɪskaʊnt/",
+          "meaning": "采购大宗大货阶梯梯度打折让利",
+          "example": "We offer wholesale distributors an attractive volume discount: 5% off for 1,000 units, 10% off for 5,000 units.",
+          "exampleZh": "我们面向全球各级商业大批发商推出了极具诚意的阶梯式大宗采购让利政策：满一千支立享5%折扣，满五千支直减10%高额让利。",
+          "tip": "驱动大客户一次性大单锁货、提高单笔客单价（AOV）的绝佳利器，大批量采购能极大摊薄工厂单次开模洗机损耗与干线海运成本。"
+        },
+        {
+          "id": "c4_66",
+          "index": 66,
+          "term": "price markdown",
+          "phonetic": "/praɪs ˈmɑːkdaʊn/",
+          "meaning": "换季过季断码清仓临时大降价幅度",
+          "example": "A 30% price markdown on end-of-season sunscreens cleared the warehouse before the winter lull.",
+          "exampleZh": "在进入萧条冬季淡季之前，对全部换季临近过季的防晒霜大货果断狠心实施全盘直降30%的大幅降价清盘，顺利在寒冬前掏空了库存。",
+          "tip": "清仓止血的魄力。宁可在微亏或保本价下大笔直降变现回笼现金，也绝不能让有保质期衰减的产品烂在库里最终产生巨额销毁费用。"
+        },
+        {
+          "id": "c4_67",
+          "index": 67,
+          "term": "seasonal clearance",
+          "phonetic": "/ˈsiːzənl ˈklɪərəns/",
+          "meaning": "黑五网一/季末官方大促全网清货活动",
+          "example": "Our seasonal clearance event cleared all remaining holiday gift sets in a 72-hour flash sale.",
+          "exampleZh": "我们精心策划部署的季末全盘大促出清活动，在短短72小时的全网闪电倒计时大促狂欢中，将全部积压的节日限定礼盒全数抢购一空。",
+          "tip": "跨境运营每年最关键的四个战役节点：年中Prime Day大促、秋季大促、黑五网一（BFCM）及圣诞新年季末清盘狂欢。"
+        },
+        {
+          "id": "c4_68",
+          "index": 68,
+          "term": "bundle promotion",
+          "phonetic": "/ˈbʌndl prəˈməʊʃn/",
+          "meaning": "香水+护肤品组合搭售捆绑销售策略",
+          "example": "Pairing the floral EDP with a matching body lotion in a bundle promotion boosted our average order value.",
+          "exampleZh": "将核心主打的花香调浓香水（EDP）与同款香氛香体乳巧妙组合搭售做成超值捆绑销售套餐，一举将全店平均客单价（AOV）拉升了近40%。",
+          "tip": "用爆款带利润款、用高频带低频的经典组合拳，不仅让消费者感受到超值套餐优惠，还能顺理成章将多个不同细分类目连带售罄。"
+        },
+        {
+          "id": "c4_69",
+          "index": 69,
+          "term": "holiday gift set",
+          "phonetic": "/ˈhɒlədeɪ ɡɪft set/",
+          "meaning": "圣诞/情人节高档限定香氛礼盒套盒",
+          "example": "Holiday gift sets packaged in velvet-lined collectible presentation cases account for 40% of Q4 sales.",
+          "exampleZh": "采用奢华丝绒内衬与典藏级硬质精装礼盒封装的节日限定香氛礼盒套盒，惊人地独家贡献了我们第四季度全盘高达40%的销售总额。",
+          "tip": "美妆出海第四季度的终极核武器。西方圣诞季属于刚性互赠礼物场景，精致华丽的外包装设计甚至比香水料体本身更能决定购买冲动。"
+        },
+        {
+          "id": "c4_70",
+          "index": 70,
+          "term": "wholesale reorder",
+          "phonetic": "/ˈhəʊlseɪl ˌriːˈɔːdə(r)/",
+          "meaning": "核心分销商周期性翻单补单采购大单",
+          "example": "The retail chain submitted a substantial wholesale reorder after sell-through hit 85% in two weeks.",
+          "exampleZh": "海外线下大型连锁美妆巨头在终端动销率短短两周内惊人突破85%大关后，第一时间火速向我方砸下了新一轮天量大宗翻单采购大单。",
+          "tip": "供应链运作最美妙的音符。翻单代表产品真正通过了海外市场终端消费者的严酷检验，进入了‘动销-翻单-扩产’良性正向滚雪球周期。"
+        }
+      ]
+    }
+  ]
+};
+
+    // State Variables
+    let currentChapter = 'all';
+    let searchQuery = '';
+    let speechRate = 1.0;
+
+    // DOM Elements
+    const contentSections = document.getElementById('contentSections');
+    const tabsBar = document.getElementById('tabsBar');
+    const searchInput = document.getElementById('searchInput');
+    const searchClear = document.getElementById('searchClear');
+    const emptyState = document.getElementById('emptyState');
+    const themeToggle = document.getElementById('themeToggle');
+    const speechSpeed = document.getElementById('speechSpeed');
+    const toast = document.getElementById('toastMessage');
+
+    // Web Speech API
+    function playSpeech(text, lang = 'en-US') {
+      if (!('speechSynthesis' in window)) {
+        showToast('当前浏览器不支持语音发音');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = lang;
+      utterance.rate = speechRate;
+
+      // Select natural en-US voice if available
+      const voices = window.speechSynthesis.getVoices();
+      const enVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Daniel')));
+      if (enVoice) {
+        utterance.voice = enVoice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Toast Notice
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    // Copy to clipboard
+    function copyText(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('📋 已复制例句到剪贴板！');
+        }).catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    }
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('📋 已复制例句到剪贴板！');
+    }
+
+    // Render Function
+    function render() {
+      const q = searchQuery.trim().toLowerCase();
+      let totalVisible = 0;
+      let html = '';
+
+      window.DOSSIER_DATA.chapters.forEach(chap => {
+        if (currentChapter !== 'all' && currentChapter !== chap.id) {
+          return;
+        }
+
+        // Filter items
+        const matchedItems = chap.items.filter(item => {
+          if (!q) return true;
+          if (chap.type === 'country') {
+            return (item.name && item.name.toLowerCase().includes(q)) ||
+                   (item.adj && item.adj.toLowerCase().includes(q)) ||
+                   (item.meaning && item.meaning.toLowerCase().includes(q)) ||
+                   (item.role && item.role.toLowerCase().includes(q)) ||
+                   (item.example && item.example.toLowerCase().includes(q)) ||
+                   (item.reception && item.reception.toLowerCase().includes(q)) ||
+                   (item.tip && item.tip.toLowerCase().includes(q));
+          } else {
+            return (item.term && item.term.toLowerCase().includes(q)) ||
+                   (item.meaning && item.meaning.toLowerCase().includes(q)) ||
+                   (item.example && item.example.toLowerCase().includes(q)) ||
+                   (item.exampleZh && item.exampleZh.toLowerCase().includes(q)) ||
+                   (item.tip && item.tip.toLowerCase().includes(q));
+          }
+        });
+
+        if (matchedItems.length === 0) return;
+
+        totalVisible += matchedItems.length;
+
+        html += `
+          <section class="chapter-block" id="sec_${chap.id}">
+            <div class="section-header">
+              <div class="section-title-wrap">
+                <h2 class="section-title">${chap.icon} ${chap.name}</h2>
+                <span class="section-subtitle">${chap.enName}</span>
+              </div>
+              <span class="section-count-badge">${matchedItems.length} 组</span>
+            </div>
+            <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">${chap.desc}</p>
+            <div class="cards-grid">
+        `;
+
+        matchedItems.forEach(item => {
+          if (chap.type === 'country') {
+            // Render Country Card
+            html += `
+              <div class="item-card country-card" id="${item.id}">
+                <div class="card-head">
+                  <div class="term-title-wrap">
+                    <div class="term-title">${item.flag} ${item.name}</div>
+                    <div class="term-phonetic">${item.phonetic}</div>
+                  </div>
+                  <button class="btn-speak" onclick="playSpeech('${item.name}, ${item.adj}')" title="点击朗读国名与形容词">🔊</button>
+                </div>
+
+                <div class="country-role-box">
+                  <span>🏛️ 产地角色：</span>
+                  <span>${item.role}</span>
+                </div>
+
+                <div class="card-meaning">
+                  <span>🇨🇳 官方定义：</span>${item.meaning}
+                </div>
+
+                <div class="country-adj-box">
+                  <span>🏷️ 产地与国民形容词：</span>
+                  <span class="country-adj-badge">${item.adj}</span>
+                </div>
+
+                <div class="example-box">
+                  <div class="example-en">${item.example}</div>
+                  <div class="example-zh">${item.exampleZh}</div>
+                  <button class="btn-copy-ex" onclick="copyText('${item.example.replace(/'/g, "\\'")}')" title="复制英文例句">📋</button>
+                  <button class="btn-play-ex" onclick="playSpeech('${item.example.replace(/'/g, "\\'")}')">
+                    <span>🔊 朗读例句</span>
+                  </button>
+                </div>
+
+                <div class="example-box" style="border-left: 3px solid var(--accent-gold);">
+                  <div style="font-size:11px;font-weight:700;color:var(--accent-gold);margin-bottom:2px;">🤝 商务接待与破冰口语：</div>
+                  <div class="example-en">${item.reception}</div>
+                  <div class="example-zh">${item.receptionZh}</div>
+                  <button class="btn-copy-ex" onclick="copyText('${item.reception.replace(/'/g, "\\'")}')" title="复制接待口语">📋</button>
+                  <button class="btn-play-ex" onclick="playSpeech('${item.reception.replace(/'/g, "\\'")}')">
+                    <span>🔊 朗读接待句</span>
+                  </button>
+                </div>
+
+                <div class="tip-box">
+                  💡 <strong>行业溯源贴士：</strong>${item.tip}
+                </div>
+
+                <div class="card-footer">
+                  <span class="item-id-badge">ORIGIN · ${item.id.toUpperCase()}</span>
+                  <span class="category-badge">美妆核心产地</span>
+                </div>
+              </div>
+            `;
+          } else {
+            // Render Term Card
+            html += `
+              <div class="item-card term-card" id="${item.id}">
+                <div class="card-head">
+                  <div class="term-title-wrap">
+                    <div class="term-title">${item.term}</div>
+                    <div class="term-phonetic">${item.phonetic}</div>
+                  </div>
+                  <button class="btn-speak" onclick="playSpeech('${item.term.replace(/'/g, "\\'")}')" title="点击朗读词块">🔊</button>
+                </div>
+
+                <div class="card-meaning">
+                  <span>🎯 行业释义：</span>${item.meaning}
+                </div>
+
+                <div class="example-box">
+                  <div class="example-en">${item.example}</div>
+                  <div class="example-zh">${item.exampleZh}</div>
+                  <button class="btn-copy-ex" onclick="copyText('${item.example.replace(/'/g, "\\'")}')" title="复制邮件例句">📋</button>
+                  <button class="btn-play-ex" onclick="playSpeech('${item.example.replace(/'/g, "\\'")}')">
+                    <span>🔊 朗读实战例句</span>
+                  </button>
+                </div>
+
+                <div class="tip-box">
+                  💡 <strong>实操避坑：</strong>${item.tip}
+                </div>
+
+                <div class="card-footer">
+                  <span class="item-id-badge">#${String(item.index).padStart(2, '0')} · ${item.id.toUpperCase()}</span>
+                  <span class="category-badge">${chap.enName.split(',')[0]}</span>
+                </div>
+              </div>
+            `;
+          }
+        });
+
+        html += `
+            </div>
+          </section>
+        `;
+      });
+
+      contentSections.innerHTML = html;
+      emptyState.classList.toggle('show', totalVisible === 0);
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      searchClear.style.display = searchQuery ? 'block' : 'none';
+      render();
+    });
+
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      searchClear.style.display = 'none';
+      render();
+      searchInput.focus();
+    });
+
+    tabsBar.addEventListener('click', (e) => {
+      const pill = e.target.closest('.tab-pill');
+      if (!pill) return;
+      document.querySelectorAll('.tab-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentChapter = pill.getAttribute('data-chapter');
+      render();
+    });
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.body.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', next);
+      themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
+    });
+
+    speechSpeed.addEventListener('change', (e) => {
+      speechRate = parseFloat(e.target.value);
+    });
+
+    // Initialize speech voices cache
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+    }
+
+    // Initial render
+    render();
+  </script>
+</body>
+</html>

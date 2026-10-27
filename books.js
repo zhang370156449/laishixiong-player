@@ -4,6 +4,67 @@
  */
 window.BOOKS_DATABASE = [
   {
+  "id": "beauty_supply_chain_dossier",
+  "title": "美妆跨境与供应链 · 实战行业说明书",
+  "enTitle": "The Beauty & Cross-Border Supply Chain Dossier",
+  "subtitle": "香水美妆分销 · 品牌管理 · 跨境运营 · 供应链履约全景实操词块手册",
+  "author": "TomeLab 行业研读组 & 跨境美妆供应链项目组",
+  "series": "TomeLab 行业实战说明书系列",
+  "category": "industry",
+  "cover": "cover_beauty_supply_chain.png",
+  "pdfUrl": "",
+  "webUrl": "beauty_supply_chain_web.html",
+  "totalPages": "5 大核心章节",
+  "fileSize": "296 业务词块",
+  "publishYear": "2026 全彩交互版",
+  "status": "ready",
+  "badge": "⚡ 真人原声点读 · 280词块 + 16国",
+  "tags": [
+    "香水美妆",
+    "跨境电商",
+    "国际物流",
+    "保税清关",
+    "品牌控价(MAP)",
+    "280核心词块",
+    "16国溯源",
+    "全场景例句",
+    "真人点读"
+  ],
+  "description": "专为美妆出海、海外品牌运营、跨境分销与供应链操盘手打造的终身实操指南。全景覆盖16大美妆贸易核心国与280组业务核心词组，直击前中后调调香结构、包材防伪封签、保税清关查验、独代授权书(LOA)、MAP控价巡检与平台黄金购物车(Buy Box)竞争全流程。支持原生真人点读、邮件例句一键复制与行业避坑贴士。",
+  "toc": [
+    {
+      "title": "序章 · 全球美妆贸易国度与产地溯源 (16国)",
+      "page": "sec_chap0",
+      "level": 1,
+      "icon": "🌍"
+    },
+    {
+      "title": "第一章 · 国际物流、报关与仓储履约说明书 (70组)",
+      "page": "sec_chap1",
+      "level": 1,
+      "icon": "🚢"
+    },
+    {
+      "title": "第二章 · 香水美妆品类、配方与质检包材说明书 (70组)",
+      "page": "sec_chap2",
+      "level": 1,
+      "icon": "🧪"
+    },
+    {
+      "title": "第三章 · 品牌管理、授权协议与渠道治理说明书 (70组)",
+      "page": "sec_chap3",
+      "level": 1,
+      "icon": "🛡️"
+    },
+    {
+      "title": "第四章 · 跨境电商运营、平台指标与财务结算说明书 (70组)",
+      "page": "sec_chap4",
+      "level": 1,
+      "icon": "📊"
+    }
+  ]
+},
+  {
     "id": "longman_roots_3000",
     "title": "朗文3000核心词根速记图谱",
     "enTitle": "Longman 3000 Core Roots & Affixes Field Guide",

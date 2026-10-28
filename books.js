@@ -4,6 +4,38 @@
  */
 window.BOOKS_DATABASE = [
   {
+    "id": "longman_cognition_3000",
+    "title": "朗文3000 · 深度认知与查词伴侣",
+    "enTitle": "Longman Communication 3000 Cognition & Mastery",
+    "subtitle": "因词制宜 · 击碎机械死记 · 底层画面 · 生活锚定 · 口语模具",
+    "author": "Antigravity 认知语言工坊",
+    "series": "高频核心词认知突破系列",
+    "category": "vocab",
+    "cover": "cover_longman_roots.png",
+    "pdfUrl": "",
+    "webUrl": "longman_words.html",
+    "totalPages": "3,158 独立核心词",
+    "fileSize": "全量速查 + 深度解析",
+    "publishYear": "2026 深度认知版",
+    "status": "ready",
+    "badge": "🔥 一词一案 · 拒绝死记硬背 · 瞬时检索",
+    "tags": [
+      "朗文3000",
+      "一词一案",
+      "认知记忆",
+      "秒级搜索",
+      "高频词块",
+      "原生朗读",
+      "摆脱中文割裂"
+    ],
+    "description": "专为背单词总是‘联系不上中英文意思’的学习者量身打造。彻底摒弃机械模板，根据每个单词最容易卡壳的特质因词制宜：打通多义底层逻辑、毒舌区分孪生混淆词、还原老外潜意识与口语生活心理。内置3,158词毫秒级实时检索与纯正原生发音。",
+    "toc": [
+      { "title": "⚡ 核心高频词认知突破 (精选)", "page": "high_freq", "level": 1, "icon": "💡" },
+      { "title": "🔍 3,158 词全量即时检索索引", "page": "search", "level": 1, "icon": "⚡" },
+      { "title": "🗣️ 口语高频高危避坑词", "page": "traps", "level": 1, "icon": "⚠️" }
+    ]
+  },
+  {
   "id": "beauty_supply_chain_dossier",
   "title": "美妆跨境与供应链 · 实战行业说明书",
   "enTitle": "The Beauty & Cross-Border Supply Chain Dossier",

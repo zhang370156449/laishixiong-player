@@ -9,16 +9,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
   <style>
     :root {
-      --primary: #0f172a;
-      --primary-hover: #1e293b;
-      --primary-light: #f1f5f9;
-      --primary-accent: #2563eb;
-      --bg: #f8fafc;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --bg: #fdfdfd;
       --surface: #ffffff;
-      --surface-border: #e2e8f0;
-      --text-main: #090d16;
-      --text-sub: #334155;
-      --text-muted: #64748b;
+      --surface-border: #eaedf1;
+      --text-main: #111827;
+      --text-sub: #374151;
+      --text-muted: #6b7280;
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
@@ -74,14 +73,13 @@
       gap: 10px;
     }
     .brand-tag {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
-      color: #ffffff;
-      background: #0f172a;
-      border: 1px solid #0f172a;
-      padding: 3px 9px;
+      color: #6366f1;
+      background: #eef2ff;
+      border: 1px solid #e0e7ff;
+      padding: 3px 8px;
       border-radius: 6px;
-      letter-spacing: 0.02em;
     }
 
     .nav-actions {
@@ -108,6 +106,33 @@
     .nav-btn-back:hover {
       background: #e5e7eb;
       color: #111827;
+    }
+    .nav-btn-random {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+    .nav-btn-random:hover {
+      background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+    }
+    .nav-btn-random:active {
+      transform: translateY(1px);
+    }
+    .dice-icon {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .dice-icon.rolling {
+      animation: diceRoll 0.5s ease-out;
+    }
+    @keyframes diceRoll {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(270deg) scale(1.3); }
+      100% { transform: rotate(360deg) scale(1); }
     }
 
     /* Layout */
@@ -157,8 +182,8 @@
     }
     .search-input:focus {
       background: #ffffff;
-      border-color: #0f172a;
-      box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.12);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
     }
     .search-shortcut {
       position: absolute;
@@ -191,9 +216,8 @@
       transition: all 0.15s;
     }
     .f-tab.active {
-      background: #0f172a;
+      background: var(--primary);
       color: #ffffff;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
     }
 
     .word-list {
@@ -216,13 +240,11 @@
       background: #f9fafb;
     }
     .word-item.active {
-      background: #ffffff;
-      border-color: #0f172a;
-      border-left: 4px solid #0f172a;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+      background: var(--primary-light);
+      border-color: #c7d2fe;
     }
     .word-item.active .w-name {
-      color: #090d16;
+      color: var(--primary);
       font-weight: 800;
     }
     .w-left {
@@ -283,38 +305,99 @@
     }
     .hero-top {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
       margin-bottom: 8px;
     }
     .hero-word {
-      font-size: 44px;
+      font-size: 46px;
       font-weight: 800;
-      color: #090d16;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
+      letter-spacing: -0.8px;
+      color: #111827;
     }
-    .audio-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #0f172a;
-      color: #ffffff;
-      border: none;
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-random-btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 14px;
+      gap: 6px;
+      padding: 9px 18px;
+      border-radius: 30px;
+      background: #f5f3ff;
+      border: 1px solid #ddd6fe;
+      color: #7c3aed;
+      font-size: 14.5px;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s;
+    }
+    .hero-random-btn:hover {
+      background: #7c3aed;
+      color: #ffffff;
+      transform: scale(1.03);
+    }
+    .audio-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 30px;
+      background: #eef2ff;
+      border: 1px solid #e0e7ff;
+      color: #4f46e5;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
     }
     .audio-btn:hover {
-      background: #1e293b;
-      transform: scale(1.08);
+      background: #4f46e5;
+      color: #ffffff;
+      transform: scale(1.03);
     }
-    .audio-btn:active {
-      transform: scale(0.92);
+    .random-footer-card {
+      margin-top: 48px;
+      padding: 28px 24px;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1.5px dashed #cbd5e1;
+      border-radius: var(--radius-md);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .random-footer-tip {
+      font-size: 16px;
+      font-weight: 600;
+      color: #475569;
+    }
+    .btn-roll-big {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 30px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #ffffff;
+      font-size: 16.5px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.28);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-roll-big:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 22px rgba(79, 70, 229, 0.38);
+    }
+    .btn-roll-big:active {
+      transform: translateY(1px);
     }
     .hero-sub {
       display: flex;
@@ -381,13 +464,12 @@
     }
 
     .grape-box {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-left: 4px solid #0f172a;
+      background: #f9fafb;
+      border-left: 3px solid #6366f1;
       padding: 14px 18px;
       margin: 10px 0;
       font-size: 16.5px;
-      color: #1e293b;
+      color: #1f2937;
       line-height: 1.8;
       border-radius: 0 8px 8px 0;
     }
@@ -544,30 +626,23 @@
     .btn-copy-prompt {
       padding: 10px 22px;
       border-radius: 8px;
-      background: #0f172a;
+      background: var(--primary);
       color: #ffffff;
       font-size: 15px;
       font-weight: 700;
       border: none;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
       transition: all 0.2s;
     }
     .btn-copy-prompt:hover {
-      background: #1e293b;
+      background: var(--primary-hover);
     }
 
     @media (max-width: 768px) {
       .app-container { flex-direction: column; height: auto; }
       .sidebar { width: 100%; height: 350px; }
       .content-area { padding: 24px 20px; }
-      .hero-word {
-      font-size: 44px;
-      font-weight: 800;
-      color: #090d16;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-    }
+      .hero-word { font-size: 36px; }
     }
   </style>
 </head>
@@ -583,8 +658,12 @@
       </div>
     </a>
     <div class="nav-actions">
+      <button class="nav-btn nav-btn-random" onclick="pickRandomWord()" title="快捷键：键盘直接按 R">
+        <span class="dice-icon">🎲</span>
+        <span>随机抽词讲解</span>
+      </button>
       <a href="books.html" class="nav-btn nav-btn-back">
-        <span>📚 返回书籍大厅</span>
+        <span>📚 书籍大厅</span>
       </a>
     </div>
   </header>
@@ -723,9 +802,14 @@
         <div class="word-hero">
           <div class="hero-top">
             <div class="hero-word">${item.w}</div>
-            <button class="audio-btn" onclick="speakWord('${item.w}')">
-              <span>🔊 播放发音</span>
-            </button>
+            <div class="hero-actions">
+              <button class="hero-random-btn" onclick="pickRandomWord()" title="快捷键：键盘直接按 R">
+                <span class="dice-icon">🎲</span> <span>抽下一个 (R)</span>
+              </button>
+              <button class="audio-btn" onclick="speakWord('${item.w}')">
+                <span>🔊 播放发音</span>
+              </button>
+            </div>
           </div>
           <div class="hero-sub">
             <span>${item.p ? item.p : ''}</span>
@@ -736,8 +820,53 @@
 
         <div class="word-deep-body">
           ${bodyContent}
+          <div class="random-footer-card">
+            <div class="random-footer-tip">✨ 读完了？点击继续在灵感漫游中偶遇下一个核心词</div>
+            <button class="btn-roll-big" onclick="pickRandomWord()">
+              <span class="dice-icon">🎲</span> 随机抽下一个词讲解 (快捷键 R)
+            </button>
+          </div>
         </div>
       `;
+    }
+
+    // Random Word Picker (Strictly limited to words with master explanations)
+    function pickRandomWord() {
+      const starredKeys = Object.keys(window.COGNITION_DB);
+      if (!starredKeys || starredKeys.length === 0) return;
+
+      const current = (selectedWord || '').toLowerCase();
+      const candidates = starredKeys.filter(w => w.toLowerCase() !== current);
+      const targetKey = candidates.length > 0 
+        ? candidates[Math.floor(Math.random() * candidates.length)]
+        : starredKeys[0];
+
+      // Dice roll animation
+      const diceIcons = document.querySelectorAll('.dice-icon');
+      diceIcons.forEach(d => {
+        d.classList.remove('rolling');
+        void d.offsetWidth;
+        d.classList.add('rolling');
+      });
+
+      if (currentSearch) {
+        searchInput.value = '';
+        currentSearch = '';
+      }
+
+      selectWord(targetKey);
+
+      const contentArea = document.querySelector('.content-area');
+      if (contentArea) {
+        contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      setTimeout(() => {
+        const activeItem = document.querySelector('.word-item.active');
+        if (activeItem) {
+          activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+      }, 50);
     }
 
     // Copy Prompt
@@ -765,9 +894,12 @@
       });
     });
 
-    // Keyboard shortcut '/' to search
+    // Keyboard shortcuts: 'R' for random word, '/' for search, 'Escape' to clear
     window.addEventListener('keydown', (e) => {
-      if (e.key === '/' && document.activeElement !== searchInput) {
+      if ((e.key === 'r' || e.key === 'R') && document.activeElement !== searchInput) {
+        e.preventDefault();
+        pickRandomWord();
+      } else if (e.key === '/' && document.activeElement !== searchInput) {
         e.preventDefault();
         searchInput.focus();
         searchInput.select();

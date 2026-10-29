@@ -341,16 +341,21 @@
       color: #ffffff;
       transform: scale(1.03);
     }
+    .audio-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
     .audio-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 9px 18px;
-      border-radius: 30px;
+      gap: 5px;
+      padding: 8px 14px;
+      border-radius: 20px;
       background: #eef2ff;
       border: 1px solid #e0e7ff;
       color: #4f46e5;
-      font-size: 14.5px;
+      font-size: 13.5px;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
@@ -358,7 +363,15 @@
     .audio-btn:hover {
       background: #4f46e5;
       color: #ffffff;
-      transform: scale(1.03);
+      transform: translateY(-1px);
+    }
+    .audio-btn:active {
+      transform: translateY(1px);
+    }
+    .audio-btn.playing {
+      background: #4338ca;
+      color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25);
     }
     .random-footer-card {
       margin-top: 48px;
@@ -812,17 +825,56 @@
     let currentSearch = '';
     let selectedWord = 'consist';
 
-    // Speech Synthesis
-    function speakWord(word) {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(word);
-        utter.lang = 'en-US';
-        utter.rate = 0.9;
-        window.speechSynthesis.speak(utter);
-      } else {
-        alert('当前浏览器不支持语音朗读');
+    // Human Voice Dictionary Audio (type: 2=US, 1=UK)
+    let currentAudio = null;
+    function playWordAudio(word, type = 2, btnElem = null) {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
       }
+      document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('playing'));
+
+      if (btnElem) {
+        btnElem.classList.add('playing');
+      }
+
+      const cleanWord = encodeURIComponent(word.trim().toLowerCase());
+      const audioUrl = `https://dict.youdao.com/dictvoice?audio=${cleanWord}&type=${type}`;
+      const audio = new Audio(audioUrl);
+      currentAudio = audio;
+
+      audio.onended = () => {
+        if (btnElem) btnElem.classList.remove('playing');
+        currentAudio = null;
+      };
+
+      audio.onerror = () => {
+        if (btnElem) btnElem.classList.remove('playing');
+        // Fallback to Web Speech API if offline
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utter = new SpeechSynthesisUtterance(word);
+          utter.lang = (type === 1) ? 'en-GB' : 'en-US';
+          utter.rate = 0.9;
+          window.speechSynthesis.speak(utter);
+        }
+      };
+
+      audio.play().catch(err => {
+        console.warn('Audio play error, falling back:', err);
+        if (btnElem) btnElem.classList.remove('playing');
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utter = new SpeechSynthesisUtterance(word);
+          utter.lang = (type === 1) ? 'en-GB' : 'en-US';
+          utter.rate = 0.9;
+          window.speechSynthesis.speak(utter);
+        }
+      });
+    }
+
+    function speakWord(word) {
+      playWordAudio(word, 2);
     }
 
     // Filter Words
@@ -932,9 +984,14 @@
               <button class="hero-random-btn" onclick="pickRandomWord()" title="快捷键：键盘直接按 R">
                 <span class="dice-icon">🎲</span> <span>抽下一个 (R)</span>
               </button>
-              <button class="audio-btn" onclick="speakWord('${item.w}')">
-                <span>🔊 播放发音</span>
-              </button>
+              <div class="audio-group">
+                <button class="audio-btn" onclick="playWordAudio('${item.w}', 2, this)" title="真人纯正美音">
+                  <span>🇺🇸 美音</span>
+                </button>
+                <button class="audio-btn" onclick="playWordAudio('${item.w}', 1, this)" title="真人纯正英音">
+                  <span>🇬🇧 英音</span>
+                </button>
+              </div>
             </div>
           </div>
           <div class="hero-sub">

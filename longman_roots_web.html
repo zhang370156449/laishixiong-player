@@ -17,11 +17,11 @@
        ========================================================= */
     :root {
       /* Dark Theme (Default) */
-      --bg-gradient: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0a0d16 55%, #07090f 100%);
+      --bg-gradient: none;
       --bg-color: #0a0d16;
       --card-bg: rgba(20, 26, 42, 0.82);
       --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover-border: rgba(99, 102, 241, 0.45);
+      --card-hover-border: rgba(255, 255, 255, 0.25);
       --card-hover-bg: rgba(26, 35, 58, 0.95);
       --sidebar-bg: rgba(13, 17, 28, 0.96);
       --topbar-bg: rgba(11, 15, 25, 0.92);
@@ -33,9 +33,9 @@
       --accent-hover: #4f46e5;
       --sub-card-bg: rgba(255, 255, 255, 0.035);
       --sub-card-border: rgba(255, 255, 255, 0.06);
-      --formula-bg: rgba(99, 102, 241, 0.12);
+      --formula-bg: rgba(255, 255, 255, 0.05);
       --formula-color: #a5b4fc;
-      --formula-border: rgba(99, 102, 241, 0.28);
+      --formula-border: rgba(255, 255, 255, 0.12);
       --spk-bg: rgba(255, 255, 255, 0.08);
       --spk-color: #cbd5e1;
       --shadow-elevation: 0 16px 40px rgba(0, 0, 0, 0.35);
@@ -59,7 +59,7 @@
 
     /* Light Theme (Day / Porcelain Apple Aesthetic) */
     body.theme-light {
-      --bg-gradient: radial-gradient(circle at 50% 0%, #e0e7ff 0%, #f8fafc 40%, #f1f5f9 100%);
+      --bg-gradient: none;
       --bg-color: #f8fafc;
       --card-bg: #ffffff;
       --card-border: rgba(0, 0, 0, 0.08);
@@ -70,9 +70,9 @@
       --text-main: #0f172a;
       --text-sub: #334155;
       --text-muted: #64748b;
-      --accent: #4f46e5;
+      --accent: #0f172a;
       --accent-light: #6366f1;
-      --accent-hover: #4338ca;
+      --accent-hover: #1e293b;
       --sub-card-bg: #f8fafc;
       --sub-card-border: rgba(0, 0, 0, 0.06);
       --formula-bg: rgba(79, 70, 229, 0.06);
@@ -154,14 +154,14 @@
       width: 36px;
       height: 36px;
       border-radius: 10px;
-      background: linear-gradient(135deg, #6366f1, #38bdf8);
+      background: #0f172a;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
       font-size: 18px;
       color: #fff;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
     }
     .sidebar-title {
       font-size: 17px;
@@ -200,8 +200,13 @@
       transform: translateX(3px);
     }
     .nav-link.active {
-      background: var(--accent);
-      color: #fff;
+      background: #0f172a;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+    }
+    body.theme-light .nav-link.active {
+      background: #0f172a;
+      color: #ffffff;
     }
 
     /* Roots Badge Pills Grid in Sidebar */
@@ -225,9 +230,9 @@
       transition: all 0.15s ease;
     }
     .root-pill:hover {
-      background: var(--accent);
-      border-color: var(--accent-light);
-      color: #fff;
+      background: #0f172a;
+      border-color: #0f172a;
+      color: #ffffff;
       transform: translateY(-1px);
     }
 
@@ -312,7 +317,7 @@
       background: var(--accent);
       border-color: var(--accent-light);
       color: #fff;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
     }
 
     /* Content Container - Extra Wide for PC */

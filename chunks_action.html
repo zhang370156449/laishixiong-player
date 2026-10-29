@@ -198,12 +198,7 @@
       background: rgba(99, 102, 241, 0.12);
       border-color: rgba(99, 102, 241, 0.35);
     }
-    body.theme-dark .sentence-card.is-speaking {
-      background: #ffffff !important;
-      border-color: #0f172a !important;
-      border-left: 4px solid #0f172a !important;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1) !important;
-    }
+    
     body.theme-dark .btn-audio-play {
       background: rgba(255, 255, 255, 0.08);
       color: var(--primary);
@@ -632,11 +627,7 @@
       border-left: 4px solid #f59e0b;
       background: linear-gradient(to right, rgba(254, 243, 199, 0.15), var(--surface));
     }
-    .chunk-card.is-speaking {
-      border-color: #0f172a;
-      border-left: 5px solid #0f172a;
-      box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.16), 0 0 0 1px #0f172a;
-    }
+    
 
     /* Card Top Meta Bar */
     .card-meta-bar {
@@ -843,12 +834,7 @@
       background: var(--primary-light);
       border-color: var(--primary-border);
     }
-    .sentence-card.is-speaking {
-      background: #ffffff !important;
-      border-color: #0f172a !important;
-      border-left: 4px solid #0f172a !important;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1) !important;
-    }
+    
     .sentence-content {
       flex: 1;
       cursor: pointer;
@@ -1444,7 +1430,70 @@
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.6; transform: scale(0.95); }
     }
-  </style>
+  
+
+    /* Speaking State: Light Mode */
+    .chunk-card.is-speaking {
+      border-color: #0f172a;
+      border-left: 5px solid #0f172a;
+      box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.16), 0 0 0 1px #0f172a;
+    }
+    .chunk-card.is-speaking .chunk-en-text {
+      color: #090d16;
+    }
+    .chunk-card.is-speaking .chunk-zh-meaning {
+      color: #1e293b;
+    }
+
+    .sentence-card.is-speaking {
+      background: #ffffff !important;
+      border-color: #0f172a !important;
+      border-left: 4px solid #0f172a !important;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1) !important;
+    }
+    .sentence-card.is-speaking .sentence-en {
+      color: #090d16 !important;
+    }
+    .sentence-card.is-speaking .sentence-zh {
+      color: #334155 !important;
+    }
+    .sentence-card.is-speaking .btn-audio-play {
+      background: #0f172a !important;
+      color: #ffffff !important;
+    }
+
+    /* Speaking State: Night / Dark Theme */
+    body.theme-dark .chunk-card.is-speaking {
+      background: #171f33 !important;
+      border-color: #38bdf8 !important;
+      border-left: 5px solid #38bdf8 !important;
+      box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.7), 0 0 0 1px #38bdf8 !important;
+    }
+    body.theme-dark .chunk-card.is-speaking .chunk-en-text {
+      color: #ffffff !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    }
+    body.theme-dark .chunk-card.is-speaking .chunk-zh-meaning {
+      color: #cbd5e1 !important;
+    }
+    body.theme-dark .sentence-card.is-speaking {
+      background: #1e293b !important;
+      border-color: #38bdf8 !important;
+      border-left: 4px solid #38bdf8 !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+    }
+    body.theme-dark .sentence-card.is-speaking .sentence-en {
+      color: #ffffff !important;
+    }
+    body.theme-dark .sentence-card.is-speaking .sentence-zh {
+      color: #cbd5e1 !important;
+    }
+    body.theme-dark .sentence-card.is-speaking .btn-audio-play {
+      background: #38bdf8 !important;
+      color: #090d16 !important;
+    }
+
+</style>
 </head>
 <body>
 

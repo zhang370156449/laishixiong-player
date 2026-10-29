@@ -890,7 +890,40 @@
       .item-card { padding: 22px 20px; }
       .term-title { font-size: 22px; }
     }
-  </style>
+  
+
+    /* Speaking State: Light Mode */
+    [data-theme="light"] .item-card.is-speaking {
+      border-color: #0f172a !important;
+      border-left: 5px solid #0f172a !important;
+      box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.18) !important;
+    }
+    [data-theme="light"] .item-card.is-speaking .card-term {
+      color: #090d16 !important;
+    }
+    [data-theme="light"] .item-card.is-speaking .card-meaning {
+      color: #334155 !important;
+    }
+
+    /* Speaking State: Dark Mode */
+    [data-theme="dark"] .item-card.is-speaking,
+    .item-card.is-speaking {
+      background: #171f33 !important;
+      border-color: #38bdf8 !important;
+      border-left: 5px solid #38bdf8 !important;
+      box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.7), 0 0 0 1px #38bdf8 !important;
+    }
+    [data-theme="dark"] .item-card.is-speaking .card-term,
+    .item-card.is-speaking .card-term {
+      color: #ffffff !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    }
+    [data-theme="dark"] .item-card.is-speaking .card-meaning,
+    .item-card.is-speaking .card-meaning {
+      color: #cbd5e1 !important;
+    }
+
+</style>
 </head>
 <body data-theme="light">
 

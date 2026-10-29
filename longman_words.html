@@ -638,13 +638,103 @@
       background: var(--primary-hover);
     }
 
+    .mobile-tabs {
+      display: none;
+    }
+
+    @media (min-width: 769px) {
+      .mobile-tabs { display: none !important; }
+      .sidebar { display: flex !important; }
+      .content-area { display: block !important; }
+    }
+
     @media (max-width: 768px) {
-      .app-container { flex-direction: column; height: auto; }
-      .sidebar { width: 100%; height: 350px; }
-      .content-area { padding: 24px 20px; }
-      .hero-word { font-size: 36px; }
+      .navbar {
+        padding: 10px 14px;
+        gap: 8px;
+      }
+      .brand-title {
+        font-size: 15.5px;
+      }
+      .brand-tag {
+        display: none;
+      }
+      .brand-logo-img {
+        width: 32px;
+        height: 32px;
+      }
+      .nav-btn {
+        padding: 7px 11px;
+        font-size: 13px;
+      }
+      .mobile-tabs {
+        display: flex;
+        background: #f1f5f9;
+        padding: 6px;
+        gap: 6px;
+        border-bottom: 1px solid var(--surface-border);
+      }
+      .m-tab {
+        flex: 1;
+        padding: 8px 0;
+        font-size: 14.5px;
+        font-weight: 700;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .m-tab.active {
+        background: #ffffff;
+        color: var(--primary);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      }
+      .app-container {
+        flex-direction: column;
+        height: calc(100vh - 110px);
+        overflow: hidden;
+      }
+      .sidebar {
+        width: 100%;
+        height: 100%;
+        display: none;
+        border-right: none;
+      }
+      .sidebar.mobile-active {
+        display: flex;
+      }
+      .content-area {
+        padding: 20px 16px 80px 16px;
+        height: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        display: none;
+      }
+      .content-area.mobile-active {
+        display: block !important;
+      }
+      .hero-word { font-size: 34px; }
+      .hero-actions { flex-wrap: wrap; }
     }
   </style>
+  <script>
+    // Bulletproof fallback so clicking top nav random button never fails before script parsing
+    window.pickRandomWord = function() {
+      if (window._pickRandomWordImpl) {
+        window._pickRandomWordImpl();
+      } else {
+        window.addEventListener('DOMContentLoaded', () => {
+          if (window._pickRandomWordImpl) window._pickRandomWordImpl();
+        }, { once: true });
+      }
+    };
+  </script>
 </head>
 <body>
 
@@ -668,6 +758,16 @@
     </div>
   </header>
 
+  <!-- Mobile Tab Switcher (Only visible on mobile) -->
+  <div class="mobile-tabs" id="mobileTabs">
+    <button class="m-tab active" id="tabDetail" onclick="switchMobileView('detail')">
+      <span>📖 单词精讲</span>
+    </button>
+    <button class="m-tab" id="tabList" onclick="switchMobileView('list')">
+      <span>📋 词单检索</span>
+    </button>
+  </div>
+
   <!-- Main Workspace -->
   <div class="app-container">
     <!-- Left Sidebar -->
@@ -689,7 +789,7 @@
     </aside>
 
     <!-- Right Content Area -->
-    <main class="content-area">
+    <main class="content-area mobile-active">
       <div class="detail-card" id="detailCard">
         <!-- Word Detail Rendered Here -->
       </div>
@@ -772,11 +872,37 @@
       wordListContainer.innerHTML = html;
     }
 
+    // Mobile View Switcher
+    let mobileView = 'detail';
+    function switchMobileView(view) {
+      mobileView = view;
+      const tabDetail = document.getElementById('tabDetail');
+      const tabList = document.getElementById('tabList');
+      const sidebar = document.querySelector('.sidebar');
+      const contentArea = document.querySelector('.content-area');
+
+      if (!tabDetail || !tabList || !sidebar || !contentArea) return;
+
+      if (view === 'detail') {
+        tabDetail.classList.add('active');
+        tabList.classList.remove('active');
+        sidebar.classList.remove('mobile-active');
+        contentArea.classList.add('mobile-active');
+        contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        tabDetail.classList.remove('active');
+        tabList.classList.add('active');
+        sidebar.classList.add('mobile-active');
+        contentArea.classList.remove('mobile-active');
+      }
+    }
+
     // Select Word
     function selectWord(word) {
       selectedWord = word;
       renderWordList();
       renderDetail(word);
+      switchMobileView('detail');
     }
 
     // Render Detail Card
@@ -862,12 +988,18 @@
       }
 
       setTimeout(() => {
+        const listContainer = document.getElementById('wordListContainer');
         const activeItem = document.querySelector('.word-item.active');
-        if (activeItem) {
-          activeItem.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        if (listContainer && activeItem) {
+          const offset = activeItem.offsetTop - listContainer.offsetTop;
+          listContainer.scrollTo({ top: Math.max(0, offset - 40), behavior: 'smooth' });
         }
       }, 50);
+
+      switchMobileView('detail');
     }
+    window._pickRandomWordImpl = pickRandomWord;
+    window.switchMobileView = switchMobileView;
 
     // Copy Prompt
     function copyPrompt(w, c) {
@@ -913,6 +1045,7 @@
     // Initial render
     renderWordList();
     renderDetail(selectedWord);
+    switchMobileView('detail');
   </script>
 </body>
 </html>
